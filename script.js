@@ -178,7 +178,7 @@ function GetAchieves(){
         AchMult+=0.01;
       }
 	  if (i<49 && 39<i) {
-        document.getElementById("C-"+(i+2-40)+"Tab").removeAttribute("hidden");
+        document.getElementById("CM"+(i+2-40)+"Tab").removeAttribute("hidden");
       }
 	  if (i==49) {
 		  document.getElementById("NullUnlock").removeAttribute("hidden");
@@ -220,10 +220,10 @@ var mainGameLoop = window.setInterval(function() { // runs the loop
   var d = new Date();
   var n = d.getTime();
   if (tickpart>=tickspeed) {
-	console.log(d.getTime()-n);
+	n=d.getTime();
     tickpart -= tickspeed;
     loop();
-	n=d.getTime();
+	console.log(d.getTime()-n);
   }
 }, 33);
 

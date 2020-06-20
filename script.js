@@ -127,7 +127,8 @@ function PrestigeNegative(){
 	y+=math.floor(math.log10(x)-10);
 	if (Achieves[62]==0) {
 		Achieves[62]++;
-		document.getElementById("CM1Tab").removeAttribute("hidden");		
+		document.getElementById("A7C3").setAttribute("style","background-color: #5B5;");
+        document.getElementById("CM1Tab").removeAttribute("hidden");		
 		};
 	MAX=1;
 	x=0;

@@ -3,14 +3,14 @@
 
 
 // define variables that reference elements on our page
-var x, y, coords, tickspeed, positives, negatives,i,FicNeg,NPOW, Zero;
+var x, y, coords, tickspeed, positives, negatives,i,FicNeg,NPOW, Zero, LCoords;
 var Achieves=[0];
 for (i=0;i<70;i++){
   Achieves[i]=0
 }
 var MAX=1;
 var AchMult=1.01;
-x=0; coords=[0,0]; y=0; NPOW=0; Zero=0
+x=0; coords=[0,0]; y=0; NPOW=0; Zero=0; LCoords=[];
 positives=[0,0,0,0,0,0,0,0,0,0];
 negatives=[0,0,0,0,0,0,0,0,0,0];
 FicNeg=[0,0,0,0,0,0,0,0,0,0];
@@ -21,7 +21,6 @@ var tickpart=0;
 tickspeed=1000;
 function myFunction() {
   var i; 
-  var DPps;
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
   ctx.clearRect(0, 0, 500, 500);
@@ -34,18 +33,31 @@ function myFunction() {
   ctx.stroke();
   ctx.strokeStyle="#BBBBBB";
   ctx.beginPath();
-  //if (qual<100){
-  for (i=0;i<qual;i++) {
-    FourierCalculation(MAX)
-    MAX=Math.max(MAX,Math.abs(coords[0]),Math.abs(coords[1]))
-  }//}
+  if (LCoords.length<qual){
+	  if (LCoords.length>0) {ctx.moveTo(LCoords[0][0]/MAX*250+250,LCoords[0][1]/MAX*250+250);}
+	  for (i=0;i<LCoords.length;i++){
+		  ctx.lineTo(LCoords[i][0]/MAX*250+250,LCoords[i][1]/MAX*250+250);
+	      ctx.stroke();
+  }}
+	  
+  else{
+	  ctx.moveTo(LCoords[0][0]/MAX*250+250,LCoords[0][1]/MAX*250+250);
+	  for (i=0;i<LCoords.length;i++){
+		  ctx.lineTo(LCoords[i][0]/MAX*250+250,LCoords[i][1]/MAX*250+250);
+	      ctx.stroke();
+	  }
+	  LCoords.shift();
+  }
   ctx.closePath();
   x+=MAX*1.01**math.sum(Achieves)*1.5**math.sum(positives)*qual*(1+NPOW);
   ctx.beginPath();
   ctx.strokeStyle="#000000";
   document.getElementById("MCur").innerHTML = "Drawing points (DP) : "+x.toExponential(3);
+  document.getElementById("DPS").innerHTML = (MAX*1.01**math.sum(Achieves)*1.5**math.sum(positives)*qual*(1+NPOW)*1000/tickspeed).toExponential(2);
   if (Achieves[62]!=0){document.getElementById("PCur").innerHTML = "Negative points (NP) : "+y.toExponential(3);}
   FourierCalculation(MAX);
+  MAX=Math.max(MAX,Math.abs(coords[0]),Math.abs(coords[1]));
+  LCoords.push(coords);
 };
 
 function FourierCalculation(MAX) {
@@ -62,7 +74,7 @@ function FourierCalculation(MAX) {
   };
   R=R%qual + 1;
   coords=[TempVar.re,TempVar.im];
-  ctx.lineTo(coords[0]/MAX*250+250,coords[1]/MAX*250+250);/////
+  ctx.lineTo(coords[0]/MAX*250+250,coords[1]/MAX*250+250);
   ctx.stroke();
 };
 

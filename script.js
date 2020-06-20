@@ -94,7 +94,7 @@ function IncrementCn(n) {
 	else {
 		document.getElementById("PUnlock").removeAttribute("hidden");
 	}
-	if (math.sum(Achieves[0,10])==10){
+	if (math.sum(Achieves.slice(0,10))==10){
 	AchMult+=0.1  
   }
   }
@@ -102,21 +102,21 @@ function IncrementCn(n) {
     document.getElementById("A2C"+(n+1)).setAttribute("style","background-color: #5B5;");
     Achieves[n+10]++;
     if (n!=9){AchMult+=0.01;}
-	if (math.sum(Achieves[10,20])==10){
+	if (math.sum(Achieves.slice(10,20))==10){
 	AchMult+=0.1  
   }
   }
   if (positives[n]==25 && Achieves[n+20]!=0){
     document.getElementById("A3C"+(n+1)).setAttribute("style","background-color: #5B5;");
     Achieves[n+20]++;
-	if (math.sum(Achieves[20,30])==10){
+	if (math.sum(Achieves.slice(20,30))==10){
 	AchMult+=0.1  
   }
   }
   if (positives[n]==100 && Achieves[n+30]!=0){
     document.getElementById("A4C"+(n+1)).setAttribute("style","background-color: #5B5;");
     Achieves[n+30]++;
-	if (math.sum(Achieves[30,40])==10){
+	if (math.sum(Achieves.slice(30,40))==10){
 	AchMult+=0.1  
   }
   }
@@ -131,7 +131,7 @@ function IncrementCMn(n) {
     document.getElementById("A5C"+(n+1)).setAttribute("style","background-color: #5B5;");
     Achieves[n+40]++;
     if (n!=9){document.getElementById("CM"+(n+2)+"Tab").removeAttribute("hidden");}
-	if (math.sum(Achieves[40,50])==10){
+	if (math.sum(Achieves.slice(40,50))==10){
 	AchMult+=0.1  
   }
   }
@@ -187,7 +187,7 @@ function GetAchieves(){
     }
   }
   for (i=0;i<7;i++){
-  if (math.sum(Achieves[10*i,10*i+10])==10){
+  if (math.sum(Achieves.slice(10*i,10*i+10))==10){
 	AchMult+=0.1  
   }}
 }

@@ -146,7 +146,7 @@ function NPowIncrease(){
 function GetAchieves(){
   for (i=0;i<50;i++){
     if (Achieves[i]!=0){
-	  document.getElementById("PCur").innerHTML = i+" "+"A"+math.floor(1+(i+1)/10)+"C"+((i+1)%10);
+	  document.getElementById("PCur").innerHTML = i+" "+"A"+math.floor(1+(i+1)/10)+"C"+((i)%10+1);
       document.getElementById("A"+math.floor(1+(i+1)/10)+"C"+((i+1)%10)).setAttribute("style","background-color: #5B5;");
       if (i<10) {
         document.getElementById("C"+(i+2)+"Tab").removeAttribute("hidden");

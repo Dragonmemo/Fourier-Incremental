@@ -53,7 +53,7 @@ function myFunction() {
   ctx.beginPath();
   ctx.strokeStyle="#000000";
   document.getElementById("MCur").innerHTML = "Drawing points (DP) : "+x.toExponential(3);
-  document.getElementById("DPS").innerHTML = (MAX*1.01**math.sum(Achieves)*1.5**math.sum(positives)*qual*(1+NPOW)*1000/tickspeed).toExponential(2);
+  document.getElementById("DPS").innerHTML = (MAX*1.01**math.sum(Achieves)*1.5**math.sum(positives)*2**OtherQuantity[1]*(1+NPOW)*1000/tickspeed).toExponential(2);
   if (Achieves[62]!=0){document.getElementById("PCur").innerHTML = "Negative points (NP) : "+y.toExponential(3);}
   FourierCalculation(MAX);
   MAX=Math.max(MAX,Math.abs(coords[0]),Math.abs(coords[1]));
@@ -82,7 +82,7 @@ function ImproveQuality() {
   if (x>=5**((OtherQuantity[1]+1)**1.5)) {
     x-=5**((OtherQuantity[1]+1)**1.5);
   }  else{return};
-  qual*=2;
+  if (OtherQuantity[1]<8){qual*=2;}
   OtherQuantity[1]++;
   document.getElementById("QC").innerHTML = "Cost : "+(5**((OtherQuantity[1]+1)**1.5)).toExponential(3)+"DP";
 };

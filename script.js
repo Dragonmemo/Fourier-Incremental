@@ -220,10 +220,11 @@ var mainGameLoop = window.setInterval(function() { // runs the loop
   var d = new Date();
   var n = d.getTime();
   if (tickpart>=tickspeed) {
+	d=new Date();
 	n=d.getTime();
     tickpart -= tickspeed;
     loop();
-	console.log(d.getTime()-n);
+	console.log((new Date().getTime())-n);
   }
 }, 33);
 

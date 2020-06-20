@@ -98,90 +98,36 @@
         <p id="C4c">Cost : 10000 DP</p>
       </span>
       <span class="column" style="background-color:#999;" id="C5Tab" hidden>
-        <button type="button" onclick="IncrementCn(4)">increase C5</button>
+        <button type="button" onclick="IncrementCn(4)">increase C4</button>
         <p id="C5">0</p>
         <p id="C5c">Cost : 1e5 DP</p>
       </span>
       <span class="column" style="background-color:#aaa;" id="C6Tab" hidden>
-        <button type="button" onclick="IncrementCn(5)">increase C6</button>
+        <button type="button" onclick="IncrementCn(5)">increase C4</button>
         <p id="C6">0</p>
         <p id="C6c">Cost : 1e6 DP</p>
       </span>
       <span class="column" style="background-color:#bbb;" id="C7Tab" hidden>
-        <button type="button" onclick="IncrementCn(6)">increase C7</button>
+        <button type="button" onclick="IncrementCn(6)">increase C4</button>
         <p id="C7">0</p>
         <p id="C7c">Cost : 1e7 DP</p>
       </span>
       <span class="column" style="background-color:#ccc;" id="C8Tab" hidden>
-        <button type="button" onclick="IncrementCn(7)">increase C8</button>
+        <button type="button" onclick="IncrementCn(7)">increase C4</button>
         <p id="C8">0</p>
         <p id="C8c">Cost : 1e8 DP</p>
       </span>
       <span class="column" style="background-color:#ddd;" id="C9Tab" hidden>
-        <button type="button" onclick="IncrementCn(8)">increase C9</button>
+        <button type="button" onclick="IncrementCn(8)">increase C4</button>
         <p id="C9">0</p>
         <p id="C9c">Cost : 1e9 DP</p>
       </span>
       <span class="column" style="background-color:#eee;" id="C10Tab" hidden>
-        <button type="button" onclick="IncrementCn(9)">increase C10</button>
+        <button type="button" onclick="IncrementCn(9)">increase C4</button>
         <p id="C10">0</p>
         <p id="C10c">Cost : 1e10 DP</p>
       </span>
     </div> 
-    <button type="button" onclick="PrestigeNegative()" hidden>Prestige for<p id="PrestigeN">Need 1e11 DP</p></button>
-    <div class="row">
-      <div class="column" style="background-color:#555;" hidden id="CM1Tab">
-        <button type="button" onclick="IncrementCMn(0)">increase C-1</button>
-        <p id="CM1">0</p>
-        <p id="CM1c">Cost : 10 NP</p>
-      </div>
-      <span class="column" style="background-color:#666;" id="CM2Tab" hidden>
-        <button type="button" onclick="IncrementCMn(1)">increase C-2</button>
-        <p id="CM2">0</p>
-        <p id="CM2c">Cost : 100 NP</p>
-      </span>
-      <span class="column" style="background-color:#777;" id="CM3Tab" hidden>
-        <button type="button" onclick="IncrementCMn(2)">increase C-3</button>
-        <p id="CM3">0</p>
-        <p id="CM3c">Cost : 1000 NP</p>
-      </span>
-      <span class="column" style="background-color:#888;" id="CM4Tab" hidden>
-        <button type="button" onclick="IncrementCMn(3)">increase C-4</button>
-        <p id="CM4">0</p>
-        <p id="CM4c">Cost : 10000 NP</p>
-      </span>
-      <span class="column" style="background-color:#999;" id="CM5Tab" hidden>
-        <button type="button" onclick="IncrementCMn(4)">increase C-5</button>
-        <p id="CM5">0</p>
-        <p id="CM5c">Cost : 1e5 NP</p>
-      </span>
-      <span class="column" style="background-color:#aaa;" id="CM6Tab" hidden>
-        <button type="button" onclick="IncrementCMn(5)">increase C-6</button>
-        <p id="CM6">0</p>
-        <p id="CM6c">Cost : 1e6 NP</p>
-      </span>
-      <span class="column" style="background-color:#bbb;" id="CM7Tab" hidden>
-        <button type="button" onclick="IncrementCMn(6)">increase C-7</button>
-        <p id="CM7">0</p>
-        <p id="CM7c">Cost : 1e7 NP</p>
-      </span>
-      <span class="column" style="background-color:#ccc;" id="CM8Tab" hidden>
-        <button type="button" onclick="IncrementCMn(7)">increase C-8</button>
-        <p id="CM8">0</p>
-        <p id="CM8c">Cost : 1e8 NP</p>
-      </span>
-      <span class="column" style="background-color:#ddd;" id="CM9Tab" hidden>
-        <button type="button" onclick="IncrementCMn(8)">increase C-9</button>
-        <p id="CM9">0</p>
-        <p id="CM9c">Cost : 1e9 NP</p>
-      </span>
-      <span class="column" style="background-color:#eee;" id="CM10Tab" hidden>
-        <button type="button" onclick="IncrementCMn(9)">increase C-10</button>
-        <p id="CM10">0</p>
-        <p id="CM10c">Cost : 1e10 NP</p>
-      </span>
-    </div>
-    <button type="button" onclick="PrestigeNull()" hidden>Reduce C0 by 1<p id="Prestige0">Need at least 1 of each other C</p></button>
     </div>
 
     <div id="Achievements" class="tabcontent">
@@ -359,7 +305,7 @@
     </div>
     <div id="About" class="tabcontent">
       <p>This whole game is about the Fourier series (not the transform!) and this tab will explain to you what all this is about.</p>
-      <p>Fourier found that for any 2D shape that is continuous (you can draw it without having to lift the pen once) and have the starting point and the end point that are the same, there was a complex function that can draw it for t between 0 and 1 :</p>
+      <p>Fourier found that for any 2D shape that is continuous (you can draw it without having to lift the pen once) and have the starting point and the end point that are the same (you can say that it cycles), there was a complex function that can draw it for t between 0 and 1 :</p>
       <p><img src="https://latex.codecogs.com/svg.latex?f(t)=\sum_{n\in%20\mathbb{Z}}(C_n%20e^{nit\pi+i\phi_n})" border="0"/> Where <img src="https://latex.codecogs.com/svg.latex?(C_n)_{n\in\mathbb{Z}}" border="0"/> is a list of positive reals (take it as a list of radius) and <img src="https://latex.codecogs.com/svg.latex?(\phi_n)_{n\in\mathbb{Z}}" border="0"/> is a list of angles in radians</p>
       <p>Here is a link to the video from <a href="https://www.youtube.com/watch?v=r6sGWTCMz2k">3Blue1Brown</a> to show you how powerful this tool is (and explain it better than i do)</p>
     </div>

@@ -148,19 +148,19 @@ function GetAchieves(){
     if (Achieves[i]!=0){
 	  document.getElementById("PCur").innerHTML = i+" "+"A"+math.floor(1+i/10)+"C"+((i)%10+1);
       document.getElementById("A"+math.floor(1+i/10)+"C"+((i)%10+1)).setAttribute("style","background-color: #5B5;");
-      if (i<10) {
+      if (i<9) {
         document.getElementById("C"+(i+2)+"Tab").removeAttribute("hidden");
       }
-	  if (i==10) {
+	  if (i==9) {
 		  document.getElementById("PUnlock").removeAttribute("hidden");
 	  }
-      if (10<i && i<20){
+      if (9<i && i<19){
         AchMult+=0.01;
       }
-	  if (i<50 && 40<i) {
+	  if (i<49 && 39<i) {
         document.getElementById("C-"+(i+2-40)+"Tab").removeAttribute("hidden");
       }
-	  if (i==50) {
+	  if (i==49) {
 		  document.getElementById("NullUnlock").removeAttribute("hidden");
 	  }
 	  if (i==62){

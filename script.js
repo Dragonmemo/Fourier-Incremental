@@ -125,7 +125,7 @@ function IncrementCMn(n) {
 function PrestigeNegative(){
 	if (x<1e11){return};
 	y+=math.floor(math.log10(x)-10);
-	if (Achieves[62]=0) {
+	if (Achieves[62]==0) {
 		Achieves[62]++;
 		document.getElementById("CM1Tab").removeAttribute("hidden");		
 		};

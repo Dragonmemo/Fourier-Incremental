@@ -126,7 +126,7 @@ function IncrementCMn(n) {
   if (y>=pbaseCost[n]**(negatives[n]+1)) {
     y-=pbaseCost[n]**(negatives[n]+1);
   }  else{return};
-  positives[n]++;
+  negatives[n]++;
   if (negatives[n]==1 && Achieves[n+40]!=0){
     document.getElementById("A5C"+(n+1)).setAttribute("style","background-color: #5B5;");
     Achieves[n+40]++;

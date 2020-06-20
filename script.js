@@ -13,7 +13,7 @@ var AchMult=1.01;
 x=0; coords=[0,0]; y=0; NPOW=0; Zero=0
 positives=[0,0,0,0,0,0,0,0,0,0];
 negatives=[0,0,0,0,0,0,0,0,0,0];
-FicNeg=[0,0,0,0,0,0,0,0,0];
+FicNeg=[0,0,0,0,0,0,0,0,0,0];
 var pbaseCost=[10,100,1000,1e4,1e5,1e6,1e7,1e8,1e9,1e10];
 var OtherQuantity=[0,0];
 var qual=1, R=0, I=2*Math.PI;

@@ -67,7 +67,7 @@ function FourierCalculation(MAX) {
 };
 
 function ImproveQuality() {
-  if (x>5**((OtherQuantity[1]+1)**1.5)) {
+  if (x>=5**((OtherQuantity[1]+1)**1.5)) {
     x-=5**((OtherQuantity[1]+1)**1.5);
   }  else{return};
   qual*=2;
@@ -75,7 +75,7 @@ function ImproveQuality() {
   document.getElementById("QC").innerHTML = "Cost : "+(5**((OtherQuantity[1]+1)**1.5)).toExponential(3)+"DP";
 };
 function ReduceTickspeed() {
-  if (x>10**OtherQuantity[0]) {
+  if (x>=10**OtherQuantity[0]) {
     x-=10**OtherQuantity[0];
   }  else{return};
   tickspeed*=10/11;
@@ -83,7 +83,7 @@ function ReduceTickspeed() {
   document.getElementById("TC").innerHTML = "Cost : "+(10**OtherQuantity[0]).toExponential(3)+"DP";
 };
 function IncrementCn(n) {
-  if (x>pbaseCost[n]**(positives[n]+1)) {
+  if (x>=pbaseCost[n]**(positives[n]+1)) {
     x-=pbaseCost[n]**(positives[n]+1);
   }  else{return};
   positives[n]++;
@@ -123,7 +123,7 @@ function IncrementCn(n) {
   FormulaRewriter()
 };
 function IncrementCMn(n) {
-  if (y>pbaseCost[n]**(negatives[n]+1)) {
+  if (y>=pbaseCost[n]**(negatives[n]+1)) {
     y-=pbaseCost[n]**(negatives[n]+1);
   }  else{return};
   positives[n]++;
@@ -138,7 +138,7 @@ function IncrementCMn(n) {
   FormulaRewriter()
 };
 function PrestigeNegative(){
-	if (x<1e11){return};
+	if (x<1e10){return};
 	y+=math.floor(2**(math.log10(x)-10));
 	if (Achieves[62]==0) {
 		Achieves[62]++;

@@ -34,11 +34,11 @@ function myFunction() {
   ctx.stroke();
   ctx.strokeStyle="#BBBBBB";
   ctx.beginPath();
-  if (qual<100){
+  //if (qual<100){
   for (i=0;i<qual;i++) {
     FourierCalculation(MAX)
     MAX=Math.max(MAX,Math.abs(coords[0]),Math.abs(coords[1]))
-  }}
+  }//}
   ctx.closePath();
   x+=MAX*1.01**math.sum(Achieves)*1.5**math.sum(positives)*qual*(1+NPOW);
   ctx.beginPath();
@@ -198,28 +198,32 @@ function FormulaRewriter(){
   document.getElementById('ACH').innerHTML =AchMult**math.sum(Achieves);
   document.getElementById('AcMult').innerHTML =AchMult;
   for (i=0;i<10;i++){
-    if (positives[i]!=0){
-    document.getElementById("C"+(i+1)).innerHTML = positives[i];
-    document.getElementById("C"+(i+1)+"V").innerHTML = positives[i];
-    document.getElementById("C"+(i+1)+"T").removeAttribute("hidden");
-    document.getElementById("C"+(i+1)+"c").innerHTML = "Cost : "+(pbaseCost[i]**(positives[i]+1)).toExponential(2)+"DP";
-    };
-	if (negatives[i]!=0){
-	document.getElementById("CM"+(i+1)).innerHTML = negatives[i];
-    document.getElementById("CM"+(i+1)+"V").innerHTML = negatives[i];
-    document.getElementById("CM"+(i+1)+"T").removeAttribute("hidden");
-    document.getElementById("CM"+(i+1)+"c").innerHTML = "Cost : "+(pbaseCost[i]**(negatives[i]+1)).toExponential(2)+"NP";
-    };
+		if (positives[i]!=0){
+		document.getElementById("C"+(i+1)+"V").innerHTML = positives[i];
+		document.getElementById("C"+(i+1)+"T").removeAttribute("hidden");
+		};
+		if (negatives[i]!=0){
+		document.getElementById("CM"+(i+1)+"V").innerHTML = negatives[i];
+		document.getElementById("CM"+(i+1)+"T").removeAttribute("hidden");
+		};
+		document.getElementById("C"+(i+1)).innerHTML = positives[i];
+		document.getElementById("C"+(i+1)+"c").innerHTML = "Cost : "+(pbaseCost[i]**(positives[i]+1)).toExponential(2)+"DP";
+		document.getElementById("CM"+(i+1)).innerHTML = negatives[i];
+		document.getElementById("CM"+(i+1)+"c").innerHTML = "Cost : "+(pbaseCost[i]**(negatives[i]+1)).toExponential(2)+"NP";
+	};
 	document.getElementById("QC").innerHTML = "Cost : "+(5**((OtherQuantity[1]+1)**1.5)).toExponential(3)+"DP";
-    document.getElementById("TC").innerHTML = "Cost : "+(10**OtherQuantity[0]).toExponential(3)+"DP";
-  };
+	document.getElementById("TC").innerHTML = "Cost : "+(10**OtherQuantity[0]).toExponential(3)+"DP";
 };
 
 var mainGameLoop = window.setInterval(function() { // runs the loop
-  tickpart += 33
+  tickpart += 33;
+  var d = new Date();
+  var n = d.getTime();
   if (tickpart>=tickspeed) {
-    tickpart -= tickspeed
+	console.log(d.getTime()-n);
+    tickpart -= tickspeed;
     loop();
+	n=d.getTime();
   }
 }, 33);
 

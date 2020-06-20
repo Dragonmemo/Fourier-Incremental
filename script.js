@@ -160,6 +160,7 @@ function PrestigeNegative(){
 	MAX=1;
 	x=0;
 	coords=[0,0];
+	LCoords=[]
 	positives=[0,0,0,0,0,0,0,0,0,0];
 	OtherQuantity=[0,0];
 	NPOW=0;
@@ -269,6 +270,7 @@ function SReset(){
   Zero=0;
   NPOW=0;
   coords=[0,0];
+  LCoords=[]
   positives=[0,0,0,0,0,0,0,0,0,0];
   negatives=[0,0,0,0,0,0,0,0,0,0];
   pbaseCost=[10,100,1000,1e4,1e5,1e6,1e7,1e8,1e9,1e10];
@@ -284,6 +286,7 @@ function HReset(){
   Zero=0;
   NPOW=0;
   coords=[0,0];
+  LCoords=[]
   positives=[0,0,0,0,0,0,0,0,0,0];
   pbaseCost=[10,100,1000,1e4,1e5,1e6,1e7,1e8,1e9,1e10];
   negatives=[0,0,0,0,0,0,0,0,0,0];

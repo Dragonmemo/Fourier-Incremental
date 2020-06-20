@@ -162,6 +162,7 @@ function PrestigeNegative(){
 	coords=[0,0];
 	positives=[0,0,0,0,0,0,0,0,0,0];
 	OtherQuantity=[0,0];
+	NPOW=0;
 	qual=1, R=0;
 	tickspeed=1000;
 	FormulaRewriter();
@@ -266,6 +267,7 @@ function SReset(){
   x=0;
   y=0;
   Zero=0;
+  NPOW=0;
   coords=[0,0];
   positives=[0,0,0,0,0,0,0,0,0,0];
   negatives=[0,0,0,0,0,0,0,0,0,0];

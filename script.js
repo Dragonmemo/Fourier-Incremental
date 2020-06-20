@@ -87,7 +87,7 @@ function IncrementCn(n) {
     x-=pbaseCost[n]**(positives[n]+1);
   }  else{return};
   positives[n]++;
-  if (positives[n]==1){
+  if (positives[n]==1 && Achieves[n]!=0){
     document.getElementById("A1C"+(n+1)).setAttribute("style","background-color: #5B5;");
     Achieves[n]++;
     if (n!=9){document.getElementById("C"+(n+2)+"Tab").removeAttribute("hidden");}
@@ -95,16 +95,16 @@ function IncrementCn(n) {
 		document.getElementById("PUnlock").removeAttribute("hidden");
 	}
   }
-  if (positives[n]==10){
+  if (positives[n]==10 && Achieves[n+10]!=0){
     document.getElementById("A2C"+(n+1)).setAttribute("style","background-color: #5B5;");
     Achieves[n+10]++;
     if (n!=9){AchMult+=0.01;}
   }
-  if (positives[n]==25){
+  if (positives[n]==25 && Achieves[n+20]!=0){
     document.getElementById("A3C"+(n+1)).setAttribute("style","background-color: #5B5;");
     Achieves[n+20]++;
   }
-  if (positives[n]==100){
+  if (positives[n]==100 && Achieves[n+30]!=0){
     document.getElementById("A4C"+(n+1)).setAttribute("style","background-color: #5B5;");
     Achieves[n+30]++;
   }
@@ -115,7 +115,7 @@ function IncrementCMn(n) {
     y-=pbaseCost[n]**(negatives[n]+1);
   }  else{return};
   positives[n]++;
-  if (negatives[n]==1){
+  if (negatives[n]==1 && Achieves[n+40]!=0){
     document.getElementById("A5C"+(n+1)).setAttribute("style","background-color: #5B5;");
     Achieves[n+40]++;
     if (n!=9){document.getElementById("CM"+(n+2)+"Tab").removeAttribute("hidden");}

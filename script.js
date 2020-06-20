@@ -158,7 +158,7 @@ function NPowIncrease(){
 	for (i=9;0<i;i--){
 		FicNeg[i-1]+=(FicNeg[i]+negatives[i])*negatives[i]*1e-4*tickspeed
 	}
-	NPOW=(FicNeg[0]+negatives[0])*negatives[0]*1e-4*tickspeed
+	NPOW+=(FicNeg[0]+negatives[0])*negatives[0]*1e-4*tickspeed
 }
 function GetAchieves(){
   for (i=0;i<70;i++){
@@ -264,20 +264,20 @@ function HReset(){
   tickspeed=1000;
 }
 //loading all the stuff...
-if(localStorage.getItem('MCur')) {
-  MAX=parseFloat(localStorage.getItem('Max'));
-  x=parseFloat(localStorage.getItem("MCur"));
-  y=parseFloat(localStorage.getItem("PCur"));
-  Zero=parseFloat(localStorage.getItem("Zero"));
-  NPOW=parseFloat(localStorage.getItem("NPOW"));
-  coords=((localStorage.getItem("Coords")).split(",")).map(Number);
-  positives=localStorage.getItem("PCN").split(",").map(Number);
-  negatives=localStorage.getItem("NCN").split(",").map(Number);
-  pbaseCost=localStorage.getItem("PBC").split(",").map(Number);
-  FicNeg=localStorage.getItem("NFIC").split(",").map(Number);
-  OtherQuantity=localStorage.getItem("Other").split(",").map(Number);
-  R=parseInt(localStorage.getItem("R"));
-  Achieves=localStorage.getItem("Achieves").split(",").map(Number);
+if(localStorage.MCur) {
+  MAX=parseFloat(localStorage.Max);
+  x=parseFloat(localStorage.MCur);
+  y=parseFloat(localStorage.PCur);
+  Zero=parseFloat(localStorage.Zero);
+  NPOW=parseFloat(localStorage.NPOW);
+  coords=localStorage.Coords.split(",").map(Number);
+  positives=localStorage.PCN.split(",").map(Number);
+  negatives=localStorage.NCN.split(",").map(Number);
+  pbaseCost=localStorage.PBC.split(",").map(Number);
+  FicNeg=localStorage.NFIC.split(",").map(Number);
+  OtherQuantity=localStorage.Other.split(",").map(Number);
+  R=parseInt(localStorage.R);
+  Achieves=localStorage.Achieves.split(",").map(Number);
   tickspeed*=(10/11)**OtherQuantity[0];
   qual=2**OtherQuantity[1];
   if (Achieves.length<70) {

@@ -139,9 +139,9 @@ function PrestigeNegative(){
 }
 function NPowIncrease(){
 	for (i=9;0<i;i--){
-		NFIC[i-1]+=(NFIC[i]+negatives[i])*negatives[i]*1e-4*tickspeed
+		FicNeg[i-1]+=(FicNeg[i]+negatives[i])*negatives[i]*1e-4*tickspeed
 	}
-	NPOW=(NFIC[0]+negatives[0])*negatives[0]*1e-4*tickspeed
+	NPOW=(FicNeg[0]+negatives[0])*negatives[0]*1e-4*tickspeed
 }
 function GetAchieves(){
   for (i=0;i<50;i++){

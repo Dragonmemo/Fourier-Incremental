@@ -43,7 +43,7 @@ function myFunction() {
   x+=MAX*1.01**math.sum(Achieves)*1.5**math.sum(positives)*qual*(1+NPOW);
   ctx.beginPath();
   ctx.strokeStyle="#000000";
-  document.getElementById("MCur").innerHTML = "Drawing points (DP) : "+x.toExponential(3)+" "+NPOW;
+  document.getElementById("MCur").innerHTML = "Drawing points (DP) : "+x.toExponential(3);
   if (Achieves[62]!=0){document.getElementById("PCur").innerHTML = "Negative points (NP) : "+y.toExponential(3);}
   FourierCalculation(MAX);
 };
@@ -159,6 +159,8 @@ function NPowIncrease(){
 		FicNeg[i-1]+=(FicNeg[i]+negatives[i])*negatives[i]*1e-4*tickspeed
 	}
 	NPOW+=(FicNeg[0]+negatives[0])*negatives[0]*1e-4*tickspeed
+	if (x<1e10){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
+	else {document.getElementById('PrestigeN').innerHTML =math.floor(2**(math.log10(x)-10));}
 }
 function GetAchieves(){
   for (i=0;i<70;i++){
@@ -194,15 +196,22 @@ function GetAchieves(){
 function FormulaRewriter(){
   var S="0";
   document.getElementById('ACH').innerHTML =AchMult**math.sum(Achieves);
+  document.getElementById('AcMult').innerHTML =AchMult;
   for (i=0;i<10;i++){
     if (positives[i]!=0){
     document.getElementById("C"+(i+1)).innerHTML = positives[i];
     document.getElementById("C"+(i+1)+"V").innerHTML = positives[i];
     document.getElementById("C"+(i+1)+"T").removeAttribute("hidden");
     document.getElementById("C"+(i+1)+"c").innerHTML = "Cost : "+(pbaseCost[i]**(positives[i]+1)).toExponential(2)+"DP";
-    document.getElementById("QC").innerHTML = "Cost : "+(5**((OtherQuantity[1]+1)**1.5)).toExponential(3)+"DP";
-    document.getElementById("TC").innerHTML = "Cost : "+(10**OtherQuantity[0]).toExponential(3)+"DP";
     };
+	if (negatives[i]!=0){
+	document.getElementById("CM"+(i+1)).innerHTML = negatives[i];
+    document.getElementById("CM"+(i+1)+"V").innerHTML = negatives[i];
+    document.getElementById("CM"+(i+1)+"T").removeAttribute("hidden");
+    document.getElementById("CM"+(i+1)+"c").innerHTML = "Cost : "+(pbaseCost[i]**(negatives[i]+1)).toExponential(2)+"NP";
+    };
+	document.getElementById("QC").innerHTML = "Cost : "+(5**((OtherQuantity[1]+1)**1.5)).toExponential(3)+"DP";
+    document.getElementById("TC").innerHTML = "Cost : "+(10**OtherQuantity[0]).toExponential(3)+"DP";
   };
 };
 

@@ -137,6 +137,7 @@ function PrestigeNegative(){
 	OtherQuantity=[0,0];
 	qual=1, R=0;
 	tickspeed=1000;
+	FormulaRewriter();
 }
 function NPowIncrease(){
 	for (i=9;0<i;i--){

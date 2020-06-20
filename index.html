@@ -128,7 +128,7 @@
         <p id="C10c">Cost : 1e10 DP</p>
       </span>
     </div> 
-    <button type="button" onclick="PrestigeNegative()" hidden>Prestige for<p id="PrestigeN">Need 1e11 DP</p></button>
+    <button type="button" onclick="PrestigeNegative()" hidden id="PUnlock">Prestige for<p id="PrestigeN">Need 1e11 DP</p></button>
     <div class="row">
       <div class="column" style="background-color:#555;" hidden id="CM1Tab">
         <button type="button" onclick="IncrementCMn(0)">increase C-1</button>
@@ -181,7 +181,7 @@
         <p id="CM10c">Cost : 1e10 NP</p>
       </span>
     </div>
-    <button type="button" onclick="PrestigeNull()" hidden>Reduce C0 by 1<p id="Prestige0">Need at least 1 of each other C</p></button>
+    <button type="button" onclick="PrestigeNull()" hidden id="NullUnlock" class="tooltip">Reduce C0 by 1<p id="Prestige0">Need at least 1 of each other C</p><span class="tooltiptext">Wait, did you said "Reduce" ?</span></button>
     </div>
 
     <div id="Achievements" class="tabcontent">
@@ -329,25 +329,80 @@
         </td>
         </tr>
         <tr>
-        <td style="background-color:#D55;" height="100" id="A5C1" class="tooltip">
-          <span class="tooltiptext">Lemniscate! (not implemented yet!)</span>
+        <td class="tooltip" style="background-color:#D55;" height="100" id="A5C1">
+          <span class="tooltiptext">Have 1 C-1</span>
         </td>
         <td style="background-color:#D55;" height="100" id="A5C2" class="tooltip">
-          <span class="tooltiptext">BREAD (not implemented yet!)</span>
+          <span class="tooltiptext">Have 1 C-2</span>
         </td>
         <td style="background-color:#D55;" height="100" id="A5C3" class="tooltip">
-          <span class="tooltiptext">BAGUETTE! (not implemented yet!)</span>
+          <span class="tooltiptext">Have 1 C-3</span>
         </td>
         <td style="background-color:#D55;" height="100" id="A5C4" class="tooltip">
-          <span class="tooltiptext">Square 1 (not implemented yet!)</span>
+          <span class="tooltiptext">Have 1 C-4</span>
+        </td>
+        <td style="background-color:#D55;" height="100" id="A5C5" class="tooltip">
+          <span class="tooltiptext">Have 1 C-5</span>
+        </td>
+        <td style="background-color:#D55;" height="100" id="A5C6" class="tooltip">
+          <span class="tooltiptext">Have 1 C-6</span>
+        </td>
+        <td style="background-color:#D55;" height="100" id="A5C7" class="tooltip">
+          <span class="tooltiptext">Have 1 C-7</span>
+        </td>
+        <td style="background-color:#D55;" height="100" id="A5C8" class="tooltip">
+          <span class="tooltiptext">Have 1 C-8</span>
+        </td>
+        <td style="background-color:#D55;" height="100" id="A5C9" class="tooltip">
+          <span class="tooltiptext">Have 1 C-9</span>
+        </td>
+        <td style="background-color:#D55;" height="100" id="A5C10" class="tooltip">
+          <span class="tooltiptext">Have 1 C-10</span>
+        </td>
+        </tr>
+		<tr>
+        <td style="background-color:#D55;" height="100" id="A6C1" class="tooltip">
+          <span class="tooltiptext">One for all... (not implemented yet!)</span>
+        </td>
+		<td style="background-color:#D55;" height="100" id="A6C2" class="tooltip">
+          <span class="tooltiptext">Lemniscate! (not implemented yet!)</span>
+        </td>
+		<td style="background-color:#D55;" height="100" id="A6C4" class="tooltip">
+          <span class="tooltiptext">LEET (not implemented yet!)</span>
+        </td>
+        <td style="background-color:#D55;" height="100" id="A6C5" class="tooltip">
+          <span class="tooltiptext">BREAD (not implemented yet!)</span>
+        </td>
+        <td style="background-color:#D55;" height="100" id="A6C8" class="tooltip">
+          <span class="tooltiptext">BAGUETTE! (not implemented yet!)</span>
+        </td>
+		<td style="background-color:#D55;" height="100" id="A6C10" class="tooltip">
+          <span class="tooltiptext">... And all for one (not implemented yet!)</span>
+        </td>
+        </tr>
+		<tr>
+        <td style="background-color:#D55;" height="100" id="A7C1" class="tooltip">
+          <span class="tooltiptext">Stuck (not implemented yet!)</span>
+        </td>
+        <td style="background-color:#D55;" height="100" id="A7C2" class="tooltip">
+          <span class="tooltiptext">There is no point in doing that... (not implemented yet!)</span>
+        </td>
+        <td style="background-color:#D55;" height="100" id="A7C3" class="tooltip">
+          <span class="tooltiptext">Prestige Down</span>
+        </td>
+        <td style="background-color:#D55;" height="100" id="A7C4" class="tooltip">
+          <span class="tooltiptext">Ah yes, it really reduces it... (not implemented yet!)</span>
+        </td>
+        <td style="background-color:#D55;" height="100" id="A7C5" class="tooltip">
+          <span class="tooltiptext">6 feet under (not implemented yet!)</span>
         </td>
         </tr>
       </table> 
     </div>
     <div id="ToDo List" class="tabcontent">
       <p>1-Balance stuff while doing 2- and 3-</p>
-      <p>2-Add even more achievements</p>
-      <p>3-Add prestige</p>
+      <p>2-Add EVEN MORE achievements</p>
+      <p>3-Add another layer</p>
     </div>
     <div id="Settings" class="tabcontent">
       <button type="button" onclick="save()" class="tooltip">Save

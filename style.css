@@ -129,12 +129,12 @@ footer {
 }
 
 .slidecontainer {
-  width: 80px;
+  width: 100px;
 }
 
 .slider {
   -webkit-appearance: none;
-  width: 80px;
+  width: 100px;
   height: 5px;
   background: #d3d3d3;
   outline: none;

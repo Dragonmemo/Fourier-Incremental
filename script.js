@@ -145,6 +145,12 @@ function IncrementCn(n) {
 	AchMult+=0.1  
   }
   }
+  if (Achieves[50]==0 && Math.max(positives)==1 && Math.min(positives)==1 && Math.max(negatives)==1 && Math.min(negatives)==1){
+	  document.getElementById("A6C1").setAttribute("style","background-color: #5B5;");
+	  Achieves[50]++;
+	  pbaseCost[0]=9;
+  }
+  
   FormulaRewriter()
 };
 function IncrementCMn(n) {
@@ -161,6 +167,11 @@ function IncrementCMn(n) {
 	AchMult+=0.1  
   }
   }
+  if (Achieves[50]==0 && Math.max(positives)==1 && Math.min(positives)==1 && Math.max(negatives)==1 && Math.min(negatives)==1){
+	  document.getElementById("A6C1").setAttribute("style","background-color: #5B5;");
+	  Achieves[50]++;
+	  pbaseCost[0]=9;
+  }
   FormulaRewriter()
 };
 function PrestigeNegative(){
@@ -174,6 +185,11 @@ function PrestigeNegative(){
 	if (Achieves[61]==0 && OtherQuantity[1]==0){
 		Achieves[61]++;
 		document.getElementById("A7C2").setAttribute("style","background-color: #5B5;");
+	}
+	if (Achieves[60]==0 && positives.slice(1,10)==0){
+		Achieves[60]++;
+		document.getElementById("A6C10").setAttribute("style","background-color: #5B5;");
+		pbaseCost[9]=9e9
 	}
 	MAX=1;
 	x=0;
@@ -196,7 +212,7 @@ function NPowIncrease(){
 	else {document.getElementById('PrestigeN').innerHTML =(math.floor(2**(math.log10(x)-10))).toExponential(2);}
 }
 function PrestigeNull(){
-	if (Math.min(positives)>Zero && Math.min(negatives)>Zero) {
+	if (math.min(positives)>Zero && math.min(negatives)>Zero) {
 		Zero++;
 		MAX=1;
 		x=0;
@@ -329,7 +345,6 @@ function SReset(){
   positives=[0,0,0,0,0,0,0,0,0,0];
   negatives=[0,0,0,0,0,0,0,0,0,0];
   FicNeg=[0,0,0,0,0,0,0,0,0,0];
-  pbaseCost=[10,100,1000,1e4,1e5,1e6,1e7,1e8,1e9,1e10];
   OtherQuantity=[0,0];
   qual=1, R=0;
   tickspeed=1000;

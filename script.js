@@ -176,7 +176,7 @@ function NPowIncrease(){
 	}
 	NPOW+=(FicNeg[0]+negatives[0])*negatives[0]*1e-4*tickspeed
 	if (x<1e10){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
-	else {document.getElementById('PrestigeN').innerHTML =math.floor(2**(math.log10(x)-10));}
+	else {document.getElementById('PrestigeN').innerHTML =(math.floor(2**(math.log10(x)-10))).toExponential(2);}
 }
 function GetAchieves(){
   for (i=0;i<70;i++){

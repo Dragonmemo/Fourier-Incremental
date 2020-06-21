@@ -231,6 +231,15 @@ function FormulaRewriter(){
 	document.getElementById("TC").innerHTML = "Cost : "+(10**OtherQuantity[0]).toExponential(3)+"DP";
 };
 
+function MaxAll(){
+	var j,k;
+	for (k=0;k<10;k++){
+		for (j=0;j<10;j++){
+			IncrementCn(k);
+		}
+	}
+}
+
 var mainGameLoop = window.setInterval(function() { // runs the loop
   tickpart += 33;
   var d = new Date();

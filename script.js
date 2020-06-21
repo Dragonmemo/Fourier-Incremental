@@ -49,7 +49,7 @@ function myFunction() {
 	  LCoords.shift();
   }
   ctx.closePath();
-  x+=MAX*1.01**math.sum(Achieves)*1.5**math.sum(positives)*qual*(1+NPOW);
+  x+=MAX*1.01**math.sum(Achieves)*1.5**math.sum(positives)*2**OtherQuantity[1]*(1+NPOW);
   ctx.beginPath();
   ctx.strokeStyle="#000000";
   document.getElementById("MCur").innerHTML = "Drawing points (DP) : "+x.toExponential(3);
@@ -312,7 +312,8 @@ if(localStorage.MCur) {
   R=parseInt(localStorage.R);
   Achieves=localStorage.Achieves.split(",").map(Number);
   tickspeed*=(10/11)**OtherQuantity[0];
-  qual=2**OtherQuantity[1];
+  if (OtherQuantity[1]<8){qual=2**OtherQuantity[1];}
+  else{qual=2**8}
   if (Achieves.length<70) {
 	  for (i=Achieves.length; i<70; i++){Achieves[i]=[0];}
   }

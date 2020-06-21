@@ -114,6 +114,7 @@ function IncrementCn(n) {
     document.getElementById("A2C"+(n+1)).setAttribute("style","background-color: #5B5;");
     Achieves[n+10]++;
     if (n!=9){AchMult+=0.01;}
+	else {document.getElementById("MaxAll").removeAttribute("hidden");}
 	if (math.sum(Achieves.slice(10,20))==10){
 	AchMult+=0.1  
   }
@@ -122,6 +123,7 @@ function IncrementCn(n) {
     document.getElementById("A3C"+(n+1)).setAttribute("style","background-color: #5B5;");
     Achieves[n+20]++;
 	if (math.sum(Achieves.slice(20,30))==10){
+		
 	AchMult+=0.1  
   }
   }

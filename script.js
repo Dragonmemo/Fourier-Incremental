@@ -79,12 +79,22 @@ function FourierCalculation(MAX) {
 };
 
 function ImproveQuality() {
-  if (x>=5**((OtherQuantity[1]+1)**1.5)) {
+  if (Achieves[61]==0){if (x>=5**((OtherQuantity[1]+1)**1.5)) {
     x-=5**((OtherQuantity[1]+1)**1.5);
+  }  else{return};}
+  else{
+	  if (x>=5**((OtherQuantity[1]/2+1)**1.5)) {
+    x-=5**((OtherQuantity[1]/2+1)**1.5);
   }  else{return};
+  }
   if (OtherQuantity[1]<8){qual*=2;}
   OtherQuantity[1]++;
-  document.getElementById("QC").innerHTML = "Cost : "+(5**((OtherQuantity[1]+1)**1.5)).toExponential(3)+"DP";
+if (Achieves[60]==0 && OtherQuantity[1]==5 && math.sum(positives)+math.sum(negatives)==0){
+	Achieves[60]++;
+	document.getElementById("A7C1").setAttribute("style","background-color: #5B5;");
+}
+  if (Achieves[61]==0){document.getElementById("QC").innerHTML = "Cost : "+(5**((OtherQuantity[1]+1)**1.5)).toExponential(3)+"DP";}
+  else {document.getElementById("QC").innerHTML = "Cost : "+(5**((OtherQuantity[1]/2+1)**1.5)).toExponential(3)+"DP";}
 };
 function ReduceTickspeed() {
   if (x>=10**OtherQuantity[0]) {
@@ -158,6 +168,10 @@ function PrestigeNegative(){
 		document.getElementById("A7C3").setAttribute("style","background-color: #5B5;");
         document.getElementById("CM1Tab").removeAttribute("hidden");		
 		};
+	if (Achieves[61]==0 && OtherQuantity[1]==0){
+		Achieves[61]++;
+		document.getElementById("A7C2").setAttribute("style","background-color: #5B5;");
+	}
 	MAX=1;
 	x=0;
 	coords=[0,0];
@@ -223,7 +237,8 @@ function FormulaRewriter(){
 		document.getElementById("CM"+(i+1)).innerHTML = negatives[i];
 		document.getElementById("CM"+(i+1)+"c").innerHTML = "Cost : "+(pbaseCost[i]**(negatives[i]+1)).toExponential(2)+"NP";
 	};
-	document.getElementById("QC").innerHTML = "Cost : "+(5**((OtherQuantity[1]+1)**1.5)).toExponential(3)+"DP";
+	if (Achieves[61]==0){document.getElementById("QC").innerHTML = "Cost : "+(5**((OtherQuantity[1]+1)**1.5)).toExponential(3)+"DP";}
+	else {document.getElementById("QC").innerHTML = "Cost : "+(5**((OtherQuantity[1]/2+1)**1.5)).toExponential(3)+"DP";}
 	document.getElementById("TC").innerHTML = "Cost : "+(10**OtherQuantity[0]).toExponential(3)+"DP";
 };
 

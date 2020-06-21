@@ -187,6 +187,10 @@ function GetAchieves(){
 	  if (i==9) {document.getElementById("PUnlock").removeAttribute("hidden");}
       if (9<i && i<19){AchMult+=0.01;}
 	  if (i==19) {document.getElementById("MaxAll").removeAttribute("hidden");}
+	  if (19<i && i<29){
+		document.getElementById("Slider"+(i+1-20)).removeAttribute("hidden");
+		document.getElementById("SliderM"+(i+1-20)).removeAttribute("hidden");
+	  }
 	  if (i<49 && 39<i) {document.getElementById("CM"+(i+2-40)+"Tab").removeAttribute("hidden");}
 	  if (i==49) {
 		  document.getElementById("NullUnlock").removeAttribute("hidden");

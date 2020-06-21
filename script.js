@@ -62,7 +62,8 @@ function myFunction() {
 };
 
 function FourierCalculation(MAX) {
-  var p,n,i,TempVar=math.complex(r:Zero,phi:I/2);
+  var p,n,i;
+  var TempVar=math.complex(r:Zero,phi:I/2);
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
   //ctx.moveTo(coords[0]/MAX*250+250,coords[1]/MAX*250+250);

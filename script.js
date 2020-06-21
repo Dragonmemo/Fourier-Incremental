@@ -49,7 +49,8 @@ function myFunction() {
 	  LCoords.shift();
   }
   ctx.closePath();
-  x+=MAX*1.01**math.sum(Achieves)*1.5**math.sum(positives)*2**OtherQuantity[1]*(1+NPOW);
+  if (tickspeed>33){x+=MAX*1.01**math.sum(Achieves)*1.5**math.sum(positives)*2**OtherQuantity[1]*(1+NPOW);}
+  else {x+=MAX*1.01**math.sum(Achieves)*1.5**math.sum(positives)*2**OtherQuantity[1]*(1+NPOW)*33/tickspeed:}
   ctx.beginPath();
   ctx.strokeStyle="#000000";
   document.getElementById("MCur").innerHTML = "Drawing points (DP) : "+x.toExponential(3);
@@ -61,10 +62,10 @@ function myFunction() {
 };
 
 function FourierCalculation(MAX) {
-  var p,n,i,TempVar=math.complex(0,0);
+  var p,n,i,TempVar=math.complex(r:Zero,phi:I/2);
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
-  ctx.moveTo(coords[0]/MAX*250+250,coords[1]/MAX*250+250);
+  //ctx.moveTo(coords[0]/MAX*250+250,coords[1]/MAX*250+250);
   p = positives.length; n=negatives.length; 
   for (i=0; i<p;i++){
     TempVar=math.add(TempVar,math.multiply(math.complex({r: 1, phi:R*(i+1)*I/qual+I*document.getElementById("Phi"+(i+1)).value/100}),positives[i]));
@@ -154,6 +155,7 @@ function IncrementCMn(n) {
     document.getElementById("A5C"+(n+1)).setAttribute("style","background-color: #5B5;");
     Achieves[n+40]++;
     if (n!=9){document.getElementById("CM"+(n+2)+"Tab").removeAttribute("hidden");}
+	else {document.getElementById("NullUnlock").removeAttribute("hidden");}
 	if (math.sum(Achieves.slice(40,50))==10){
 	AchMult+=0.1  
   }
@@ -177,6 +179,7 @@ function PrestigeNegative(){
 	coords=[0,0];
 	LCoords=[]
 	positives=[0,0,0,0,0,0,0,0,0,0];
+	FicNeg=[0,0,0,0,0,0,0,0,0,0];
 	OtherQuantity=[0,0];
 	NPOW=0;
 	qual=1, R=0;
@@ -191,6 +194,35 @@ function NPowIncrease(){
 	if (x<1e10){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
 	else {document.getElementById('PrestigeN').innerHTML =(math.floor(2**(math.log10(x)-10))).toExponential(2);}
 }
+function PrestigeNull(){
+	if (Math.min(positives)>Zero && Math.min(negatives)>Zero) {
+		Zero++;
+		MAX=1;
+		x=0;
+		y=0;
+		NPOW=0;
+		coords=[0,0];
+		LCoords=[]
+		positives=[0,0,0,0,0,0,0,0,0,0];
+		negatives=[0,0,0,0,0,0,0,0,0,0];
+		FicNeg=[0,0,0,0,0,0,0,0,0,0];
+		pbaseCost=[10,100,1000,1e4,1e5,1e6,1e7,1e8,1e9,1e10];
+		OtherQuantity=[0,0];
+		qual=1, R=0;
+		tickspeed=1000;
+		document.getElementById('C0V').innerHTML =-Zero;
+		if (Zero==1 && Achieves[63]==0){
+			document.getElementById("A7C4").setAttribute("style","background-color: #5B5;");
+			Achieves[63]++;
+		};
+		if (Zero==6 && Achieves[64]==0){
+			document.getElementById("A7C5").setAttribute("style","background-color: #5B5;");
+			Achieves[64]++;
+		};
+	}
+	else {return}
+}
+
 function GetAchieves(){
   for (i=0;i<70;i++){
     if (Achieves[i]!=0){
@@ -295,6 +327,7 @@ function SReset(){
   LCoords=[]
   positives=[0,0,0,0,0,0,0,0,0,0];
   negatives=[0,0,0,0,0,0,0,0,0,0];
+  FicNeg=[0,0,0,0,0,0,0,0,0,0];
   pbaseCost=[10,100,1000,1e4,1e5,1e6,1e7,1e8,1e9,1e10];
   OtherQuantity=[0,0];
   qual=1, R=0;
@@ -310,6 +343,7 @@ function HReset(){
   coords=[0,0];
   LCoords=[]
   positives=[0,0,0,0,0,0,0,0,0,0];
+  FicNeg=[0,0,0,0,0,0,0,0,0,0];
   pbaseCost=[10,100,1000,1e4,1e5,1e6,1e7,1e8,1e9,1e10];
   negatives=[0,0,0,0,0,0,0,0,0,0];
   OtherQuantity=[0,0];

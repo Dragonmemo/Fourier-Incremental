@@ -83,51 +83,91 @@
         <button type="button" onclick="IncrementCn(0)">increase C1</button>
         <p id="C1">0</p>
         <p id="C1c">Cost : 10 DP</p>
+		<div class="slidecontainer" hidden id="Slider1">
+		  <input type="range" min="1" max="100" value="100" class="slider" id="Phi1">
+		  <p>Value: <span id="Phi1V"></span></p>
+		</div>
       </div>
       <span class="column" style="background-color:#666;" id="C2Tab" hidden>
         <button type="button" onclick="IncrementCn(1)">increase C2</button>
         <p id="C2">0</p>
         <p id="C2c">Cost : 100 DP</p>
+		<div class="slidecontainer" hidden id="Slider2">
+		  <input type="range" min="1" max="100" value="100" class="slider" id="Phi2">
+		  <p>Value: <span id="Phi2V"></span></p>
+		</div>
       </span>
       <span class="column" style="background-color:#777;" id="C3Tab" hidden>
         <button type="button" onclick="IncrementCn(2)">increase C3</button>
         <p id="C3">0</p>
         <p id="C3c">Cost : 1000 DP</p>
+		<div class="slidecontainer" hidden id="Slider3">
+		  <input type="range" min="1" max="100" value="100" class="slider" id="Phi3">
+		  <p>Value: <span id="Phi3V"></span></p>
+		</div>
       </span>
       <span class="column" style="background-color:#888;" id="C4Tab" hidden>
         <button type="button" onclick="IncrementCn(3)">increase C4</button>
         <p id="C4">0</p>
         <p id="C4c">Cost : 10000 DP</p>
+		<div class="slidecontainer" hidden id="Slider4">
+		  <input type="range" min="1" max="100" value="100" class="slider" id="Phi4">
+		  <p>Value: <span id="Phi4V"></span></p>
+		</div>
       </span>
       <span class="column" style="background-color:#999;" id="C5Tab" hidden>
         <button type="button" onclick="IncrementCn(4)">increase C5</button>
         <p id="C5">0</p>
         <p id="C5c">Cost : 1e5 DP</p>
+		<div class="slidecontainer" hidden id="Slider5">
+		  <input type="range" min="1" max="100" value="100" class="slider" id="Phi5">
+		  <p>Value: <span id="Phi5V"></span></p>
+		</div>
       </span>
       <span class="column" style="background-color:#aaa;" id="C6Tab" hidden>
         <button type="button" onclick="IncrementCn(5)">increase C6</button>
         <p id="C6">0</p>
         <p id="C6c">Cost : 1e6 DP</p>
+		<div class="slidecontainer" hidden id="Slider6">
+		  <input type="range" min="1" max="100" value="100" class="slider" id="Phi6">
+		  <p>Value: <span id="Phi6V"></span></p>
+		</div>
       </span>
       <span class="column" style="background-color:#bbb;" id="C7Tab" hidden>
         <button type="button" onclick="IncrementCn(6)">increase C7</button>
         <p id="C7">0</p>
         <p id="C7c">Cost : 1e7 DP</p>
+		<div class="slidecontainer" hidden id="Slider7">
+		  <input type="range" min="1" max="100" value="100" class="slider" id="Phi7">
+		  <p>Value: <span id="Phi7V"></span></p>
+		</div>
       </span>
       <span class="column" style="background-color:#ccc;" id="C8Tab" hidden>
         <button type="button" onclick="IncrementCn(7)">increase C8</button>
         <p id="C8">0</p>
         <p id="C8c">Cost : 1e8 DP</p>
+		<div class="slidecontainer" hidden id="Slider8">
+		  <input type="range" min="1" max="100" value="100" class="slider" id="Phi8">
+		  <p>Value: <span id="Phi8V"></span></p>
+		</div>
       </span>
       <span class="column" style="background-color:#ddd;" id="C9Tab" hidden>
         <button type="button" onclick="IncrementCn(8)">increase C9</button>
         <p id="C9">0</p>
         <p id="C9c">Cost : 1e9 DP</p>
+		<div class="slidecontainer" hidden id="Slider9">
+		  <input type="range" min="1" max="100" value="100" class="slider" id="Phi9">
+		  <p>Value: <span id="Phi9V"></span></p>
+		</div>
       </span>
       <span class="column" style="background-color:#eee;" id="C10Tab" hidden>
         <button type="button" onclick="IncrementCn(9)">increase C10</button>
         <p id="C10">0</p>
         <p id="C10c">Cost : 1e10 DP</p>
+		<div class="slidecontainer" hidden id="Slider10">
+		  <input type="range" min="1" max="100" value="100" class="slider" id="Phi10">
+		  <p>Value: <span id="Phi10V"></span></p>
+		</div>
       </span>
     </div> 
     <button type="button" onclick="PrestigeNegative()" hidden id="PUnlock">Prestige for<p id="PrestigeN">Need 1e10 DP</p></button>
@@ -136,51 +176,91 @@
         <button type="button" onclick="IncrementCMn(0)">increase C-1</button>
         <p id="CM1">0</p>
         <p id="CM1c">Cost : 10 NP</p>
+		<div class="slidecontainer" hidden id="SliderM1">
+		  <input type="range" min="1" max="100" value="100" class="slider" id="PhiM1">
+		  <p>Value: <span id="PhiM1V"></span></p>
+		</div>
       </div>
       <span class="column" style="background-color:#666;" id="CM2Tab" hidden>
         <button type="button" onclick="IncrementCMn(1)">increase C-2</button>
         <p id="CM2">0</p>
         <p id="CM2c">Cost : 100 NP</p>
+		<div class="slidecontainer" hidden id="SliderM2">
+		  <input type="range" min="1" max="100" value="100" class="slider" id="PhiM2">
+		  <p>Value: <span id="PhiM2V"></span></p>
+		</div>
       </span>
       <span class="column" style="background-color:#777;" id="CM3Tab" hidden>
         <button type="button" onclick="IncrementCMn(2)">increase C-3</button>
         <p id="CM3">0</p>
         <p id="CM3c">Cost : 1000 NP</p>
+		<div class="slidecontainer" hidden id="SliderM3">
+		  <input type="range" min="1" max="100" value="100" class="slider" id="PhiM3">
+		  <p>Value: <span id="PhiM3V"></span></p>
+		</div>
       </span>
       <span class="column" style="background-color:#888;" id="CM4Tab" hidden>
         <button type="button" onclick="IncrementCMn(3)">increase C-4</button>
         <p id="CM4">0</p>
         <p id="CM4c">Cost : 10000 NP</p>
+		<div class="slidecontainer" hidden id="SliderM4">
+		  <input type="range" min="1" max="100" value="100" class="slider" id="PhiM4">
+		  <p>Value: <span id="PhiM4V"></span></p>
+		</div>
       </span>
       <span class="column" style="background-color:#999;" id="CM5Tab" hidden>
         <button type="button" onclick="IncrementCMn(4)">increase C-5</button>
         <p id="CM5">0</p>
         <p id="CM5c">Cost : 1e5 NP</p>
+		<div class="slidecontainer" hidden id="SliderM5">
+		  <input type="range" min="1" max="100" value="100" class="slider" id="PhiM5">
+		  <p>Value: <span id="PhiM5V"></span></p>
+		</div>
       </span>
       <span class="column" style="background-color:#aaa;" id="CM6Tab" hidden>
         <button type="button" onclick="IncrementCMn(5)">increase C-6</button>
         <p id="CM6">0</p>
         <p id="CM6c">Cost : 1e6 NP</p>
+		<div class="slidecontainer" hidden id="SliderM6">
+		  <input type="range" min="1" max="100" value="100" class="slider" id="PhiM6">
+		  <p>Value: <span id="PhiM6V"></span></p>
+		</div>
       </span>
       <span class="column" style="background-color:#bbb;" id="CM7Tab" hidden>
         <button type="button" onclick="IncrementCMn(6)">increase C-7</button>
         <p id="CM7">0</p>
         <p id="CM7c">Cost : 1e7 NP</p>
+		<div class="slidecontainer" hidden id="SliderM7">
+		  <input type="range" min="1" max="100" value="100" class="slider" id="PhiM7">
+		  <p>Value: <span id="PhiM7V"></span></p>
+		</div>
       </span>
       <span class="column" style="background-color:#ccc;" id="CM8Tab" hidden>
         <button type="button" onclick="IncrementCMn(7)">increase C-8</button>
         <p id="CM8">0</p>
         <p id="CM8c">Cost : 1e8 NP</p>
+		<div class="slidecontainer" hidden id="SliderM8">
+		  <input type="range" min="1" max="100" value="100" class="slider" id="PhiM8">
+		  <p>Value: <span id="PhiM8V"></span></p>
+		</div>
       </span>
       <span class="column" style="background-color:#ddd;" id="CM9Tab" hidden>
         <button type="button" onclick="IncrementCMn(8)">increase C-9</button>
         <p id="CM9">0</p>
         <p id="CM9c">Cost : 1e9 NP</p>
+		<div class="slidecontainer" hidden id="SliderM9">
+		  <input type="range" min="1" max="100" value="100" class="slider" id="PhiM9">
+		  <p>Value: <span id="PhiM9V"></span></p>
+		</div>
       </span>
       <span class="column" style="background-color:#eee;" id="CM10Tab" hidden>
         <button type="button" onclick="IncrementCMn(9)">increase C-10</button>
         <p id="CM10">0</p>
         <p id="CM10c">Cost : 1e10 NP</p>
+		<div class="slidecontainer" hidden id="SliderM10">
+		  <input type="range" min="1" max="100" value="100" class="slider" id="PhiM10">
+		  <p>Value: <span id="PhiM10V"></span></p>
+		</div>
       </span>
     </div>
     <button type="button" onclick="PrestigeNull()" hidden id="NullUnlock" class="tooltip">Reduce C0 by 1<p id="Prestige0">Need at least 1 of each other C</p><span class="tooltiptext">Wait, did you said "Reduce" ?</span></button>

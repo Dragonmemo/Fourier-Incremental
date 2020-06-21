@@ -67,10 +67,10 @@ function FourierCalculation(MAX) {
   ctx.moveTo(coords[0]/MAX*250+250,coords[1]/MAX*250+250);
   p = positives.length; n=negatives.length; 
   for (i=0; i<p;i++){
-    TempVar=math.add(TempVar,math.multiply(math.complex({r: 1, phi:R*(i+1)*I/qual}),positives[i]));
+    TempVar=math.add(TempVar,math.multiply(math.complex({r: 1, phi:R*(i+1)*I/qual+I*document.getElementById("Phi"+(i+1)).value/100}),positives[i]));
   };
   for (i=0; i<n;i++){
-    TempVar=math.add(TempVar,math.multiply(math.complex({r: 1, phi:-R*(i+1)*I/qual}),negatives[i]));
+    TempVar=math.add(TempVar,math.multiply(math.complex({r: 1, phi:-R*(i+1)*I/qual+I*document.getElementById("PhiM"+(i+1)).value/100}),negatives[i]));
   };
   R=R%qual + 1;
   coords=[TempVar.re,TempVar.im];
@@ -121,11 +121,10 @@ function IncrementCn(n) {
   }
   if (positives[n]==25 && Achieves[n+20]==0){
     document.getElementById("A3C"+(n+1)).setAttribute("style","background-color: #5B5;");
+	document.getElementById("Slider"+(n+1)).removeAttribute("hidden");
+	document.getElementById("SliderM"+(n+1)).removeAttribute("hidden");
     Achieves[n+20]++;
-	if (math.sum(Achieves.slice(20,30))==10){
-		
-	AchMult+=0.1  
-  }
+	if (math.sum(Achieves.slice(20,30))==10){AchMult+=0.1}
   }
   if (positives[n]==100 && Achieves[n+30]==0){
     document.getElementById("A4C"+(n+1)).setAttribute("style","background-color: #5B5;");
@@ -184,18 +183,11 @@ function GetAchieves(){
 		Achieves[i]=1;
 	  document.getElementById("PCur").innerHTML = i+" "+"A"+math.floor(1+i/10)+"C"+((i)%10+1);
       document.getElementById("A"+math.floor(1+i/10)+"C"+((i)%10+1)).setAttribute("style","background-color: #5B5;");
-      if (i<9) {
-        document.getElementById("C"+(i+2)+"Tab").removeAttribute("hidden");
-      }
-	  if (i==9) {
-		  document.getElementById("PUnlock").removeAttribute("hidden");
-	  }
-      if (9<i && i<19){
-        AchMult+=0.01;
-      }
-	  if (i<49 && 39<i) {
-        document.getElementById("CM"+(i+2-40)+"Tab").removeAttribute("hidden");
-      }
+      if (i<9) {document.getElementById("C"+(i+2)+"Tab").removeAttribute("hidden");}
+	  if (i==9) {document.getElementById("PUnlock").removeAttribute("hidden");}
+      if (9<i && i<19){AchMult+=0.01;}
+	  if (i==19) {document.getElementById("MaxAll").removeAttribute("hidden");}
+	  if (i<49 && 39<i) {document.getElementById("CM"+(i+2-40)+"Tab").removeAttribute("hidden");}
 	  if (i==49) {
 		  document.getElementById("NullUnlock").removeAttribute("hidden");
 	  }

@@ -238,14 +238,14 @@ function MaxAll(){
 
 var mainGameLoop = window.setInterval(function() { // runs the loop
   tickpart += 33;
-  var d = new Date();
-  var n = d.getTime();
+  //var d = new Date();
+  //var n = d.getTime();
   if (tickpart>=tickspeed) {
-	d=new Date();
-	n=d.getTime();
+	//d=new Date();
+	//n=d.getTime();
     tickpart -= tickspeed;
     loop();
-	console.log((new Date().getTime())-n);
+	//console.log((new Date().getTime())-n);
   }
 }, 33);
 

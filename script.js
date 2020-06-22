@@ -151,6 +151,11 @@ function IncrementCn(n) {
 	  Achieves[50]++;
 	  pbaseCost[0]=9;
   }
+  if (Achieves[53]==0 && positives==[1,3,3,7,0,0,0,0,0,0]){
+	  Achieves[53]++;
+	  document.getElementById("A6C4").setAttribute("style","background-color: #5B5;");
+	  pbaseCost[3]=9e3
+  }
   FormulaRewriter()
 };
 function IncrementCMn(n) {
@@ -258,6 +263,9 @@ function GetAchieves(){
 	  if (i==49) {
 		  document.getElementById("NullUnlock").removeAttribute("hidden");
 	  }
+	if (i==60){
+		document.getElementById("Help").removeAttribute("hidden");
+	}
 	  if (i==62){
 		  document.getElementById("CM1Tab").removeAttribute("hidden");
 	  }

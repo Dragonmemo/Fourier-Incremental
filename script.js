@@ -94,6 +94,7 @@ function ImproveQuality() {
 if (Achieves[60]==0 && OtherQuantity[1]==5 && math.sum(positives)+math.sum(negatives)==0){
 	Achieves[60]++;
 	document.getElementById("A7C1").setAttribute("style","background-color: #5B5;");
+	document.getElementById("Help").removeAttribute("hidden");
 }
   if (Achieves[61]==0){document.getElementById("QC").innerHTML = "Cost : "+(5**((OtherQuantity[1]+1)**1.5)).toExponential(3)+"DP";}
   else {document.getElementById("QC").innerHTML = "Cost : "+(5**((OtherQuantity[1]/2+1)**1.5)).toExponential(3)+"DP";}
@@ -150,7 +151,6 @@ function IncrementCn(n) {
 	  Achieves[50]++;
 	  pbaseCost[0]=9;
   }
-  
   FormulaRewriter()
 };
 function IncrementCMn(n) {
@@ -186,8 +186,8 @@ function PrestigeNegative(){
 		Achieves[61]++;
 		document.getElementById("A7C2").setAttribute("style","background-color: #5B5;");
 	}
-	if (Achieves[60]==0 && positives.slice(1,10)==0){
-		Achieves[60]++;
+	if (Achieves[59]==0 && math.min(positives.slice(1,10))==0){
+		Achieves[59]++;
 		document.getElementById("A6C10").setAttribute("style","background-color: #5B5;");
 		pbaseCost[9]=9e9
 	}
@@ -269,9 +269,9 @@ function GetAchieves(){
   }}
 }
 function FormulaRewriter(){
-  var S="0";
   document.getElementById('ACH').innerHTML =AchMult**math.sum(Achieves);
   document.getElementById('AcMult').innerHTML =AchMult;
+  document.getElementById('C0V').innerHTML =-Zero;
   for (i=0;i<10;i++){
 		if (positives[i]!=0){
 		document.getElementById("C"+(i+1)+"V").innerHTML = positives[i];
@@ -289,6 +289,11 @@ function FormulaRewriter(){
 	if (Achieves[61]==0){document.getElementById("QC").innerHTML = "Cost : "+(5**((OtherQuantity[1]+1)**1.5)).toExponential(3)+"DP";}
 	else {document.getElementById("QC").innerHTML = "Cost : "+(5**((OtherQuantity[1]/2+1)**1.5)).toExponential(3)+"DP";}
 	document.getElementById("TC").innerHTML = "Cost : "+(10**OtherQuantity[0]).toExponential(3)+"DP";
+	if (Achieves[51]==0 && positives==[2,1,0,0,0,0,0,0,0,0] && negatives==[2,1,0,0,0,0,0,0,0,0] && 48<document.getElementById("Phi"+(i+1)).value<52){
+		Achieves[51]++;
+		document.getElementById("A6C2").setAttribute("style","background-color: #5B5;");
+		pbaseCost[1]=9e1
+	}
 };
 
 function MaxAll(){
@@ -301,16 +306,16 @@ function MaxAll(){
 }
 
 var mainGameLoop = window.setInterval(function() { // runs the loop
-  tickpart += 33;
-  //var d = new Date();
-  //var n = d.getTime();
-  if (tickpart>=tickspeed) {
+	tickpart += 33;
+	//var d = new Date();
+	//var n = d.getTime();
+	if (tickpart>=tickspeed) {
 	//d=new Date();
 	//n=d.getTime();
-    tickpart -= tickspeed;
-    loop();
+		tickpart -= tickspeed;
+		loop();
 	//console.log((new Date().getTime())-n);
-  }
+	}
 }, 33);
 
 function loop() { // production

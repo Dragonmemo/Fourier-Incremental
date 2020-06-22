@@ -58,6 +58,7 @@
     <button class="tablinks" onclick="openCity(event, 'ToDo List')">ToDo List</button>
     <button class="tablinks" onclick="openCity(event, 'Settings')">Settings</button>
     <button class="tablinks" onclick="openCity(event, 'About')">About</button>
+    <button class="tablinks" onclick="openCity(event, 'Help')" id="Help" hidden>Help</button>
     </div>
     <div id="Main" class="tabcontent">
     <canvas id="myCanvas" width="500" height="500"></canvas>
@@ -444,13 +445,13 @@
         </tr>
 		<tr>
         <td style="background-color:#D55;" height="100" id="A6C1" class="tooltip">
-          <span class="tooltiptext">One for all... (not implemented yet!)<p>Unlock : -10% C1 and C-1 cost scaling (applies retroactively)</p></span>
+          <span class="tooltiptext">One for all...<p>Unlock : -10% C1 and C-1 cost scaling (applies retroactively)</p></span>
         </td>
 		<td style="background-color:#D55;" height="100" id="A6C2" class="tooltip">
-          <span class="tooltiptext">Lemniscate! (not implemented yet!)<p>Unlock : -10% C2 and C-2 cost scaling (applies retroactively)</p></span>
+          <span class="tooltiptext">Lemniscate!<p>Unlock : -10% C2 and C-2 cost scaling (applies retroactively)</p></span>
         </td>
 		<td style="background-color:#D55;" height="100" id="A6C4" class="tooltip">
-          <span class="tooltiptext">LEET (not implemented yet!)<p>Unlock : -10% C4 and C-4 cost scaling (applies retroactively)</p></span>
+          <span class="tooltiptext">LEET<p>Unlock : -10% C4 and C-4 cost scaling (applies retroactively)</p></span>
         </td>
         <td style="background-color:#D55;" height="100" id="A6C5" class="tooltip">
           <span class="tooltiptext">BREAD (not implemented yet!)<p>Unlock : -10% C5 and C-5 cost scaling (applies retroactively)</p></span>
@@ -459,12 +460,12 @@
           <span class="tooltiptext">BAGUETTE! (not implemented yet!)<p>Unlock : -10% C8 and C-8 cost scaling (applies retroactively)</p></span>
         </td>
 		<td style="background-color:#D55;" height="100" id="A6C10" class="tooltip">
-          <span class="tooltiptext">... And all for one (not implemented yet!)<p>Unlock : -10% C10 and C-10 cost scaling (applies retroactively)</p></span>
+          <span class="tooltiptext">... And all for one<p>Unlock : -10% C10 and C-10 cost scaling (applies retroactively)</p></span>
         </td>
         </tr>
 		<tr>
         <td style="background-color:#D55;" height="100" id="A7C1" class="tooltip">
-          <span class="tooltiptext">Stuck (not fully implemented yet!)<p>Unlock : Hints tab</p></span>
+          <span class="tooltiptext">Stuck (Have 5 quality upgrades without any positive or negative Cn)<p>Unlock : Help tab</p></span>
         </td>
         <td style="background-color:#D55;" height="100" id="A7C2" class="tooltip">
           <span class="tooltiptext">There is no point in doing that...<p>Unlock : Halves Quality requirement scaling (applies retroactively)</p></span>
@@ -482,9 +483,8 @@
       </table> 
     </div>
     <div id="ToDo List" class="tabcontent">
-      <p>1-Balance stuff while doing 2- and 3-</p>
+      <p>1-Balance stuff</p>
       <p>2-Add EVEN MORE achievements</p>
-      <p>3-Add another layer</p>
     </div>
     <div id="Settings" class="tabcontent">
       <button type="button" onclick="save()" class="tooltip">Save
@@ -499,6 +499,17 @@
       <p>Fourier found that for any 2D shape that is continuous (you can draw it without having to lift the pen once) and have the starting point and the end point that are the same, there was a complex function that can draw it for t between 0 and 1 :</p>
       <p><img src="https://latex.codecogs.com/svg.latex?f(t)=\sum_{n\in%20\mathbb{Z}}(C_n%20e^{nit\pi+i\phi_n})" border="0"/> Where <img src="https://latex.codecogs.com/svg.latex?(C_n)_{n\in\mathbb{Z}}" border="0"/> is a list of positive reals (take it as a list of radius) and <img src="https://latex.codecogs.com/svg.latex?(\phi_n)_{n\in\mathbb{Z}}" border="0"/> is a list of angles in radians</p>
       <p>Here is a link to the video from <a href="https://www.youtube.com/watch?v=r6sGWTCMz2k">3Blue1Brown</a> to show you how powerful this tool is (and explain it better than i do)</p>
+    </div>
+    <div id="Help" class="tabcontent">
+      <p>The achievement Row 6 collumn 2 requires you to draw a "Lemniscate" (the infinity symbol), this can be done by having 1 of C2 and C-2 and 2 of C1 and C-1, then playing with angles.</p>
+      <p>6 feet under (last achievement) requires you to get 6 C0 and is the end of the gameplay for now.</p>
+      <p>LEET = 1337</p>
+      <p>B = 2, R = 18, E = 5, A = 1, D = 4</p>
+      <p>Same logic for BAGUETTE</p>
+      <p>There is a factor that multiplies DP production : it represent the scaling of the drawing, it resets on prestige (any)</p>
+      <p>Positive Cns all multiplies your production by 1.5</p>
+      <p>There is a factor that added to 1, multiplies DP production. It grows with negative Cns</p>
+      <p>Each negative Cn (except for C-1) increase the Cn before it on a fictive way, that does count for the increase of the next one etc, then C-1 and fictive C-1 increase the negative product that multiplies DP production</p>
     </div>
     <script>
     function openCity(evt, cityName) {

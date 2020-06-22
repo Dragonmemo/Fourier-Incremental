@@ -249,7 +249,7 @@ function GetAchieves(){
   for (i=0;i<70;i++){
     if (Achieves[i]!=0){
 		Achieves[i]=1;
-	  document.getElementById("PCur").innerHTML = i+" "+"A"+math.floor(1+i/10)+"C"+((i)%10+1);
+	  //document.getElementById("PCur").innerHTML = i+" "+"A"+math.floor(1+i/10)+"C"+((i)%10+1);
       document.getElementById("A"+math.floor(1+i/10)+"C"+((i)%10+1)).setAttribute("style","background-color: #5B5;");
       if (i<9) {document.getElementById("C"+(i+2)+"Tab").removeAttribute("hidden");}
 	  if (i==9) {document.getElementById("PUnlock").removeAttribute("hidden");}

@@ -191,7 +191,7 @@ function PrestigeNegative(){
 		Achieves[61]++;
 		document.getElementById("A7C2").setAttribute("style","background-color: #5B5;");
 	}
-	if (Achieves[59]==0 && math.min(positives.slice(1,10))==0){
+	if (Achieves[59]==0 && math.max(positives.slice(1,10))==0){
 		Achieves[59]++;
 		document.getElementById("A6C10").setAttribute("style","background-color: #5B5;");
 		pbaseCost[9]=9e9

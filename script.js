@@ -59,6 +59,11 @@ function myFunction() {
   FourierCalculation(MAX);
   MAX=Math.max(MAX,Math.abs(coords[0]),Math.abs(coords[1]));
   LCoords.push(coords);
+  if (Achieves[51]==0 && positives==[2,1,0,0,0,0,0,0,0,0] && negatives==[2,1,0,0,0,0,0,0,0,0] && document.getElementById("Phi1").value==100 && document.getElementById("PhiM1").value==100 && ((48<document.getElementById("Phi2").value<52 && document.getElementById("PhiM2").value==100)||(48<document.getElementById("PhiM2").value<52 && document.getElementById("Phi2").value==100))){
+	Achieves[51]++;
+	document.getElementById("A6C2").setAttribute("style","background-color: #5B5;");
+	pbaseCost[1]=9e1
+  }
   if (Achieves[65]==0 && x>=1e2520){
     Achieves[65]++;
     document.getElementById("A7C6").setAttribute("style","background-color: #5B5;");
@@ -317,11 +322,6 @@ function FormulaRewriter(){
 	if (Achieves[61]==0){document.getElementById("QC").innerHTML = "Cost : "+(5**((OtherQuantity[1]+1)**1.5)).toExponential(3)+"DP";}
 	else {document.getElementById("QC").innerHTML = "Cost : "+(5**((OtherQuantity[1]/2+1)**1.5)).toExponential(3)+"DP";}
 	document.getElementById("TC").innerHTML = "Cost : "+(10**OtherQuantity[0]).toExponential(3)+"DP";
-	if (Achieves[51]==0 && positives==[2,1,0,0,0,0,0,0,0,0] && negatives==[2,1,0,0,0,0,0,0,0,0] && 48<document.getElementById("Phi"+(i+1)).value<52){
-		Achieves[51]++;
-		document.getElementById("A6C2").setAttribute("style","background-color: #5B5;");
-		pbaseCost[1]=9e1
-	}
 };
 
 function MaxAll(){

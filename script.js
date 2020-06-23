@@ -59,7 +59,7 @@ function myFunction() {
   FourierCalculation(MAX);
   MAX=Math.max(MAX,Math.abs(coords[0]),Math.abs(coords[1]));
   LCoords.push(coords);
-  if (Achieves[51]==0 && positives==[2,1,0,0,0,0,0,0,0,0] && negatives==[2,1,0,0,0,0,0,0,0,0] && document.getElementById("Phi1").value==100 && document.getElementById("PhiM1").value==100 && ((48<document.getElementById("Phi2").value<52 && document.getElementById("PhiM2").value==100)||(48<document.getElementById("PhiM2").value<52 && document.getElementById("Phi2").value==100))){
+  if (Achieves[51]==0 && positives==[2,1,0,0,0,0,0,0,0,0] && negatives==[2,1,0,0,0,0,0,0,0,0] && parseInt(document.getElementById("Phi1").value)==100 && parseInt(document.getElementById("PhiM1").value)==100 && ((48<parseInt(document.getElementById("Phi2").value)<52 && parseInt(document.getElementById("PhiM2").value)==100)||(48<parseInt(document.getElementById("PhiM2").value)<52 && parseInt(document.getElementById("Phi2").value)==100))){
 	Achieves[51]++;
 	document.getElementById("A6C2").setAttribute("style","background-color: #5B5;");
 	pbaseCost[1]=9e1
@@ -82,10 +82,10 @@ function FourierCalculation(MAX) {
   ctx.moveTo(coords[0]/MAX*250+250,coords[1]/MAX*250+250);
   p = positives.length; n=negatives.length; 
   for (i=0; i<p;i++){
-    TempVar=math.add(TempVar,math.multiply(math.complex({r: 1, phi:R*(i+1)*I/qual+I*document.getElementById("Phi"+(i+1)).value/100}),positives[i]));
+    TempVar=math.add(TempVar,math.multiply(math.complex({r: 1, phi:R*(i+1)*I/qual+I*parseInt(document.getElementById("Phi"+(i+1)).value)/100}),positives[i]));
   };
   for (i=0; i<n;i++){
-    TempVar=math.add(TempVar,math.multiply(math.complex({r: 1, phi:-R*(i+1)*I/qual+I*document.getElementById("PhiM"+(i+1)).value/100}),negatives[i]));
+    TempVar=math.add(TempVar,math.multiply(math.complex({r: 1, phi:-R*(i+1)*I/qual+I*parseInt(document.getElementById("PhiM"+(i+1)).value)/100}),negatives[i]));
   };
   R=R%qual + 1;
   coords=[TempVar.re,TempVar.im];

@@ -58,7 +58,7 @@
     <button class="tablinks" onclick="openCity(event, 'ToDo List')">ToDo List</button>
     <button class="tablinks" onclick="openCity(event, 'Settings')">Settings</button>
     <button class="tablinks" onclick="openCity(event, 'About')">About</button>
-    <button class="tablinks" onclick="openCity(event, 'Help')" id="Help" hidden>Help</button>
+    <button class="tablinks" onclick="openCity(event, 'HelpT')" id="Help" hidden>Help</button>
     </div>
     <div id="Main" class="tabcontent">
     <canvas id="myCanvas" width="500" height="500"></canvas>
@@ -500,12 +500,14 @@
       <p><img src="https://latex.codecogs.com/svg.latex?f(t)=\sum_{n\in%20\mathbb{Z}}(C_n%20e^{nit\pi+i\phi_n})" border="0"/> Where <img src="https://latex.codecogs.com/svg.latex?(C_n)_{n\in\mathbb{Z}}" border="0"/> is a list of positive reals (take it as a list of radius) and <img src="https://latex.codecogs.com/svg.latex?(\phi_n)_{n\in\mathbb{Z}}" border="0"/> is a list of angles in radians</p>
       <p>Here is a link to the video from <a href="https://www.youtube.com/watch?v=r6sGWTCMz2k">3Blue1Brown</a> to show you how powerful this tool is (and explain it better than i do)</p>
     </div>
-    <div id="Help" class="tabcontent">
+    <div id="HelpT" class="tabcontent">
       <p>The achievement Row 6 collumn 2 requires you to draw a "Lemniscate" (the infinity symbol), this can be done by having 1 of C2 and C-2 and 2 of C1 and C-1, then playing with angles.</p>
       <p>6 feet under (last achievement) requires you to get 6 C0 and is the end of the gameplay for now.</p>
       <p>LEET = 1337</p>
       <p>B = 2, R = 18, E = 5, A = 1, D = 4</p>
       <p>Same logic for BAGUETTE</p>
+      <p>"One for all..." requires you to have simultaneously 1 of each Cn (positive and negative, not counting C0)</p>
+      <p>"... and all for one" requires you to prestige with only C1, no other positive Cn</p>
       <p>There is a factor that multiplies DP production : it represent the scaling of the drawing, it resets on prestige (any)</p>
       <p>Positive Cns all multiplies your production by 1.5</p>
       <p>There is a factor that added to 1, multiplies DP production. It grows with negative Cns</p>

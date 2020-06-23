@@ -59,7 +59,7 @@ function myFunction() {
   FourierCalculation(MAX);
   MAX=Math.max(MAX,Math.abs(coords[0]),Math.abs(coords[1]));
   LCoords.push(coords);
-  if (Achieves[51]==0 && positives==[2,1,0,0,0,0,0,0,0,0] && negatives==[2,1,0,0,0,0,0,0,0,0] && parseInt(document.getElementById("Phi1").value)==100 && parseInt(document.getElementById("PhiM1").value)==100 && ((48<parseInt(document.getElementById("Phi2").value)<52 && parseInt(document.getElementById("PhiM2").value)==100)||(48<parseInt(document.getElementById("PhiM2").value)<52 && parseInt(document.getElementById("Phi2").value)==100))){
+  if (Achieves[51]==0 && positives.toString()==[2,1,0,0,0,0,0,0,0,0].toString() && negatives.toString()==[2,1,0,0,0,0,0,0,0,0].toString() && parseInt(document.getElementById("Phi1").value)==100 && parseInt(document.getElementById("PhiM1").value)==100 && ((48<parseInt(document.getElementById("Phi2").value)<52 && parseInt(document.getElementById("PhiM2").value)==100)||(48<parseInt(document.getElementById("PhiM2").value)<52 && parseInt(document.getElementById("Phi2").value)==100))){
 	Achieves[51]++;
 	document.getElementById("A6C2").setAttribute("style","background-color: #5B5;");
 	pbaseCost[1]=9e1
@@ -164,17 +164,17 @@ function IncrementCn(n) {
 	  Achieves[50]++;
 	  pbaseCost[0]=9;
   }
-  if (Achieves[53]==0 && positives==[1,3,3,7,0,0,0,0,0,0]){
+  if (Achieves[53]==0 && positives.toString()==[1,3,3,7,0,0,0,0,0,0].toString()){
 	  Achieves[53]++;
 	  document.getElementById("A6C4").setAttribute("style","background-color: #5B5;");
 	  pbaseCost[3]=9e3
   }
-	if (Achieves[54]==0 && positives==[2,18,5,1,4,0,0,0,0,0]){
+	if (Achieves[54]==0 && positives.toString()==[2,18,5,1,4,0,0,0,0,0].toString()){
 	  Achieves[54]++;
 	  document.getElementById("A6C5").setAttribute("style","background-color: #5B5;");
 	  pbaseCost[4]=9e4
   }
-	if (Achieves[57]==0 && positives==[2,1,7,21,5,20,20,5,0,0]){
+	if (Achieves[57]==0 && positives.toString()==[2,1,7,21,5,20,20,5,0,0].toString()){
 	  Achieves[57]++;
 	  document.getElementById("A6C8").setAttribute("style","background-color: #5B5;");
 	  pbaseCost[3]=9e7
@@ -229,6 +229,7 @@ function PrestigeNegative(){
 	NPOW=0;
 	qual=1, R=0;
 	tickspeed=1000;
+	tickpart=0;
 	FormulaRewriter();
 }
 function NPowIncrease(){
@@ -248,6 +249,7 @@ function PrestigeNull(){
 		NPOW=0;
 		coords=[0,0];
 		LCoords=[]
+		tickpart=0;
 		positives=[0,0,0,0,0,0,0,0,0,0];
 		negatives=[0,0,0,0,0,0,0,0,0,0];
 		FicNeg=[0,0,0,0,0,0,0,0,0,0];

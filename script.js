@@ -59,6 +59,14 @@ function myFunction() {
   FourierCalculation(MAX);
   MAX=Math.max(MAX,Math.abs(coords[0]),Math.abs(coords[1]));
   LCoords.push(coords);
+  if (Achieves[65]==0 && x>=1e2520){
+    Achieves[65]++;
+    document.getElementById("A7C6").setAttribute("style","background-color: #5B5;");
+  };
+  if (Achieves[66]==0 && y>=1e2520){
+    Achieves[66]++;
+    document.getElementById("A7C7").setAttribute("style","background-color: #5B5;");
+  }
 };
 
 function FourierCalculation(MAX) {
@@ -146,7 +154,7 @@ function IncrementCn(n) {
 	AchMult+=0.1  
   }
   }
-  if (Achieves[50]==0 && math.max(positives)==1 && math.min(positives)==1 && math.max(negatives)==1 && math.min(negatives)==1){
+  if (Achieves[50]==0 && Math.max(positives)==1 && math.min(positives)==1 && Math.max(negatives)==1 && math.min(negatives)==1){
 	  document.getElementById("A6C1").setAttribute("style","background-color: #5B5;");
 	  Achieves[50]++;
 	  pbaseCost[0]=9;
@@ -155,6 +163,16 @@ function IncrementCn(n) {
 	  Achieves[53]++;
 	  document.getElementById("A6C4").setAttribute("style","background-color: #5B5;");
 	  pbaseCost[3]=9e3
+  }
+	if (Achieves[54]==0 && positives==[2,18,5,1,4,0,0,0,0,0]){
+	  Achieves[54]++;
+	  document.getElementById("A6C5").setAttribute("style","background-color: #5B5;");
+	  pbaseCost[4]=9e4
+  }
+	if (Achieves[57]==0 && positives==[2,1,7,21,5,20,20,5,0,0]){
+	  Achieves[57]++;
+	  document.getElementById("A6C8").setAttribute("style","background-color: #5B5;");
+	  pbaseCost[3]=9e7
   }
   FormulaRewriter()
 };
@@ -233,6 +251,7 @@ function PrestigeNull(){
 		qual=1, R=0;
 		tickspeed=1000;
 		document.getElementById('C0V').innerHTML =-Zero;
+		document.getElementById('Prestige0').innerHTML ="Need at least "+(Zero+1)+" of each other C";
 		if (Zero==1 && Achieves[63]==0){
 			document.getElementById("A7C4").setAttribute("style","background-color: #5B5;");
 			Achieves[63]++;
@@ -241,6 +260,7 @@ function PrestigeNull(){
 			document.getElementById("A7C5").setAttribute("style","background-color: #5B5;");
 			Achieves[64]++;
 		};
+  		FormulaRewriter();
 	}
 	else {return}
 }

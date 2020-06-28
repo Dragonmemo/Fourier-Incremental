@@ -261,6 +261,7 @@ function PrestigeNull(){
 		document.getElementById('Prestige0').innerHTML ="Need at least "+(Zero+1)+" of each other C";
 		if (Zero==1 && Achieves[63]==0){
 			document.getElementById("A7C4").setAttribute("style","background-color: #5B5;");
+			document.getElementById("SkillTreeB").removeAttribute("hidden");
 			Achieves[63]++;
 		};
 		if (Zero==6 && Achieves[64]==0){
@@ -293,9 +294,12 @@ function GetAchieves(){
 	if (i==60){
 		document.getElementById("Help").removeAttribute("hidden");
 	}
-	  if (i==62){
-		  document.getElementById("CM1Tab").removeAttribute("hidden");
-	  }
+	if (i==62){
+		document.getElementById("CM1Tab").removeAttribute("hidden");
+	}
+	if (i==63){
+		document.getElementById("SkillTreeB").removeAttribute("hidden");
+	};
     }
   }
   for (i=0;i<7;i++){

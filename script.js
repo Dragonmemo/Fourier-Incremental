@@ -49,8 +49,8 @@ function myFunction() {
 	  LCoords.shift();
   }
   ctx.closePath();
-  if (tickspeed>33){x+=MAX*1.01**math.sum(Achieves)*1.5**math.sum(positives)*2**OtherQuantity[1]*(1+NPOW);}
-  else {x+=MAX*1.01**math.sum(Achieves)*1.5**math.sum(positives)*2**OtherQuantity[1]*(1+NPOW)*33/tickspeed;}
+  if (tickspeed>33){x+=MAX*AchMult**math.sum(Achieves)*1.5**math.sum(positives)*2**OtherQuantity[1]*(1+NPOW);}
+  else {x+=MAX*AchMult**math.sum(Achieves)*1.5**math.sum(positives)*2**OtherQuantity[1]*(1+NPOW)*33/tickspeed;}
   ctx.beginPath();
   ctx.strokeStyle="#000000";
   document.getElementById("MCur").innerHTML = "Drawing points (DP) : "+x.toExponential(3);

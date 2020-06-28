@@ -71,21 +71,22 @@ function myFunction() {
   if (Achieves[66]==0 && y>=1e2520){
     Achieves[66]++;
     document.getElementById("A7C7").setAttribute("style","background-color: #5B5;");
+  };
+  for (i=0; i<10;i++){
+	  document.getElementById("Phi"+(i+1)+"V").innerHTML = document.getElementById("Phi"+(i+1)).value/50+"&#960"
+	  document.getElementById("PhiM"+(i+1)+"V").innerHTML = document.getElementById("PhiM"+(i+1)).value/50+"&#960"
   }
 };
 
 function FourierCalculation(MAX) {
-  var p,n,i;
+  var i;
   var TempVar=math.complex({r:Zero,phi:I/2});
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
   ctx.moveTo(coords[0]/MAX*250+250,coords[1]/MAX*250+250);
-  p = positives.length; n=negatives.length; 
-  for (i=0; i<p;i++){
+  for (i=0; i<10;i++){
     TempVar=math.add(TempVar,math.multiply(math.complex({r: 1, phi:R*(i+1)*I/qual+I*parseInt(document.getElementById("Phi"+(i+1)).value)/100}),positives[i]));
-  };
-  for (i=0; i<n;i++){
-    TempVar=math.add(TempVar,math.multiply(math.complex({r: 1, phi:-R*(i+1)*I/qual+I*parseInt(document.getElementById("PhiM"+(i+1)).value)/100}),negatives[i]));
+	TempVar=math.add(TempVar,math.multiply(math.complex({r: 1, phi:-R*(i+1)*I/qual+I*parseInt(document.getElementById("PhiM"+(i+1)).value)/100}),negatives[i]));
   };
   R=R%qual + 1;
   coords=[TempVar.re,TempVar.im];

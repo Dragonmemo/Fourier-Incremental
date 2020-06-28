@@ -167,3 +167,7 @@ footer {
 	width: 60px;
 	display:inline-block;
 }
+.solid2{
+	width: 60px;
+	display:table-cell;
+}

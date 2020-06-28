@@ -159,7 +159,7 @@ function IncrementCn(n) {
 	AchMult+=0.1  
   }
   }
-  if (Achieves[50]==0 && Math.max(positives)==1 && math.min(positives)==1 && Math.max(negatives)==1 && math.min(negatives)==1){
+  if (Achieves[50]==0 && math.max(positives)==1 && math.min(positives)==1 && math.max(negatives)==1 && math.min(negatives)==1){
 	  document.getElementById("A6C1").setAttribute("style","background-color: #5B5;");
 	  Achieves[50]++;
 	  pbaseCost[0]=9;
@@ -195,7 +195,7 @@ function IncrementCMn(n) {
 	AchMult+=0.1  
   }
   }
-  if (Achieves[50]==0 && Math.max(positives)==1 && math.min(positives)==1 && Math.max(negatives)==1 && math.min(negatives)==1){
+  if (Achieves[50]==0 && math.max(positives)==1 && math.min(positives)==1 && math.max(negatives)==1 && math.min(negatives)==1){
 	  document.getElementById("A6C1").setAttribute("style","background-color: #5B5;");
 	  Achieves[50]++;
 	  pbaseCost[0]=9;

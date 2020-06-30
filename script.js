@@ -3,7 +3,7 @@
 
 // define variables that reference elements on our page
 //Decimal.toExpPos= 2;
-var x, y, coords, tickspeed, positives, negatives,i,FicNeg,NPOW, Zero, LCoords;
+var coords, tickspeed, positives, negatives,i,FicNeg, Zero, LCoords;
 var Achieves=[0];
 for (i=0;i<70;i++){
   Achieves[i]=0

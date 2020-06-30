@@ -98,7 +98,7 @@ function ImproveQuality() {
   }  else{return};}
   else{
 	  if (x>=new Decimal(5**((OtherQuantity[1]/2+1)**1.5))) {
-    x=x.minus(-5**((OtherQuantity[1]/2+1)**1.5));
+    x=x.minus(5**((OtherQuantity[1]/2+1)**1.5));
   }  else{return};
   }
   if (OtherQuantity[1]<8){qual*=2;}

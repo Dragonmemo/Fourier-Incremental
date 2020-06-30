@@ -236,7 +236,7 @@ function NPowIncrease(){
 	}
 	NPOW=NPOW.plus((FicNeg[0]+negatives[0])*negatives[0]*1e-4*tickspeed);
 	if (x<1e10){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
-	else {document.getElementById('PrestigeN').innerHTML =toString(new Decimal(math.floor(2**(math.log10(x)-10))));}
+	else {document.getElementById('PrestigeN').innerHTML =new Decimal(math.floor(2**(x.log10()-10)));}
 }
 function PrestigeNull(){
 	if (math.min(positives)>Zero && math.min(negatives)>Zero) {

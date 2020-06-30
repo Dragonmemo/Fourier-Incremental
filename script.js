@@ -10,7 +10,7 @@ for (i=0;i<70;i++){
 }
 var MAX=1;
 var AchMult=1.01;
-x=0; coords=[0,0]; y=0; NPOW=0; Zero=0; LCoords=[];
+x=new Decimal(0); coords=[0,0]; y=new Decimal(0); NPOW=new Decimal(0); Zero=0; LCoords=[];
 positives=[0,0,0,0,0,0,0,0,0,0];
 negatives=[0,0,0,0,0,0,0,0,0,0];
 FicNeg=[0,0,0,0,0,0,0,0,0,0];
@@ -20,7 +20,6 @@ var qual=1, R=0, I=2*Math.PI;
 var tickpart=0;
 tickspeed=1000;
 function myFunction() {
-  var i; 
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
   ctx.clearRect(0, 0, 500, 500);
@@ -49,12 +48,12 @@ function myFunction() {
 	  LCoords.shift();
   }
   ctx.closePath();
-  if (tickspeed>33){x+=MAX*AchMult**math.sum(Achieves)*1.5**math.sum(positives)*2**OtherQuantity[1]*(1+NPOW);}
-  else {x+=MAX*AchMult**math.sum(Achieves)*1.5**math.sum(positives)*2**OtherQuantity[1]*(1+NPOW)*33/tickspeed;}
+  if (tickspeed>33){x=x.plus(MAX*AchMult**math.sum(Achieves)*1.5**math.sum(positives)*2**OtherQuantity[1]*(1+NPOW));}
+  else {x=x.plus(MAX*AchMult**math.sum(Achieves)*1.5**math.sum(positives)*2**OtherQuantity[1]*(1+NPOW)*33/tickspeed);}
   ctx.beginPath();
   ctx.strokeStyle="#000000";
   document.getElementById("MCur").innerHTML = "Drawing points (DP) : "+x.toExponential(3);
-  document.getElementById("DPS").innerHTML = (MAX*AchMult**math.sum(Achieves)*1.5**math.sum(positives)*2**OtherQuantity[1]*(1+NPOW)*1000/tickspeed).toExponential(2);
+  document.getElementById("DPS").innerHTML = new Decimal(MAX*AchMult**math.sum(Achieves)*1.5**math.sum(positives)*2**OtherQuantity[1]*(1+NPOW)*1000/tickspeed).toExponential(2);
   if (Achieves[62]!=0){document.getElementById("PCur").innerHTML = "Negative points (NP) : "+y.toExponential(3);}
   FourierCalculation(MAX);
   MAX=Math.max(MAX,Math.abs(coords[0]),Math.abs(coords[1]));
@@ -79,7 +78,6 @@ function myFunction() {
 };
 
 function FourierCalculation(MAX) {
-  var i;
   var TempVar=math.complex({r:Zero,phi:I/2});
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
@@ -95,12 +93,12 @@ function FourierCalculation(MAX) {
 };
 
 function ImproveQuality() {
-  if (Achieves[61]==0){if (x>=5**((OtherQuantity[1]+1)**1.5)) {
-    x-=5**((OtherQuantity[1]+1)**1.5);
+  if (Achieves[61]==0){if (x>=new Decimal(5**((OtherQuantity[1]+1)**1.5))) {
+    x=x.plus(-5**((OtherQuantity[1]+1)**1.5));
   }  else{return};}
   else{
-	  if (x>=5**((OtherQuantity[1]/2+1)**1.5)) {
-    x-=5**((OtherQuantity[1]/2+1)**1.5);
+	  if (x>=new Decimal(5**((OtherQuantity[1]/2+1)**1.5))) {
+    x=x.plus(-5**((OtherQuantity[1]/2+1)**1.5));
   }  else{return};
   }
   if (OtherQuantity[1]<8){qual*=2;}
@@ -110,20 +108,19 @@ if (Achieves[60]==0 && OtherQuantity[1]==5 && math.sum(positives)+math.sum(negat
 	document.getElementById("A7C1").setAttribute("style","background-color: #5B5;");
 	document.getElementById("Help").removeAttribute("hidden");
 }
-  if (Achieves[61]==0){document.getElementById("QC").innerHTML = "Cost : "+(5**((OtherQuantity[1]+1)**1.5)).toExponential(3)+"DP";}
-  else {document.getElementById("QC").innerHTML = "Cost : "+(5**((OtherQuantity[1]/2+1)**1.5)).toExponential(3)+"DP";}
+	FormulaRewriter();
 };
 function ReduceTickspeed() {
-  if (x>=10**OtherQuantity[0]) {
-    x-=10**OtherQuantity[0];
+  if (x>=new Decimal(10**OtherQuantity[0])) {
+    x=x.plus(10**OtherQuantity[0]);
   }  else{return};
   tickspeed*=10/11;
   OtherQuantity[0]++;
-  document.getElementById("TC").innerHTML = "Cost : "+(10**OtherQuantity[0]).toExponential(3)+"DP";
+  FormulaRewriter();
 };
 function IncrementCn(n) {
-  if (x>=pbaseCost[n]**(positives[n]+1)) {
-    x-=pbaseCost[n]**(positives[n]+1);
+  if (x>=new Decimal(pbaseCost[n]**(positives[n]+1))) {
+    x=x.plus(-pbaseCost[n]**(positives[n]+1));
   }  else{return};
   positives[n]++;
   if (positives[n]==1 && Achieves[n]==0){
@@ -183,8 +180,8 @@ function IncrementCn(n) {
   FormulaRewriter()
 };
 function IncrementCMn(n) {
-  if (y>=pbaseCost[n]**(negatives[n]+1)) {
-    y-=pbaseCost[n]**(negatives[n]+1);
+  if (y>=new Decimal(pbaseCost[n]**(negatives[n]+1))) {
+    y=y.plus(-pbaseCost[n]**(negatives[n]+1));
   }  else{return};
   negatives[n]++;
   if (negatives[n]==1 && Achieves[n+40]==0){
@@ -205,7 +202,7 @@ function IncrementCMn(n) {
 };
 function PrestigeNegative(){
 	if (x<1e10){return};
-	y+=math.floor(2**(math.log10(x)-10));
+	y=y.plus(math.floor(2**(math.log10(x)-10)));
 	if (Achieves[62]==0) {
 		Achieves[62]++;
 		document.getElementById("A7C3").setAttribute("style","background-color: #5B5;");
@@ -221,13 +218,13 @@ function PrestigeNegative(){
 		pbaseCost[9]=9e9
 	}
 	MAX=1;
-	x=0;
+	x=new Decimal(0);
 	coords=[0,0];
 	LCoords=[]
 	positives=[0,0,0,0,0,0,0,0,0,0];
 	FicNeg=[0,0,0,0,0,0,0,0,0,0];
 	OtherQuantity=[0,0];
-	NPOW=0;
+	NPOW=new Decimal(0);
 	qual=1, R=0;
 	tickspeed=1000;
 	tickpart=0;
@@ -237,17 +234,17 @@ function NPowIncrease(){
 	for (i=9;0<i;i--){
 		FicNeg[i-1]+=(FicNeg[i]+negatives[i])*negatives[i]*1e-4*tickspeed
 	}
-	NPOW+=(FicNeg[0]+negatives[0])*negatives[0]*1e-4*tickspeed
+	NPOW=NPOW.plus((FicNeg[0]+negatives[0])*negatives[0]*1e-4*tickspeed);
 	if (x<1e10){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
-	else {document.getElementById('PrestigeN').innerHTML =(math.floor(2**(math.log10(x)-10))).toExponential(2);}
+	else {document.getElementById('PrestigeN').innerHTML =new Decimal(math.floor(2**(math.log10(x)-10))).toExponential(2);}
 }
 function PrestigeNull(){
 	if (math.min(positives)>Zero && math.min(negatives)>Zero) {
 		Zero++;
 		MAX=1;
-		x=0;
-		y=0;
-		NPOW=0;
+		x=new Decimal(0);
+		y=new Decimal(0);
+		NPOW=new Decimal(0);
 		coords=[0,0];
 		LCoords=[]
 		tickpart=0;
@@ -321,20 +318,23 @@ function FormulaRewriter(){
 		document.getElementById("CM"+(i+1)+"T").removeAttribute("hidden");
 		};
 		document.getElementById("C"+(i+1)).innerHTML = positives[i];
-		document.getElementById("C"+(i+1)+"c").innerHTML = "Cost : "+(pbaseCost[i]**(positives[i]+1)).toExponential(2)+"DP";
+		document.getElementById("C"+(i+1)+"c").innerHTML = "Cost : "+new Decimal(pbaseCost[i]**(positives[i]+1)).toExponential(2)+"DP";
 		document.getElementById("CM"+(i+1)).innerHTML = negatives[i];
-		document.getElementById("CM"+(i+1)+"c").innerHTML = "Cost : "+(pbaseCost[i]**(negatives[i]+1)).toExponential(2)+"NP";
+		document.getElementById("CM"+(i+1)+"c").innerHTML = "Cost : "+new Decimal(pbaseCost[i]**(negatives[i]+1)).toExponential(2)+"NP";
 	};
-	if (Achieves[61]==0){document.getElementById("QC").innerHTML = "Cost : "+(5**((OtherQuantity[1]+1)**1.5)).toExponential(3)+"DP";}
-	else {document.getElementById("QC").innerHTML = "Cost : "+(5**((OtherQuantity[1]/2+1)**1.5)).toExponential(3)+"DP";}
-	document.getElementById("TC").innerHTML = "Cost : "+(10**OtherQuantity[0]).toExponential(3)+"DP";
+	if (Achieves[61]==0){document.getElementById("QC").innerHTML = "Cost : "+new Decimal(5**((OtherQuantity[1]+1)**1.5)).toExponential(3)+"DP";}
+	else {document.getElementById("QC").innerHTML = "Cost : "+new Decimal(5**((OtherQuantity[1]/2+1)**1.5)).toExponential(3)+"DP";}
+	document.getElementById("TC").innerHTML = "Cost : "+new Decimal(10**OtherQuantity[0]).toExponential(3)+"DP";
 };
 
 function MaxAll(){
 	var j,k;
 	for (k=0;k<10;k++){
+		ImproveQuality();
+		ReduceTickspeed();
 		for (j=0;j<10;j++){
 			IncrementCn(k);
+			IncrementCMn(k);
 		}
 	}
 }
@@ -375,10 +375,10 @@ function save()
 } 
 function SReset(){
   MAX=1;
-  x=0;
-  y=0;
+  x=new Decimal(0);
+  y=new Decimal(0);
   Zero=0;
-  NPOW=0;
+  NPOW=new Decimal(0);
   coords=[0,0];
   LCoords=[]
   positives=[0,0,0,0,0,0,0,0,0,0];
@@ -387,14 +387,15 @@ function SReset(){
   OtherQuantity=[0,0];
   qual=1, R=0;
   tickspeed=1000;
+  FormulaRewriter()
 }
 function HReset(){
   for (i=0;i<70;i++){Achieves[i]=[0];}
   MAX=1;
-  x=0;
-  y=0;
+  x=new Decimal(0);
+  y=new Decimal(0);
   Zero=0;
-  NPOW=0;
+  NPOW=new Decimal(0);
   coords=[0,0];
   LCoords=[]
   positives=[0,0,0,0,0,0,0,0,0,0];
@@ -404,14 +405,15 @@ function HReset(){
   OtherQuantity=[0,0];
   qual=1, R=0;
   tickspeed=1000;
+  FormulaRewriter()
 }
 //loading all the stuff...
 if(localStorage.MCur) {
   MAX=parseFloat(localStorage.Max);
-  x=parseFloat(localStorage.MCur);
-  y=parseFloat(localStorage.PCur);
+  x=new Decimal(localStorage.MCur);
+  y=new Decimal(localStorage.PCur);
   Zero=parseFloat(localStorage.Zero);
-  NPOW=parseFloat(localStorage.NPOW);
+  NPOW=new Decimal(localStorage.NPOW);
   coords=localStorage.Coords.split(",").map(Number);
   positives=localStorage.PCN.split(",").map(Number);
   negatives=localStorage.NCN.split(",").map(Number);

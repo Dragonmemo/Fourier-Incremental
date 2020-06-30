@@ -201,7 +201,7 @@ function IncrementCMn(n) {
   FormulaRewriter()
 };
 function PrestigeNegative(){
-	if (x.gte(1e10)){return};
+	if (x.lt(1e10)){return};
 	y=y.plus(math.floor(2**(math.log10(x)-10)));
 	if (Achieves[62]==0) {
 		Achieves[62]++;

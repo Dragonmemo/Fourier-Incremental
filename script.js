@@ -1,9 +1,8 @@
 // client-side js, loaded by index.html
 // run by the browser each time the page is loaded
 
-var Decimal = require('decimal.min.js');
 // define variables that reference elements on our page
-Decimal.toExpPos= 2;
+//Decimal.toExpPos= 2;
 var x, y, coords, tickspeed, positives, negatives,i,FicNeg,NPOW, Zero, LCoords;
 var Achieves=[0];
 for (i=0;i<70;i++){

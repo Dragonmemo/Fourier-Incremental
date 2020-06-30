@@ -93,11 +93,11 @@ function FourierCalculation(MAX) {
 };
 
 function ImproveQuality() {
-  if (Achieves[61]==0){if (x>=new Decimal(5**((OtherQuantity[1]+1)**1.5))) {
+  if (Achieves[61]==0){if (x.gte(new Decimal(5**((OtherQuantity[1]+1)**1.5)))) {
     x=x.minus(5**((OtherQuantity[1]+1)**1.5));
   }  else{return};}
   else{
-	  if (x>=new Decimal(5**((OtherQuantity[1]/2+1)**1.5))) {
+	  if (x.gte(new Decimal(5**((OtherQuantity[1]/2+1)**1.5)))) {
     x=x.minus(5**((OtherQuantity[1]/2+1)**1.5));
   }  else{return};
   }
@@ -111,7 +111,7 @@ if (Achieves[60]==0 && OtherQuantity[1]==5 && math.sum(positives)+math.sum(negat
 	FormulaRewriter();
 };
 function ReduceTickspeed() {
-  if (x>=new Decimal(10**OtherQuantity[0])) {
+  if (x.gte(new Decimal(10**OtherQuantity[0]))) {
     x=x.minus(10**OtherQuantity[0]);
   }  else{return};
   tickspeed*=10/11;
@@ -119,7 +119,7 @@ function ReduceTickspeed() {
   FormulaRewriter();
 };
 function IncrementCn(n) {
-  if (x>=new Decimal(pbaseCost[n]**(positives[n]+1))) {
+  if (x.gte(new Decimal(pbaseCost[n]**(positives[n]+1)))) {
     x=x.minus(pbaseCost[n]**(positives[n]+1));
   }  else{return};
   positives[n]++;
@@ -180,7 +180,7 @@ function IncrementCn(n) {
   FormulaRewriter()
 };
 function IncrementCMn(n) {
-  if (y>=new Decimal(pbaseCost[n]**(negatives[n]+1))) {
+  if (y.gte(new Decimal(pbaseCost[n]**(negatives[n]+1)))) {
     y=y.minus(pbaseCost[n]**(negatives[n]+1));
   }  else{return};
   negatives[n]++;
@@ -201,7 +201,7 @@ function IncrementCMn(n) {
   FormulaRewriter()
 };
 function PrestigeNegative(){
-	if (x<1e10){return};
+	if (x.gte(1e10)){return};
 	y=y.plus(math.floor(2**(math.log10(x)-10)));
 	if (Achieves[62]==0) {
 		Achieves[62]++;
@@ -235,7 +235,7 @@ function NPowIncrease(){
 		FicNeg[i-1]+=(FicNeg[i]+negatives[i])*negatives[i]*1e-4*tickspeed
 	}
 	NPOW=NPOW.plus((FicNeg[0]+negatives[0])*negatives[0]*1e-4*tickspeed);
-	if (x<1e10){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
+	if (x.lt(1e10)){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
 	else {document.getElementById('PrestigeN').innerHTML =new Decimal(math.floor(2**(x.log10()-10))).toExponential(3);}
 }
 function PrestigeNull(){

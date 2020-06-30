@@ -94,11 +94,11 @@ function FourierCalculation(MAX) {
 
 function ImproveQuality() {
   if (Achieves[61]==0){if (x>=new Decimal(5**((OtherQuantity[1]+1)**1.5))) {
-    x=x.plus(-5**((OtherQuantity[1]+1)**1.5));
+    x=x.minus(5**((OtherQuantity[1]+1)**1.5));
   }  else{return};}
   else{
 	  if (x>=new Decimal(5**((OtherQuantity[1]/2+1)**1.5))) {
-    x=x.plus(-5**((OtherQuantity[1]/2+1)**1.5));
+    x=x.minus(-5**((OtherQuantity[1]/2+1)**1.5));
   }  else{return};
   }
   if (OtherQuantity[1]<8){qual*=2;}
@@ -112,7 +112,7 @@ if (Achieves[60]==0 && OtherQuantity[1]==5 && math.sum(positives)+math.sum(negat
 };
 function ReduceTickspeed() {
   if (x>=new Decimal(10**OtherQuantity[0])) {
-    x=x.plus(10**OtherQuantity[0]);
+    x=x.minus(10**OtherQuantity[0]);
   }  else{return};
   tickspeed*=10/11;
   OtherQuantity[0]++;
@@ -120,7 +120,7 @@ function ReduceTickspeed() {
 };
 function IncrementCn(n) {
   if (x>=new Decimal(pbaseCost[n]**(positives[n]+1))) {
-    x=x.plus(-pbaseCost[n]**(positives[n]+1));
+    x=x.minus(pbaseCost[n]**(positives[n]+1));
   }  else{return};
   positives[n]++;
   if (positives[n]==1 && Achieves[n]==0){
@@ -181,7 +181,7 @@ function IncrementCn(n) {
 };
 function IncrementCMn(n) {
   if (y>=new Decimal(pbaseCost[n]**(negatives[n]+1))) {
-    y=y.plus(-pbaseCost[n]**(negatives[n]+1));
+    y=y.minus(pbaseCost[n]**(negatives[n]+1));
   }  else{return};
   negatives[n]++;
   if (negatives[n]==1 && Achieves[n+40]==0){

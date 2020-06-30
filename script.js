@@ -3,6 +3,7 @@
 
 
 // define variables that reference elements on our page
+Decimal.set({ toExpPos: 2 })
 var x, y, coords, tickspeed, positives, negatives,i,FicNeg,NPOW, Zero, LCoords;
 var Achieves=[0];
 for (i=0;i<70;i++){
@@ -52,9 +53,9 @@ function myFunction() {
   else {x=x.plus(MAX*AchMult**math.sum(Achieves)*1.5**math.sum(positives)*2**OtherQuantity[1]*(1+NPOW)*33/tickspeed);}
   ctx.beginPath();
   ctx.strokeStyle="#000000";
-  document.getElementById("MCur").innerHTML = "Drawing points (DP) : "+x.toExponential(3);
-  document.getElementById("DPS").innerHTML = new Decimal(MAX*AchMult**math.sum(Achieves)*1.5**math.sum(positives)*2**OtherQuantity[1]*(1+NPOW)*1000/tickspeed).toExponential(2);
-  if (Achieves[62]!=0){document.getElementById("PCur").innerHTML = "Negative points (NP) : "+y.toExponential(3);}
+  document.getElementById("MCur").innerHTML = "Drawing points (DP) : "+x;
+  document.getElementById("DPS").innerHTML = new Decimal(MAX*AchMult**math.sum(Achieves)*1.5**math.sum(positives)*2**OtherQuantity[1]*(1+NPOW)*1000/tickspeed);
+  if (Achieves[62]!=0){document.getElementById("PCur").innerHTML = "Negative points (NP) : "+y;}
   FourierCalculation(MAX);
   MAX=Math.max(MAX,Math.abs(coords[0]),Math.abs(coords[1]));
   LCoords.push(coords);
@@ -236,7 +237,7 @@ function NPowIncrease(){
 	}
 	NPOW=NPOW.plus((FicNeg[0]+negatives[0])*negatives[0]*1e-4*tickspeed);
 	if (x<1e10){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
-	else {document.getElementById('PrestigeN').innerHTML =new Decimal(math.floor(2**(math.log10(x)-10))).toExponential(2);}
+	else {document.getElementById('PrestigeN').innerHTML =new Decimal(math.floor(2**(math.log10(x)-10)));}
 }
 function PrestigeNull(){
 	if (math.min(positives)>Zero && math.min(negatives)>Zero) {
@@ -318,13 +319,13 @@ function FormulaRewriter(){
 		document.getElementById("CM"+(i+1)+"T").removeAttribute("hidden");
 		};
 		document.getElementById("C"+(i+1)).innerHTML = positives[i];
-		document.getElementById("C"+(i+1)+"c").innerHTML = "Cost : "+new Decimal(pbaseCost[i]**(positives[i]+1)).toExponential(2)+"DP";
+		document.getElementById("C"+(i+1)+"c").innerHTML = "Cost : "+new Decimal(pbaseCost[i]**(positives[i]+1))+"DP";
 		document.getElementById("CM"+(i+1)).innerHTML = negatives[i];
-		document.getElementById("CM"+(i+1)+"c").innerHTML = "Cost : "+new Decimal(pbaseCost[i]**(negatives[i]+1)).toExponential(2)+"NP";
+		document.getElementById("CM"+(i+1)+"c").innerHTML = "Cost : "+new Decimal(pbaseCost[i]**(negatives[i]+1))+"NP";
 	};
-	if (Achieves[61]==0){document.getElementById("QC").innerHTML = "Cost : "+new Decimal(5**((OtherQuantity[1]+1)**1.5)).toExponential(3)+"DP";}
-	else {document.getElementById("QC").innerHTML = "Cost : "+new Decimal(5**((OtherQuantity[1]/2+1)**1.5)).toExponential(3)+"DP";}
-	document.getElementById("TC").innerHTML = "Cost : "+new Decimal(10**OtherQuantity[0]).toExponential(3)+"DP";
+	if (Achieves[61]==0){document.getElementById("QC").innerHTML = "Cost : "+new Decimal(5**((OtherQuantity[1]+1)**1.5))+"DP";}
+	else {document.getElementById("QC").innerHTML = "Cost : "+new Decimal(5**((OtherQuantity[1]/2+1)**1.5))+"DP";}
+	document.getElementById("TC").innerHTML = "Cost : "+new Decimal(10**OtherQuantity[0])+"DP";
 };
 
 function MaxAll(){

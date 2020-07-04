@@ -282,11 +282,11 @@ function PrestigeNull(){
 
 function GetSkill(n){
 	if (Zero-math.sum(Skills.slice(0,64))>=1){
-		document.getElementById("SB"+n).setAttribute("hidden");
+		document.getElementById("SB"+n).setAttribute("hidden",true);
 		Skills[n]=1
 		if (n==0){
 			document.getElementById("ST1").removeAttribute("hidden");
-			document.getElementById("SliderM10").setAttribute("hidden");
+			document.getElementById("SliderM10").setAttribute("hidden",true);
 			document.getElementById("PhiM10").value=5;
 		}
 		if (n==1){

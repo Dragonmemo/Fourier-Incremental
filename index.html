@@ -78,7 +78,7 @@
     <button type="button" onclick="myFunction()">increment</button>
     <button type="button" onclick="ImproveQuality()">Improve quality
       <p id="QC">Cost : 5DP</p></button>
-    <button type="button" onclick="ReduceTickspeed()">Increase tick rate by by 10%
+    <button type="button" onclick="ReduceTickspeed()">Increase tick rate by 10%
       <p id="TC">Cost : 1DP</p></button>
 	<button type="button" onclick="MaxAll()" hidden id="MaxAll" class="tooltip">Max All<span class="tooltiptext">Actually clicks 10 times on each positive Cn</span></button>
     <div class="row">
@@ -523,7 +523,7 @@
     </div>
 	<div id="SkillTree" class="tabcontent">
       <h3>Skill Tree</h3>
-      <p>You currently have <span id="NBNullif">1</span> nullifiers.</p>
+      <p>You currently have <span id="NBNullif">1</span> nullifiers. (this is the number of C0 you have minus the number of skills you already bought)</p>
       <p>Skill Tree is currently being worked on!</p>
       <table>
         <col width="100">
@@ -554,97 +554,97 @@
         <col width="100">
         <col width="100">
         <tr>
-        <td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+        <td class="tooltip" style="background-color:#000;" height="60" hidden id="ST0">
+        <button type="button" onclick="GetSkill(0)" style="width:58px;" id="SB0">Cost : 1</button>
+		<span class="tooltiptext">Makes C10 multiplier better but locks C-10 at an angle of pi/10</span>
         </td>
-        <td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+        <td class="tooltip" style="background-color:#000;" height="60" hidden id="ST1">
+        <button type="button" onclick="GetSkill(1)" style="width:58px;" id="SB1">Cost : 1</button>
+		<span class="tooltiptext">Autobuys C1 once each tick</span>
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST2">
+        <button type="button" onclick="GetSkill(2)" style="width:58px;" id="SB2">Cost : 1</button>
+		<span class="tooltiptext">Unlock it to get to the next letter!</span>
         </td>
 		<td class="solid" style="background-color:#fff;" height="60">
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST3">
+        <button type="button" onclick="GetSkill(3)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
 		<td class="solid" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST4">
+        <button type="button" onclick="GetSkill(4)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
         <td class="solid2" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST5">
+        <button type="button" onclick="GetSkill(5)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
         <td class="solid" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST6">
+        <button type="button" onclick="GetSkill(6)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST7">
+        <button type="button" onclick="GetSkill(7)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
 		<td class="solid" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST8">
+        <button type="button" onclick="GetSkill(8)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST9">
+        <button type="button" onclick="GetSkill(9)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST10">
+        <button type="button" onclick="GetSkill(10)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
         <td class="solid" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST11">
+        <button type="button" onclick="GetSkill(11)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
-        <td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+        <td class="tooltip" style="background-color:#000;" height="60" hidden id="ST12">
+        <button type="button" onclick="GetSkill(12)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST13">
+        <button type="button" onclick="GetSkill(13)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
 		<td class="solid" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST14">
+        <button type="button" onclick="GetSkill(14)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST15">
+        <button type="button" onclick="GetSkill(15)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
         </tr>
 		<tr>
-        <td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+        <td class="tooltip" style="background-color:#000;" height="60" hidden id="ST16">
+        <button type="button" onclick="GetSkill(16)" style="width:58px;" id="SB16">Cost : 1</button>
+		<span class="tooltiptext">NP multiplies DP by 0.01log(NP)</span>
         </td>
         <td class="solid2" style="background-color:#fff;" height="60">
         </td>
@@ -652,54 +652,54 @@
         </td>
 		<td class="solid" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST17">
+        <button type="button" onclick="GetSkill(17)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST18">
+        <button type="button" onclick="GetSkill(18)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
 		<td class="solid" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST19">
+        <button type="button" onclick="GetSkill(19)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
         <td class="solid2" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST20">
+        <button type="button" onclick="GetSkill(20)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
         <td class="solid" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST21">
+        <button type="button" onclick="GetSkill(21)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST22">
+        <button type="button" onclick="GetSkill(22)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
 		<td class="solid" style="background-color:#fff;" height="60">
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST23">
+        <button type="button" onclick="GetSkill(23)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
         <td class="solid" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST24">
+        <button type="button" onclick="GetSkill(24)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
         <td class="solid2" style="background-color:#fff;" height="60">
@@ -708,60 +708,60 @@
         </td>
 		<td class="solid" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST25">
+        <button type="button" onclick="GetSkill(25)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST26">
+        <button type="button" onclick="GetSkill(26)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
         </tr>
 		<tr>
-        <td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+        <td class="tooltip" style="background-color:#000;" height="60" hidden id="ST27">
+        <button type="button" onclick="GetSkill(27)" style="width:58px;" id="SB27">Cost : 1</button>
+		<span class="tooltiptext">Get 1% of your pending NP per second</span>
         </td>
         <td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+        <button type="button" onclick="GetSkill(28)" style="width:58px;" id="SB28">Cost : 1</button>
+		<span class="tooltiptext">Improve distance multiplier</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
 		<td class="solid" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST29">
+        <button type="button" onclick="GetSkill(29)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST30">
+        <button type="button" onclick="GetSkill(30)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
 		<td class="solid" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST31">
+        <button type="button" onclick="GetSkill(31)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
         <td class="solid2" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST32">
+        <button type="button" onclick="GetSkill(32)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
         <td class="solid" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST33">
+        <button type="button" onclick="GetSkill(33)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST34">
+        <button type="button" onclick="GetSkill(34)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
@@ -770,41 +770,41 @@
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST35">
+        <button type="button" onclick="GetSkill(35)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
         <td class="solid" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST36">
+        <button type="button" onclick="GetSkill(36)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
-        <td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+        <td class="tooltip" style="background-color:#000;" height="60" hidden id="ST37">
+        <button type="button" onclick="GetSkill(37)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
 		<td class="solid" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST38">
+        <button type="button" onclick="GetSkill(38)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST39">
+        <button type="button" onclick="GetSkill(39)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
         </tr>
 		<tr>
-        <td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+        <td class="tooltip" style="background-color:#000;" height="60" hidden id="ST40">
+        <button type="button" onclick="GetSkill(40)" style="width:58px;" id="SB40">Cost : 1</button>
+		<span class="tooltiptext">Improve distance multiplier</span>
         </td>
         <td class="solid2" style="background-color:#fff;" height="60">
         </td>
@@ -812,54 +812,54 @@
         </td>
 		<td class="solid" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST41">
+        <button type="button" onclick="GetSkill(41)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST42">
+        <button type="button" onclick="GetSkill(42)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
 		<td class="solid" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST43">
+        <button type="button" onclick="GetSkill(43)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
         <td class="solid2" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST44">
+        <button type="button" onclick="GetSkill(44)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
         <td class="solid" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST45">
+        <button type="button" onclick="GetSkill(45)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST46">
+        <button type="button" onclick="GetSkill(46)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
 		<td class="solid" style="background-color:#fff;" height="60">
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST47">
+        <button type="button" onclick="GetSkill(47)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
         <td class="solid" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST48">
+        <button type="button" onclick="GetSkill(48)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
         <td class="solid2" style="background-color:#fff;" height="60">
@@ -868,21 +868,21 @@
         </td>
 		<td class="solid" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST49">
+        <button type="button" onclick="GetSkill(49)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST50">
+        <button type="button" onclick="GetSkill(50)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
         </tr>
 		<tr>
-        <td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+        <td class="tooltip" style="background-color:#000;" height="60" hidden id="ST51">
+        <button type="button" onclick="GetSkill(51)" style="width:58px;" id="SB51">Cost : 1</button>
+		<span class="tooltiptext">Unlock it to get to the next letter!</span>
         </td>
         <td class="solid2" style="background-color:#fff;" height="60">
         </td>
@@ -892,8 +892,8 @@
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST52">
+        <button type="button" onclick="GetSkill(52)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
@@ -902,63 +902,63 @@
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
-        <td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+        <td class="tooltip" style="background-color:#000;" height="60" hidden id="ST53">
+        <button type="button" onclick="GetSkill(53)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
         <td class="solid" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST54">
+        <button type="button" onclick="GetSkill(54)" style="width:58px;">Cost : 1</button>
+		<span class="tooltiptext">Unlock it to get to the next letter!</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST55">
+        <button type="button" onclick="GetSkill(55)" style="width:58px;">Cost : 1</button>
+		<span class="tooltiptext">Unlock it to get to the next letter!</span>
         </td>
 		<td class="solid" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST56">
+        <button type="button" onclick="GetSkill(56)" style="width:58px;">Cost : 1</button>
+		<span class="tooltiptext">Unlock it to get to the next letter!</span>
+        </td>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST57">
+        <button type="button" onclick="GetSkill(57)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
-        </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST58">
+        <button type="button" onclick="GetSkill(58)" style="width:58px;">Cost : 1</button>
+		<span class="tooltiptext">Unlock it to get to the next letter!</span>
         </td>
         <td class="solid" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST59">
+        <button type="button" onclick="GetSkill(59)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
-        <td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
+        <td class="tooltip" style="background-color:#000;" height="60" hidden id="ST60">
+        <button type="button" onclick="GetSkill(60)" style="width:58px;">Cost : 1</button>
 		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST61">
+        <button type="button" onclick="GetSkill(61)" style="width:58px;">Cost : 1</button>
+		<span class="tooltiptext">Unlock it to get to the next letter!</span>
         </td>
 		<td class="solid" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST62">
+        <button type="button" onclick="GetSkill(62)" style="width:58px;">Cost : 1</button>
+		<span class="tooltiptext">Automatically buys C9 each tick</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
-		<td class="tooltip" style="background-color:#000;" height="60">
-        <button type="button" onclick="" style="width:58px;">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST63">
+        <button type="button" onclick="GetSkill(63)" style="width:58px;">Cost : 1</button>
+		<span class="tooltiptext">Automatically buys C10 each tick</span>
         </td>
         </tr>
       </table> 

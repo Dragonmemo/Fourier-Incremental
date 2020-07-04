@@ -5,8 +5,13 @@
 //Decimal.toExpPos= 2;
 var coords, tickspeed, positives, negatives,i,FicNeg, Zero, LCoords;
 var Achieves=[0];
+var DPSCALC;
 for (i=0;i<70;i++){
   Achieves[i]=0
+}
+var Skills=[0];
+for (i=0;i<65;i++){
+  Skills[i]=0
 }
 var MAX=1;
 var AchMult=1.01;
@@ -48,16 +53,19 @@ function myFunction() {
 	  LCoords.shift();
   }
   ctx.closePath();
-  if (tickspeed>33){x=x.plus(MAX*AchMult**math.sum(Achieves)*1.5**math.sum(positives)*2**OtherQuantity[1]*(1+NPOW));}
-  else {x=x.plus(MAX*AchMult**math.sum(Achieves)*1.5**math.sum(positives)*2**OtherQuantity[1]*(1+NPOW)*33/tickspeed);}
+  DPSCALC=MAX**(1+Skills[28]+Skills[40])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1])*(1+NPOW);
+  DPSCALC=Decimal.mul(1+(0.01*Skills[16])*y.log(10),Decimal.mul((1.5+0.1*Skills[0])**positives[9]*1.5**math.sum(positives.slice(0,9)),DPSCALC));
+  if (tickspeed>33){x=x.plus(DPSCALC);}
+  else {x=x.plus(DPSCALC*33/tickspeed);}
   ctx.beginPath();
   ctx.strokeStyle="#000000";
   document.getElementById("MCur").innerHTML = "Drawing points (DP) : "+x.toExponential(3);
-  document.getElementById("DPS").innerHTML = new Decimal(MAX*AchMult**math.sum(Achieves)*1.5**math.sum(positives)*2**OtherQuantity[1]*(1+NPOW)*1000/tickspeed).toExponential(3);
+  document.getElementById("DPS").innerHTML = Decimal.mul(DPSCALC,1000/tickspeed).toExponential(3);
   if (Achieves[62]!=0){document.getElementById("PCur").innerHTML = "Negative points (NP) : "+y.toExponential(3);}
   FourierCalculation(MAX);
   MAX=Math.max(MAX,Math.abs(coords[0]),Math.abs(coords[1]));
   LCoords.push(coords);
+  if (Skills[1]==1){IncrementCn(0);}
   if (Achieves[51]==0 && positives.toString()==[2,1,0,0,0,0,0,0,0,0].toString() && negatives.toString()==[2,1,0,0,0,0,0,0,0,0].toString() && parseInt(document.getElementById("Phi1").value)==100 && parseInt(document.getElementById("PhiM1").value)==100 && ((48<parseInt(document.getElementById("Phi2").value)<52 && parseInt(document.getElementById("PhiM2").value)==100)||(48<parseInt(document.getElementById("PhiM2").value)<52 && parseInt(document.getElementById("Phi2").value)==100))){
 	Achieves[51]++;
 	document.getElementById("A6C2").setAttribute("style","background-color: #5B5;");
@@ -148,6 +156,7 @@ function IncrementCn(n) {
 	document.getElementById("Slider"+(n+1)).removeAttribute("hidden");
 	document.getElementById("SliderM"+(n+1)).removeAttribute("hidden");
     Achieves[n+20]++;
+	GetSkillTree();
 	if (math.sum(Achieves.slice(20,30))==10){AchMult+=0.1}
   }
   if (positives[n]==100 && Achieves[n+30]==0){
@@ -236,7 +245,10 @@ function NPowIncrease(){
 	}
 	NPOW=NPOW.plus((FicNeg[0]+negatives[0])*negatives[0]*1e-4*tickspeed);
 	if (x.lt(1e10)){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
-	else {document.getElementById('PrestigeN').innerHTML =new Decimal(math.floor(2**(x.log10()-10))).toExponential(3);}
+	else {
+		document.getElementById('PrestigeN').innerHTML =new Decimal(math.floor(2**(x.log10()-10))).toExponential(3);
+		y=y.plus(new Decimal(math.floor(2**(x.log10()-10))*(0.01*Skills[27])*0.033));
+	}
 }
 function PrestigeNull(){
 	if (math.min(positives)>Zero && math.min(negatives)>Zero) {
@@ -254,8 +266,6 @@ function PrestigeNull(){
 		OtherQuantity=[0,0];
 		qual=1, R=0;
 		tickspeed=1000;
-		document.getElementById('C0V').innerHTML =-Zero;
-		document.getElementById('Prestige0').innerHTML ="Need at least "+(Zero+1)+" of each other C";
 		if (Zero==1 && Achieves[63]==0){
 			document.getElementById("A7C4").setAttribute("style","background-color: #5B5;");
 			document.getElementById("SkillTreeB").removeAttribute("hidden");
@@ -267,6 +277,35 @@ function PrestigeNull(){
 		};
   		FormulaRewriter();
 	}
+	else {return}
+}
+
+function GetSkill(n){
+	if (Zero-math.sum(Skills.slice(0,64))>=1){
+		document.getElementById("SB"+n).setAttribute("hidden");
+		Skills[n]=1
+		if (n==0){
+			document.getElementById("ST1").removeAttribute("hidden");
+			document.getElementById("SliderM10").setAttribute("hidden");
+			document.getElementById("PhiM10").value=5;
+		}
+		if (n==1){
+			document.getElementById("ST2").removeAttribute("hidden");
+		}
+		if (n==16){
+			document.getElementById("ST0").removeAttribute("hidden");
+		}
+		if (n==27){
+			document.getElementById("ST16").removeAttribute("hidden");
+			document.getElementById("ST40").removeAttribute("hidden");
+		}
+		if (n==28){
+			document.getElementById("ST27").removeAttribute("hidden");
+		}
+		if (n==40){
+			document.getElementById("ST51").removeAttribute("hidden");
+		}
+		document.getElementById("NBNullif").innerHTML=(Zero-math.sum(Skills.slice(0,64)));
 	else {return}
 }
 
@@ -304,6 +343,13 @@ function GetAchieves(){
 	AchMult+=0.1  
   }}
 }
+function GetSkillTree(){
+	Zero++;
+	for (i=0;i<64;i++){
+		if (Skills[i]==1){GetSkill(i)}
+	}
+	Zero--;
+}
 function FormulaRewriter(){
   document.getElementById('ACH').innerHTML =AchMult**math.sum(Achieves);
   document.getElementById('AcMult').innerHTML =AchMult;
@@ -325,6 +371,8 @@ function FormulaRewriter(){
 	if (Achieves[61]==0){document.getElementById("QC").innerHTML = "Cost : "+new Decimal(5**((OtherQuantity[1]+1)**1.5)).toExponential(3)+"DP";}
 	else {document.getElementById("QC").innerHTML = "Cost : "+new Decimal(5**((OtherQuantity[1]/2+1)**1.5)).toExponential(3)+"DP";}
 	document.getElementById("TC").innerHTML = "Cost : "+new Decimal(10**OtherQuantity[0]).toExponential(3)+"DP";
+	document.getElementById('C0V').innerHTML =-Zero;
+	document.getElementById('Prestige0').innerHTML ="Need at least "+(Zero+1)+" of each other C";
 };
 
 function MaxAll(){
@@ -357,8 +405,7 @@ function loop() { // production
   myFunction();
 }
 
-function save() 
-{ 
+function save() { 
   localStorage.setItem('Max',MAX);
   localStorage.setItem("MCur",x);
   localStorage.setItem("PCur",y);
@@ -371,7 +418,8 @@ function save()
   localStorage.setItem("NFIC",FicNeg);  
   localStorage.setItem("Other",OtherQuantity);
   localStorage.setItem("R",R);
-  localStorage.setItem("Achieves",Achieves)
+  localStorage.setItem("Achieves",Achieves);
+  localStorage.setItem("Skills",Skills);
 } 
 function SReset(){
   MAX=1;
@@ -387,7 +435,12 @@ function SReset(){
   OtherQuantity=[0,0];
   qual=1, R=0;
   tickspeed=1000;
-  FormulaRewriter()
+  FormulaRewriter();
+  Skills=[0];
+	for (i=0;i<65;i++){
+	Skills[i]=0
+	}
+	GetSkillTree()
 }
 function HReset(){
   for (i=0;i<70;i++){Achieves[i]=[0];}
@@ -405,7 +458,12 @@ function HReset(){
   OtherQuantity=[0,0];
   qual=1, R=0;
   tickspeed=1000;
-  FormulaRewriter()
+  FormulaRewriter();
+  Skills=[0];
+	for (i=0;i<65;i++){
+	Skills[i]=0
+	}
+	GetSkillTree()
 }
 //loading all the stuff...
 if(localStorage.MCur) {
@@ -422,6 +480,7 @@ if(localStorage.MCur) {
   OtherQuantity=localStorage.Other.split(",").map(Number);
   R=parseInt(localStorage.R);
   Achieves=localStorage.Achieves.split(",").map(Number);
+  if (localStorage.Skills) {Skills=localStorage.Skills.split(",").map(Number);}
   tickspeed*=(10/11)**OtherQuantity[0];
   if (OtherQuantity[1]<8){qual=2**OtherQuantity[1];}
   else{qual=2**8}
@@ -429,6 +488,7 @@ if(localStorage.MCur) {
 	  for (i=Achieves.length; i<70; i++){Achieves[i]=[0];}
   }
   GetAchieves();
+  GetSkillTree();
   FormulaRewriter();
 }
 document.getElementById("MCur").innerHTML = "Drawing points (DP) : "+x.toExponential(3);

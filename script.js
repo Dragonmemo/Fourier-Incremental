@@ -54,7 +54,7 @@ function myFunction() {
   }
   ctx.closePath();
   DPSCALC=MAX**(1+Skills[28]+Skills[40])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1])*(1+NPOW);
-  DPSCALC=Decimal.mul(1+(0.01*Skills[16])*y.log(10),Decimal.mul((1.5+0.1*Skills[0])**positives[9]*1.5**math.sum(positives.slice(0,9)),DPSCALC));
+  DPSCALC=Decimal.mul(Decimal.add(1,Decimal.mul(0.01*Skills[16],y.log(10))),Decimal.mul((1.5+0.1*Skills[0])**positives[9]*1.5**math.sum(positives.slice(0,9)),DPSCALC));
   if (tickspeed>33){x=x.plus(DPSCALC);}
   else {x=x.plus(DPSCALC*33/tickspeed);}
   ctx.beginPath();

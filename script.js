@@ -306,6 +306,7 @@ function GetSkill(n){
 			document.getElementById("ST51").removeAttribute("hidden");
 		}
 		document.getElementById("NBNullif").innerHTML=(Zero-math.sum(Skills.slice(0,64)));
+	}
 	else {return}
 }
 

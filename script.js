@@ -211,7 +211,7 @@ function IncrementCMn(n) {
 };
 function PrestigeNegative(){
 	if (x.lt(1e10)){return};
-	y=y.plus(math.floor(2**(x.log10()-10)));
+	y=y.plus(math.floor(2.5**(x.log10()-10)));
 	if (Achieves[62]==0) {
 		Achieves[62]++;
 		document.getElementById("A7C3").setAttribute("style","background-color: #5B5;");
@@ -407,6 +407,19 @@ function loop() { // production
 }
 
 function ResetST(){
+	MAX=1;
+	x=new Decimal(0);
+	y=new Decimal(0);
+	NPOW=new Decimal(0);
+	coords=[0,0];
+	LCoords=[]
+	positives=[0,0,0,0,0,0,0,0,0,0];
+	negatives=[0,0,0,0,0,0,0,0,0,0];
+	FicNeg=[0,0,0,0,0,0,0,0,0,0];
+	OtherQuantity=[0,0];
+	qual=1, R=0;
+	tickspeed=1000;
+	FormulaRewriter();
 	for (i=0;i<64;i++){
 		Skills[i]=0;
 		document.getElementById("SB"+i).removeAttribute("hidden");
@@ -436,20 +449,7 @@ function save() {
   localStorage.setItem("Skills",Skills);
 } 
 function SReset(){
-  MAX=1;
-  x=new Decimal(0);
-  y=new Decimal(0);
   Zero=0;
-  NPOW=new Decimal(0);
-  coords=[0,0];
-  LCoords=[]
-  positives=[0,0,0,0,0,0,0,0,0,0];
-  negatives=[0,0,0,0,0,0,0,0,0,0];
-  FicNeg=[0,0,0,0,0,0,0,0,0,0];
-  OtherQuantity=[0,0];
-  qual=1, R=0;
-  tickspeed=1000;
-  FormulaRewriter();
   ResetST();
   Skills=[0];
 	for (i=0;i<65;i++){
@@ -459,21 +459,8 @@ function SReset(){
 }
 function HReset(){
   for (i=0;i<70;i++){Achieves[i]=[0];}
-  MAX=1;
-  x=new Decimal(0);
-  y=new Decimal(0);
   Zero=0;
-  NPOW=new Decimal(0);
-  coords=[0,0];
-  LCoords=[]
-  positives=[0,0,0,0,0,0,0,0,0,0];
-  FicNeg=[0,0,0,0,0,0,0,0,0,0];
   pbaseCost=[10,100,1000,1e4,1e5,1e6,1e7,1e8,1e9,1e10];
-  negatives=[0,0,0,0,0,0,0,0,0,0];
-  OtherQuantity=[0,0];
-  qual=1, R=0;
-  tickspeed=1000;
-  FormulaRewriter();
   ResetST();
   Skills=[0];
 	for (i=0;i<65;i++){

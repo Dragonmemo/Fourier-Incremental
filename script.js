@@ -241,13 +241,13 @@ function PrestigeNegative(){
 }
 function NPowIncrease(){
 	for (i=9;0<i;i--){
-		FicNeg[i-1]+=(FicNeg[i]+negatives[i])*negatives[i]*1e-4*tickspeed
+		FicNeg[i-1]+=(FicNeg[i]+negatives[i])*1.5**negatives[i]*1e-4*tickspeed
 	}
-	NPOW=NPOW.plus((FicNeg[0]+negatives[0])*negatives[0]*1e-4*tickspeed);
+	NPOW=NPOW.plus((FicNeg[0]+negatives[0])*1.5**negatives[0]*1e-4*tickspeed);
 	if (x.lt(1e10)){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
 	else {
-		document.getElementById('PrestigeN').innerHTML =new Decimal(math.floor(2**(x.log10()-10))).toExponential(3);
-		y=y.plus(new Decimal(math.floor(2**(x.log10()-10))*(0.01*Skills[16])*0.033));
+		document.getElementById('PrestigeN').innerHTML =new Decimal(math.floor(2.5**(x.log10()-10))).toExponential(3);
+		y=y.plus(new Decimal(math.floor(2.5**(x.log10()-10))*(0.01*Skills[16])*0.033));
 	}
 }
 function PrestigeNull(){
@@ -450,6 +450,7 @@ function SReset(){
   qual=1, R=0;
   tickspeed=1000;
   FormulaRewriter();
+  ResetST();
   Skills=[0];
 	for (i=0;i<65;i++){
 	Skills[i]=0
@@ -473,6 +474,7 @@ function HReset(){
   qual=1, R=0;
   tickspeed=1000;
   FormulaRewriter();
+  ResetST();
   Skills=[0];
 	for (i=0;i<65;i++){
 	Skills[i]=0

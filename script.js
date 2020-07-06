@@ -423,7 +423,8 @@ function ResetST(){
 	for (i=0;i<64;i++){
 		Skills[i]=0;
 		document.getElementById("SB"+i).removeAttribute("hidden");
-		document.getElementById("ST"+i).setAttribute("hidden",true);
+		if (i!=28){
+		document.getElementById("ST"+i).setAttribute("hidden",true);}
 	}
 	for (i=0;i<10;i++){
 	document.getElementById("PhiM"+(i+1)).value=100;

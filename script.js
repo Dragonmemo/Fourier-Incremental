@@ -54,7 +54,7 @@ function myFunction() {
   }
   ctx.closePath();
   DPSCALC=MAX**(1+Skills[28]+Skills[40])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1])*(1+NPOW);
-  DPSCALC=Decimal.mul(Decimal.add(1,Decimal.mul(0.01*Skills[16],y.log(10))),Decimal.mul((1.5+0.1*Skills[0])**positives[9]*1.5**math.sum(positives.slice(0,9)),DPSCALC));
+  DPSCALC=Decimal.mul(Decimal.add(1,Decimal.mul(0.1*Skills[27],y.log(10))),Decimal.mul((1.5+0.1*Skills[0])**positives[9]*1.5**math.sum(positives.slice(0,9)),DPSCALC));
   if (tickspeed>33){x=x.plus(DPSCALC);}
   else {x=x.plus(DPSCALC*33/tickspeed);}
   ctx.beginPath();
@@ -247,7 +247,7 @@ function NPowIncrease(){
 	if (x.lt(1e10)){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
 	else {
 		document.getElementById('PrestigeN').innerHTML =new Decimal(math.floor(2**(x.log10()-10))).toExponential(3);
-		y=y.plus(new Decimal(math.floor(2**(x.log10()-10))*(0.01*Skills[27])*0.033));
+		y=y.plus(new Decimal(math.floor(2**(x.log10()-10))*(0.01*Skills[16])*0.033));
 	}
 }
 function PrestigeNull(){
@@ -404,6 +404,19 @@ var mainGameLoop = window.setInterval(function() { // runs the loop
 function loop() { // production
   NPowIncrease();
   myFunction();
+}
+
+function ResetST(){
+	for (i=0;i<64;i++){
+		Skills[i]=0;
+		document.getElementById("SB"+i).removeAttribute("hidden");
+		document.getElementById("ST"+i).setAttribute("hidden",true);
+	}
+	for (i=0;i<10;i++){
+	document.getElementById("PhiM"+(i+1)).value=100;
+	document.getElementById("Phi"+(i+1)).value=100;	
+	}
+	document.getElementById("NBNullif").innerHTML=(Zero-math.sum(Skills.slice(0,64)));
 }
 
 function save() { 

@@ -61,6 +61,7 @@
     <button class="tablinks" onclick="openCity(event, 'About')">About</button>
     <button class="tablinks" onclick="openCity(event, 'HelpT')" id="Help" hidden>Help</button>
     <button class="tablinks" onclick="openCity(event, 'SkillTree')" id="SkillTreeB" hidden>Skill Tree</button>
+    <button class="tablinks" onclick="openCity(event, 'AboutPlus')">About+</button>
     </div>
     <div id="Main" class="tabcontent">
     <canvas id="myCanvas" width="500" height="500"></canvas>
@@ -525,6 +526,7 @@
       <h3>Skill Tree</h3>
       <p>You currently have <span id="NBNullif">1</span> nullifiers. (this is the number of C0 you have minus the number of skills you already bought)</p>
       <p>Skill Tree is currently being worked on!</p>
+	  <button type="button" onclick="ResetST()">Reset Skill Tree</button>
       <table>
         <col width="100">
         <col width="100">
@@ -644,7 +646,7 @@
 		<tr>
         <td class="tooltip" style="background-color:#000;" height="60" hidden id="ST16">
         <button type="button" onclick="GetSkill(16)" style="width:58px;" id="SB16">Cost : 1</button>
-		<span class="tooltiptext">NP multiplies DP by 0.01log(NP)</span>
+		<span class="tooltiptext">Get 1% of your pending NP per second</span>
         </td>
         <td class="solid2" style="background-color:#fff;" height="60">
         </td>
@@ -722,7 +724,7 @@
 		<tr>
         <td class="tooltip" style="background-color:#000;" height="60" hidden id="ST27">
         <button type="button" onclick="GetSkill(27)" style="width:58px;" id="SB27">Cost : 1</button>
-		<span class="tooltiptext">Get 1% of your pending NP per second</span>
+		<span class="tooltiptext">NP multiplies DP by 0.1log(NP)</span>
         </td>
         <td class="tooltip" style="background-color:#000;" height="60">
         <button type="button" onclick="GetSkill(28)" style="width:58px;" id="SB28">Cost : 1</button>
@@ -963,7 +965,13 @@
         </tr>
       </table> 
     </div>
-    <script>
+    <div id="AboutPlus" class="tabcontent">
+      <p>So, that wasn't how stuff were supposed to happen, but here is a link to an introduction to the discord server of the game : <a href="https://cdn.discordapp.com/attachments/724707759060156466/724709912785190952/unknown.png">Click me! i'm innoffensive</a></p>
+      <p>The server is pretty empty and the main purpose of it was not to be about that incremental game, but a RPG that i'm programming.</p>
+      <p>I'll, one day, add links to other stuff related to Fourrier series that i made so you can have fun with greater values of n.</p>
+      <p>A little link to something i made with those series and python : <a href="https://cdn.discordapp.com/attachments/725660339500482602/729074989956857966/AstroAura.gif">Yes, i'm a furry</a></p>
+    </div>
+	<script>
     function openCity(evt, cityName) {
       var i, tabcontent, tablinks;
       tabcontent = document.getElementsByClassName("tabcontent");
@@ -978,15 +986,7 @@
       evt.currentTarget.className += " active";
     }
 
-    // Get the element with id="defaultOpen" and click on it
     document.getElementById("MainTab").click();
     </script>
-    
-    <footer>Made with <a href="https://glitch.com">Glitch</a>!</footer>
-
-    <!-- include the Glitch button to show what the webpage is about and
-          to make it easier for folks to view source and remix -->
-    <div class="glitchButton" style="position:fixed;top:2em;right:20px;"></div>
-    <script src="https://button.glitch.me/button.js" defer></script>
   </body>
 </html>

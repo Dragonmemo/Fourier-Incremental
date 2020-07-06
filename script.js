@@ -101,14 +101,9 @@ function FourierCalculation(MAX) {
 };
 
 function ImproveQuality() {
-  if (Achieves[61]==0){if (x.gte(new Decimal(5**((OtherQuantity[1]+1)**1.5)))) {
-    x=x.minus(5**((OtherQuantity[1]+1)**1.5));
-  }  else{return};}
-  else{
-	  if (x.gte(new Decimal(5**((OtherQuantity[1]/2+1)**1.5)))) {
-    x=x.minus(5**((OtherQuantity[1]/2+1)**1.5));
+  if (x.gte(Decimal.pow(5,(OtherQuantity[1]/(1+Achieves[61])+1)**1.5))) {
+    x=x.minus(Decimal.pow(5,(OtherQuantity[1]/(1+Achieves[61])+1)**1.5));
   }  else{return};
-  }
   if (OtherQuantity[1]<8){qual*=2;}
   OtherQuantity[1]++;
 if (Achieves[60]==0 && OtherQuantity[1]==5 && math.sum(positives)+math.sum(negatives)==0){
@@ -119,16 +114,16 @@ if (Achieves[60]==0 && OtherQuantity[1]==5 && math.sum(positives)+math.sum(negat
 	FormulaRewriter();
 };
 function ReduceTickspeed() {
-  if (x.gte(new Decimal(10**OtherQuantity[0]))) {
-    x=x.minus(10**OtherQuantity[0]);
+  if (x.gte(Decimal.pow(10,OtherQuantity[0]))) {
+    x=x.minus(Decimal.pow(10,OtherQuantity[0]));
   }  else{return};
   tickspeed*=10/11;
   OtherQuantity[0]++;
   FormulaRewriter();
 };
 function IncrementCn(n) {
-  if (x.gte(new Decimal(pbaseCost[n]**(positives[n]+1)))) {
-    x=x.minus(pbaseCost[n]**(positives[n]+1));
+  if (x.gte(Decimal.pow(pbaseCost[n],positives[n]+1))) {
+    x=x.minus(Decimal.pow(pbaseCost[n],positives[n]+1));
   }  else{return};
   positives[n]++;
   if (positives[n]==1 && Achieves[n]==0){
@@ -189,8 +184,8 @@ function IncrementCn(n) {
   FormulaRewriter()
 };
 function IncrementCMn(n) {
-  if (y.gte(new Decimal(pbaseCost[n]**(negatives[n]+1)))) {
-    y=y.minus(pbaseCost[n]**(negatives[n]+1));
+  if (y.gte(Decimal.pow(pbaseCost[n],negatives[n]+1))) {
+    y=y.minus(Decimal.pow(pbaseCost[n],negatives[n]+1));
   }  else{return};
   negatives[n]++;
   if (negatives[n]==1 && Achieves[n+40]==0){
@@ -211,7 +206,7 @@ function IncrementCMn(n) {
 };
 function PrestigeNegative(){
 	if (x.lt(1e10)){return};
-	y=y.plus(math.floor(2.5**(x.log10()-10)));
+	y=y.plus(math.floor(decimal.pow(2.5,x.log10()-10)));
 	if (Achieves[62]==0) {
 		Achieves[62]++;
 		document.getElementById("A7C3").setAttribute("style","background-color: #5B5;");
@@ -241,13 +236,13 @@ function PrestigeNegative(){
 }
 function NPowIncrease(){
 	for (i=9;0<i;i--){
-		FicNeg[i-1]+=(FicNeg[i]+negatives[i])*1.5**negatives[i]*1e4/tickspeed
+		FicNeg[i-1]+=(FicNeg[i]+negatives[i])*1.5**negatives[i]*0.033
 	}
-	NPOW=NPOW.plus((FicNeg[0]+negatives[0])*1.5**negatives[0]*1e4/tickspeed);
+	NPOW=NPOW.plus((FicNeg[0]+negatives[0])*1.5**negatives[0]*0.033);
 	if (x.lt(1e10)){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
 	else {
-		document.getElementById('PrestigeN').innerHTML =new Decimal(math.floor(2.5**(x.log10()-10))).toExponential(3);
-		y=y.plus(new Decimal(math.floor(2.5**(x.log10()-10))*(0.01*Skills[16])*0.033));
+		document.getElementById('PrestigeN').innerHTML =new Decimal(math.floor(Decimal.pow(2.5,x.log10()-10))).toExponential(3);
+		y=y.plus(new Decimal(math.floor(Decimal.pow(2.5,x.log10()-10))*(0.01*Skills[16])*0.033));
 	}
 }
 function PrestigeNull(){

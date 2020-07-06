@@ -236,9 +236,9 @@ function PrestigeNegative(){
 }
 function NPowIncrease(){
 	for (i=9;0<i;i--){
-		FicNeg[i-1]+=(FicNeg[i]+negatives[i])*1.5**negatives[i]*0.033
+		FicNeg[i-1]+=(FicNeg[i]+negatives[i])*1.33**negatives[i]*0.033
 	}
-	NPOW=NPOW.plus((FicNeg[0]+negatives[0])*1.5**negatives[0]*0.033);
+	NPOW=NPOW.plus((FicNeg[0]+negatives[0])*1.33**negatives[0]*0.033);
 	if (x.lt(1e10)){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
 	else {
 		document.getElementById('PrestigeN').innerHTML =Decimal.pow(2.5,x.log10()-10).toExponential(3);

@@ -241,8 +241,8 @@ function NPowIncrease(){
 	NPOW=NPOW.plus((FicNeg[0]+negatives[0])*1.5**negatives[0]*0.033);
 	if (x.lt(1e10)){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
 	else {
-		document.getElementById('PrestigeN').innerHTML =new Decimal(math.floor(Decimal.pow(2.5,x.log10()-10))).toExponential(3);
-		y=y.plus(new Decimal(math.floor(Decimal.pow(2.5,x.log10()-10))*(0.01*Skills[16])*0.033));
+		document.getElementById('PrestigeN').innerHTML =Decimal.pow(2.5,x.log10()-10).toExponential(3);
+		y=y.plus(Decimal.mul(Decimal.pow(2.5,x.log10()-10),(0.01*Skills[16])*0.033));
 	}
 }
 function PrestigeNull(){

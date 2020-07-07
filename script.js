@@ -360,13 +360,13 @@ function FormulaRewriter(){
 		document.getElementById("CM"+(i+1)+"T").removeAttribute("hidden");
 		};
 		document.getElementById("C"+(i+1)).innerHTML = positives[i];
-		document.getElementById("C"+(i+1)+"c").innerHTML = "Cost : "+new Decimal(pbaseCost[i]**(positives[i]+1)).toExponential(3)+"DP";
+		document.getElementById("C"+(i+1)+"c").innerHTML = "Cost : "+Decimal.pow(pbaseCost[i],positives[i]+1).toExponential(3)+"DP";
 		document.getElementById("CM"+(i+1)).innerHTML = negatives[i];
-		document.getElementById("CM"+(i+1)+"c").innerHTML = "Cost : "+new Decimal(pbaseCost[i]**(negatives[i]+1)).toExponential(3)+"NP";
+		document.getElementById("CM"+(i+1)+"c").innerHTML = "Cost : "+Decimal.pow(pbaseCost[i],negatives[i]+1).toExponential(3)+"NP";
 	};
-	if (Achieves[61]==0){document.getElementById("QC").innerHTML = "Cost : "+new Decimal(5**((OtherQuantity[1]+1)**1.5)).toExponential(3)+"DP";}
-	else {document.getElementById("QC").innerHTML = "Cost : "+new Decimal(5**((OtherQuantity[1]/2+1)**1.5)).toExponential(3)+"DP";}
-	document.getElementById("TC").innerHTML = "Cost : "+new Decimal(10**OtherQuantity[0]).toExponential(3)+"DP";
+	if (Achieves[61]==0){document.getElementById("QC").innerHTML = "Cost : "+Decimal.pow(5,(OtherQuantity[1]+1)**1.5).toExponential(3)+"DP";}
+	else {document.getElementById("QC").innerHTML = "Cost : "+Decimal.pow(5,(OtherQuantity[1]/2+1)**1.5).toExponential(3)+"DP";}
+	document.getElementById("TC").innerHTML = "Cost : "+Decimal.pow(10,OtherQuantity[0]).toExponential(3)+"DP";
 	document.getElementById('C0V').innerHTML =-Zero;
 	document.getElementById('Prestige0').innerHTML ="Need at least "+(Zero+1)+" of each other C";
 };

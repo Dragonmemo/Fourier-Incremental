@@ -206,7 +206,7 @@ function IncrementCMn(n) {
 };
 function PrestigeNegative(){
 	if (x.lt(1e10)){return};
-	y=y.plus(math.floor(Decimal.pow(2.5,x.log10()-10)));
+	y=y.plus(Decimal.pow(2.5,x.log10()-10));
 	if (Achieves[62]==0) {
 		Achieves[62]++;
 		document.getElementById("A7C3").setAttribute("style","background-color: #5B5;");

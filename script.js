@@ -327,7 +327,7 @@ function GetSkill(n){
 		if (n==52){//C2.s
 			document.getElementById("ST41").removeAttribute("hidden");
 		}
-		if (n==2 or n==51 or n==17){
+		if (n==2 || n==51 || n==17){
 			if (Skills[64]==0 && Skills[2]==1 && Skills[51]==1){
 				Skills[64]++;
 				document.getElementById("ST3").removeAttribute("hidden");

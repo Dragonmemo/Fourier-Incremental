@@ -459,6 +459,12 @@
         <td style="background-color:#D55;" height="100" id="A6C5" class="tooltip">
           <span class="tooltiptext">BREAD<p>Unlock : -10% C5 and C-5 cost scaling (applies retroactively)</p></span>
         </td>
+		<td style="background-color:#D55;" height="100" id="A6C6" class="tooltip">
+          <span class="tooltiptext">Devil's number<p>Unlock : -10% C6 and C-6 cost scaling (applies retroactively) (not implemented yet)</p></span>
+        </td>
+		<td style="background-color:#D55;" height="100" id="A6C7" class="tooltip">
+          <span class="tooltiptext">Lucky Seven<p>Unlock : -10% C7 and C-7 cost scaling (applies retroactively) (not implemented yet)</p></span>
+        </td>
         <td style="background-color:#D55;" height="100" id="A6C8" class="tooltip">
           <span class="tooltiptext">BAGUETTE!<p>Unlock : -10% C8 and C-8 cost scaling (applies retroactively)</p></span>
         </td>
@@ -494,6 +500,7 @@
     <div id="ToDo List" class="tabcontent">
       <p>1-Balance stuff</p>
       <p>2-Add EVEN MORE achievements</p>
+	  <p>3-Complete Skill Tree</p>
     </div>
     <div id="Settings" class="tabcontent">
       <button type="button" onclick="save()" class="tooltip">Save
@@ -502,6 +509,8 @@
       <span class="tooltiptext">Resets everything except the achievements (and what they unlock)</span></button>
       <button type="button" onclick="HReset()" class="tooltip">Hard Reset
       <span class="tooltiptext">Resets everything, even the achievements</span></button>
+      <button type="button" onclick="Export()" class="tooltip">Export</button>
+      <button type="button" onclick="Import()" class="tooltip">Import</button>
     </div>
     <div id="About" class="tabcontent">
       <p>This whole game is about the Fourier series (not the transform!) and this tab will explain to you what all this is about.</p>
@@ -558,7 +567,7 @@
         <tr>
         <td class="tooltip" style="background-color:#000;" height="60" hidden id="ST0">
         <button type="button" onclick="GetSkill(0)" style="width:58px;" id="SB0">Cost : 1</button>
-		<span class="tooltiptext">Makes C10 multiplier better but locks C-10 at an angle of pi/10</span>
+		<span class="tooltiptext">Makes C10 multiplier better but locks C10 at an angle of pi(1/2+1/10)</span>
         </td>
         <td class="tooltip" style="background-color:#000;" height="60" hidden id="ST1">
         <button type="button" onclick="GetSkill(1)" style="width:58px;" id="SB1">Cost : 1</button>
@@ -574,7 +583,7 @@
         </td>
 		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST3">
         <button type="button" onclick="GetSkill(3)" style="width:58px;" id="SB3">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+		<span class="tooltiptext">Increase the distance multiplier</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
@@ -656,13 +665,13 @@
         </td>
 		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST17">
         <button type="button" onclick="GetSkill(17)" style="width:58px;" id="SB17">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+		<span class="tooltiptext">Get it to unlock the next letter!</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
 		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST18">
         <button type="button" onclick="GetSkill(18)" style="width:58px;" id="SB18">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+		<span class="tooltiptext">Increase C-10 multiplier, but locks it at an angle of pi/10</span>
         </td>
 		<td class="solid" style="background-color:#fff;" height="60">
         </td>
@@ -736,13 +745,13 @@
         </td>
 		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST29">
         <button type="button" onclick="GetSkill(29)" style="width:58px;" id="SB29">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+		<span class="tooltiptext">Increase C9 multiplier but locks its angle at pi(1/2+1/9)</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
 		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST30">
         <button type="button" onclick="GetSkill(30)" style="width:58px;" id="SB30">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+		<span class="tooltiptext">Improve distance multiplier</span>
         </td>
 		<td class="solid" style="background-color:#fff;" height="60">
         </td>
@@ -816,13 +825,13 @@
         </td>
 		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST41">
         <button type="button" onclick="GetSkill(41)" style="width:58px;" id="SB41">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+		<span class="tooltiptext">Improve Distance Multiplier</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
 		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST42">
         <button type="button" onclick="GetSkill(42)" style="width:58px;" id="SB42">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+		<span class="tooltiptext">Current NP boost DP production by 0.2log(NP)</span>
         </td>
 		<td class="solid" style="background-color:#fff;" height="60">
         </td>
@@ -896,7 +905,7 @@
         </td>
 		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST52">
         <button type="button" onclick="GetSkill(52)" style="width:58px;" id="SB52">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+		<span class="tooltiptext">Automatically buy C2 each tick</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>
@@ -966,8 +975,8 @@
       </table> 
     </div>
     <div id="AboutPlus" class="tabcontent">
-      <p>So, that wasn't how stuff were supposed to happen, but here is a link to an introduction to the discord server of the game : <a href="https://cdn.discordapp.com/attachments/724707759060156466/724709912785190952/unknown.png">Click me! i'm innoffensive</a></p>
-      <p>The server is pretty empty and the main purpose of it was not to be about that incremental game, but a RPG that i'm programming.</p>
+      <p>So, that wasn't how stuff were supposed to happen, but here is a link to the discord server of the game : <a href="https://discord.gg/xTzYrey">Click me! i'm innoffensive</a></p>
+      <p>The server is pretty empty and the main purpose of it was not to be about that incremental game, but a RPG that i'm programming. Still, it has a Fourier bot you can mess with!</p>
       <p>I'll, one day, add links to other stuff related to Fourrier series that i made so you can have fun with greater values of n.</p>
       <p>A little link to something i made with those series and python : <a href="https://cdn.discordapp.com/attachments/725660339500482602/729074989956857966/AstroAura.gif">Yes, i'm a furry</a></p>
     </div>

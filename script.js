@@ -53,10 +53,10 @@ function myFunction() {
 	  LCoords.shift();
   }
   ctx.closePath();
-  DPSCALC=MAX**(1+Skills[28]+Skills[40])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1])*(1+NPOW);
-  DPSCALC=Decimal.mul(Decimal.add(1,Decimal.mul(0.1*Skills[27],y.log(10))),Decimal.mul((1.5+0.1*Skills[0])**positives[9]*1.5**math.sum(positives.slice(0,9)),DPSCALC));
+  DPSCALC=Decimal.mul(MAX**(1+Skills[28]+Skills[40]+Skills[3]+Skills[30]+Skills[41])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1]),NPOW.plus(1));
+  DPSCALC=Decimal.mul(Decimal.add(1,Decimal.mul(0.1*Skills[27]+0.2*Skills[42],y.log(10))),Decimal.mul((1.5+0.1*Skills[0])**positives[9]*(1.5+0.1*Skills[29])**positives[8]*1.5**math.sum(positives.slice(0,9)),DPSCALC));
   if (tickspeed>33){x=x.plus(DPSCALC);}
-  else {x=x.plus(DPSCALC*33/tickspeed);}
+  else {x=x.plus(DPSCALC.mul(33/tickspeed));}
   ctx.beginPath();
   ctx.strokeStyle="#000000";
   document.getElementById("MCur").innerHTML = "Drawing points (DP) : "+x.toExponential(3);
@@ -66,6 +66,7 @@ function myFunction() {
   MAX=Math.max(MAX,Math.abs(coords[0]),Math.abs(coords[1]));
   LCoords.push(coords);
   if (Skills[1]==1){IncrementCn(0);}
+  if (Skills[52]==1){IncrementCn(1);}
   if (Achieves[51]==0 && positives.toString()==[2,1,0,0,0,0,0,0,0,0].toString() && negatives.toString()==[2,1,0,0,0,0,0,0,0,0].toString() && parseInt(document.getElementById("Phi1").value)==100 && parseInt(document.getElementById("PhiM1").value)==100 && ((48<parseInt(document.getElementById("Phi2").value)<52 && parseInt(document.getElementById("PhiM2").value)==100)||(48<parseInt(document.getElementById("PhiM2").value)<52 && parseInt(document.getElementById("Phi2").value)==100))){
 	Achieves[51]++;
 	document.getElementById("A6C2").setAttribute("style","background-color: #5B5;");
@@ -235,7 +236,8 @@ function PrestigeNegative(){
 	FormulaRewriter();
 }
 function NPowIncrease(){
-	for (i=9;0<i;i--){
+	FicNeg[8]+=(FicNeg[9]+negatives[9])*1.5**negatives[9]*0.033
+	for (i=8;0<i;i--){
 		FicNeg[i-1]+=(FicNeg[i]+negatives[i])*1.33**negatives[i]*0.033
 	}
 	NPOW=NPOW.plus((FicNeg[0]+negatives[0])*1.33**negatives[0]*0.033);
@@ -279,26 +281,61 @@ function GetSkill(n){
 	if (Zero-math.sum(Skills.slice(0,64))>=1){
 		document.getElementById("SB"+n).setAttribute("hidden",true);
 		Skills[n]=1
-		if (n==0){
+		if (n==0){//C10 pow
 			document.getElementById("ST1").removeAttribute("hidden");
+			document.getElementById("Slider10").setAttribute("hidden",true);
+			document.getElementById("Phi10").value=30;
+		}
+		if (n==1){//C1.s
+			document.getElementById("ST2").removeAttribute("hidden");
+		}
+		if (n==3){//DistMult
+			document.getElementById("ST18").removeAttribute("hidden");
+		}
+		if (n==16){//1% NP.s
+			document.getElementById("ST0").removeAttribute("hidden");
+		}
+		if (n==18){//C-10 pow
+			document.getElementById("ST30").removeAttribute("hidden");
 			document.getElementById("SliderM10").setAttribute("hidden",true);
 			document.getElementById("PhiM10").value=5;
 		}
-		if (n==1){
-			document.getElementById("ST2").removeAttribute("hidden");
-		}
-		if (n==16){
-			document.getElementById("ST0").removeAttribute("hidden");
-		}
-		if (n==27){
+		if (n==27){//NP log 0.1
 			document.getElementById("ST16").removeAttribute("hidden");
 			document.getElementById("ST40").removeAttribute("hidden");
 		}
-		if (n==28){
+		if (n==28){//DistMult
 			document.getElementById("ST27").removeAttribute("hidden");
 		}
-		if (n==40){
+		if (n==29){//C9 Pow
+			document.getElementById("ST17").removeAttribute("hidden");
+			document.getElementById("Slider9").setAttribute("hidden",true);
+			document.getElementById("Phi9").value=25+50/9;
+		}
+		if (n==30){//DistMult
+			document.getElementById("ST42").removeAttribute("hidden");
+		}
+		if (n==40){//DistMult
 			document.getElementById("ST51").removeAttribute("hidden");
+		}
+		if (n==41){//DistMult
+			document.getElementById("ST29").removeAttribute("hidden");
+		}
+		if (n==42){//NP log 0.2
+			document.getElementById("ST52").removeAttribute("hidden");
+		}
+		if (n==52){//C2.s
+			document.getElementById("ST41").removeAttribute("hidden");
+		}
+		if (n==2 or n==51 or n==17){
+			if (Skills[64]==0 && Skills[2]==1 && Skills[51]==1){
+				Skills[64]++;
+				document.getElementById("ST3").removeAttribute("hidden");
+			}
+			if (Skills[64]==1 && Skills[2]==1 && Skills[51]==1 && Skills[17]==1){
+				Skills[64]++;
+				document.getElementById("ST53").removeAttribute("hidden");
+			}
 		}
 		document.getElementById("NBNullif").innerHTML=(Zero-math.sum(Skills.slice(0,64)));
 	}
@@ -345,6 +382,7 @@ function GetSkillTree(){
 		if (Skills[i]==1){GetSkill(i)}
 	}
 	Zero--;
+	document.getElementById("NBNullif").innerHTML=(Zero-math.sum(Skills.slice(0,64)));
 }
 function FormulaRewriter(){
   document.getElementById('ACH').innerHTML =AchMult**math.sum(Achieves);
@@ -426,6 +464,12 @@ function ResetST(){
 	document.getElementById("Phi"+(i+1)).value=100;	
 	}
 	document.getElementById("NBNullif").innerHTML=(Zero-math.sum(Skills.slice(0,64)));
+	if (Skills[64]>0){
+		document.getElementById("ST3").removeAttribute("hidden");
+		if (Skills[64]>1){
+			document.getElementById("ST53").removeAttribute("hidden");
+		}
+	}
 }
 
 function save() { 
@@ -465,6 +509,39 @@ function HReset(){
 	GetSkillTree()
 }
 //loading all the stuff...
+function Export(){
+	copyStringToClipboard(btoa(JSON.stringify(localStorage)));
+}
+function Import(){
+  let loadgame = "";
+  loadgame = JSON.parse(atob(prompt("Paste in your save WARNING: WILL OVERWRITE YOUR CURRENT SAVE")));
+  if (loadgame !== "") {
+	  localStorage=loadgame;
+	  MAX=parseFloat(localStorage.Max);
+	  x=new Decimal(localStorage.MCur);
+	  y=new Decimal(localStorage.PCur);
+	  Zero=parseFloat(localStorage.Zero);
+	  NPOW=new Decimal(localStorage.NPOW);
+	  coords=localStorage.Coords.split(",").map(Number);
+	  positives=localStorage.PCN.split(",").map(Number);
+	  negatives=localStorage.NCN.split(",").map(Number);
+	  pbaseCost=localStorage.PBC.split(",").map(Number);
+	  FicNeg=localStorage.NFIC.split(",").map(Number);
+	  OtherQuantity=localStorage.Other.split(",").map(Number);
+	  R=parseInt(localStorage.R);
+	  Achieves=localStorage.Achieves.split(",").map(Number);
+	  if (localStorage.Skills) {Skills=localStorage.Skills.split(",").map(Number);}
+	  tickspeed*=(10/11)**OtherQuantity[0];
+	  if (OtherQuantity[1]<8){qual=2**OtherQuantity[1];}
+	  else{qual=2**8}
+	  if (Achieves.length<70) {
+		  for (i=Achieves.length; i<70; i++){Achieves[i]=[0];}
+	  } 
+	  GetAchieves();
+	  GetSkillTree();
+	  FormulaRewriter();
+  }
+}
 if(localStorage.MCur) {
   MAX=parseFloat(localStorage.Max);
   x=new Decimal(localStorage.MCur);

@@ -53,8 +53,8 @@ function myFunction() {
 	  LCoords.shift();
   }
   ctx.closePath();
-  DPSCALC=Decimal.mul(MAX**(1+Skills[28]+Skills[40]+Skills[3]+Skills[30]+Skills[41])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1]),NPOW.plus(1));
-  DPSCALC=Decimal.mul(Decimal.add(1,Decimal.mul(0.1*Skills[27]+0.2*Skills[42],y.log(10))),Decimal.mul((1.5+0.1*Skills[0])**positives[9]*(1.5+0.1*Skills[29])**positives[8]*1.5**math.sum(positives.slice(0,9)),DPSCALC));
+  DPSCALC=Decimal.mul(MAX**(1+Skills[28]+Skills[40]+Skills[3]+Skills[30]+Skills[41]+Skills[53])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1]),NPOW.plus(1));
+  DPSCALC=Decimal.mul(Decimal.add(1,Decimal.mul(0.1*Skills[27]+0.2*Skills[42]+0.3*Skills[20],y.plus(1).log(10))),Decimal.mul((1.5+0.1*Skills[0])**positives[9]*(1.5+0.1*Skills[29])**positives[8]*(1.5+0.1*Skills[31])**positives[7]*1.5**math.sum(positives.slice(0,7)),DPSCALC));
   if (tickspeed>33){x=x.plus(DPSCALC);}
   else {x=x.plus(DPSCALC.mul(33/tickspeed));}
   ctx.beginPath();
@@ -72,14 +72,19 @@ function myFunction() {
 	document.getElementById("A6C2").setAttribute("style","background-color: #5B5;");
 	pbaseCost[1]=9e1
   }
-  if (Achieves[65]==0 && x>=1e2520){
+  if (Achieves[65]==0 && x.gt(1e2520)){
     Achieves[65]++;
     document.getElementById("A7C6").setAttribute("style","background-color: #5B5;");
   };
-  if (Achieves[66]==0 && y>=1e2520){
+  if (Achieves[66]==0 && y.gt(1e2520)){
     Achieves[66]++;
     document.getElementById("A7C7").setAttribute("style","background-color: #5B5;");
   };
+  if (Achieves[67]==0 && positives.toString()==[1,1,2,3,5,8,13,21,34,55].toString() && negatives.toString()==[1,1,2,3,5,8,13,21,34,55].toString() && parseInt(document.getElementById("Phi1").value)==100 && parseInt(document.getElementById("PhiM1").value)==100 && parseInt(document.getElementById("Phi2").value)==100 && parseInt(document.getElementById("PhiM2")).value==50 && parseInt(document.getElementById("PhiM3").value)==100 && parseInt(document.getElementById("Phi3").value)==100 && parseInt(document.getElementById("Phi4").value)==100 && parseInt(document.getElementById("PhiM4").value)==50 && parseInt(document.getElementById("Phi5").value)==100 && parseInt(document.getElementById("PhiM5").value)==100 && parseInt(document.getElementById("PhiM6").value)==50 && parseInt(document.getElementById("Phi6").value)==100 && parseInt(document.getElementById("Phi7").value)==100 && parseInt(document.getElementById("PhiM7").value)==100 && parseInt(document.getElementById("PhiM8").value)==50 && parseInt(document.getElementById("Phi8").value)==100 && parseInt(document.getElementById("PhiM9").value)==100 && parseInt(document.getElementById("Phi9").value)==100 && parseInt(document.getElementById("PhiM10").value)==50 && parseInt(document.getElementById("Phi10").value)==100){
+	Achieves[67]++;
+	document.getElementById("A7C8").setAttribute("style","background-color: #5B5;");
+	document.getElementById("A7C8").removeAttribute("hidden");
+  }
   for (i=0; i<10;i++){
 	  document.getElementById("Phi"+(i+1)+"V").innerHTML = document.getElementById("Phi"+(i+1)).value/50+"&#960"
 	  document.getElementById("PhiM"+(i+1)+"V").innerHTML = document.getElementById("PhiM"+(i+1)).value/50+"&#960"
@@ -180,7 +185,17 @@ function IncrementCn(n) {
 	if (Achieves[57]==0 && positives.toString()==[2,1,7,21,5,20,20,5,0,0].toString()){
 	  Achieves[57]++;
 	  document.getElementById("A6C8").setAttribute("style","background-color: #5B5;");
-	  pbaseCost[3]=9e7
+	  pbaseCost[7]=9e7
+  }
+    if (Achieves[55]==0 && positives.toString()==[6,6,6,6,6,6,0,0,0,0].toString() && negatives.toString()==[6,6,6,6,6,6,0,0,0,0].toString()){
+	  Achieves[55]++;
+	  document.getElementById("A6C6").setAttribute("style","background-color: #5B5;");
+	  pbaseCost[5]=9e5
+  }
+    if (Achieves[56]==0 && positives.toString()==[7,0,0,7,0,0,7,0,0,0].toString()){
+	  Achieves[56]++;
+	  document.getElementById("A6C7").setAttribute("style","background-color: #5B5;");
+	  pbaseCost[6]=9e6
   }
   FormulaRewriter()
 };
@@ -202,6 +217,11 @@ function IncrementCMn(n) {
 	  document.getElementById("A6C1").setAttribute("style","background-color: #5B5;");
 	  Achieves[50]++;
 	  pbaseCost[0]=9;
+  }
+  if (Achieves[55]==0 && positives.toString()==[6,6,6,6,6,6,0,0,0,0].toString() && negatives.toString()==[6,6,6,6,6,6,0,0,0,0].toString()){
+	  Achieves[55]++;
+	  document.getElementById("A6C6").setAttribute("style","background-color: #5B5;");
+	  pbaseCost[5]=9e5
   }
   FormulaRewriter()
 };
@@ -236,15 +256,17 @@ function PrestigeNegative(){
 	FormulaRewriter();
 }
 function NPowIncrease(){
-	FicNeg[8]+=(FicNeg[9]+negatives[9])*1.5**negatives[9]*0.033
-	for (i=8;0<i;i--){
+	FicNeg[8]+=(FicNeg[9]+negatives[9])*(1.5+0.5*Skills[18])**negatives[9]*0.033
+	FicNeg[7]+=(FicNeg[7]+negatives[7])*(1.5+0.5*Skills[43])**negatives[7]*0.033
+	FicNeg[6]+=(FicNeg[6]+negatives[6])*(1.5+0.5*Skills[19])**negatives[6]*0.033
+	for (i=6;0<i;i--){
 		FicNeg[i-1]+=(FicNeg[i]+negatives[i])*1.33**negatives[i]*0.033
 	}
 	NPOW=NPOW.plus((FicNeg[0]+negatives[0])*1.33**negatives[0]*0.033);
 	if (x.lt(1e10)){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
 	else {
 		document.getElementById('PrestigeN').innerHTML =Decimal.pow(2.5,x.log10()-10).toExponential(3);
-		y=y.plus(Decimal.mul(Decimal.pow(2.5,x.log10()-10),(0.01*Skills[16])*0.033));
+		y=y.plus(Decimal.mul(Decimal.pow(2.5,x.log10()-10),(0.01*(Skills[16]+Skills[32]+Skills[44]))*0.033));
 	}
 }
 function PrestigeNull(){
@@ -300,6 +322,15 @@ function GetSkill(n){
 			document.getElementById("SliderM10").setAttribute("hidden",true);
 			document.getElementById("PhiM10").value=5;
 		}
+		if (n==19){//C-8 pow
+			document.getElementById("ST4").removeAttribute("hidden");
+			document.getElementById("SliderM8").setAttribute("hidden",true);
+			document.getElementById("PhiM8").value=50/8;
+		}
+		if (n==20){//NP log 0.3
+			document.getElementById("ST5").removeAttribute("hidden");
+		}
+		
 		if (n==27){//NP log 0.1
 			document.getElementById("ST16").removeAttribute("hidden");
 			document.getElementById("ST40").removeAttribute("hidden");
@@ -315,6 +346,14 @@ function GetSkill(n){
 		if (n==30){//DistMult
 			document.getElementById("ST42").removeAttribute("hidden");
 		}
+		if (n==31){//NEW C8 Pow
+			document.getElementById("ST19").removeAttribute("hidden");
+		    document.getElementById("Slider8").setAttribute("hidden",true);
+			document.getElementById("Phi8").value=25+50/8;
+			}
+		if (n==32){//1% NP.s
+			document.getElementById("ST20").removeAttribute("hidden");
+		}
 		if (n==40){//DistMult
 			document.getElementById("ST51").removeAttribute("hidden");
 		}
@@ -324,10 +363,22 @@ function GetSkill(n){
 		if (n==42){//NP log 0.2
 			document.getElementById("ST52").removeAttribute("hidden");
 		}
+		if (n==43){//C-9 Pow
+			document.getElementById("ST31").removeAttribute("hidden");
+			document.getElementById("SliderM9").setAttribute("hidden",true);
+			document.getElementById("PhiM9").value=50/9;
+		}
+		if (n==44){//1% NP.s
+			document.getElementById("ST32").removeAttribute("hidden");
+		}		
 		if (n==52){//C2.s
 			document.getElementById("ST41").removeAttribute("hidden");
 		}
-		if (n==2 || n==51 || n==17){
+		if (n==53){//DistMult
+			document.getElementById("ST43").removeAttribute("hidden");
+		    document.getElementById("ST44").removeAttribute("hidden");
+		}
+		if (n==2 || n==51 || n==17 || n==4 || n==5){
 			if (Skills[64]==0 && Skills[2]==1 && Skills[51]==1){
 				Skills[64]++;
 				document.getElementById("ST3").removeAttribute("hidden");
@@ -335,6 +386,10 @@ function GetSkill(n){
 			if (Skills[64]==1 && Skills[2]==1 && Skills[51]==1 && Skills[17]==1){
 				Skills[64]++;
 				document.getElementById("ST53").removeAttribute("hidden");
+			}
+			if (Skills[64]==2 && Skills[2]==1 && Skills[51]==1 && Skills[17]==1 && Skills[4]==1 && Skills[5]==1){
+				Skills[64]++;
+				document.getElementById("ST6").removeAttribute("hidden");
 			}
 		}
 		document.getElementById("NBNullif").innerHTML=(Zero-math.sum(Skills.slice(0,64)));
@@ -348,6 +403,7 @@ function GetAchieves(){
 		Achieves[i]=1;
 	  //document.getElementById("PCur").innerHTML = i+" "+"A"+math.floor(1+i/10)+"C"+((i)%10+1);
       document.getElementById("A"+math.floor(1+i/10)+"C"+((i)%10+1)).setAttribute("style","background-color: #5B5;");
+      document.getElementById("A"+math.floor(1+i/10)+"C"+((i)%10+1)).removeAttribute("hidden");
       if (i<9) {document.getElementById("C"+(i+2)+"Tab").removeAttribute("hidden");}
 	  if (i==9) {document.getElementById("PUnlock").removeAttribute("hidden");}
       if (9<i && i<19){AchMult+=0.01;}
@@ -383,6 +439,12 @@ function GetSkillTree(){
 	}
 	Zero--;
 	document.getElementById("NBNullif").innerHTML=(Zero-math.sum(Skills.slice(0,64)));
+	if (Skills[64]>0){
+		document.getElementById("ST3").removeAttribute("hidden");
+		if (Skills[64]>1){
+			document.getElementById("ST53").removeAttribute("hidden");
+		}
+	}
 }
 function FormulaRewriter(){
   document.getElementById('ACH').innerHTML =AchMult**math.sum(Achieves);
@@ -549,7 +611,7 @@ function Export(){
 function Import(){
   let loadgame = "";
   loadgame = JSON.parse(atob(prompt("Paste in your save WARNING: WILL OVERWRITE YOUR CURRENT SAVE")));
-  if (loadgame !== "") {
+  if (loadgame !== "" && loadgame!="Fermat") {
 	  localStorage=loadgame;
 	  MAX=parseFloat(localStorage.Max);
 	  x=new Decimal(localStorage.MCur);
@@ -574,6 +636,11 @@ function Import(){
 	  GetAchieves();
 	  GetSkillTree();
 	  FormulaRewriter();
+  }
+  if (loadgame=="Fermat" && Achieves[68]==0){
+	  Achieves[68]++;
+	document.getElementById("A7C9").setAttribute("style","background-color: #5B5;");
+	document.getElementById("A7C9").removeAttribute("hidden");
   }
 }
 if(localStorage.MCur) {

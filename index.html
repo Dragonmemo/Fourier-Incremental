@@ -494,6 +494,15 @@
         <td style="background-color:#D55;" height="100" id="A7C7" class="tooltip">
           <span class="tooltiptext">Legally Compromised Mechanism (have e2520 NP) (not implemented yet!)<p>Makes Negative Point generation stronger</p></span>
         </td>
+		<td style="background-color:#D55;" height="100" id="A7C8" class="tooltip" hidden>
+          <span class="tooltiptext">Secret get!<p>F is for Fibonacci!</p></span>
+        </td>
+		<td style="background-color:#D55;" height="100" id="A7C9" class="tooltip" hidden>
+          <span class="tooltiptext">Secret get!<p>Fermat's little importation</p></span>
+        </td>
+		<td style="background-color:#D55;" height="100" id="A7C10" class="tooltip" hidden>
+          <span class="tooltiptext">Secret get!<p>$#|T!</p></span>
+        </td>
         </tr>
       </table> 
     </div>
@@ -519,11 +528,13 @@
       <p>Here is a link to the video from <a href="https://www.youtube.com/watch?v=r6sGWTCMz2k">3Blue1Brown</a> to show you how powerful this tool is (and explain it better than i do)</p>
     </div>
     <div id="HelpT" class="tabcontent">
-      <p>The achievement Row 6 collumn 2 requires you to draw a "Lemniscate" (the infinity symbol), this can be done by having 1 of C2 and C-2 and 2 of C1 and C-1, then playing with angles.</p>
+      <p>The achievement Row 6 column 2 requires you to draw a "Lemniscate" (the infinity symbol), this can be done by having 1 of C2 and C-2 and 2 of C1 and C-1, then playing with angles.</p>
       <p>6 feet under (last achievement) requires you to get 6 C0 and is the end of the gameplay for now.</p>
       <p>LEET = 1337</p>
       <p>B = 2, R = 18, E = 5, A = 1, D = 4</p>
-      <p>Same logic for BAGUETTE</p>
+	  <p>Same logic for BAGUETTE</p>
+      <p>4 is the number of death and 666 is the one of the beast, you need all Cn from -6 to 6 (except 0) to unleash the evil (and get an achievement)</p>
+      <p>Have 3 "7" equally distributed between C1 and C7 to get lucky (and unlock an achievement)</p>
       <p>"One for all..." requires you to have simultaneously 1 of each Cn (positive and negative, not counting C0)</p>
       <p>"... and all for one" requires you to prestige with only C1, no other positive Cn</p>
       <p>There is a factor that multiplies DP production : it represent the scaling of the drawing, it resets on prestige (any)</p>
@@ -591,13 +602,13 @@
         </td>
 		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST4">
         <button type="button" onclick="GetSkill(4)" style="width:58px;" id="SB4">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+		<span class="tooltiptext">Get it to unlock the next letter</span>
         </td>
         <td class="solid2" style="background-color:#fff;" height="60">
         </td>
 		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST5">
         <button type="button" onclick="GetSkill(5)" style="width:58px;" id="SB5">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+		<span class="tooltiptext">Get it to unlock the next letter</span>
         </td>
         <td class="solid" style="background-color:#fff;" height="60">
         </td>
@@ -677,13 +688,13 @@
         </td>
 		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST19">
         <button type="button" onclick="GetSkill(19)" style="width:58px;" id="SB19">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+		<span class="tooltiptext">Increase C-8 multiplier but locks its angle at pi/8</span>
         </td>
         <td class="solid2" style="background-color:#fff;" height="60">
         </td>
 		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST20">
         <button type="button" onclick="GetSkill(20)" style="width:58px;" id="SB20">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+		<span class="tooltiptext">NP multiplies DP productions by 0.3log(NP+1) (Additive)</span>
         </td>
         <td class="solid" style="background-color:#fff;" height="60">
         </td>
@@ -733,7 +744,7 @@
 		<tr>
         <td class="tooltip" style="background-color:#000;" height="60" hidden id="ST27">
         <button type="button" onclick="GetSkill(27)" style="width:58px;" id="SB27">Cost : 1</button>
-		<span class="tooltiptext">NP multiplies DP by 0.1log(NP)</span>
+		<span class="tooltiptext">NP multiplies DP by 0.1log(NP+1) (Additive)</span>
         </td>
         <td class="tooltip" style="background-color:#000;" height="60">
         <button type="button" onclick="GetSkill(28)" style="width:58px;" id="SB28">Cost : 1</button>
@@ -757,13 +768,13 @@
         </td>
 		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST31">
         <button type="button" onclick="GetSkill(31)" style="width:58px;" id="SB31">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+		<span class="tooltiptext">Increase C8 Multiplier but locks its angle at pi(1/2+1/8)</span>
         </td>
         <td class="solid2" style="background-color:#fff;" height="60">
         </td>
 		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST32">
         <button type="button" onclick="GetSkill(32)" style="width:58px;" id="SB32">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+		<span class="tooltiptext">Get 1% of your pending NP per second</span>
         </td>
         <td class="solid" style="background-color:#fff;" height="60">
         </td>
@@ -831,19 +842,19 @@
         </td>
 		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST42">
         <button type="button" onclick="GetSkill(42)" style="width:58px;" id="SB42">Cost : 1</button>
-		<span class="tooltiptext">Current NP boost DP production by 0.2log(NP)</span>
+		<span class="tooltiptext">Current NP boost DP production by 0.2log(NP+1) (Additive)</span>
         </td>
 		<td class="solid" style="background-color:#fff;" height="60">
         </td>
 		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST43">
         <button type="button" onclick="GetSkill(43)" style="width:58px;" id="SB43">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+		<span class="tooltiptext">Increase C-9 multiplier, but locks it at an angle of Pi/9</span>
         </td>
         <td class="solid2" style="background-color:#fff;" height="60">
         </td>
 		<td class="tooltip" style="background-color:#000;" height="60" hidden id="ST44">
         <button type="button" onclick="GetSkill(44)" style="width:58px;" id="SB44">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+		<span class="tooltiptext">Get 1% of your pending NP each second</span>
         </td>
         <td class="solid" style="background-color:#fff;" height="60">
         </td>
@@ -915,7 +926,7 @@
         </td>
         <td class="tooltip" style="background-color:#000;" height="60" hidden id="ST53">
         <button type="button" onclick="GetSkill(53)" style="width:58px;" id="SB53">Cost : 1</button>
-		<span class="tooltiptext">PlaceHolder for experimenting, does nothing!</span>
+		<span class="tooltiptext">Improve distance multiplier</span>
         </td>
 		<td class="solid2" style="background-color:#fff;" height="60">
         </td>

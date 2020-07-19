@@ -429,31 +429,31 @@ function GetAchieves(){
 		pbaseCost[0]=9.1;
 	}
 	if (i==51){
-		pbaseCost[0]=82;
+		pbaseCost[1]=82;
 	}
 	if (i==52){
-		pbaseCost[0]=7.3e2;
+		pbaseCost[2]=7.3e2;
 	}
 	if (i==53){
-		pbaseCost[0]=6.4e3;
+		pbaseCost[3]=6.4e3;
 	}
 	if (i==54){
-		pbaseCost[0]=5.5e4;
+		pbaseCost[4]=5.5e4;
 	}
 	if (i==55){
-		pbaseCost[0]=4.6e5;
+		pbaseCost[5]=4.6e5;
 	}
 	if (i==56){
-		pbaseCost[0]=3.7e6;
+		pbaseCost[6]=3.7e6;
 	}
 	if (i==57){
-		pbaseCost[0]=2.8e7;
+		pbaseCost[7]=2.8e7;
 	}
 	if (i==58){
-		pbaseCost[0]=1.9e8;
+		pbaseCost[8]=1.9e8;
 	}
 	if (i==59){
-		pbaseCost[0]=1e9;
+		pbaseCost[9]=1e9;
 	}
     }
   }

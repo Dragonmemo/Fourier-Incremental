@@ -257,11 +257,11 @@ function PrestigeNegative(){
 }
 function NPowIncrease(){
 	for (i=9;2<i;i--){
-		FicNeg[i-1]+=(FicNeg[i]+negatives[i])*2**negatives[i]*0.033
+		FicNeg[i-1]+=(FicNeg[i]+negatives[i])*1.5**negatives[i]*0.033
 	}
-	FicNeg[1]+=(FicNeg[2]+negatives[2])*(2+Skills[19])**negatives[2]*0.033
-	FicNeg[0]+=(FicNeg[1]+negatives[1])*(2+Skills[43])**negatives[1]*0.033
-	NPOW=NPOW.plus((FicNeg[0]+negatives[0])*(2+Skills[18])**negatives[0]*0.033);
+	FicNeg[1]+=(FicNeg[2]+negatives[2])*(1.5+Skills[19])**negatives[2]*0.033
+	FicNeg[0]+=(FicNeg[1]+negatives[1])*(1.5+Skills[43])**negatives[1]*0.033
+	NPOW=NPOW.plus((FicNeg[0]+negatives[0])*(1.5+Skills[18])**negatives[0]*0.033);
 	if (x.lt(1e10)){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
 	else {
 		document.getElementById('PrestigeN').innerHTML =Decimal.pow(2.5,x.log10()-10).toExponential(3);

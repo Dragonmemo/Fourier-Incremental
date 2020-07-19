@@ -257,8 +257,8 @@ function PrestigeNegative(){
 }
 function NPowIncrease(){
 	FicNeg[8]+=(FicNeg[9]+negatives[9])*(1.5+0.5*Skills[18])**negatives[9]*0.033
-	FicNeg[7]+=(FicNeg[7]+negatives[7])*(1.5+0.5*Skills[43])**negatives[7]*0.033
-	FicNeg[6]+=(FicNeg[6]+negatives[6])*(1.5+0.5*Skills[19])**negatives[6]*0.033
+	FicNeg[7]+=(FicNeg[8]+negatives[8])*(1.5+0.5*Skills[43])**negatives[8]*0.033
+	FicNeg[6]+=(FicNeg[7]+negatives[7])*(1.5+0.5*Skills[19])**negatives[7]*0.033
 	for (i=6;0<i;i--){
 		FicNeg[i-1]+=(FicNeg[i]+negatives[i])*1.33**negatives[i]*0.033
 	}

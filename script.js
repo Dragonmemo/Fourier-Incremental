@@ -302,10 +302,10 @@ function GetSkill(n){
 	if (Zero-math.sum(Skills.slice(0,64))>=1){
 		document.getElementById("SB"+n).setAttribute("hidden",true);
 		Skills[n]=1
-		if (n==0){//C10 pow
+		if (n==0){//C1 pow
 			document.getElementById("ST1").removeAttribute("hidden");
-			document.getElementById("Slider10").setAttribute("hidden",true);
-			document.getElementById("Phi10").value=30;
+			document.getElementById("Slider1").setAttribute("hidden",true);
+			document.getElementById("Phi1").value=75;
 		}
 		if (n==1){//C1.s
 			document.getElementById("ST2").removeAttribute("hidden");
@@ -316,15 +316,15 @@ function GetSkill(n){
 		if (n==16){//1% NP.s
 			document.getElementById("ST0").removeAttribute("hidden");
 		}
-		if (n==18){//C-10 pow
+		if (n==18){//C-1 pow
 			document.getElementById("ST30").removeAttribute("hidden");
-			document.getElementById("SliderM10").setAttribute("hidden",true);
-			document.getElementById("PhiM10").value=5;
+			document.getElementById("SliderM1").setAttribute("hidden",true);
+			document.getElementById("PhiM1").value=50;
 		}
-		if (n==19){//C-8 pow
+		if (n==19){//C-3 pow
 			document.getElementById("ST4").removeAttribute("hidden");
-			document.getElementById("SliderM8").setAttribute("hidden",true);
-			document.getElementById("PhiM8").value=50/8;
+			document.getElementById("SliderM3").setAttribute("hidden",true);
+			document.getElementById("PhiM3").value=50/3;
 		}
 		if (n==20){//NP log 0.3
 			document.getElementById("ST5").removeAttribute("hidden");
@@ -337,18 +337,18 @@ function GetSkill(n){
 		if (n==28){//DistMult
 			document.getElementById("ST27").removeAttribute("hidden");
 		}
-		if (n==29){//C9 Pow
+		if (n==29){//C2 Pow
 			document.getElementById("ST17").removeAttribute("hidden");
-			document.getElementById("Slider9").setAttribute("hidden",true);
-			document.getElementById("Phi9").value=25+50/9;
+			document.getElementById("Slider2").setAttribute("hidden",true);
+			document.getElementById("Phi2").value=25+50/2;
 		}
 		if (n==30){//DistMult
 			document.getElementById("ST42").removeAttribute("hidden");
 		}
-		if (n==31){//NEW C8 Pow
+		if (n==31){//C3 Pow
 			document.getElementById("ST19").removeAttribute("hidden");
-		    document.getElementById("Slider8").setAttribute("hidden",true);
-			document.getElementById("Phi8").value=25+50/8;
+		    document.getElementById("Slider3").setAttribute("hidden",true);
+			document.getElementById("Phi3").value=25+50/3;
 			}
 		if (n==32){//1% NP.s
 			document.getElementById("ST20").removeAttribute("hidden");
@@ -362,10 +362,10 @@ function GetSkill(n){
 		if (n==42){//NP log 0.2
 			document.getElementById("ST52").removeAttribute("hidden");
 		}
-		if (n==43){//C-9 Pow
+		if (n==43){//C-2 Pow
 			document.getElementById("ST31").removeAttribute("hidden");
-			document.getElementById("SliderM9").setAttribute("hidden",true);
-			document.getElementById("PhiM9").value=50/9;
+			document.getElementById("SliderM2").setAttribute("hidden",true);
+			document.getElementById("PhiM2").value=50/2;
 		}
 		if (n==44){//1% NP.s
 			document.getElementById("ST32").removeAttribute("hidden");

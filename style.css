@@ -179,4 +179,6 @@ button {
   border: 1px solid currentColor;
   cursor: pointer;
   font-size: auto;
+  padding: 1em;
+  line-height: 1.4em;
 }

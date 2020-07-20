@@ -115,7 +115,7 @@ function FourierCalculation(MAX) {
 	  ctx.strokeStyle="#009900";
 	  ctx.moveTo(250,250);
 	  for (i=0;i<ARROWSOFHELL.length;i++){
-		  ctx.lineTo(ARROWSOFHELL[0]/MAX*250+250,ARROWSOFHELL[1]/MAX*250+250);
+		  ctx.lineTo(ARROWSOFHELL[i][0]/MAX*250+250,ARROWSOFHELL[i][1]/MAX*250+250);
 			ctx.stroke();
 	}}
 };

@@ -65,11 +65,21 @@ function myFunction() {
   FourierCalculation(MAX);
   MAX=Math.max(MAX,Math.abs(coords[0]),Math.abs(coords[1]));
   LCoords.push(coords);
+  if (Skills[58]==1){ReduceTickspeed();}
+  if (Skills[51]==1){ImproveQuality();}
+  if (Skills[10]==1){IncrementCMn(6);}
+  if (Skills[8]==1){IncrementCMn(5);}
+  if (Skills[55]==1){IncrementCMn(4);}
+  if (Skills[5]==1){IncrementCMn(3);}
+  if (Skills[4]==1){IncrementCMn(2);}
+  if (Skills[17]==1){IncrementCMn(1);}
+  if (Skills[2]==1){IncrementCMn(0);}
   if (Skills[1]==1){IncrementCn(0);}
   if (Skills[52]==1){IncrementCn(1);}
   if (Skills[21]==1){IncrementCn(2);}
   if (Skills[33]==1){IncrementCn(3);}
   if (Skills[45]==1){IncrementCn(4);}
+  
   if (Achieves[51]==0 && positives.toString()==[2,1,0,0,0,0,0,0,0,0].toString() && negatives.toString()==[2,1,0,0,0,0,0,0,0,0].toString() && parseInt(document.getElementById("Phi1").value)==100 && parseInt(document.getElementById("PhiM1").value)==100 && ((48<parseInt(document.getElementById("Phi2").value)<52 && parseInt(document.getElementById("PhiM2").value)==100)||(48<parseInt(document.getElementById("PhiM2").value)<52 && parseInt(document.getElementById("Phi2").value)==100))){
 	Achieves[51]++;
 	document.getElementById("A6C2").setAttribute("style","background-color: #5B5;");
@@ -288,6 +298,10 @@ function NPowIncrease(){
 function PrestigeNull(){
 	if (math.min(positives)>Zero && math.min(negatives)>Zero) {
 		Zero++;
+		if (Skills[54]==1){
+		for (i=Zero;math.min([math.min(positives),math.min(negatives)]);i++){
+			Zero++;
+		}}
 		MAX=1;
 		x=new Decimal(0);
 		y=new Decimal(0);
@@ -297,7 +311,7 @@ function PrestigeNull(){
 		tickpart=0;
 		positives=[0,0,0,0,0,0,0,0,0,0];
 		negatives=[0,0,0,0,0,0,0,0,0,0];
-		FicNeg=[0,0,0,0,0,0,0,0,0,0];
+		FicNeg=[new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0)];
 		OtherQuantity=[0,0];
 		qual=1, R=0;
 		tickspeed=1000;
@@ -335,12 +349,12 @@ function GetSkill(n){
 			document.getElementById("ST21").removeAttribute("hidden");
 			document.getElementById("ST7").removeAttribute("hidden");
 		}
-		if (n==7){//New C4 pow
+		if (n==7){//C4 pow
 			document.getElementById("ST22").removeAttribute("hidden");
 		    document.getElementById("Slider4").setAttribute("hidden",true);
 			document.getElementById("Phi4").value=25+50/4;
 		}
-		if (n==9){//New C7 pow
+		if (n==9){//C7 pow
 			document.getElementById("ST8").removeAttribute("hidden");
 		    document.getElementById("ST10").removeAttribute("hidden");
 		    document.getElementById("Slider7").setAttribute("hidden",true);
@@ -401,12 +415,12 @@ function GetSkill(n){
 		if (n==33){//C4.s
 			document.getElementById("ST45").removeAttribute("hidden");
 		}
-		if (n==34){//New C5 pow
+		if (n==34){//C5 pow
 			document.getElementById("ST46").removeAttribute("hidden");
 			document.getElementById("Slider5").setAttribute("hidden",true);
 			document.getElementById("Phi5").value=25+50/5;
 		}
-		if (n==35){//New C6 pow
+		if (n==35){//C6 pow
 			document.getElementById("ST47").removeAttribute("hidden");
 			document.getElementById("ST23").removeAttribute("hidden");
 			document.getElementById("Slider6").setAttribute("hidden",true);
@@ -446,6 +460,9 @@ function GetSkill(n){
 		if (n==53){//DistMult
 			document.getElementById("ST43").removeAttribute("hidden");
 		    document.getElementById("ST44").removeAttribute("hidden");
+		}
+		if (n==56){//Autosave
+			document.getElementById("Autosave").removeAttribute("hidden");
 		}
 		if (n==57){//NP log 0.4
 			document.getElementById("ST56").removeAttribute("hidden");
@@ -596,9 +613,10 @@ function MaxAll(){
 		}
 	}
 }
-
+var tickpart2=0;
 var mainGameLoop = window.setInterval(function() { // runs the loop
 	tickpart += 33;
+	tickpart2+=33;
 	//var d = new Date();
 	//var n = d.getTime();
 	if (tickpart>=tickspeed) {
@@ -606,6 +624,10 @@ var mainGameLoop = window.setInterval(function() { // runs the loop
 	//n=d.getTime();
 		tickpart -= tickspeed;
 		loop();
+	}
+	if (tickpart2>=10000){
+		tickpart2-=10000
+		if (document.getElementById("Autosave").checked == true){save();}
 	//console.log((new Date().getTime())-n);
 	}
 }, 33);
@@ -640,6 +662,7 @@ function ResetST(){
 	document.getElementById("Phi"+(i+1)).value=100;	
 	}
 	document.getElementById("NBNullif").innerHTML=(Zero-math.sum(Skills.slice(0,64)));
+	document.getElementById("Autosave").removeAttribute("hidden");
 	if (Skills[64]>0){
 		document.getElementById("ST3").removeAttribute("hidden");
 		if (Skills[64]>1){
@@ -724,8 +747,15 @@ function Export(){
 }
 function Import(){
   let loadgame = "";
-  loadgame = JSON.parse(atob(prompt("Paste in your save WARNING: WILL OVERWRITE YOUR CURRENT SAVE")));
-  if (loadgame !== "" && loadgame!="Fermat") {
+  loadgame = prompt("Paste in your save WARNING: WILL OVERWRITE YOUR CURRENT SAVE");
+  if (loadgame=="Fermat" && Achieves[68]==0){
+	  Achieves[68]++;
+	document.getElementById("A7C9").setAttribute("style","background-color: #5B5;");
+	document.getElementById("A7C9").removeAttribute("hidden");
+  }
+  else {
+	  loadgame=JSON.parse(atob(loadgame));
+	  if (loadgame !=="" && loadgame!="Fermat") {
 	  localStorage=loadgame;
 	  MAX=parseFloat(localStorage.Max);
 	  x=new Decimal(localStorage.MCur);
@@ -750,12 +780,7 @@ function Import(){
 	  GetAchieves();
 	  GetSkillTree();
 	  FormulaRewriter();
-  }
-  if (loadgame=="Fermat" && Achieves[68]==0){
-	  Achieves[68]++;
-	document.getElementById("A7C9").setAttribute("style","background-color: #5B5;");
-	document.getElementById("A7C9").removeAttribute("hidden");
-  }
+  }}
 }
 if(localStorage.MCur) {
   MAX=parseFloat(localStorage.Max);

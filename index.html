@@ -46,7 +46,7 @@
       <h1>Fourier Incremental</h1>
     </header>
     <math>
-      f(t) = <span id="CM10T" hidden><span id="CM10V"></span>e<sup>-10it&#960</sup> +</span><span id="CM9T" hidden> <span id="CM9V"></span>e<sup>-9it&#960</sup> +</span><span id="CM8T" hidden> <span id="CM8V"></span>e<sup>-8it&#960</sup> +</span><span id="CM7T" hidden> <span id="CM7V"></span>e<sup>-7it&#960</sup> +</span><span id="CM6T" hidden> <span id="CM6V"></span>e<sup>-6it&#960</sup> +</span><span id="CM5T" hidden> <span id="CM5V"></span>e<sup>-5it&#960</sup> +</span><span id="CM4T" hidden> <span id="CM4V"></span>e<sup>-4it&#960</sup> +</span><span id="CM3T" hidden> <span id="CM3V"></span>e<sup>-3it&#960</sup> +</span><span id="CM2T" hidden> <span id="CM2V"></span>e<sup>-2it&#960</sup> +</span><span id="CM1T" hidden> <span id="CM1V"></span>e<sup>-it&#960</sup> +</span> <span id="C0V">0</span> <span id="C1T" hidden>+ <span id="C1V"></span>e<sup>it&#960</sup> </span><span id="C2T" hidden>+ <span id="C2V"></span>e<sup>2it&#960</sup> </span><span id="C3T" hidden>+ <span id="C3V"></span>e<sup>3it&#960</sup> </span><span id="C4T" hidden>+ <span id="C4V"></span>e<sup>4it&#960</sup> </span><span id="C5T" hidden>+ <span id="C5V"></span>e<sup>5it&#960</sup> </span><span id="C6T" hidden>+ <span id="C6V"></span>e<sup>6it&#960</sup> </span><span id="C7T" hidden>+ <span id="C7V"></span>e<sup>7it&#960</sup> </span><span id="C8T" hidden>+ <span id="C8V"></span>e<sup>8it&#960</sup> </span><span id="C9T" hidden>+ <span id="C9V"></span>e<sup>9it&#960</sup> </span><span id="C10T" hidden>+ <span id="C10V"></span>e<sup>10it&#960</sup> </span>
+      f(t) = <span id="CM10T" hidden><span id="CM10V"></span>e<sup>-10it&#960 </sup> +</span><span id="CM9T" hidden> <span id="CM9V"></span>e<sup>-9it&#960 </sup> +</span><span id="CM8T" hidden> <span id="CM8V"></span>e<sup>-8it&#960 </sup> +</span><span id="CM7T" hidden> <span id="CM7V"></span>e<sup>-7it&#960 </sup> +</span><span id="CM6T" hidden> <span id="CM6V"></span>e<sup>-6it&#960 </sup> +</span><span id="CM5T" hidden> <span id="CM5V"></span>e<sup>-5it&#960 </sup> +</span><span id="CM4T" hidden> <span id="CM4V"></span>e<sup>-4it&#960 </sup> +</span><span id="CM3T" hidden> <span id="CM3V"></span>e<sup>-3it&#960 </sup> +</span><span id="CM2T" hidden> <span id="CM2V"></span>e<sup>-2it&#960 </sup> +</span><span id="CM1T" hidden> <span id="CM1V"></span>e<sup>-it&#960 </sup> +</span> <span id="C0V">0</span> <span id="C1T" hidden>+ <span id="C1V"></span>e<sup>it&#960 </sup> </span><span id="C2T" hidden>+ <span id="C2V"></span>e<sup>2it&#960 </sup> </span><span id="C3T" hidden>+ <span id="C3V"></span>e<sup>3it&#960 </sup> </span><span id="C4T" hidden>+ <span id="C4V"></span>e<sup>4it&#960 </sup> </span><span id="C5T" hidden>+ <span id="C5V"></span>e<sup>5it&#960 </sup> </span><span id="C6T" hidden>+ <span id="C6V"></span>e<sup>6it&#960 </sup> </span><span id="C7T" hidden>+ <span id="C7V"></span>e<sup>7it&#960 </sup> </span><span id="C8T" hidden>+ <span id="C8V"></span>e<sup>8it&#960 </sup> </span><span id="C9T" hidden>+ <span id="C9V"></span>e<sup>9it&#960 </sup> </span><span id="C10T" hidden>+ <span id="C10V"></span>e<sup>10it&#960 </sup> </span>
     </math>
     <p id="MCur"></p>
 	<p>Current DP/s : <span id="DPS"></span></p>
@@ -523,8 +523,9 @@
       <span class="tooltiptext">Resets everything, even the achievements</span></button>
       <br><button type="button" onclick="Export()" class="tooltip">Export</button>
       <button type="button" onclick="Import()" class="tooltip">Import</button>
-	<br><input type="checkbox" id="Arrows" name="Arrows">
-<label for="Arrows"> Show the construction vector in green (what each Cn does)</label>
+	<br><input type="checkbox" id="Arrows"><span> Show the construction vector in green (what each Cn does)</span><br>
+	<input type="checkbox" id="Autosave" checked><span> Enable Autosave</span><br>
+	
 	</div>
     <div id="About" class="tabcontent">
       <p>This whole game is about the Fourier series (not the transform!) and this tab will explain to you what all this is about.</p>
@@ -592,7 +593,7 @@
         </td>
 		<td class="tooltip" style="background-color:#000;" height="40" hidden id="ST2">
         <button type="button" onclick="GetSkill(2)" style="width:38px;" id="SB2"></button>
-		<span class="tooltiptext">Unlock it to get to the next letter!</span>
+		<span class="tooltiptext">Autobuys C-1 once each tick</span>
         </td>
 		<td class="solid2"  height="40">
         </td>
@@ -608,13 +609,13 @@
         </td>
 		<td class="tooltip" style="background-color:#000;" height="40" hidden id="ST4">
         <button type="button" onclick="GetSkill(4)" style="width:38px;" id="SB4"></button>
-		<span class="tooltiptext">Get it to unlock the next letter</span>
+		<span class="tooltiptext">Autobuys C-3 once each tick</span>
         </td>
         <td class="solid2"  height="40">
         </td>
 		<td class="tooltip" style="background-color:#000;" height="40" hidden id="ST5">
         <button type="button" onclick="GetSkill(5)" style="width:38px;" id="SB5"></button>
-		<span class="tooltiptext">Get it to unlock the next letter</span>
+		<span class="tooltiptext">Autobuys C-4 once each tick</span>
         </td>
         <td class="solid2" height="40">
         </td>
@@ -632,7 +633,7 @@
         </td>
 		<td class="tooltip" style="background-color:#000;" height="40" hidden id="ST8">
         <button type="button" onclick="GetSkill(8)" style="width:38px;" id="SB8"></button>
-		<span class="tooltiptext">Get it to unlock next letter</span>
+		<span class="tooltiptext">Autobuys C-6 once each tick</span>
         </td>
 		<td class="tooltip" style="background-color:#000;" height="40" hidden id="ST9">
         <button type="button" onclick="GetSkill(9)" style="width:38px;" id="SB9"></button>
@@ -640,7 +641,7 @@
         </td>
 		<td class="tooltip" style="background-color:#000;" height="40" hidden id="ST10">
         <button type="button" onclick="GetSkill(10)" style="width:38px;" id="SB10"></button>
-		<span class="tooltiptext">Get it to unlock next letter</span>
+		<span class="tooltiptext">Autobuys C-7 once each tick</span>
         </td>
         <td class="solid2" height="40">
         </td>
@@ -682,7 +683,7 @@
         </td>
 		<td class="tooltip" style="background-color:#000;" height="40" hidden id="ST17">
         <button type="button" onclick="GetSkill(17)" style="width:38px;" id="SB17"></button>
-		<span class="tooltiptext">Get it to unlock the next letter!</span>
+		<span class="tooltiptext">Autobuys C-2 once each tick</span>
         </td>
 		<td class="solid2"  height="40">
         </td>
@@ -910,7 +911,7 @@
 		<tr>
         <td class="tooltip" style="background-color:#000;" height="40" hidden id="ST51">
         <button type="button" onclick="GetSkill(51)" style="width:38px;" id="SB51"></button>
-		<span class="tooltiptext">Unlock it to get to the next letter!</span>
+		<span class="tooltiptext">Autobuys Quality Upgrade once each tick</span>
         </td>
         <td class="solid2"  height="40">
         </td>
@@ -940,19 +941,19 @@
         </td>
 		<td class="tooltip" style="background-color:#000;" height="40" hidden id="ST54">
         <button type="button" onclick="GetSkill(54)" style="width:38px;" id="SB54"></button>
-		<span class="tooltiptext">Unlock it to get to the next letter!</span>
+		<span class="tooltiptext">Get as many C0 as possible each reset</span>
         </td>
 		<td class="solid2" height="40">
         </td>
 		<td class="tooltip" style="background-color:#000;" height="40" hidden id="ST55">
         <button type="button" onclick="GetSkill(55)" style="width:38px;" id="SB55"></button>
-		<span class="tooltiptext">Unlock it to get to the next letter!</span>
+		<span class="tooltiptext">Autobuys C-5 once each tick</span>
         </td>
 		<td class="solid2" height="40">
         </td>
 		<td class="tooltip" style="background-color:#000;" height="40" hidden id="ST56">
         <button type="button" onclick="GetSkill(56)" style="width:38px;" id="SB56"></button>
-		<span class="tooltiptext">Unlock it to get to the next letter!</span>
+		<span class="tooltiptext">Get the ability to disable auto-save</span>
         </td>
 		<td class="tooltip" style="background-color:#000;" height="40" hidden id="ST57">
         <button type="button" onclick="GetSkill(57)" style="width:38px;" id="SB57"></button>
@@ -960,7 +961,7 @@
         </td>
 		<td class="tooltip" style="background-color:#000;" height="40" hidden id="ST58">
         <button type="button" onclick="GetSkill(58)" style="width:38px;" id="SB58"></button>
-		<span class="tooltiptext">Unlock it to get to the next letter!</span>
+		<span class="tooltiptext">Autobuys tickspeed once each tick</span>
         </td>
         <td class="solid2" height="40">
         </td>

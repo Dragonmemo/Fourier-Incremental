@@ -3,7 +3,7 @@
 
 // define variables that reference elements on our page
 //Decimal.toExpPos= 2;
-var coords, tickspeed, positives, negatives,i,FicNeg, Zero, LCoords;
+var coords, tickspeed, positives, negatives,i,FicNeg, Zero, LCoords, ARROWSOFHELL;
 var Achieves=[0];
 var DPSCALC;
 for (i=0;i<70;i++){
@@ -53,8 +53,8 @@ function myFunction() {
 	  LCoords.shift();
   }
   ctx.closePath();
-  DPSCALC=Decimal.mul(MAX**(1+Skills[28]+Skills[40]+Skills[3]+Skills[30]+Skills[41]+Skills[53])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1]),NPOW.plus(1));
-  DPSCALC=Decimal.mul(Decimal.add(1,Decimal.mul(0.1*Skills[27]+0.2*Skills[42]+0.3*Skills[20],y.plus(1).log(10))),Decimal.mul(Decimal.mul((1.5+0.1*Skills[0])**positives[0],Decimal.mul((1.5+0.1*Skills[29])**positives[1],Decimal.mul((1.5+0.1*Skills[31])**positives[2],Decimal.pow(1.5,math.sum(positives.slice(3)))))),DPSCALC));
+  DPSCALC=Decimal.mul(MAX**(1+Skills[28]+Skills[40]+Skills[3]+Skills[30]+Skills[41]+Skills[53]+Skills[47])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1]),NPOW.plus(1));
+  DPSCALC=Decimal.mul(Decimal.add(1,Decimal.mul(0.1*Skills[27]+0.2*Skills[42]+0.3*Skills[20]+0.4*Skills[57],y.plus(1).log(10))),Decimal.mul(Decimal.mul((1.5+0.1*Skills[0])**positives[0],Decimal.mul((1.5+0.1*Skills[29])**positives[1],Decimal.mul((1.5+0.1*Skills[31])**positives[2],Decimal.mul((1.5+0.1*Skills[7])**positives[3],Decimal.mul((1.5+0.1*Skills[34])**positives[4],Decimal.mul((1.5+0.1*Skills[35])**positives[5],Decimal.mul((1.5+0.1*Skills[9])**positives[6],Decimal.pow(1.5,math.sum(positives.slice(7)))))))))),DPSCALC));
   if (tickspeed>33){x=x.plus(DPSCALC);}
   else {x=x.plus(DPSCALC.mul(33/tickspeed));}
   ctx.beginPath();
@@ -67,16 +67,19 @@ function myFunction() {
   LCoords.push(coords);
   if (Skills[1]==1){IncrementCn(0);}
   if (Skills[52]==1){IncrementCn(1);}
+  if (Skills[21]==1){IncrementCn(2);}
+  if (Skills[33]==1){IncrementCn(3);}
+  if (Skills[45]==1){IncrementCn(4);}
   if (Achieves[51]==0 && positives.toString()==[2,1,0,0,0,0,0,0,0,0].toString() && negatives.toString()==[2,1,0,0,0,0,0,0,0,0].toString() && parseInt(document.getElementById("Phi1").value)==100 && parseInt(document.getElementById("PhiM1").value)==100 && ((48<parseInt(document.getElementById("Phi2").value)<52 && parseInt(document.getElementById("PhiM2").value)==100)||(48<parseInt(document.getElementById("PhiM2").value)<52 && parseInt(document.getElementById("Phi2").value)==100))){
 	Achieves[51]++;
 	document.getElementById("A6C2").setAttribute("style","background-color: #5B5;");
 	pbaseCost[1]=8.2e1
   }
-  if (Achieves[65]==0 && x.gt(1e2520)){
+  if (Achieves[65]==0 && x.gt('1e2520')){
     Achieves[65]++;
     document.getElementById("A7C6").setAttribute("style","background-color: #5B5;");
   };
-  if (Achieves[66]==0 && y.gt(1e2520)){
+  if (Achieves[66]==0 && y.gt('1e2520')){
     Achieves[66]++;
     document.getElementById("A7C7").setAttribute("style","background-color: #5B5;");
   };
@@ -89,21 +92,32 @@ function myFunction() {
 	  document.getElementById("Phi"+(i+1)+"V").innerHTML = document.getElementById("Phi"+(i+1)).value/50+"&#960"
 	  document.getElementById("PhiM"+(i+1)+"V").innerHTML = document.getElementById("PhiM"+(i+1)).value/50+"&#960"
   }
+  document.getElementById("Phi0V").innerHTML = document.getElementById("Phi0").value/50+"&#960"
 };
 
 function FourierCalculation(MAX) {
-  var TempVar=math.complex({r:Zero,phi:I/2});
+  var TempVar=math.complex({r:Zero,phi:I*parseInt(document.getElementById("Phi0").value)/100});
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
   ctx.moveTo(coords[0]/MAX*250+250,coords[1]/MAX*250+250);
+  ARROWSOFHELL=[[TempVar.re,TempVar.im]]
   for (i=0; i<10;i++){
     TempVar=math.add(TempVar,math.multiply(math.complex({r: 1, phi:R*(i+1)*I/qual+I*parseInt(document.getElementById("Phi"+(i+1)).value)/100}),positives[i]));
+	ARROWSOFHELL[1+2*i]=[TempVar.re,TempVar.im]
 	TempVar=math.add(TempVar,math.multiply(math.complex({r: 1, phi:-R*(i+1)*I/qual+I*parseInt(document.getElementById("PhiM"+(i+1)).value)/100}),negatives[i]));
+    ARROWSOFHELL[2+2*i]=[TempVar.re,TempVar.im]
   };
   R=R%qual + 1;
   coords=[TempVar.re,TempVar.im];
   ctx.lineTo(coords[0]/MAX*250+250,coords[1]/MAX*250+250);
   ctx.stroke();
+  if (document.getElementById("Arrows").checked == true){
+	  ctx.strokeStyle="#009900";
+	  ctx.moveTo(250,250);
+	  for (i=0;i<ARROWSOFHELL.length;i++){
+		  ctx.lineTo(ARROWSOFHELL[0]/MAX*250+250,ARROWSOFHELL[1]/MAX*250+250);
+			ctx.stroke();
+	}}
 };
 
 function ImproveQuality() {
@@ -256,16 +270,19 @@ function PrestigeNegative(){
 	FormulaRewriter();
 }
 function NPowIncrease(){
-	for (i=9;2<i;i--){
+	for (i=9;5<i;i--){
 		FicNeg[i-1]+=(FicNeg[i]+negatives[i])*1.33**negatives[i]*0.033
 	}
+	FicNeg[4]+=(FicNeg[5]+negatives[5])*(1.33+0.17*Skills[23])**negatives[5]*0.033
+	FicNeg[3]+=(FicNeg[4]+negatives[4])*(1.33+0.17*Skills[46])**negatives[4]*0.033
+	FicNeg[2]+=(FicNeg[3]+negatives[3])*(1.33+0.17*Skills[22])**negatives[3]*0.033
 	FicNeg[1]+=(FicNeg[2]+negatives[2])*(1.33+0.17*Skills[19])**negatives[2]*0.033
 	FicNeg[0]+=(FicNeg[1]+negatives[1])*(1.33+0.17*Skills[43])**negatives[1]*0.033
 	NPOW=NPOW.plus((FicNeg[0]+negatives[0])*(1.33+0.17*Skills[18])**negatives[0]*0.033);
 	if (x.lt(1e10)){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
 	else {
 		document.getElementById('PrestigeN').innerHTML =Decimal.pow(2.5,x.log10()-10).toExponential(3);
-		y=y.plus(Decimal.mul(Decimal.pow(2.5,x.log10()-10),(0.01*(Skills[16]+Skills[32]+Skills[44]))*0.033));
+		y=y.plus(Decimal.mul(Decimal.pow(2.5,x.log10()-10),(0.01*(Skills[16]+Skills[32]+Skills[44]+Skills[6]))*0.033));
 	}
 }
 function PrestigeNull(){
@@ -313,6 +330,21 @@ function GetSkill(n){
 		if (n==3){//DistMult
 			document.getElementById("ST18").removeAttribute("hidden");
 		}
+		if (n==6){//1% NP.s
+			document.getElementById("ST21").removeAttribute("hidden");
+			document.getElementById("ST7").removeAttribute("hidden");
+		}
+		if (n==7){//New C4 pow
+			document.getElementById("ST22").removeAttribute("hidden");
+		    document.getElementById("Slider4").setAttribute("hidden",true);
+			document.getElementById("Phi4").value=25+50/4;
+		}
+		if (n==9){//New C7 pow
+			document.getElementById("ST8").removeAttribute("hidden");
+		    document.getElementById("ST10").removeAttribute("hidden");
+		    document.getElementById("Slider7").setAttribute("hidden",true);
+			document.getElementById("Phi7").value=25+50/7;
+		}
 		if (n==16){//1% NP.s
 			document.getElementById("ST0").removeAttribute("hidden");
 		}
@@ -329,7 +361,19 @@ function GetSkill(n){
 		if (n==20){//NP log 0.3
 			document.getElementById("ST5").removeAttribute("hidden");
 		}
-		
+		if (n==21){//C3.s
+			document.getElementById("ST33").removeAttribute("hidden");
+		}
+		if (n==22){//C-4 pow
+			document.getElementById("ST34").removeAttribute("hidden");
+			document.getElementById("SliderM4").setAttribute("hidden",true);
+			document.getElementById("PhiM4").value=50/4;
+		}
+		if (n==23){//C-6 pow
+			document.getElementById("ST9").removeAttribute("hidden");
+			document.getElementById("SliderM6").setAttribute("hidden",true);
+			document.getElementById("PhiM6").value=50/6;
+		}
 		if (n==27){//NP log 0.1
 			document.getElementById("ST16").removeAttribute("hidden");
 			document.getElementById("ST40").removeAttribute("hidden");
@@ -352,6 +396,20 @@ function GetSkill(n){
 			}
 		if (n==32){//1% NP.s
 			document.getElementById("ST20").removeAttribute("hidden");
+		}		
+		if (n==33){//C4.s
+			document.getElementById("ST45").removeAttribute("hidden");
+		}
+		if (n==34){//New C5 pow
+			document.getElementById("ST46").removeAttribute("hidden");
+			document.getElementById("Slider5").setAttribute("hidden",true);
+			document.getElementById("Phi5").value=25+50/5;
+		}
+		if (n==35){//New C6 pow
+			document.getElementById("ST47").removeAttribute("hidden");
+			document.getElementById("ST23").removeAttribute("hidden");
+			document.getElementById("Slider6").setAttribute("hidden",true);
+			document.getElementById("Phi6").value=25+50/6;
 		}
 		if (n==40){//DistMult
 			document.getElementById("ST51").removeAttribute("hidden");
@@ -369,7 +427,18 @@ function GetSkill(n){
 		}
 		if (n==44){//1% NP.s
 			document.getElementById("ST32").removeAttribute("hidden");
-		}		
+		}
+		if (n==45){//C5.s
+			document.getElementById("ST54").removeAttribute("hidden");
+		}
+		if (n==46){//C-5 pow
+			document.getElementById("ST55").removeAttribute("hidden");
+			document.getElementById("SliderM5").setAttribute("hidden",true);
+			document.getElementById("PhiM5").value=50/5;
+		}
+		if (n==47){//DistMult
+			document.getElementById("ST47").removeAttribute("hidden");
+		}
 		if (n==52){//C2.s
 			document.getElementById("ST41").removeAttribute("hidden");
 		}
@@ -377,7 +446,11 @@ function GetSkill(n){
 			document.getElementById("ST43").removeAttribute("hidden");
 		    document.getElementById("ST44").removeAttribute("hidden");
 		}
-		if (n==2 || n==51 || n==17 || n==4 || n==5){
+		if (n==57){//NP log 0.4
+			document.getElementById("ST56").removeAttribute("hidden");
+			document.getElementById("ST58").removeAttribute("hidden");
+		}
+		if (n==2 || n==51 || n==17 || n==4 || n==5 || n==54 || n==55 || n==8 || n==10 || n==56 || n==58){
 			if (Skills[64]==0 && Skills[2]==1 && Skills[51]==1){
 				Skills[64]++;
 				document.getElementById("ST3").removeAttribute("hidden");
@@ -386,9 +459,17 @@ function GetSkill(n){
 				Skills[64]++;
 				document.getElementById("ST53").removeAttribute("hidden");
 			}
-			if (Skills[64]==2 && Skills[2]==1 && Skills[51]==1 && Skills[17]==1 && Skills[4]==1 && Skills[5]==1){
+			if (Skills[64]==2 && Skills[2]==1 && Skills[51]==1 && Skills[17]==1 && Skills[4]==1 && Skills[5]==1 ){
 				Skills[64]++;
 				document.getElementById("ST6").removeAttribute("hidden");
+			}
+			if (Skills[64]==3 && Skills[2]==1 && Skills[51]==1 && Skills[17]==1 && Skills[4]==1 && Skills[5]==1 && Skills[54]==1 && Skills[55]==1){
+				Skills[64]++;
+				document.getElementById("ST35").removeAttribute("hidden");
+			}
+			if (Skills[64]==4 && Skills[2]==1 && Skills[51]==1 && Skills[17]==1 && Skills[4]==1 && Skills[5]==1 && Skills[54]==1 && Skills[55]==1 && Skills[56]==1 && Skills[58]==1 && Skills[8]==1 && Skills[10]==1){
+				Skills[64]++;
+				document.getElementById("ST36").removeAttribute("hidden");
 			}
 		}
 		document.getElementById("NBNullif").innerHTML=(Zero-math.sum(Skills.slice(0,64)));

@@ -118,6 +118,7 @@ footer {
   top: 100%;
   left: 50%;
   margin-left: -5px;
+  display:table-cell;
   border-width: 5px;
   border-style: solid;
   border-color: #555 transparent transparent transparent;
@@ -166,8 +167,16 @@ footer {
 .solid{
 	width: 60px;
 	display:inline-block;
+	background-color:#eee;
 }
 .solid2{
 	width: 60px;
 	display:table-cell;
+	background-color:#eee;
+}
+
+button {
+  border: 1px solid currentColor;
+  cursor: pointer;
+  font-size: auto;
 }

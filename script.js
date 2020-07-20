@@ -308,6 +308,7 @@ function PrestigeNull(){
 		};
 		if (Zero==6 && Achieves[64]==0){
 			document.getElementById("A7C5").setAttribute("style","background-color: #5B5;");
+			document.getElementById("Slider0").removeAttribute("hidden");
 			Achieves[64]++;
 		};
   		FormulaRewriter();
@@ -504,6 +505,9 @@ function GetAchieves(){
 	}
 	if (i==63){
 		document.getElementById("SkillTreeB").removeAttribute("hidden");
+	};
+	if (i==64){
+		document.getElementById("Slider0").removeAttribute("hidden");
 	};
 	if (i==50){
 		pbaseCost[0]=9.1;

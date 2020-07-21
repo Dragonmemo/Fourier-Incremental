@@ -766,7 +766,7 @@ function Import(){
 	  positives=localStorage.PCN.split(",").map(Number);
 	  negatives=localStorage.NCN.split(",").map(Number);
 	  pbaseCost=localStorage.PBC.split(",").map(Number);
-	  FicNeg=localStorage.NFIC.split(",").map(function(x){return new Decimal(x);});
+	  FicNeg=localStorage.NFIC.split(",").map(DECTIMAL);
 	  OtherQuantity=localStorage.Other.split(",").map(Number);
 	  R=parseInt(localStorage.R);
 	  Achieves=localStorage.Achieves.split(",").map(Number);
@@ -782,6 +782,9 @@ function Import(){
 	  FormulaRewriter();
   }}
 }
+function DECTIMAL(x){
+	return new Decimal(x);
+}
 if(localStorage.MCur) {
   MAX=parseFloat(localStorage.Max);
   x=new Decimal(localStorage.MCur);
@@ -792,7 +795,7 @@ if(localStorage.MCur) {
   positives=localStorage.PCN.split(",").map(Number);
   negatives=localStorage.NCN.split(",").map(Number);
   pbaseCost=localStorage.PBC.split(",").map(Number);
-  FicNeg=localStorage.NFIC.split(",").map(function(x){return new Decimal(x);});
+  FicNeg=localStorage.NFIC.split(",").map(DECTIMAL);
   OtherQuantity=localStorage.Other.split(",").map(Number);
   R=parseInt(localStorage.R);
   Achieves=localStorage.Achieves.split(",").map(Number);

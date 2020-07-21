@@ -18,7 +18,7 @@ var AchMult=1.01;
 x=new Decimal(0); coords=[0,0]; y=new Decimal(0); NPOW=new Decimal(0); Zero=0; LCoords=[];
 positives=[0,0,0,0,0,0,0,0,0,0];
 negatives=[0,0,0,0,0,0,0,0,0,0];
-FicNeg=[0,0,0,0,0,0,0,0,0,0];
+FicNeg=[new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0)];
 var pbaseCost=[10,100,1000,1e4,1e5,1e6,1e7,1e8,1e9,1e10];
 var OtherQuantity=[0,0];
 var qual=1, R=0, I=2*Math.PI;
@@ -271,7 +271,7 @@ function PrestigeNegative(){
 	coords=[0,0];
 	LCoords=[]
 	positives=[0,0,0,0,0,0,0,0,0,0];
-	FicNeg=[0,0,0,0,0,0,0,0,0,0];
+	FicNeg=[new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0)];
 	OtherQuantity=[0,0];
 	NPOW=new Decimal(0);
 	qual=1, R=0;
@@ -281,14 +281,14 @@ function PrestigeNegative(){
 }
 function NPowIncrease(){
 	for (i=9;5<i;i--){
-		FicNeg[i-1]+=(FicNeg[i]+negatives[i])*1.33**negatives[i]*0.033
+		FicNeg[i-1]=FicNeg[i].plus(negatives[i]).mul(1.33**negatives[i]*0.033)
 	}
-	FicNeg[4]+=(FicNeg[5]+negatives[5])*(1.33+0.17*Skills[23])**negatives[5]*0.033
-	FicNeg[3]+=(FicNeg[4]+negatives[4])*(1.33+0.17*Skills[46])**negatives[4]*0.033
-	FicNeg[2]+=(FicNeg[3]+negatives[3])*(1.33+0.17*Skills[22])**negatives[3]*0.033
-	FicNeg[1]+=(FicNeg[2]+negatives[2])*(1.33+0.17*Skills[19])**negatives[2]*0.033
-	FicNeg[0]+=(FicNeg[1]+negatives[1])*(1.33+0.17*Skills[43])**negatives[1]*0.033
-	NPOW=NPOW.plus((FicNeg[0]+negatives[0])*(1.33+0.17*Skills[18])**negatives[0]*0.033);
+	FicNeg[4]=FicNeg[5].plus(negatives[5]).mul((1.33+0.17*Skills[23])**negatives[5]*0.033)
+	FicNeg[3]=FicNeg[4].plus(negatives[4]).mul((1.33+0.17*Skills[46])**negatives[4]*0.033)
+	FicNeg[2]=FicNeg[3].plus(negatives[3]).mul((1.33+0.17*Skills[22])**negatives[3]*0.033)
+	FicNeg[1]=FicNeg[2].plus(negatives[2]).mul((1.33+0.17*Skills[19])**negatives[2]*0.033)
+	FicNeg[0]=FicNeg[1].plus(negatives[1]).mul((1.33+0.17*Skills[43])**negatives[1]*0.033)
+	NPOW=NPOW.plus(FicNeg[0].plus(negatives[0]).mul((1.33+0.17*Skills[18])**negatives[0]*0.033));
 	if (x.lt(1e10)){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
 	else {
 		document.getElementById('PrestigeN').innerHTML =Decimal.pow(2.5,x.log10()-10).toExponential(3);
@@ -646,7 +646,7 @@ function ResetST(){
 	LCoords=[]
 	positives=[0,0,0,0,0,0,0,0,0,0];
 	negatives=[0,0,0,0,0,0,0,0,0,0];
-	FicNeg=[0,0,0,0,0,0,0,0,0,0];
+	FicNeg=[new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0)];
 	OtherQuantity=[0,0];
 	qual=1, R=0;
 	tickspeed=1000;
@@ -766,7 +766,7 @@ function Import(){
 	  positives=localStorage.PCN.split(",").map(Number);
 	  negatives=localStorage.NCN.split(",").map(Number);
 	  pbaseCost=localStorage.PBC.split(",").map(Number);
-	  FicNeg=localStorage.NFIC.split(",").map(Number);
+	  FicNeg=localStorage.NFIC.split(",").map(Decimal);
 	  OtherQuantity=localStorage.Other.split(",").map(Number);
 	  R=parseInt(localStorage.R);
 	  Achieves=localStorage.Achieves.split(",").map(Number);
@@ -792,7 +792,7 @@ if(localStorage.MCur) {
   positives=localStorage.PCN.split(",").map(Number);
   negatives=localStorage.NCN.split(",").map(Number);
   pbaseCost=localStorage.PBC.split(",").map(Number);
-  FicNeg=localStorage.NFIC.split(",").map(Number);
+  FicNeg=localStorage.NFIC.split(",").map(Decimal);
   OtherQuantity=localStorage.Other.split(",").map(Number);
   R=parseInt(localStorage.R);
   Achieves=localStorage.Achieves.split(",").map(Number);

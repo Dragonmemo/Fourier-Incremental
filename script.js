@@ -766,7 +766,7 @@ function Import(){
 	  positives=localStorage.PCN.split(",").map(Number);
 	  negatives=localStorage.NCN.split(",").map(Number);
 	  pbaseCost=localStorage.PBC.split(",").map(Number);
-	  FicNeg=localStorage.NFIC.split(",").map(Decimal);
+	  FicNeg=localStorage.NFIC.split(",").map(new Decimal);
 	  OtherQuantity=localStorage.Other.split(",").map(Number);
 	  R=parseInt(localStorage.R);
 	  Achieves=localStorage.Achieves.split(",").map(Number);

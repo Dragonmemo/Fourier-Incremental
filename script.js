@@ -766,7 +766,7 @@ function Import(){
 	  positives=localStorage.PCN.split(",").map(Number);
 	  negatives=localStorage.NCN.split(",").map(Number);
 	  pbaseCost=localStorage.PBC.split(",").map(Number);
-	  FicNeg=localStorage.NFIC.split(",").map(new Decimal);
+	  FicNeg=localStorage.NFIC.split(",").map(x => new Decimal(x));
 	  OtherQuantity=localStorage.Other.split(",").map(Number);
 	  R=parseInt(localStorage.R);
 	  Achieves=localStorage.Achieves.split(",").map(Number);
@@ -792,7 +792,7 @@ if(localStorage.MCur) {
   positives=localStorage.PCN.split(",").map(Number);
   negatives=localStorage.NCN.split(",").map(Number);
   pbaseCost=localStorage.PBC.split(",").map(Number);
-  FicNeg=localStorage.NFIC.split(",").map(new Decimal);
+  FicNeg=localStorage.NFIC.split(",").map(x => new Decimal(x));
   OtherQuantity=localStorage.Other.split(",").map(Number);
   R=parseInt(localStorage.R);
   Achieves=localStorage.Achieves.split(",").map(Number);

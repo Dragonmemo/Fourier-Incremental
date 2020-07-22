@@ -788,10 +788,11 @@ function Import(){
 	  if (Achieves.length<70) {
 		  for (i=Achieves.length; i<70; i++){Achieves[i]=[0];}
 	  } 
+	  var diff =(Date.now()-parseInt(localStorage.lastTick));
 	  GetAchieves();
 	  GetSkillTree();
 	  FormulaRewriter();
-	  for (i=0;i<(Date.now()-parseInt(localStorage.lastTick))/33;i++){
+	  for (i=0;i<diff/33;i++){
 		  tickpart += 33;
 		  if (tickpart>=tickspeed) {
 			tickpart -= tickspeed;
@@ -824,10 +825,11 @@ if(localStorage.MCur) {
   if (Achieves.length<70) {
 	  for (i=Achieves.length; i<70; i++){Achieves[i]=[0];}
   }
+  var diff=(Date.now()-parseInt(localStorage.lastTick))/33;
   GetAchieves();
   GetSkillTree();
   FormulaRewriter();
-  for (i=0;i<(Date.now()-parseInt(localStorage.lastTick))/33;i++){
+  for (i=0;i<diff/33;i++){
 		  tickpart += 33;
 		  if (tickpart>=tickspeed) {
 			tickpart -= tickspeed;

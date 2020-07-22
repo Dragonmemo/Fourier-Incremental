@@ -796,7 +796,21 @@ function Import(){
 		  tickpart += 33;
 		  if (tickpart>=tickspeed) {
 			tickpart -= tickspeed;
-			loop();
+			NPowIncrease();
+			if (Skills[58]==1){ReduceTickspeed();}
+			  if (Skills[51]==1){ImproveQuality();}
+			  if (Skills[10]==1){IncrementCMn(6);}
+			  if (Skills[8]==1){IncrementCMn(5);}
+			  if (Skills[55]==1){IncrementCMn(4);}
+			  if (Skills[5]==1){IncrementCMn(3);}
+			  if (Skills[4]==1){IncrementCMn(2);}
+			  if (Skills[17]==1){IncrementCMn(1);}
+			  if (Skills[2]==1){IncrementCMn(0);}
+			  if (Skills[1]==1){IncrementCn(0);}
+			  if (Skills[52]==1){IncrementCn(1);}
+			  if (Skills[21]==1){IncrementCn(2);}
+			  if (Skills[33]==1){IncrementCn(3);}
+			  if (Skills[45]==1){IncrementCn(4);}
 			}
 	  }
   }}
@@ -833,7 +847,25 @@ if(localStorage.MCur) {
 		  tickpart += 33;
 		  if (tickpart>=tickspeed) {
 			tickpart -= tickspeed;
-			loop();
+			NPowIncrease();
+			DPSCALC=Decimal.mul(MAX**(1+Skills[28]+Skills[40]+Skills[3]+Skills[30]+Skills[41]+Skills[53]+Skills[47])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1]),NPOW.plus(1));
+			DPSCALC=Decimal.mul(Decimal.add(1,Decimal.mul(0.1*Skills[27]+0.2*Skills[42]+0.3*Skills[20]+0.4*Skills[57],y.plus(1).log(10))),Decimal.mul(Decimal.mul((1.5+0.1*Skills[0])**positives[0],Decimal.mul((1.5+0.1*Skills[29])**positives[1],Decimal.mul((1.5+0.1*Skills[31])**positives[2],Decimal.mul((1.5+0.1*Skills[7])**positives[3],Decimal.mul((1.5+0.1*Skills[34])**positives[4],Decimal.mul((1.5+0.1*Skills[35])**positives[5],Decimal.mul((1.5+0.1*Skills[9])**positives[6],Decimal.pow(1.5,math.sum(positives.slice(7)))))))))),DPSCALC));
+			if (tickspeed>33){x=x.plus(DPSCALC);}
+			else {x=x.plus(DPSCALC.mul(33/tickspeed));}
+			if (Skills[58]==1){ReduceTickspeed();}
+			  if (Skills[51]==1){ImproveQuality();}
+			  if (Skills[10]==1){IncrementCMn(6);}
+			  if (Skills[8]==1){IncrementCMn(5);}
+			  if (Skills[55]==1){IncrementCMn(4);}
+			  if (Skills[5]==1){IncrementCMn(3);}
+			  if (Skills[4]==1){IncrementCMn(2);}
+			  if (Skills[17]==1){IncrementCMn(1);}
+			  if (Skills[2]==1){IncrementCMn(0);}
+			  if (Skills[1]==1){IncrementCn(0);}
+			  if (Skills[52]==1){IncrementCn(1);}
+			  if (Skills[21]==1){IncrementCn(2);}
+			  if (Skills[33]==1){IncrementCn(3);}
+			  if (Skills[45]==1){IncrementCn(4);}
 			}
 	}
   

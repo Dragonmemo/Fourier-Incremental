@@ -680,7 +680,7 @@ function ResetST(){
 		}
 	}
 }
-
+if(!(localStorage.lastTick)){localStorage.lastTick=Date.now();}
 function save() { 
   localStorage.setItem('Max',MAX);
   localStorage.setItem("MCur",x);
@@ -696,6 +696,7 @@ function save() {
   localStorage.setItem("R",R);
   localStorage.setItem("Achieves",Achieves);
   localStorage.setItem("Skills",Skills);
+  localStorage.setItem("lastTick",Date.now());
 } 
 function SReset(){
   Zero=0;
@@ -790,6 +791,13 @@ function Import(){
 	  GetAchieves();
 	  GetSkillTree();
 	  FormulaRewriter();
+	  for (i=0;i<(Date.now()-parseint(localStorage.lastTick))/33;i++){
+		  tickpart += 33;
+		  if (tickpart>=tickspeed) {
+			tickpart -= tickspeed;
+			loop();
+			}
+	  }
   }}
 }
 function DECTIMAL(x){
@@ -819,5 +827,13 @@ if(localStorage.MCur) {
   GetAchieves();
   GetSkillTree();
   FormulaRewriter();
+  for (i=0;i<(Date.now()-parseint(localStorage.lastTick))/33;i++){
+		  tickpart += 33;
+		  if (tickpart>=tickspeed) {
+			tickpart -= tickspeed;
+			loop();
+			}
+	}
+  
 }
 document.getElementById("MCur").innerHTML = "Drawing points (DP) : "+x.toExponential(3);

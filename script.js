@@ -792,7 +792,7 @@ function Import(){
 	  GetAchieves();
 	  GetSkillTree();
 	  FormulaRewriter();
-	  for (i=0;i<diff;i++){
+	  /*for (i=0;i<diff;i++){
 		  tickpart += 33;
 		  if (tickpart>=tickspeed) {
 			tickpart -= tickspeed;
@@ -802,7 +802,7 @@ function Import(){
 			if (tickspeed>33){x=x.plus(DPSCALC);}
 			else {x=x.plus(DPSCALC.mul(33/tickspeed));}
 			}
-	  }
+	  }*/
   }}
 }
 function DECTIMAL(x){
@@ -833,7 +833,7 @@ if(localStorage.MCur) {
   GetAchieves();
   GetSkillTree();
   FormulaRewriter();
-  for (i=0;i<diff;i++){
+  /*for (i=0;i<diff;i++){
 		  tickpart += 33;
 		  if (tickpart>=tickspeed) {
 			tickpart -= tickspeed;
@@ -843,7 +843,7 @@ if(localStorage.MCur) {
 			if (tickspeed>33){x=x.plus(DPSCALC);}
 			else {x=x.plus(DPSCALC.mul(33/tickspeed));}
 			}
-	}
+	}*/
   
 }
 document.getElementById("MCur").innerHTML = "Drawing points (DP) : "+x.toExponential(3);

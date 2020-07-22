@@ -281,13 +281,13 @@ function PrestigeNegative(){
 }
 function NPowIncrease(){
 	for (i=9;5<i;i--){
-		FicNeg[i-1]=FicNeg[i].plus(negatives[i]).mul(1.33**negatives[i]*0.033)
+		FicNeg[i-1]=FicNeg[i-1].plus(FicNeg[i].plus(negatives[i]).mul(1.33**negatives[i]*0.033))
 	}
-	FicNeg[4]=FicNeg[5].plus(negatives[5]).mul((1.33+0.17*Skills[23])**negatives[5]*0.033)
-	FicNeg[3]=FicNeg[4].plus(negatives[4]).mul((1.33+0.17*Skills[46])**negatives[4]*0.033)
-	FicNeg[2]=FicNeg[3].plus(negatives[3]).mul((1.33+0.17*Skills[22])**negatives[3]*0.033)
-	FicNeg[1]=FicNeg[2].plus(negatives[2]).mul((1.33+0.17*Skills[19])**negatives[2]*0.033)
-	FicNeg[0]=FicNeg[1].plus(negatives[1]).mul((1.33+0.17*Skills[43])**negatives[1]*0.033)
+	FicNeg[4]=FicNeg[4].plus(FicNeg[5].plus(negatives[5]).mul((1.33+0.17*Skills[23])**negatives[5]*0.033))
+	FicNeg[3]=FicNeg[3].plus(FicNeg[4].plus(negatives[4]).mul((1.33+0.17*Skills[46])**negatives[4]*0.033))
+	FicNeg[2]=FicNeg[2].plus(FicNeg[3].plus(negatives[3]).mul((1.33+0.17*Skills[22])**negatives[3]*0.033))
+	FicNeg[1]=FicNeg[1].plus(FicNeg[2].plus(negatives[2]).mul((1.33+0.17*Skills[19])**negatives[2]*0.033))
+	FicNeg[0]=FicNeg[0].plus(FicNeg[1].plus(negatives[1]).mul((1.33+0.17*Skills[43])**negatives[1]*0.033))
 	NPOW=NPOW.plus(FicNeg[0].plus(negatives[0]).mul((1.33+0.17*Skills[18])**negatives[0]*0.033));
 	if (x.lt(1e10)){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
 	else {

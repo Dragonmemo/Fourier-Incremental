@@ -791,7 +791,7 @@ function Import(){
 	  GetAchieves();
 	  GetSkillTree();
 	  FormulaRewriter();
-	  for (i=0;i<(Date.now()-parseint(localStorage.lastTick))/33;i++){
+	  for (i=0;i<(Date.now()-parseInt(localStorage.lastTick))/33;i++){
 		  tickpart += 33;
 		  if (tickpart>=tickspeed) {
 			tickpart -= tickspeed;
@@ -827,7 +827,7 @@ if(localStorage.MCur) {
   GetAchieves();
   GetSkillTree();
   FormulaRewriter();
-  for (i=0;i<(Date.now()-parseint(localStorage.lastTick))/33;i++){
+  for (i=0;i<(Date.now()-parseInt(localStorage.lastTick))/33;i++){
 		  tickpart += 33;
 		  if (tickpart>=tickspeed) {
 			tickpart -= tickspeed;

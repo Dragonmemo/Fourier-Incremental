@@ -788,7 +788,7 @@ function Import(){
 	  if (Achieves.length<70) {
 		  for (i=Achieves.length; i<70; i++){Achieves[i]=[0];}
 	  } 
-	  var diff =(Date.now()-parseInt(localStorage.lastTick))/1000;
+	  var diff =(Date.now()-parseInt(localStorage.lastTick))/33000;
 	  GetAchieves();
 	  GetSkillTree();
 	  FormulaRewriter();
@@ -829,7 +829,7 @@ if(localStorage.MCur) {
   if (Achieves.length<70) {
 	  for (i=Achieves.length; i<70; i++){Achieves[i]=[0];}
   }
-  var diff=(Date.now()-parseInt(localStorage.lastTick))/1000;
+  var diff=(Date.now()-parseInt(localStorage.lastTick))/33000;
   GetAchieves();
   GetSkillTree();
   FormulaRewriter();

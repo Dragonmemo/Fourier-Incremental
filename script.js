@@ -798,17 +798,24 @@ function Import(){
 	  GetAchieves();
 	  GetSkillTree();
 	  FormulaRewriter();
-	  /*for (i=0;i<diff;i++){
-		  tickpart += 33;
-		  if (tickpart>=tickspeed) {
-			tickpart -= tickspeed;
-			NPowIncrease();
-			DPSCALC=Decimal.mul(MAX**(1+Skills[28]+Skills[40]+Skills[3]+Skills[30]+Skills[41]+Skills[53]+Skills[47])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1]),NPOW.plus(1));
-			DPSCALC=Decimal.mul(Decimal.add(1,Decimal.mul(0.1*Skills[27]+0.2*Skills[42]+0.3*Skills[20]+0.4*Skills[57],y.plus(1).log(10))),Decimal.mul(Decimal.mul((1.5+0.1*Skills[0])**positives[0],Decimal.mul((1.5+0.1*Skills[29])**positives[1],Decimal.mul((1.5+0.1*Skills[31])**positives[2],Decimal.mul((1.5+0.1*Skills[7])**positives[3],Decimal.mul((1.5+0.1*Skills[34])**positives[4],Decimal.mul((1.5+0.1*Skills[35])**positives[5],Decimal.mul((1.5+0.1*Skills[9])**positives[6],Decimal.pow(1.5,math.sum(positives.slice(7)))))))))),DPSCALC));
-			if (tickspeed>33){x=x.plus(DPSCALC);}
-			else {x=x.plus(DPSCALC.mul(33/tickspeed));}
-			}
-	  }*/
+	  for (i=9;5<i;i--){
+		FicNeg[i-1]=FicNeg[i-1].plus(FicNeg[i].plus(negatives[i]).mul(1.33**negatives[i]*0.033*diff))
+		}
+		FicNeg[4]=FicNeg[4].plus(FicNeg[5].plus(negatives[5]).mul((1.33+0.17*Skills[23])**negatives[5]*0.033*diff))
+		FicNeg[3]=FicNeg[3].plus(FicNeg[4].plus(negatives[4]).mul((1.33+0.17*Skills[46])**negatives[4]*0.033*diff))
+		FicNeg[2]=FicNeg[2].plus(FicNeg[3].plus(negatives[3]).mul((1.33+0.17*Skills[22])**negatives[3]*0.033*diff))
+		FicNeg[1]=FicNeg[1].plus(FicNeg[2].plus(negatives[2]).mul((1.33+0.17*Skills[19])**negatives[2]*0.033*diff))
+		FicNeg[0]=FicNeg[0].plus(FicNeg[1].plus(negatives[1]).mul((1.33+0.17*Skills[43])**negatives[1]*0.033*diff))
+		NPOW=NPOW.plus(FicNeg[0].plus(negatives[0]).mul((1.33+0.17*Skills[18])**negatives[0]*0.033*diff));
+		if (x.lt(1e10)){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
+		else {
+			document.getElementById('PrestigeN').innerHTML =Decimal.pow(2.5,x.log10()-10).toExponential(3);
+			y=y.plus(Decimal.mul(Decimal.pow(2.5,x.log10()-10),(0.01*(Skills[16]+Skills[32]+Skills[44]+Skills[6]))*0.033*diff));
+		}
+		DPSCALC=Decimal.mul(MAX**(1+Skills[28]+Skills[40]+Skills[3]+Skills[30]+Skills[41]+Skills[53]+Skills[47])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1]),NPOW.plus(1));
+		DPSCALC=Decimal.mul(Decimal.add(1,Decimal.mul(0.1*Skills[27]+0.2*Skills[42]+0.3*Skills[20]+0.4*Skills[57],y.plus(1).log(10))),Decimal.mul(Decimal.mul((1.5+0.1*Skills[0])**positives[0],Decimal.mul((1.5+0.1*Skills[29])**positives[1],Decimal.mul((1.5+0.1*Skills[31])**positives[2],Decimal.mul((1.5+0.1*Skills[7])**positives[3],Decimal.mul((1.5+0.1*Skills[34])**positives[4],Decimal.mul((1.5+0.1*Skills[35])**positives[5],Decimal.mul((1.5+0.1*Skills[9])**positives[6],Decimal.pow(1.5,math.sum(positives.slice(7)))))))))),DPSCALC));
+		if (tickspeed>33){x=x.plus(DPSCALC.mul(33*diff/tickspeed));}
+		else {x=x.plus(DPSCALC.mul(diff*33/tickspeed));}
   }}
 }
 function DECTIMAL(x){
@@ -839,17 +846,23 @@ if(localStorage.MCur) {
   GetAchieves();
   GetSkillTree();
   FormulaRewriter();
-  /*for (i=0;i<diff;i++){
-		  tickpart += 33;
-		  if (tickpart>=tickspeed) {
-			tickpart -= tickspeed;
-			NPowIncrease();
-			DPSCALC=Decimal.mul(MAX**(1+Skills[28]+Skills[40]+Skills[3]+Skills[30]+Skills[41]+Skills[53]+Skills[47])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1]),NPOW.plus(1));
-			DPSCALC=Decimal.mul(Decimal.add(1,Decimal.mul(0.1*Skills[27]+0.2*Skills[42]+0.3*Skills[20]+0.4*Skills[57],y.plus(1).log(10))),Decimal.mul(Decimal.mul((1.5+0.1*Skills[0])**positives[0],Decimal.mul((1.5+0.1*Skills[29])**positives[1],Decimal.mul((1.5+0.1*Skills[31])**positives[2],Decimal.mul((1.5+0.1*Skills[7])**positives[3],Decimal.mul((1.5+0.1*Skills[34])**positives[4],Decimal.mul((1.5+0.1*Skills[35])**positives[5],Decimal.mul((1.5+0.1*Skills[9])**positives[6],Decimal.pow(1.5,math.sum(positives.slice(7)))))))))),DPSCALC));
-			if (tickspeed>33){x=x.plus(DPSCALC);}
-			else {x=x.plus(DPSCALC.mul(33/tickspeed));}
-			}
-	}*/
-  
+  for (i=9;5<i;i--){
+		FicNeg[i-1]=FicNeg[i-1].plus(FicNeg[i].plus(negatives[i]).mul(1.33**negatives[i]*0.033*diff))
+	}
+	FicNeg[4]=FicNeg[4].plus(FicNeg[5].plus(negatives[5]).mul((1.33+0.17*Skills[23])**negatives[5]*0.033*diff))
+	FicNeg[3]=FicNeg[3].plus(FicNeg[4].plus(negatives[4]).mul((1.33+0.17*Skills[46])**negatives[4]*0.033*diff))
+	FicNeg[2]=FicNeg[2].plus(FicNeg[3].plus(negatives[3]).mul((1.33+0.17*Skills[22])**negatives[3]*0.033*diff))
+	FicNeg[1]=FicNeg[1].plus(FicNeg[2].plus(negatives[2]).mul((1.33+0.17*Skills[19])**negatives[2]*0.033*diff))
+	FicNeg[0]=FicNeg[0].plus(FicNeg[1].plus(negatives[1]).mul((1.33+0.17*Skills[43])**negatives[1]*0.033*diff))
+	NPOW=NPOW.plus(FicNeg[0].plus(negatives[0]).mul((1.33+0.17*Skills[18])**negatives[0]*0.033*diff));
+	if (x.lt(1e10)){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
+	else {
+		document.getElementById('PrestigeN').innerHTML =Decimal.pow(2.5,x.log10()-10).toExponential(3);
+		y=y.plus(Decimal.mul(Decimal.pow(2.5,x.log10()-10),(0.01*(Skills[16]+Skills[32]+Skills[44]+Skills[6]))*0.033*diff));
+	}
+	DPSCALC=Decimal.mul(MAX**(1+Skills[28]+Skills[40]+Skills[3]+Skills[30]+Skills[41]+Skills[53]+Skills[47])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1]),NPOW.plus(1));
+	DPSCALC=Decimal.mul(Decimal.add(1,Decimal.mul(0.1*Skills[27]+0.2*Skills[42]+0.3*Skills[20]+0.4*Skills[57],y.plus(1).log(10))),Decimal.mul(Decimal.mul((1.5+0.1*Skills[0])**positives[0],Decimal.mul((1.5+0.1*Skills[29])**positives[1],Decimal.mul((1.5+0.1*Skills[31])**positives[2],Decimal.mul((1.5+0.1*Skills[7])**positives[3],Decimal.mul((1.5+0.1*Skills[34])**positives[4],Decimal.mul((1.5+0.1*Skills[35])**positives[5],Decimal.mul((1.5+0.1*Skills[9])**positives[6],Decimal.pow(1.5,math.sum(positives.slice(7)))))))))),DPSCALC));
+	if (tickspeed>33){x=x.plus(DPSCALC.mul(33*diff/tickspeed));}
+	else {x=x.plus(DPSCALC.mul(diff*33/tickspeed));}
 }
 document.getElementById("MCur").innerHTML = "Drawing points (DP) : "+x.toExponential(3);

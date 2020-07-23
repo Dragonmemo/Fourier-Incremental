@@ -574,7 +574,13 @@ function GetSkillTree(){
 		document.getElementById("ST3").removeAttribute("hidden");
 		if (Skills[64]>1){
 			document.getElementById("ST53").removeAttribute("hidden");
-		}
+		if (Skills[64]>2){
+			document.getElementById("ST6").removeAttribute("hidden");
+		if (Skills[64]>3){
+			document.getElementById("ST35").removeAttribute("hidden");
+		if (Skills[64]>4){
+			document.getElementById("ST36").removeAttribute("hidden");
+		}}}}
 	}
 }
 function FormulaRewriter(){

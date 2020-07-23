@@ -794,7 +794,7 @@ function Import(){
 	  if (Achieves.length<70) {
 		  for (i=Achieves.length; i<70; i++){Achieves[i]=[0];}
 	  } 
-	  var diff =(Date.now()-parseInt(localStorage.lastTick))/33000;
+	  var diff =(Date.now()-parseInt(localStorage.lastTick))/33;
 	  GetAchieves();
 	  GetSkillTree();
 	  FormulaRewriter();
@@ -814,8 +814,7 @@ function Import(){
 		}
 		DPSCALC=Decimal.mul(MAX**(1+Skills[28]+Skills[40]+Skills[3]+Skills[30]+Skills[41]+Skills[53]+Skills[47])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1]),NPOW.plus(1));
 		DPSCALC=Decimal.mul(Decimal.add(1,Decimal.mul(0.1*Skills[27]+0.2*Skills[42]+0.3*Skills[20]+0.4*Skills[57],y.plus(1).log(10))),Decimal.mul(Decimal.mul((1.5+0.1*Skills[0])**positives[0],Decimal.mul((1.5+0.1*Skills[29])**positives[1],Decimal.mul((1.5+0.1*Skills[31])**positives[2],Decimal.mul((1.5+0.1*Skills[7])**positives[3],Decimal.mul((1.5+0.1*Skills[34])**positives[4],Decimal.mul((1.5+0.1*Skills[35])**positives[5],Decimal.mul((1.5+0.1*Skills[9])**positives[6],Decimal.pow(1.5,math.sum(positives.slice(7)))))))))),DPSCALC));
-		if (tickspeed>33){x=x.plus(DPSCALC.mul(33*diff/tickspeed));}
-		else {x=x.plus(DPSCALC.mul(diff*33/tickspeed));}
+		x=x.plus(DPSCALC.mul(33*diff/tickspeed));
   }}
 }
 function DECTIMAL(x){
@@ -842,7 +841,7 @@ if(localStorage.MCur) {
   if (Achieves.length<70) {
 	  for (i=Achieves.length; i<70; i++){Achieves[i]=[0];}
   }
-  var diff=(Date.now()-parseInt(localStorage.lastTick))/33000;
+  var diff=(Date.now()-parseInt(localStorage.lastTick))/33;
   GetAchieves();
   GetSkillTree();
   FormulaRewriter();
@@ -862,7 +861,6 @@ if(localStorage.MCur) {
 	}
 	DPSCALC=Decimal.mul(MAX**(1+Skills[28]+Skills[40]+Skills[3]+Skills[30]+Skills[41]+Skills[53]+Skills[47])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1]),NPOW.plus(1));
 	DPSCALC=Decimal.mul(Decimal.add(1,Decimal.mul(0.1*Skills[27]+0.2*Skills[42]+0.3*Skills[20]+0.4*Skills[57],y.plus(1).log(10))),Decimal.mul(Decimal.mul((1.5+0.1*Skills[0])**positives[0],Decimal.mul((1.5+0.1*Skills[29])**positives[1],Decimal.mul((1.5+0.1*Skills[31])**positives[2],Decimal.mul((1.5+0.1*Skills[7])**positives[3],Decimal.mul((1.5+0.1*Skills[34])**positives[4],Decimal.mul((1.5+0.1*Skills[35])**positives[5],Decimal.mul((1.5+0.1*Skills[9])**positives[6],Decimal.pow(1.5,math.sum(positives.slice(7)))))))))),DPSCALC));
-	if (tickspeed>33){x=x.plus(DPSCALC.mul(33*diff/tickspeed));}
-	else {x=x.plus(DPSCALC.mul(diff*33/tickspeed));}
+	x=x.plus(DPSCALC.mul(33*diff/tickspeed));
 }
 document.getElementById("MCur").innerHTML = "Drawing points (DP) : "+x.toExponential(3);

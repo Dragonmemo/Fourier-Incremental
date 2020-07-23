@@ -299,7 +299,7 @@ function PrestigeNull(){
 	if (math.min(positives)>Zero && math.min(negatives)>Zero) {
 		Zero++;
 		if (Skills[54]==1){
-		for (i=Zero;math.min([math.min(positives),math.min(negatives)]);i++){
+		for (i=Zero;i<math.min([math.min(positives),math.min(negatives)]);i++){
 			Zero++;
 		}}
 		MAX=1;
@@ -452,7 +452,7 @@ function GetSkill(n){
 			document.getElementById("PhiM5").value=50/5;
 		}
 		if (n==47){//DistMult
-			document.getElementById("ST47").removeAttribute("hidden");
+			document.getElementById("ST57").removeAttribute("hidden");
 		}
 		if (n==52){//C2.s
 			document.getElementById("ST41").removeAttribute("hidden");

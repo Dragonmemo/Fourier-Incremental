@@ -825,7 +825,6 @@ function ResetST(){
 	document.getElementById("Phi"+(i+1)).value=100;	
 	}
 	document.getElementById("NBNullif").innerHTML=(Zero-math.sum(Skills.slice(0,64)));
-	document.getElementById("Autosave").setAttribute("style","display:none");
 	if (Skills[64]>0){
 		document.getElementById("SV3").setAttribute("style","display:none");
 		document.getElementById("ST3").removeAttribute("hidden");

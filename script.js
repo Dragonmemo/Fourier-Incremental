@@ -53,8 +53,8 @@ function myFunction() {
 	  LCoords.shift();
   }
   ctx.closePath();
-  DPSCALC=Decimal.mul(MAX**(1+Skills[28]+Skills[40]+Skills[3]+Skills[30]+Skills[41]+Skills[53]+Skills[47])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1]),NPOW.plus(1));
-  DPSCALC=Decimal.mul(Decimal.add(1,Decimal.mul(0.1*Skills[27]+0.2*Skills[42]+0.3*Skills[20]+0.4*Skills[57],y.plus(1).log(10))),Decimal.mul(Decimal.mul((1.5+0.1*Skills[0])**positives[0],Decimal.mul((1.5+0.1*Skills[29])**positives[1],Decimal.mul((1.5+0.1*Skills[31])**positives[2],Decimal.mul((1.5+0.1*Skills[7])**positives[3],Decimal.mul((1.5+0.1*Skills[34])**positives[4],Decimal.mul((1.5+0.1*Skills[35])**positives[5],Decimal.mul((1.5+0.1*Skills[9])**positives[6],Decimal.pow(1.5,math.sum(positives.slice(7)))))))))),DPSCALC));
+  DPSCALC=Decimal.mul(MAX**(1+Skills[28]+Skills[40]+Skills[3]+Skills[30]+Skills[41]+Skills[53]+Skills[47]+Skills[24]+Skills[38])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1]),NPOW.plus(1).pow(1+Achieves[66]));
+  DPSCALC=Decimal.mul(Decimal.add(1,Decimal.mul(0.1*Skills[27]+0.2*Skills[42]+0.3*Skills[20]+0.4*Skills[57],y.plus(1).log(10-8*Skills[14]))),Decimal.mul(Decimal.mul((1.5+0.1*Skills[0])**(positives[0]*(1+Achieves[30]*0.1*math.log10(negatives[9]))),Decimal.mul((1.5+0.1*Skills[29])**(positives[1]*(1+Achieves[31]*0.1*math.log10(negatives[8]))),Decimal.mul((1.5+0.1*Skills[31])**(positives[2]*(1+Achieves[32]*0.1*math.log10(negatives[7]))),Decimal.mul((1.5+0.1*Skills[7])**(positives[3]*(1+Achieves[33]*0.1*math.log10(negatives[6]))),Decimal.mul((1.5+0.1*Skills[34])**(positives[4]*(1+Achieves[34]*0.1*math.log10(negatives[5]))),Decimal.mul((1.5+0.1*Skills[35])**(positives[5]*(1+Achieves[35]*0.1*math.log10(negatives[4]))),Decimal.mul((1.5+0.1*Skills[9])**(positives[6]*(1+Achieves[36]*0.1*math.log10(negatives[3]))),Decimal.mul((1.5+0.1*Skills[48])**(positives[7]*(1+Achieves[37]*0.1*math.log10(negatives[2]))),Decimal.mul((1.5+0.1*Skills[49])**(positives[8]*(1+Achieves[38]*0.1*math.log10(negatives[1]))),(1.5+0.1*Skills[26])**(positives[9]*(1+Achieves[39]*0.1*math.log10(negatives[0])))))))))))),DPSCALC));
   if (tickspeed>33){x=x.plus(DPSCALC);}
   else {x=x.plus(DPSCALC.mul(33/tickspeed));}
   ctx.beginPath();
@@ -67,6 +67,9 @@ function myFunction() {
   LCoords.push(coords);
   if (Skills[58]==1){ReduceTickspeed();}
   if (Skills[51]==1){ImproveQuality();}
+  if (Skills[63]==1){IncrementCMn(9);}
+  if (Skills[39]==1){IncrementCMn(8);}
+  if (Skills[61]==1){IncrementCMn(7);}
   if (Skills[10]==1){IncrementCMn(6);}
   if (Skills[8]==1){IncrementCMn(5);}
   if (Skills[55]==1){IncrementCMn(4);}
@@ -79,6 +82,11 @@ function myFunction() {
   if (Skills[21]==1){IncrementCn(2);}
   if (Skills[33]==1){IncrementCn(3);}
   if (Skills[45]==1){IncrementCn(4);}
+  if (Skills[56]==1){IncrementCn(5);}
+  if (Skills[12]==1){IncrementCn(6);}
+  if (Skills[60]==1){IncrementCn(7);}
+  if (Skills[13]==1){IncrementCn(8);}
+  if (Skills[50]==1){IncrementCn(9);}
   
   if (Achieves[51]==0 && positives.toString()==[2,1,0,0,0,0,0,0,0,0].toString() && negatives.toString()==[2,1,0,0,0,0,0,0,0,0].toString() && parseInt(document.getElementById("Phi1").value)==100 && parseInt(document.getElementById("PhiM1").value)==100 && ((48<parseInt(document.getElementById("Phi2").value)<52 && parseInt(document.getElementById("PhiM2").value)==100)||(48<parseInt(document.getElementById("PhiM2").value)<52 && parseInt(document.getElementById("Phi2").value)==100))){
 	Achieves[51]++;
@@ -251,7 +259,7 @@ function IncrementCMn(n) {
 };
 function PrestigeNegative(){
 	if (x.lt(1e10)){return};
-	y=y.plus(Decimal.pow(2.5,x.log10()-10));
+	y=y.plus(Decimal.pow(2.5+0.5*Achieves[65],x.log10()-10));
 	if (Achieves[62]==0) {
 		Achieves[62]++;
 		document.getElementById("A7C3").setAttribute("style","background-color: #5B5;");
@@ -280,19 +288,20 @@ function PrestigeNegative(){
 	FormulaRewriter();
 }
 function NPowIncrease(){
-	for (i=9;5<i;i--){
-		FicNeg[i-1]=FicNeg[i-1].plus(FicNeg[i].plus(negatives[i]).mul(1.33**negatives[i]*0.033))
-	}
-	FicNeg[4]=FicNeg[4].plus(FicNeg[5].plus(negatives[5]).mul((1.33+0.17*Skills[23])**negatives[5]*0.033))
-	FicNeg[3]=FicNeg[3].plus(FicNeg[4].plus(negatives[4]).mul((1.33+0.17*Skills[46])**negatives[4]*0.033))
-	FicNeg[2]=FicNeg[2].plus(FicNeg[3].plus(negatives[3]).mul((1.33+0.17*Skills[22])**negatives[3]*0.033))
-	FicNeg[1]=FicNeg[1].plus(FicNeg[2].plus(negatives[2]).mul((1.33+0.17*Skills[19])**negatives[2]*0.033))
-	FicNeg[0]=FicNeg[0].plus(FicNeg[1].plus(negatives[1]).mul((1.33+0.17*Skills[43])**negatives[1]*0.033))
-	NPOW=NPOW.plus(FicNeg[0].plus(negatives[0]).mul((1.33+0.17*Skills[18])**negatives[0]*0.033));
+	FicNeg[8]=FicNeg[8].plus(FicNeg[9].plus(negatives[9]).mul((1.33+0.17*Skills[15])**(negatives[9]*(1+Achieves[30]*0.1*math.log10(positives[0])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
+	FicNeg[7]=FicNeg[7].plus(FicNeg[8].plus(negatives[8]).mul((1.33+0.17*Skills[62])**(negatives[8]*(1+Achieves[31]*0.1*math.log10(positives[1])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
+	FicNeg[6]=FicNeg[6].plus(FicNeg[7].plus(negatives[7]).mul((1.33+0.17*Skills[59])**(negatives[7]*(1+Achieves[32]*0.1*math.log10(positives[2])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
+	FicNeg[5]=FicNeg[5].plus(FicNeg[6].plus(negatives[6]).mul((1.33+0.17*Skills[11])**(negatives[6]*(1+Achieves[33]*0.1*math.log10(positives[3])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
+	FicNeg[4]=FicNeg[4].plus(FicNeg[5].plus(negatives[5]).mul((1.33+0.17*Skills[23])**(negatives[5]*(1+Achieves[34]*0.1*math.log10(positives[4])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
+	FicNeg[3]=FicNeg[3].plus(FicNeg[4].plus(negatives[4]).mul((1.33+0.17*Skills[46])**(negatives[4]*(1+Achieves[35]*0.1*math.log10(positives[5])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
+	FicNeg[2]=FicNeg[2].plus(FicNeg[3].plus(negatives[3]).mul((1.33+0.17*Skills[22])**(negatives[3]*(1+Achieves[36]*0.1*math.log10(positives[6])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
+	FicNeg[1]=FicNeg[1].plus(FicNeg[2].plus(negatives[2]).mul((1.33+0.17*Skills[19])**(negatives[2]*(1+Achieves[37]*0.1*math.log10(positives[7])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
+	FicNeg[0]=FicNeg[0].plus(FicNeg[1].plus(negatives[1]).mul((1.33+0.17*Skills[43])**(negatives[1]*(1+Achieves[38]*0.1*math.log10(positives[8])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
+	NPOW=NPOW.plus(FicNeg[0].plus(negatives[0]).mul((1.33+0.17*Skills[18])**(negatives[0]*(1+Achieves[39]*0.1*math.log10(positives[9])*math.log(2+8*Skills[25])/math.log(2)))*0.033));
 	if (x.lt(1e10)){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
 	else {
-		document.getElementById('PrestigeN').innerHTML =Decimal.pow(2.5,x.log10()-10).toExponential(3);
-		y=y.plus(Decimal.mul(Decimal.pow(2.5,x.log10()-10),(0.01*(Skills[16]+Skills[32]+Skills[44]+Skills[6]))*0.033));
+		document.getElementById('PrestigeN').innerHTML =Decimal.pow(2.5+0.5*Achieves[65],x.log10()-10).toExponential(3);
+		y=y.plus(Decimal.mul(Decimal.pow(2.5+0.5*Achieves[65],x.log10()-10),(0.01*(Skills[16]+Skills[32]+Skills[44]+Skills[6]+Skills[36]+5*Skills[37]))*0.033));
 	}
 }
 function PrestigeNull(){
@@ -334,160 +343,293 @@ function GetSkill(n){
 	if (Zero-math.sum(Skills.slice(0,64))>=1){
 		document.getElementById("SB"+n).setAttribute("hidden",true);
 		Skills[n]=1
+		if (Achieves[69]==0 &&Skills.slice(0,64).toString()==[1,1,1,0,1,1,0,0,0,0,0,1,1,1,1,0,1,0,0,1,1,0,0,0,1,1,1,1,1,0,0,1,1,0,0,0,1,0,1,1,1,0,0,1,1,0,0,0,1,1,1,1,0,1,0,0,0,0,0,1,1,1,1,1].toString()){
+		Achieves[69]++;}
 		if (n==0){//C1 pow
 			document.getElementById("ST1").removeAttribute("hidden");
+			document.getElementById("SV1").setAttribute("hidden",true);
 			document.getElementById("Slider1").setAttribute("hidden",true);
 			document.getElementById("Phi1").value=75;
 		}
 		if (n==1){//C1.s
+			document.getElementById("SV2").setAttribute("hidden",true);
 			document.getElementById("ST2").removeAttribute("hidden");
 		}
 		if (n==3){//DistMult
+			document.getElementById("SV18").setAttribute("hidden",true);
 			document.getElementById("ST18").removeAttribute("hidden");
 		}
 		if (n==6){//1% NP.s
+			document.getElementById("SV21").setAttribute("hidden",true);
+			document.getElementById("SV7").setAttribute("hidden",true);
 			document.getElementById("ST21").removeAttribute("hidden");
 			document.getElementById("ST7").removeAttribute("hidden");
 		}
 		if (n==7){//C4 pow
+			document.getElementById("SV22").setAttribute("hidden",true);
 			document.getElementById("ST22").removeAttribute("hidden");
 		    document.getElementById("Slider4").setAttribute("hidden",true);
 			document.getElementById("Phi4").value=25+50/4;
 		}
 		if (n==9){//C7 pow
+			document.getElementById("SV8").setAttribute("hidden",true);
+			document.getElementById("SV10").setAttribute("hidden",true);
 			document.getElementById("ST8").removeAttribute("hidden");
 		    document.getElementById("ST10").removeAttribute("hidden");
 		    document.getElementById("Slider7").setAttribute("hidden",true);
 			document.getElementById("Phi7").value=25+50/7;
 		}
+		if (n==11){//NEW C-7 pow
+			document.getElementById("SV12").setAttribute("hidden",true);
+			document.getElementById("ST12").removeAttribute("hidden");
+		    document.getElementById("SliderM7").setAttribute("hidden",true);
+			document.getElementById("PhiM7").value=50/7;
+		}
+		if (n==12){//NEW C7.s
+			document.getElementById("SV13").setAttribute("hidden",true);
+			document.getElementById("ST13").removeAttribute("hidden");
+		}
+		if (n==14){//NEW Log2 change
+			document.getElementById("SV25").setAttribute("hidden",true);
+			document.getElementById("ST25").removeAttribute("hidden");
+		}
+		if (n==15){//NEW C-10 pow
+			document.getElementById("SliderM10").setAttribute("hidden",true);
+			document.getElementById("PhiM10").value=50/10;
+		}
 		if (n==16){//1% NP.s
+			document.getElementById("SV0").setAttribute("hidden",true);
 			document.getElementById("ST0").removeAttribute("hidden");
 		}
 		if (n==18){//C-1 pow
+			document.getElementById("SV30").setAttribute("hidden",true);
 			document.getElementById("ST30").removeAttribute("hidden");
 			document.getElementById("SliderM1").setAttribute("hidden",true);
 			document.getElementById("PhiM1").value=50;
 		}
 		if (n==19){//C-3 pow
+			document.getElementById("SV4").setAttribute("hidden",true);
 			document.getElementById("ST4").removeAttribute("hidden");
 			document.getElementById("SliderM3").setAttribute("hidden",true);
 			document.getElementById("PhiM3").value=50/3;
 		}
 		if (n==20){//NP log 0.3
+			document.getElementById("SV5").setAttribute("hidden",true);
 			document.getElementById("ST5").removeAttribute("hidden");
 		}
 		if (n==21){//C3.s
+			document.getElementById("SV33").setAttribute("hidden",true);
 			document.getElementById("ST33").removeAttribute("hidden");
 		}
 		if (n==22){//C-4 pow
+			document.getElementById("SV34").setAttribute("hidden",true);
 			document.getElementById("ST34").removeAttribute("hidden");
 			document.getElementById("SliderM4").setAttribute("hidden",true);
 			document.getElementById("PhiM4").value=50/4;
 		}
 		if (n==23){//C-6 pow
+			document.getElementById("SV9").setAttribute("hidden",true);
 			document.getElementById("ST9").removeAttribute("hidden");
 			document.getElementById("SliderM6").setAttribute("hidden",true);
 			document.getElementById("PhiM6").value=50/6;
 		}
+		if (n==24){//NEW DistMult
+			document.getElementById("SV11").setAttribute("hidden",true);
+			document.getElementById("ST11").removeAttribute("hidden");
+		}
+		if (n==25){//NEW DistMult
+			document.getElementById("SV38").setAttribute("hidden",true);
+			document.getElementById("ST38").removeAttribute("hidden");
+		}
+		if (n==26){//NEW C10 pow
+			document.getElementById("SV15").setAttribute("hidden",true);
+			document.getElementById("ST15").removeAttribute("hidden");
+			document.getElementById("Slider10").setAttribute("hidden",true);
+			document.getElementById("Phi10").value=25+50/10;
+		}
 		if (n==27){//NP log 0.1
+			document.getElementById("SV16").setAttribute("hidden",true);
+			document.getElementById("SV40").setAttribute("hidden",true);
 			document.getElementById("ST16").removeAttribute("hidden");
 			document.getElementById("ST40").removeAttribute("hidden");
 		}
 		if (n==28){//DistMult
+			document.getElementById("SV27").setAttribute("hidden",true);
 			document.getElementById("ST27").removeAttribute("hidden");
 		}
 		if (n==29){//C2 Pow
+			document.getElementById("SV17").setAttribute("hidden",true);
 			document.getElementById("ST17").removeAttribute("hidden");
 			document.getElementById("Slider2").setAttribute("hidden",true);
 			document.getElementById("Phi2").value=25+50/2;
 		}
 		if (n==30){//DistMult
+			document.getElementById("SV42").setAttribute("hidden",true);
 			document.getElementById("ST42").removeAttribute("hidden");
 		}
 		if (n==31){//C3 Pow
+			document.getElementById("SV19").setAttribute("hidden",true);
 			document.getElementById("ST19").removeAttribute("hidden");
 		    document.getElementById("Slider3").setAttribute("hidden",true);
 			document.getElementById("Phi3").value=25+50/3;
 			}
 		if (n==32){//1% NP.s
+			document.getElementById("SV20").setAttribute("hidden",true);
 			document.getElementById("ST20").removeAttribute("hidden");
 		}		
 		if (n==33){//C4.s
+			document.getElementById("SV45").setAttribute("hidden",true);
 			document.getElementById("ST45").removeAttribute("hidden");
 		}
 		if (n==34){//C5 pow
+			document.getElementById("SV46").setAttribute("hidden",true);
 			document.getElementById("ST46").removeAttribute("hidden");
 			document.getElementById("Slider5").setAttribute("hidden",true);
 			document.getElementById("Phi5").value=25+50/5;
 		}
 		if (n==35){//C6 pow
+			document.getElementById("SV23").setAttribute("hidden",true);
+			document.getElementById("SV47").setAttribute("hidden",true);
 			document.getElementById("ST47").removeAttribute("hidden");
 			document.getElementById("ST23").removeAttribute("hidden");
 			document.getElementById("Slider6").setAttribute("hidden",true);
 			document.getElementById("Phi6").value=25+50/6;
 		}
+		if (n==36){//NEW 1% NP.s
+			document.getElementById("SV37").setAttribute("hidden",true);
+			document.getElementById("SV24").setAttribute("hidden",true);
+			document.getElementById("SV48").setAttribute("hidden",true);
+			document.getElementById("ST37").removeAttribute("hidden");
+			document.getElementById("ST24").removeAttribute("hidden");
+			document.getElementById("ST48").removeAttribute("hidden");
+		}
+		if (n==38){//NEW C7.s
+			document.getElementById("SV39").setAttribute("hidden",true);
+			document.getElementById("SV49").setAttribute("hidden",true);
+			document.getElementById("ST39").removeAttribute("hidden");
+			document.getElementById("ST49").removeAttribute("hidden");
+		}
+		if (n==39){//NEW C-9.s
+			document.getElementById("SV26").setAttribute("hidden",true);
+			document.getElementById("SV50").setAttribute("hidden",true);
+			document.getElementById("ST26").removeAttribute("hidden");
+			document.getElementById("ST50").removeAttribute("hidden");
+		}
 		if (n==40){//DistMult
+			document.getElementById("SV51").setAttribute("hidden",true);
 			document.getElementById("ST51").removeAttribute("hidden");
 		}
 		if (n==41){//DistMult
+			document.getElementById("SV29").setAttribute("hidden",true);
 			document.getElementById("ST29").removeAttribute("hidden");
 		}
 		if (n==42){//NP log 0.2
+			document.getElementById("SV52").setAttribute("hidden",true);
 			document.getElementById("ST52").removeAttribute("hidden");
 		}
 		if (n==43){//C-2 Pow
+			document.getElementById("SV31").setAttribute("hidden",true);
 			document.getElementById("ST31").removeAttribute("hidden");
 			document.getElementById("SliderM2").setAttribute("hidden",true);
 			document.getElementById("PhiM2").value=50/2;
 		}
 		if (n==44){//1% NP.s
+			document.getElementById("SV32").setAttribute("hidden",true);
 			document.getElementById("ST32").removeAttribute("hidden");
 		}
 		if (n==45){//C5.s
+			document.getElementById("SV54").setAttribute("hidden",true);
 			document.getElementById("ST54").removeAttribute("hidden");
 		}
 		if (n==46){//C-5 pow
+			document.getElementById("SV55").setAttribute("hidden",true);
 			document.getElementById("ST55").removeAttribute("hidden");
 			document.getElementById("SliderM5").setAttribute("hidden",true);
 			document.getElementById("PhiM5").value=50/5;
 		}
 		if (n==47){//DistMult
+			document.getElementById("SV57").setAttribute("hidden",true);
 			document.getElementById("ST57").removeAttribute("hidden");
 		}
+		if (n==48){//NEW C8 pow
+			document.getElementById("SV59").setAttribute("hidden",true);
+			document.getElementById("ST59").removeAttribute("hidden");
+			document.getElementById("Slider8").setAttribute("hidden",true);
+			document.getElementById("Phi8").value=25+50/8;
+		}
+		if (n==49){//NEW C9 pow
+			document.getElementById("SV62").setAttribute("hidden",true);
+			document.getElementById("ST62").removeAttribute("hidden");
+			document.getElementById("Slider9").setAttribute("hidden",true);
+			document.getElementById("Phi9").value=25+50/9;
+		}
+		if (n==50){//NEW C10.s
+			document.getElementById("SV63").setAttribute("hidden",true);
+			document.getElementById("ST63").removeAttribute("hidden");
+		}
 		if (n==52){//C2.s
+			document.getElementById("SV41").setAttribute("hidden",true);
 			document.getElementById("ST41").removeAttribute("hidden");
 		}
 		if (n==53){//DistMult
+			document.getElementById("SV43").setAttribute("hidden",true);
+			document.getElementById("SV44").setAttribute("hidden",true);
 			document.getElementById("ST43").removeAttribute("hidden");
 		    document.getElementById("ST44").removeAttribute("hidden");
 		}
-		if (n==56){//Autosave
-			document.getElementById("Autosave").removeAttribute("hidden");
-		}
 		if (n==57){//NP log 0.4
+			document.getElementById("SV56").setAttribute("hidden",true);
+			document.getElementById("SV58").setAttribute("hidden",true);
 			document.getElementById("ST56").removeAttribute("hidden");
 			document.getElementById("ST58").removeAttribute("hidden");
 		}
-		if (n==2 || n==51 || n==17 || n==4 || n==5 || n==54 || n==55 || n==8 || n==10 || n==56 || n==58){
+		if (n==59){//NEW C-8 pow
+			document.getElementById("SV60").setAttribute("hidden",true);
+			document.getElementById("ST60").removeAttribute("hidden");
+			document.getElementById("SliderM8").setAttribute("hidden",true);
+			document.getElementById("PhiM8").value=50/8;
+		}
+		if (n==60){//NEW C8.s
+			document.getElementById("SV61").setAttribute("hidden",true);
+			document.getElementById("ST61").removeAttribute("hidden");
+		}
+		if (n==62){//NEW C-9 pow
+			document.getElementById("SliderM9").setAttribute("hidden",true);
+			document.getElementById("PhiM9").value=50/9;
+		}
+		if (n==2 || n==51 || n==17 || n==4 || n==5 || n==54 || n==55 || n==8 || n==10 || n==56 || n==58 || n==13 || n==37 || n==61){
 			if (Skills[64]==0 && Skills[2]==1 && Skills[51]==1){
 				Skills[64]++;
+				document.getElementById("SV3").setAttribute("hidden",true);
 				document.getElementById("ST3").removeAttribute("hidden");
 			}
 			if (Skills[64]==1 && Skills[2]==1 && Skills[51]==1 && Skills[17]==1){
 				Skills[64]++;
+				document.getElementById("SV53").setAttribute("hidden",true);
 				document.getElementById("ST53").removeAttribute("hidden");
 			}
 			if (Skills[64]==2 && Skills[2]==1 && Skills[51]==1 && Skills[17]==1 && Skills[4]==1 && Skills[5]==1 ){
 				Skills[64]++;
+				document.getElementById("SV6").setAttribute("hidden",true);
 				document.getElementById("ST6").removeAttribute("hidden");
 			}
 			if (Skills[64]==3 && Skills[2]==1 && Skills[51]==1 && Skills[17]==1 && Skills[4]==1 && Skills[5]==1 && Skills[54]==1 && Skills[55]==1){
 				Skills[64]++;
+				document.getElementById("SV35").setAttribute("hidden",true);
 				document.getElementById("ST35").removeAttribute("hidden");
 			}
 			if (Skills[64]==4 && Skills[2]==1 && Skills[51]==1 && Skills[17]==1 && Skills[4]==1 && Skills[5]==1 && Skills[54]==1 && Skills[55]==1 && Skills[56]==1 && Skills[58]==1 && Skills[8]==1 && Skills[10]==1){
 				Skills[64]++;
+				document.getElementById("SV36").setAttribute("hidden",true);
 				document.getElementById("ST36").removeAttribute("hidden");
+			}
+			if (Skills[64]==5 && Skills[2]==1 && Skills[51]==1 && Skills[17]==1 && Skills[4]==1 && Skills[5]==1 && Skills[54]==1 && Skills[55]==1 && Skills[56]==1 && Skills[58]==1 && Skills[8]==1 && Skills[10]==1 && Skills[13]==1 && Skills[37]==1 && Skills[61]==1){
+				Skills[64]++;
+				document.getElementById("SV14").setAttribute("hidden",true);
+				document.getElementById("ST14").removeAttribute("hidden");
+			}
+			if (math.sum(Skills.slice(0,64))==64){
+				document.getElementById("THELASTBUTTON").removeAttribute("hidden");
 			}
 		}
 		document.getElementById("NBNullif").innerHTML=(Zero-math.sum(Skills.slice(0,64)));
@@ -506,7 +648,7 @@ function GetAchieves(){
 	  if (i==9) {document.getElementById("PUnlock").removeAttribute("hidden");}
       if (9<i && i<19){AchMult+=0.01;}
 	  if (i==19) {document.getElementById("MaxAll").removeAttribute("hidden");}
-	  if (19<i && i<29){
+	  if (19<i && i<=29){
 		document.getElementById("Slider"+(i+1-20)).removeAttribute("hidden");
 		document.getElementById("SliderM"+(i+1-20)).removeAttribute("hidden");
 	  }
@@ -571,16 +713,24 @@ function GetSkillTree(){
 	Zero--;
 	document.getElementById("NBNullif").innerHTML=(Zero-math.sum(Skills.slice(0,64)));
 	if (Skills[64]>0){
+		document.getElementById("SV3").setAttribute("hidden",true);
 		document.getElementById("ST3").removeAttribute("hidden");
 		if (Skills[64]>1){
+			document.getElementById("SV53").setAttribute("hidden",true);
 			document.getElementById("ST53").removeAttribute("hidden");
 		if (Skills[64]>2){
+			document.getElementById("SV6").setAttribute("hidden",true);
 			document.getElementById("ST6").removeAttribute("hidden");
 		if (Skills[64]>3){
+			document.getElementById("SV35").setAttribute("hidden",true);
 			document.getElementById("ST35").removeAttribute("hidden");
 		if (Skills[64]>4){
+			document.getElementById("SV36").setAttribute("hidden",true);
 			document.getElementById("ST36").removeAttribute("hidden");
-		}}}}
+		if (Skills[64]>5){
+			document.getElementById("SV14").setAttribute("hidden",true);
+			document.getElementById("ST14").removeAttribute("hidden");
+		}}}}}
 	}
 }
 function FormulaRewriter(){
@@ -618,6 +768,12 @@ function MaxAll(){
 			IncrementCMn(k);
 		}
 	}
+}
+function THELASTCLICK(){
+	if (math.sum(Skills.slice(0,64))==64 && Zero>=100){
+		document.getElementById("CODES").removeAttribute("hidden")
+	}
+	else {return}
 }
 var tickpart2=0;
 var mainGameLoop = window.setInterval(function() { // runs the loop
@@ -661,6 +817,7 @@ function ResetST(){
 		Skills[i]=0;
 		document.getElementById("SB"+i).removeAttribute("hidden");
 		if (i!=28){
+		document.getElementById("SV"+i).removeAttribute("hidden");
 		document.getElementById("ST"+i).setAttribute("hidden",true);}
 	}
 	for (i=0;i<10;i++){
@@ -670,16 +827,24 @@ function ResetST(){
 	document.getElementById("NBNullif").innerHTML=(Zero-math.sum(Skills.slice(0,64)));
 	document.getElementById("Autosave").setAttribute("hidden",true);
 	if (Skills[64]>0){
+		document.getElementById("SV3").setAttribute("hidden",true);
 		document.getElementById("ST3").removeAttribute("hidden");
 		if (Skills[64]>1){
+			document.getElementById("SV53").setAttribute("hidden",true);
 			document.getElementById("ST53").removeAttribute("hidden");
 			if (Skills[64]>2){
+				document.getElementById("SV6").setAttribute("hidden",true);
 				document.getElementById("ST6").removeAttribute("hidden");
 				if (Skills[64]>3){
+					document.getElementById("SV35").setAttribute("hidden",true);
 					document.getElementById("ST35").removeAttribute("hidden");
-					if (Skills[64]>1){
+					if (Skills[64]>4){
+						document.getElementById("SV36").setAttribute("hidden",true);
 						document.getElementById("ST36").removeAttribute("hidden");
-						
+						if (Skills[64]>5){
+							document.getElementById("SV14").setAttribute("hidden",true);
+							document.getElementById("ST14").removeAttribute("hidden");
+						}
 					}
 				}
 			}
@@ -798,23 +963,24 @@ function Import(){
 	  GetAchieves();
 	  GetSkillTree();
 	  FormulaRewriter();
-	  for (i=9;5<i;i--){
-		FicNeg[i-1]=FicNeg[i-1].plus(FicNeg[i].plus(negatives[i]).mul(1.33**negatives[i]*0.033*diff))
-		}
-		FicNeg[4]=FicNeg[4].plus(FicNeg[5].plus(negatives[5]).mul((1.33+0.17*Skills[23])**negatives[5]*0.033*diff))
-		FicNeg[3]=FicNeg[3].plus(FicNeg[4].plus(negatives[4]).mul((1.33+0.17*Skills[46])**negatives[4]*0.033*diff))
-		FicNeg[2]=FicNeg[2].plus(FicNeg[3].plus(negatives[3]).mul((1.33+0.17*Skills[22])**negatives[3]*0.033*diff))
-		FicNeg[1]=FicNeg[1].plus(FicNeg[2].plus(negatives[2]).mul((1.33+0.17*Skills[19])**negatives[2]*0.033*diff))
-		FicNeg[0]=FicNeg[0].plus(FicNeg[1].plus(negatives[1]).mul((1.33+0.17*Skills[43])**negatives[1]*0.033*diff))
-		NPOW=NPOW.plus(FicNeg[0].plus(negatives[0]).mul((1.33+0.17*Skills[18])**negatives[0]*0.033*diff));
-		if (x.lt(1e10)){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
-		else {
-			document.getElementById('PrestigeN').innerHTML =Decimal.pow(2.5,x.log10()-10).toExponential(3);
-			y=y.plus(Decimal.mul(Decimal.pow(2.5,x.log10()-10),(0.01*(Skills[16]+Skills[32]+Skills[44]+Skills[6]))*0.033*diff));
-		}
-		DPSCALC=Decimal.mul(MAX**(1+Skills[28]+Skills[40]+Skills[3]+Skills[30]+Skills[41]+Skills[53]+Skills[47])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1]),NPOW.plus(1));
-		DPSCALC=Decimal.mul(Decimal.add(1,Decimal.mul(0.1*Skills[27]+0.2*Skills[42]+0.3*Skills[20]+0.4*Skills[57],y.plus(1).log(10))),Decimal.mul(Decimal.mul((1.5+0.1*Skills[0])**positives[0],Decimal.mul((1.5+0.1*Skills[29])**positives[1],Decimal.mul((1.5+0.1*Skills[31])**positives[2],Decimal.mul((1.5+0.1*Skills[7])**positives[3],Decimal.mul((1.5+0.1*Skills[34])**positives[4],Decimal.mul((1.5+0.1*Skills[35])**positives[5],Decimal.mul((1.5+0.1*Skills[9])**positives[6],Decimal.pow(1.5,math.sum(positives.slice(7)))))))))),DPSCALC));
-		x=x.plus(DPSCALC.mul(33*diff/tickspeed));
+	FicNeg[8]=FicNeg[8].plus(FicNeg[9].plus(negatives[9]).mul((1.33+0.17*Skills[15])**(negatives[9]*(1+Achieves[30]*0.1*math.log10(positives[0])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[7]=FicNeg[7].plus(FicNeg[8].plus(negatives[8]).mul((1.33+0.17*Skills[62])**(negatives[8]*(1+Achieves[31]*0.1*math.log10(positives[1])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[6]=FicNeg[6].plus(FicNeg[7].plus(negatives[7]).mul((1.33+0.17*Skills[59])**(negatives[7]*(1+Achieves[32]*0.1*math.log10(positives[2])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[5]=FicNeg[5].plus(FicNeg[6].plus(negatives[6]).mul((1.33+0.17*Skills[11])**(negatives[6]*(1+Achieves[33]*0.1*math.log10(positives[3])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[4]=FicNeg[4].plus(FicNeg[5].plus(negatives[5]).mul((1.33+0.17*Skills[23])**(negatives[5]*(1+Achieves[34]*0.1*math.log10(positives[4])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[3]=FicNeg[3].plus(FicNeg[4].plus(negatives[4]).mul((1.33+0.17*Skills[46])**(negatives[4]*(1+Achieves[35]*0.1*math.log10(positives[5])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[2]=FicNeg[2].plus(FicNeg[3].plus(negatives[3]).mul((1.33+0.17*Skills[22])**(negatives[3]*(1+Achieves[36]*0.1*math.log10(positives[6])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[1]=FicNeg[1].plus(FicNeg[2].plus(negatives[2]).mul((1.33+0.17*Skills[19])**(negatives[2]*(1+Achieves[37]*0.1*math.log10(positives[7])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[0]=FicNeg[0].plus(FicNeg[1].plus(negatives[1]).mul((1.33+0.17*Skills[43])**(negatives[1]*(1+Achieves[38]*0.1*math.log10(positives[8])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	NPOW=NPOW.plus(FicNeg[0].plus(negatives[0]).mul((1.33+0.17*Skills[18])**(negatives[0]*(1+Achieves[39]*0.1*math.log10(positives[9])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff));
+	if (x.lt(1e10)){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
+	else {
+		document.getElementById('PrestigeN').innerHTML =Decimal.pow(2.5+0.5*Achieves[65],x.log10()-10).toExponential(3);
+		y=y.plus(Decimal.mul(Decimal.pow(2.5+0.5*Achieves[65],x.log10()-10),(0.01*(Skills[16]+Skills[32]+Skills[44]+Skills[6]+Skills[36]+5*Skills[37]))*0.033*diff));
+	}
+	DPSCALC=Decimal.mul(MAX**(1+Skills[28]+Skills[40]+Skills[3]+Skills[30]+Skills[41]+Skills[53]+Skills[47]+Skills[24]+Skills[38])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1]),NPOW.plus(1).pow(1+Achieves[66]));
+    DPSCALC=Decimal.mul(Decimal.add(1,Decimal.mul(0.1*Skills[27]+0.2*Skills[42]+0.3*Skills[20]+0.4*Skills[57],y.plus(1).log(10-8*Skills[14]))),Decimal.mul(Decimal.mul((1.5+0.1*Skills[0])**(positives[0]*(1+Achieves[30]*0.1*math.log10(negatives[9]))),Decimal.mul((1.5+0.1*Skills[29])**(positives[1]*(1+Achieves[31]*0.1*math.log10(negatives[8]))),Decimal.mul((1.5+0.1*Skills[31])**(positives[2]*(1+Achieves[32]*0.1*math.log10(negatives[7]))),Decimal.mul((1.5+0.1*Skills[7])**(positives[3]*(1+Achieves[33]*0.1*math.log10(negatives[6]))),Decimal.mul((1.5+0.1*Skills[34])**(positives[4]*(1+Achieves[34]*0.1*math.log10(negatives[5]))),Decimal.mul((1.5+0.1*Skills[35])**(positives[5]*(1+Achieves[35]*0.1*math.log10(negatives[4]))),Decimal.mul((1.5+0.1*Skills[9])**(positives[6]*(1+Achieves[36]*0.1*math.log10(negatives[3]))),Decimal.mul((1.5+0.1*Skills[48])**(positives[7]*(1+Achieves[37]*0.1*math.log10(negatives[2]))),Decimal.mul((1.5+0.1*Skills[49])**(positives[8]*(1+Achieves[38]*0.1*math.log10(negatives[1]))),(1.5+0.1*Skills[26])**(positives[9]*(1+Achieves[39]*0.1*math.log10(negatives[0])))))))))))),DPSCALC));
+    x=x.plus(DPSCALC.mul(33*diff/tickspeed));
   }}
 }
 function DECTIMAL(x){
@@ -845,22 +1011,23 @@ if(localStorage.MCur) {
   GetAchieves();
   GetSkillTree();
   FormulaRewriter();
-  for (i=9;5<i;i--){
-		FicNeg[i-1]=FicNeg[i-1].plus(FicNeg[i].plus(negatives[i]).mul(1.33**negatives[i]*0.033*diff))
-	}
-	FicNeg[4]=FicNeg[4].plus(FicNeg[5].plus(negatives[5]).mul((1.33+0.17*Skills[23])**negatives[5]*0.033*diff))
-	FicNeg[3]=FicNeg[3].plus(FicNeg[4].plus(negatives[4]).mul((1.33+0.17*Skills[46])**negatives[4]*0.033*diff))
-	FicNeg[2]=FicNeg[2].plus(FicNeg[3].plus(negatives[3]).mul((1.33+0.17*Skills[22])**negatives[3]*0.033*diff))
-	FicNeg[1]=FicNeg[1].plus(FicNeg[2].plus(negatives[2]).mul((1.33+0.17*Skills[19])**negatives[2]*0.033*diff))
-	FicNeg[0]=FicNeg[0].plus(FicNeg[1].plus(negatives[1]).mul((1.33+0.17*Skills[43])**negatives[1]*0.033*diff))
-	NPOW=NPOW.plus(FicNeg[0].plus(negatives[0]).mul((1.33+0.17*Skills[18])**negatives[0]*0.033*diff));
+	FicNeg[8]=FicNeg[8].plus(FicNeg[9].plus(negatives[9]).mul((1.33+0.17*Skills[15])**(negatives[9]*(1+Achieves[30]*0.1*math.log10(positives[0])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[7]=FicNeg[7].plus(FicNeg[8].plus(negatives[8]).mul((1.33+0.17*Skills[62])**(negatives[8]*(1+Achieves[31]*0.1*math.log10(positives[1])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[6]=FicNeg[6].plus(FicNeg[7].plus(negatives[7]).mul((1.33+0.17*Skills[59])**(negatives[7]*(1+Achieves[32]*0.1*math.log10(positives[2])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[5]=FicNeg[5].plus(FicNeg[6].plus(negatives[6]).mul((1.33+0.17*Skills[11])**(negatives[6]*(1+Achieves[33]*0.1*math.log10(positives[3])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[4]=FicNeg[4].plus(FicNeg[5].plus(negatives[5]).mul((1.33+0.17*Skills[23])**(negatives[5]*(1+Achieves[34]*0.1*math.log10(positives[4])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[3]=FicNeg[3].plus(FicNeg[4].plus(negatives[4]).mul((1.33+0.17*Skills[46])**(negatives[4]*(1+Achieves[35]*0.1*math.log10(positives[5])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[2]=FicNeg[2].plus(FicNeg[3].plus(negatives[3]).mul((1.33+0.17*Skills[22])**(negatives[3]*(1+Achieves[36]*0.1*math.log10(positives[6])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[1]=FicNeg[1].plus(FicNeg[2].plus(negatives[2]).mul((1.33+0.17*Skills[19])**(negatives[2]*(1+Achieves[37]*0.1*math.log10(positives[7])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[0]=FicNeg[0].plus(FicNeg[1].plus(negatives[1]).mul((1.33+0.17*Skills[43])**(negatives[1]*(1+Achieves[38]*0.1*math.log10(positives[8])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	NPOW=NPOW.plus(FicNeg[0].plus(negatives[0]).mul((1.33+0.17*Skills[18])**(negatives[0]*(1+Achieves[39]*0.1*math.log10(positives[9])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff));
 	if (x.lt(1e10)){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
 	else {
-		document.getElementById('PrestigeN').innerHTML =Decimal.pow(2.5,x.log10()-10).toExponential(3);
-		y=y.plus(Decimal.mul(Decimal.pow(2.5,x.log10()-10),(0.01*(Skills[16]+Skills[32]+Skills[44]+Skills[6]))*0.033*diff));
+		document.getElementById('PrestigeN').innerHTML =Decimal.pow(2.5+0.5*Achieves[65],x.log10()-10).toExponential(3);
+		y=y.plus(Decimal.mul(Decimal.pow(2.5+0.5*Achieves[65],x.log10()-10),(0.01*(Skills[16]+Skills[32]+Skills[44]+Skills[6]+Skills[36]+5*Skills[37]))*0.033*diff));
 	}
-	DPSCALC=Decimal.mul(MAX**(1+Skills[28]+Skills[40]+Skills[3]+Skills[30]+Skills[41]+Skills[53]+Skills[47])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1]),NPOW.plus(1));
-	DPSCALC=Decimal.mul(Decimal.add(1,Decimal.mul(0.1*Skills[27]+0.2*Skills[42]+0.3*Skills[20]+0.4*Skills[57],y.plus(1).log(10))),Decimal.mul(Decimal.mul((1.5+0.1*Skills[0])**positives[0],Decimal.mul((1.5+0.1*Skills[29])**positives[1],Decimal.mul((1.5+0.1*Skills[31])**positives[2],Decimal.mul((1.5+0.1*Skills[7])**positives[3],Decimal.mul((1.5+0.1*Skills[34])**positives[4],Decimal.mul((1.5+0.1*Skills[35])**positives[5],Decimal.mul((1.5+0.1*Skills[9])**positives[6],Decimal.pow(1.5,math.sum(positives.slice(7)))))))))),DPSCALC));
-	x=x.plus(DPSCALC.mul(33*diff/tickspeed));
+	DPSCALC=Decimal.mul(MAX**(1+Skills[28]+Skills[40]+Skills[3]+Skills[30]+Skills[41]+Skills[53]+Skills[47]+Skills[24]+Skills[38])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1]),NPOW.plus(1).pow(1+Achieves[66]));
+    DPSCALC=Decimal.mul(Decimal.add(1,Decimal.mul(0.1*Skills[27]+0.2*Skills[42]+0.3*Skills[20]+0.4*Skills[57],y.plus(1).log(10-8*Skills[14]))),Decimal.mul(Decimal.mul((1.5+0.1*Skills[0])**(positives[0]*(1+Achieves[30]*0.1*math.log10(negatives[9]))),Decimal.mul((1.5+0.1*Skills[29])**(positives[1]*(1+Achieves[31]*0.1*math.log10(negatives[8]))),Decimal.mul((1.5+0.1*Skills[31])**(positives[2]*(1+Achieves[32]*0.1*math.log10(negatives[7]))),Decimal.mul((1.5+0.1*Skills[7])**(positives[3]*(1+Achieves[33]*0.1*math.log10(negatives[6]))),Decimal.mul((1.5+0.1*Skills[34])**(positives[4]*(1+Achieves[34]*0.1*math.log10(negatives[5]))),Decimal.mul((1.5+0.1*Skills[35])**(positives[5]*(1+Achieves[35]*0.1*math.log10(negatives[4]))),Decimal.mul((1.5+0.1*Skills[9])**(positives[6]*(1+Achieves[36]*0.1*math.log10(negatives[3]))),Decimal.mul((1.5+0.1*Skills[48])**(positives[7]*(1+Achieves[37]*0.1*math.log10(negatives[2]))),Decimal.mul((1.5+0.1*Skills[49])**(positives[8]*(1+Achieves[38]*0.1*math.log10(negatives[1]))),(1.5+0.1*Skills[26])**(positives[9]*(1+Achieves[39]*0.1*math.log10(negatives[0])))))))))))),DPSCALC));
+    x=x.plus(DPSCALC.mul(33*diff/tickspeed));
 }
 document.getElementById("MCur").innerHTML = "Drawing points (DP) : "+x.toExponential(3);

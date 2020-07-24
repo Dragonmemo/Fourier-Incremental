@@ -165,12 +165,12 @@ footer {
 }
 
 .solid{
-	width: 60px;
+	width: 40px;
 	display:inline-block;
 	background-color:#eee;
 }
 .solid2{
-	width: 60px;
+	width: 40px;
 	display:table-cell;
 	background-color:#eee;
 }

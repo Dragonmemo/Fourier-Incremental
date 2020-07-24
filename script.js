@@ -53,7 +53,7 @@ function myFunction() {
 	  LCoords.shift();
   }
   ctx.closePath();
-  DPSCALC=Decimal.mul(MAX**(1+Skills[28]+Skills[40]+Skills[3]+Skills[30]+Skills[41]+Skills[53]+Skills[47]+Skills[24]+Skills[38])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1]),NPOW.plus(1).pow(1+Achieves[66]));
+  DPSCALC=Decimal.mul(MAX**(1+Skills[28]+Skills[40]+Skills[3]+Skills[30]+Skills[41]+Skills[53]+Skills[47]+Skills[24]+Skills[38])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1]),NPOW.plus(1).pow(1+Achieves[66]*0.5));
   DPSCALC=Decimal.mul(Decimal.add(1,Decimal.mul(0.1*Skills[27]+0.2*Skills[42]+0.3*Skills[20]+0.4*Skills[57],y.plus(1).log(10-8*Skills[14]))),Decimal.mul(Decimal.mul((1.5+0.1*Skills[0])**(positives[0]*(1+Achieves[30]*1e-4*math.log10(negatives[9]+1))),Decimal.mul((1.5+0.1*Skills[29])**(positives[1]*(1+Achieves[31]*1e-4*math.log10(negatives[8]+1))),Decimal.mul((1.5+0.1*Skills[31])**(positives[2]*(1+Achieves[32]*1e-4*math.log10(negatives[7]+1))),Decimal.mul((1.5+0.1*Skills[7])**(positives[3]*(1+Achieves[33]*1e-4*math.log10(negatives[6]+1))),Decimal.mul((1.5+0.1*Skills[34])**(positives[4]*(1+Achieves[34]*1e-4*math.log10(negatives[5]+1))),Decimal.mul((1.5+0.1*Skills[35])**(positives[5]*(1+Achieves[35]*1e-4*math.log10(negatives[4]+1))),Decimal.mul((1.5+0.1*Skills[9])**(positives[6]*(1+Achieves[36]*1e-4*math.log10(negatives[3]+1))),Decimal.mul((1.5+0.1*Skills[48])**(positives[7]*(1+Achieves[37]*1e-4*math.log10(negatives[2]+1))),Decimal.mul((1.5+0.1*Skills[49])**(positives[8]*(1+Achieves[38]*1e-4*math.log10(negatives[1]+1))),(1.5+0.1*Skills[26])**(positives[9]*(1+Achieves[39]*1e-4*math.log10(negatives[0]+1)))))))))))),DPSCALC));
   if (tickspeed>33){x=x.plus(DPSCALC);}
   else {x=x.plus(DPSCALC.mul(33/tickspeed));}
@@ -259,7 +259,7 @@ function IncrementCMn(n) {
 };
 function PrestigeNegative(){
 	if (x.lt(1e10)){return};
-	y=y.plus(Decimal.pow(2.5+0.5*Achieves[65],x.log10()-10));
+	y=y.plus(Decimal.pow(2.5+0.3*Achieves[65],x.log10()-10));
 	if (Achieves[62]==0) {
 		Achieves[62]++;
 		document.getElementById("A7C3").setAttribute("style","background-color: #5B5;");
@@ -300,8 +300,8 @@ function NPowIncrease(){
 	NPOW=NPOW.plus(FicNeg[0].plus(negatives[0]).mul((1.33+0.17*Skills[18])**(negatives[0]*(1+Achieves[39]*1e-4*math.log10(1+positives[9])*math.log(2+8*Skills[25])/math.log(2)))*0.033));
 	if (x.lt(1e10)){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
 	else {
-		document.getElementById('PrestigeN').innerHTML =Decimal.pow(2.5+0.5*Achieves[65],x.log10()-10).toExponential(3);
-		y=y.plus(Decimal.mul(Decimal.pow(2.5+0.5*Achieves[65],x.log10()-10),(0.01*(Skills[16]+Skills[32]+Skills[44]+Skills[6]+Skills[36]+5*Skills[37]))*0.033));
+		document.getElementById('PrestigeN').innerHTML =Decimal.pow(2.5+0.3*Achieves[65],x.log10()-10).toExponential(3);
+		y=y.plus(Decimal.mul(Decimal.pow(2.5+0.3*Achieves[65],x.log10()-10),(0.01*(Skills[16]+Skills[32]+Skills[44]+Skills[6]+Skills[36]+5*Skills[37]))*0.033));
 	}
 }
 function PrestigeNull(){
@@ -974,10 +974,10 @@ function Import(){
 	NPOW=NPOW.plus(FicNeg[0].plus(negatives[0]).mul((1.33+0.17*Skills[18])**(negatives[0]*(1+Achieves[39]*1e-4*math.log10(1+positives[9])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff));
 	if (x.lt(1e10)){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
 	else {
-		document.getElementById('PrestigeN').innerHTML =Decimal.pow(2.5+0.5*Achieves[65],x.log10()-10).toExponential(3);
-		y=y.plus(Decimal.mul(Decimal.pow(2.5+0.5*Achieves[65],x.log10()-10),(0.01*(Skills[16]+Skills[32]+Skills[44]+Skills[6]+Skills[36]+5*Skills[37]))*0.033*diff));
+		document.getElementById('PrestigeN').innerHTML =Decimal.pow(2.5+0.3*Achieves[65],x.log10()-10).toExponential(3);
+		y=y.plus(Decimal.mul(Decimal.pow(2.5+0.3*Achieves[65],x.log10()-10),(0.01*(Skills[16]+Skills[32]+Skills[44]+Skills[6]+Skills[36]+5*Skills[37]))*0.033*diff));
 	}
-	DPSCALC=Decimal.mul(MAX**(1+Skills[28]+Skills[40]+Skills[3]+Skills[30]+Skills[41]+Skills[53]+Skills[47]+Skills[24]+Skills[38])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1]),NPOW.plus(1).pow(1+Achieves[66]));
+	DPSCALC=Decimal.mul(MAX**(1+Skills[28]+Skills[40]+Skills[3]+Skills[30]+Skills[41]+Skills[53]+Skills[47]+Skills[24]+Skills[38])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1]),NPOW.plus(1).pow(1+Achieves[66]*0.5));
     DPSCALC=Decimal.mul(Decimal.add(1,Decimal.mul(0.1*Skills[27]+0.2*Skills[42]+0.3*Skills[20]+0.4*Skills[57],y.plus(1).log(10-8*Skills[14]))),Decimal.mul(Decimal.mul((1.5+0.1*Skills[0])**(positives[0]*(1+Achieves[30]*1e-4*math.log10(1+negatives[9]))),Decimal.mul((1.5+0.1*Skills[29])**(positives[1]*(1+Achieves[31]*1e-4*math.log10(1+negatives[8]))),Decimal.mul((1.5+0.1*Skills[31])**(positives[2]*(1+Achieves[32]*1e-4*math.log10(1+negatives[7]))),Decimal.mul((1.5+0.1*Skills[7])**(positives[3]*(1+Achieves[33]*1e-4*math.log10(1+negatives[6]))),Decimal.mul((1.5+0.1*Skills[34])**(positives[4]*(1+Achieves[34]*1e-4*math.log10(1+negatives[5]))),Decimal.mul((1.5+0.1*Skills[35])**(positives[5]*(1+Achieves[35]*1e-4*math.log10(1+negatives[4]))),Decimal.mul((1.5+0.1*Skills[9])**(positives[6]*(1+Achieves[36]*1e-4*math.log10(1+negatives[3]))),Decimal.mul((1.5+0.1*Skills[48])**(positives[7]*(1+Achieves[37]*1e-4*math.log10(1+negatives[2]))),Decimal.mul((1.5+0.1*Skills[49])**(positives[8]*(1+Achieves[38]*1e-4*math.log10(1+negatives[1]))),(1.5+0.1*Skills[26])**(positives[9]*(1+Achieves[39]*1e-4*math.log10(1+negatives[0])))))))))))),DPSCALC));
     x=x.plus(DPSCALC.mul(33*diff/tickspeed));
   }}
@@ -1022,10 +1022,10 @@ if(localStorage.MCur) {
 	NPOW=NPOW.plus(FicNeg[0].plus(negatives[0]).mul((1.33+0.17*Skills[18])**(negatives[0]*(1+Achieves[39]*1e-4*math.log10(1+positives[9])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff));
 	if (x.lt(1e10)){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
 	else {
-		document.getElementById('PrestigeN').innerHTML =Decimal.pow(2.5+0.5*Achieves[65],x.log10()-10).toExponential(3);
-		y=y.plus(Decimal.mul(Decimal.pow(2.5+0.5*Achieves[65],x.log10()-10),(0.01*(Skills[16]+Skills[32]+Skills[44]+Skills[6]+Skills[36]+5*Skills[37]))*0.033*diff));
+		document.getElementById('PrestigeN').innerHTML =Decimal.pow(2.5+0.3*Achieves[65],x.log10()-10).toExponential(3);
+		y=y.plus(Decimal.mul(Decimal.pow(2.5+0.3*Achieves[65],x.log10()-10),(0.01*(Skills[16]+Skills[32]+Skills[44]+Skills[6]+Skills[36]+5*Skills[37]))*0.033*diff));
 	}
-	DPSCALC=Decimal.mul(MAX**(1+Skills[28]+Skills[40]+Skills[3]+Skills[30]+Skills[41]+Skills[53]+Skills[47]+Skills[24]+Skills[38])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1]),NPOW.plus(1).pow(1+Achieves[66]));
+	DPSCALC=Decimal.mul(MAX**(1+Skills[28]+Skills[40]+Skills[3]+Skills[30]+Skills[41]+Skills[53]+Skills[47]+Skills[24]+Skills[38])*(AchMult**math.sum(Achieves))*(2**OtherQuantity[1]),NPOW.plus(1).pow(1+Achieves[66]*0.5));
     DPSCALC=Decimal.mul(Decimal.add(1,Decimal.mul(0.1*Skills[27]+0.2*Skills[42]+0.3*Skills[20]+0.4*Skills[57],y.plus(1).log(10-8*Skills[14]))),Decimal.mul(Decimal.mul((1.5+0.1*Skills[0])**(positives[0]*(1+Achieves[30]*1e-4*math.log10(1+negatives[9]))),Decimal.mul((1.5+0.1*Skills[29])**(positives[1]*(1+Achieves[31]*1e-4*math.log10(1+negatives[8]))),Decimal.mul((1.5+0.1*Skills[31])**(positives[2]*(1+Achieves[32]*1e-4*math.log10(1+negatives[7]))),Decimal.mul((1.5+0.1*Skills[7])**(positives[3]*(1+Achieves[33]*1e-4*math.log10(1+negatives[6]))),Decimal.mul((1.5+0.1*Skills[34])**(positives[4]*(1+Achieves[34]*1e-4*math.log10(1+negatives[5]))),Decimal.mul((1.5+0.1*Skills[35])**(positives[5]*(1+Achieves[35]*1e-4*math.log10(1+negatives[4]))),Decimal.mul((1.5+0.1*Skills[9])**(positives[6]*(1+Achieves[36]*1e-4*math.log10(1+negatives[3]))),Decimal.mul((1.5+0.1*Skills[48])**(positives[7]*(1+Achieves[37]*1e-4*math.log10(1+negatives[2]))),Decimal.mul((1.5+0.1*Skills[49])**(positives[8]*(1+Achieves[38]*1e-4*math.log10(1+negatives[1]))),(1.5+0.1*Skills[26])**(positives[9]*(1+Achieves[39]*1e-4*math.log10(1+negatives[0])))))))))))),DPSCALC));
     x=x.plus(DPSCALC.mul(33*diff/tickspeed));
 }

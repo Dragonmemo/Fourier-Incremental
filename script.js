@@ -597,7 +597,7 @@ function GetSkill(n){
 			document.getElementById("SliderM9").setAttribute("hidden",true);
 			document.getElementById("PhiM9").value=50/9;
 		}
-		if (n==2 || n==51 || n==17 || n==4 || n==5 || n==54 || n==55 || n==8 || n==10 || n==56 || n==58 || n==13 || n==37 || n==61){
+		if (n==2 || n==63 || n==62 || n==15 || n==51 || n==17 || n==4 || n==5 || n==54 || n==55 || n==8 || n==10 || n==56 || n==58 || n==13 || n==37 || n==61){
 			if (Skills[64]==0 && Skills[2]==1 && Skills[51]==1){
 				Skills[64]++;
 				document.getElementById("SV3").setAttribute("style","display:none");

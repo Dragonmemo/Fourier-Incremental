@@ -347,50 +347,50 @@ function GetSkill(n){
 		Achieves[69]++;}
 		if (n==0){//C1 pow
 			document.getElementById("ST1").removeAttribute("hidden");
-			document.getElementById("SV1").setAttribute("hidden",true);
+			document.getElementById("SV1").setAttribute("style","display:none");
 			document.getElementById("Slider1").setAttribute("hidden",true);
 			document.getElementById("Phi1").value=75;
 		}
 		if (n==1){//C1.s
-			document.getElementById("SV2").setAttribute("hidden",true);
+			document.getElementById("SV2").setAttribute("style","display:none");
 			document.getElementById("ST2").removeAttribute("hidden");
 		}
 		if (n==3){//DistMult
-			document.getElementById("SV18").setAttribute("hidden",true);
+			document.getElementById("SV18").setAttribute("style","display:none");
 			document.getElementById("ST18").removeAttribute("hidden");
 		}
 		if (n==6){//1% NP.s
-			document.getElementById("SV21").setAttribute("hidden",true);
-			document.getElementById("SV7").setAttribute("hidden",true);
+			document.getElementById("SV21").setAttribute("style","display:none");
+			document.getElementById("SV7").setAttribute("style","display:none");
 			document.getElementById("ST21").removeAttribute("hidden");
 			document.getElementById("ST7").removeAttribute("hidden");
 		}
 		if (n==7){//C4 pow
-			document.getElementById("SV22").setAttribute("hidden",true);
+			document.getElementById("SV22").setAttribute("style","display:none");
 			document.getElementById("ST22").removeAttribute("hidden");
 		    document.getElementById("Slider4").setAttribute("hidden",true);
 			document.getElementById("Phi4").value=25+50/4;
 		}
 		if (n==9){//C7 pow
-			document.getElementById("SV8").setAttribute("hidden",true);
-			document.getElementById("SV10").setAttribute("hidden",true);
+			document.getElementById("SV8").setAttribute("style","display:none");
+			document.getElementById("SV10").setAttribute("style","display:none");
 			document.getElementById("ST8").removeAttribute("hidden");
 		    document.getElementById("ST10").removeAttribute("hidden");
 		    document.getElementById("Slider7").setAttribute("hidden",true);
 			document.getElementById("Phi7").value=25+50/7;
 		}
 		if (n==11){//NEW C-7 pow
-			document.getElementById("SV12").setAttribute("hidden",true);
+			document.getElementById("SV12").setAttribute("style","display:none");
 			document.getElementById("ST12").removeAttribute("hidden");
 		    document.getElementById("SliderM7").setAttribute("hidden",true);
 			document.getElementById("PhiM7").value=50/7;
 		}
 		if (n==12){//NEW C7.s
-			document.getElementById("SV13").setAttribute("hidden",true);
+			document.getElementById("SV13").setAttribute("style","display:none");
 			document.getElementById("ST13").removeAttribute("hidden");
 		}
 		if (n==14){//NEW Log2 change
-			document.getElementById("SV25").setAttribute("hidden",true);
+			document.getElementById("SV25").setAttribute("style","display:none");
 			document.getElementById("ST25").removeAttribute("hidden");
 		}
 		if (n==15){//NEW C-10 pow
@@ -398,199 +398,199 @@ function GetSkill(n){
 			document.getElementById("PhiM10").value=50/10;
 		}
 		if (n==16){//1% NP.s
-			document.getElementById("SV0").setAttribute("hidden",true);
+			document.getElementById("SV0").setAttribute("style","display:none");
 			document.getElementById("ST0").removeAttribute("hidden");
 		}
 		if (n==18){//C-1 pow
-			document.getElementById("SV30").setAttribute("hidden",true);
+			document.getElementById("SV30").setAttribute("style","display:none");
 			document.getElementById("ST30").removeAttribute("hidden");
 			document.getElementById("SliderM1").setAttribute("hidden",true);
 			document.getElementById("PhiM1").value=50;
 		}
 		if (n==19){//C-3 pow
-			document.getElementById("SV4").setAttribute("hidden",true);
+			document.getElementById("SV4").setAttribute("style","display:none");
 			document.getElementById("ST4").removeAttribute("hidden");
 			document.getElementById("SliderM3").setAttribute("hidden",true);
 			document.getElementById("PhiM3").value=50/3;
 		}
 		if (n==20){//NP log 0.3
-			document.getElementById("SV5").setAttribute("hidden",true);
+			document.getElementById("SV5").setAttribute("style","display:none");
 			document.getElementById("ST5").removeAttribute("hidden");
 		}
 		if (n==21){//C3.s
-			document.getElementById("SV33").setAttribute("hidden",true);
+			document.getElementById("SV33").setAttribute("style","display:none");
 			document.getElementById("ST33").removeAttribute("hidden");
 		}
 		if (n==22){//C-4 pow
-			document.getElementById("SV34").setAttribute("hidden",true);
+			document.getElementById("SV34").setAttribute("style","display:none");
 			document.getElementById("ST34").removeAttribute("hidden");
 			document.getElementById("SliderM4").setAttribute("hidden",true);
 			document.getElementById("PhiM4").value=50/4;
 		}
 		if (n==23){//C-6 pow
-			document.getElementById("SV9").setAttribute("hidden",true);
+			document.getElementById("SV9").setAttribute("style","display:none");
 			document.getElementById("ST9").removeAttribute("hidden");
 			document.getElementById("SliderM6").setAttribute("hidden",true);
 			document.getElementById("PhiM6").value=50/6;
 		}
 		if (n==24){//NEW DistMult
-			document.getElementById("SV11").setAttribute("hidden",true);
+			document.getElementById("SV11").setAttribute("style","display:none");
 			document.getElementById("ST11").removeAttribute("hidden");
 		}
 		if (n==25){//NEW DistMult
-			document.getElementById("SV38").setAttribute("hidden",true);
+			document.getElementById("SV38").setAttribute("style","display:none");
 			document.getElementById("ST38").removeAttribute("hidden");
 		}
 		if (n==26){//NEW C10 pow
-			document.getElementById("SV15").setAttribute("hidden",true);
+			document.getElementById("SV15").setAttribute("style","display:none");
 			document.getElementById("ST15").removeAttribute("hidden");
 			document.getElementById("Slider10").setAttribute("hidden",true);
 			document.getElementById("Phi10").value=25+50/10;
 		}
 		if (n==27){//NP log 0.1
-			document.getElementById("SV16").setAttribute("hidden",true);
-			document.getElementById("SV40").setAttribute("hidden",true);
+			document.getElementById("SV16").setAttribute("style","display:none");
+			document.getElementById("SV40").setAttribute("style","display:none");
 			document.getElementById("ST16").removeAttribute("hidden");
 			document.getElementById("ST40").removeAttribute("hidden");
 		}
 		if (n==28){//DistMult
-			document.getElementById("SV27").setAttribute("hidden",true);
+			document.getElementById("SV27").setAttribute("style","display:none");
 			document.getElementById("ST27").removeAttribute("hidden");
 		}
 		if (n==29){//C2 Pow
-			document.getElementById("SV17").setAttribute("hidden",true);
+			document.getElementById("SV17").setAttribute("style","display:none");
 			document.getElementById("ST17").removeAttribute("hidden");
 			document.getElementById("Slider2").setAttribute("hidden",true);
 			document.getElementById("Phi2").value=25+50/2;
 		}
 		if (n==30){//DistMult
-			document.getElementById("SV42").setAttribute("hidden",true);
+			document.getElementById("SV42").setAttribute("style","display:none");
 			document.getElementById("ST42").removeAttribute("hidden");
 		}
 		if (n==31){//C3 Pow
-			document.getElementById("SV19").setAttribute("hidden",true);
+			document.getElementById("SV19").setAttribute("style","display:none");
 			document.getElementById("ST19").removeAttribute("hidden");
 		    document.getElementById("Slider3").setAttribute("hidden",true);
 			document.getElementById("Phi3").value=25+50/3;
 			}
 		if (n==32){//1% NP.s
-			document.getElementById("SV20").setAttribute("hidden",true);
+			document.getElementById("SV20").setAttribute("style","display:none");
 			document.getElementById("ST20").removeAttribute("hidden");
 		}		
 		if (n==33){//C4.s
-			document.getElementById("SV45").setAttribute("hidden",true);
+			document.getElementById("SV45").setAttribute("style","display:none");
 			document.getElementById("ST45").removeAttribute("hidden");
 		}
 		if (n==34){//C5 pow
-			document.getElementById("SV46").setAttribute("hidden",true);
+			document.getElementById("SV46").setAttribute("style","display:none");
 			document.getElementById("ST46").removeAttribute("hidden");
 			document.getElementById("Slider5").setAttribute("hidden",true);
 			document.getElementById("Phi5").value=25+50/5;
 		}
 		if (n==35){//C6 pow
-			document.getElementById("SV23").setAttribute("hidden",true);
-			document.getElementById("SV47").setAttribute("hidden",true);
+			document.getElementById("SV23").setAttribute("style","display:none");
+			document.getElementById("SV47").setAttribute("style","display:none");
 			document.getElementById("ST47").removeAttribute("hidden");
 			document.getElementById("ST23").removeAttribute("hidden");
 			document.getElementById("Slider6").setAttribute("hidden",true);
 			document.getElementById("Phi6").value=25+50/6;
 		}
 		if (n==36){//NEW 1% NP.s
-			document.getElementById("SV37").setAttribute("hidden",true);
-			document.getElementById("SV24").setAttribute("hidden",true);
-			document.getElementById("SV48").setAttribute("hidden",true);
+			document.getElementById("SV37").setAttribute("style","display:none");
+			document.getElementById("SV24").setAttribute("style","display:none");
+			document.getElementById("SV48").setAttribute("style","display:none");
 			document.getElementById("ST37").removeAttribute("hidden");
 			document.getElementById("ST24").removeAttribute("hidden");
 			document.getElementById("ST48").removeAttribute("hidden");
 		}
 		if (n==38){//NEW C7.s
-			document.getElementById("SV39").setAttribute("hidden",true);
-			document.getElementById("SV49").setAttribute("hidden",true);
+			document.getElementById("SV39").setAttribute("style","display:none");
+			document.getElementById("SV49").setAttribute("style","display:none");
 			document.getElementById("ST39").removeAttribute("hidden");
 			document.getElementById("ST49").removeAttribute("hidden");
 		}
 		if (n==39){//NEW C-9.s
-			document.getElementById("SV26").setAttribute("hidden",true);
-			document.getElementById("SV50").setAttribute("hidden",true);
+			document.getElementById("SV26").setAttribute("style","display:none");
+			document.getElementById("SV50").setAttribute("style","display:none");
 			document.getElementById("ST26").removeAttribute("hidden");
 			document.getElementById("ST50").removeAttribute("hidden");
 		}
 		if (n==40){//DistMult
-			document.getElementById("SV51").setAttribute("hidden",true);
+			document.getElementById("SV51").setAttribute("style","display:none");
 			document.getElementById("ST51").removeAttribute("hidden");
 		}
 		if (n==41){//DistMult
-			document.getElementById("SV29").setAttribute("hidden",true);
+			document.getElementById("SV29").setAttribute("style","display:none");
 			document.getElementById("ST29").removeAttribute("hidden");
 		}
 		if (n==42){//NP log 0.2
-			document.getElementById("SV52").setAttribute("hidden",true);
+			document.getElementById("SV52").setAttribute("style","display:none");
 			document.getElementById("ST52").removeAttribute("hidden");
 		}
 		if (n==43){//C-2 Pow
-			document.getElementById("SV31").setAttribute("hidden",true);
+			document.getElementById("SV31").setAttribute("style","display:none");
 			document.getElementById("ST31").removeAttribute("hidden");
 			document.getElementById("SliderM2").setAttribute("hidden",true);
 			document.getElementById("PhiM2").value=50/2;
 		}
 		if (n==44){//1% NP.s
-			document.getElementById("SV32").setAttribute("hidden",true);
+			document.getElementById("SV32").setAttribute("style","display:none");
 			document.getElementById("ST32").removeAttribute("hidden");
 		}
 		if (n==45){//C5.s
-			document.getElementById("SV54").setAttribute("hidden",true);
+			document.getElementById("SV54").setAttribute("style","display:none");
 			document.getElementById("ST54").removeAttribute("hidden");
 		}
 		if (n==46){//C-5 pow
-			document.getElementById("SV55").setAttribute("hidden",true);
+			document.getElementById("SV55").setAttribute("style","display:none");
 			document.getElementById("ST55").removeAttribute("hidden");
 			document.getElementById("SliderM5").setAttribute("hidden",true);
 			document.getElementById("PhiM5").value=50/5;
 		}
 		if (n==47){//DistMult
-			document.getElementById("SV57").setAttribute("hidden",true);
+			document.getElementById("SV57").setAttribute("style","display:none");
 			document.getElementById("ST57").removeAttribute("hidden");
 		}
 		if (n==48){//NEW C8 pow
-			document.getElementById("SV59").setAttribute("hidden",true);
+			document.getElementById("SV59").setAttribute("style","display:none");
 			document.getElementById("ST59").removeAttribute("hidden");
 			document.getElementById("Slider8").setAttribute("hidden",true);
 			document.getElementById("Phi8").value=25+50/8;
 		}
 		if (n==49){//NEW C9 pow
-			document.getElementById("SV62").setAttribute("hidden",true);
+			document.getElementById("SV62").setAttribute("style","display:none");
 			document.getElementById("ST62").removeAttribute("hidden");
 			document.getElementById("Slider9").setAttribute("hidden",true);
 			document.getElementById("Phi9").value=25+50/9;
 		}
 		if (n==50){//NEW C10.s
-			document.getElementById("SV63").setAttribute("hidden",true);
+			document.getElementById("SV63").setAttribute("style","display:none");
 			document.getElementById("ST63").removeAttribute("hidden");
 		}
 		if (n==52){//C2.s
-			document.getElementById("SV41").setAttribute("hidden",true);
+			document.getElementById("SV41").setAttribute("style","display:none");
 			document.getElementById("ST41").removeAttribute("hidden");
 		}
 		if (n==53){//DistMult
-			document.getElementById("SV43").setAttribute("hidden",true);
-			document.getElementById("SV44").setAttribute("hidden",true);
+			document.getElementById("SV43").setAttribute("style","display:none");
+			document.getElementById("SV44").setAttribute("style","display:none");
 			document.getElementById("ST43").removeAttribute("hidden");
 		    document.getElementById("ST44").removeAttribute("hidden");
 		}
 		if (n==57){//NP log 0.4
-			document.getElementById("SV56").setAttribute("hidden",true);
-			document.getElementById("SV58").setAttribute("hidden",true);
+			document.getElementById("SV56").setAttribute("style","display:none");
+			document.getElementById("SV58").setAttribute("style","display:none");
 			document.getElementById("ST56").removeAttribute("hidden");
 			document.getElementById("ST58").removeAttribute("hidden");
 		}
 		if (n==59){//NEW C-8 pow
-			document.getElementById("SV60").setAttribute("hidden",true);
+			document.getElementById("SV60").setAttribute("style","display:none");
 			document.getElementById("ST60").removeAttribute("hidden");
 			document.getElementById("SliderM8").setAttribute("hidden",true);
 			document.getElementById("PhiM8").value=50/8;
 		}
 		if (n==60){//NEW C8.s
-			document.getElementById("SV61").setAttribute("hidden",true);
+			document.getElementById("SV61").setAttribute("style","display:none");
 			document.getElementById("ST61").removeAttribute("hidden");
 		}
 		if (n==62){//NEW C-9 pow
@@ -600,32 +600,32 @@ function GetSkill(n){
 		if (n==2 || n==51 || n==17 || n==4 || n==5 || n==54 || n==55 || n==8 || n==10 || n==56 || n==58 || n==13 || n==37 || n==61){
 			if (Skills[64]==0 && Skills[2]==1 && Skills[51]==1){
 				Skills[64]++;
-				document.getElementById("SV3").setAttribute("hidden",true);
+				document.getElementById("SV3").setAttribute("style","display:none");
 				document.getElementById("ST3").removeAttribute("hidden");
 			}
 			if (Skills[64]==1 && Skills[2]==1 && Skills[51]==1 && Skills[17]==1){
 				Skills[64]++;
-				document.getElementById("SV53").setAttribute("hidden",true);
+				document.getElementById("SV53").setAttribute("style","display:none");
 				document.getElementById("ST53").removeAttribute("hidden");
 			}
 			if (Skills[64]==2 && Skills[2]==1 && Skills[51]==1 && Skills[17]==1 && Skills[4]==1 && Skills[5]==1 ){
 				Skills[64]++;
-				document.getElementById("SV6").setAttribute("hidden",true);
+				document.getElementById("SV6").setAttribute("style","display:none");
 				document.getElementById("ST6").removeAttribute("hidden");
 			}
 			if (Skills[64]==3 && Skills[2]==1 && Skills[51]==1 && Skills[17]==1 && Skills[4]==1 && Skills[5]==1 && Skills[54]==1 && Skills[55]==1){
 				Skills[64]++;
-				document.getElementById("SV35").setAttribute("hidden",true);
+				document.getElementById("SV35").setAttribute("style","display:none");
 				document.getElementById("ST35").removeAttribute("hidden");
 			}
 			if (Skills[64]==4 && Skills[2]==1 && Skills[51]==1 && Skills[17]==1 && Skills[4]==1 && Skills[5]==1 && Skills[54]==1 && Skills[55]==1 && Skills[56]==1 && Skills[58]==1 && Skills[8]==1 && Skills[10]==1){
 				Skills[64]++;
-				document.getElementById("SV36").setAttribute("hidden",true);
+				document.getElementById("SV36").setAttribute("style","display:none");
 				document.getElementById("ST36").removeAttribute("hidden");
 			}
 			if (Skills[64]==5 && Skills[2]==1 && Skills[51]==1 && Skills[17]==1 && Skills[4]==1 && Skills[5]==1 && Skills[54]==1 && Skills[55]==1 && Skills[56]==1 && Skills[58]==1 && Skills[8]==1 && Skills[10]==1 && Skills[13]==1 && Skills[37]==1 && Skills[61]==1){
 				Skills[64]++;
-				document.getElementById("SV14").setAttribute("hidden",true);
+				document.getElementById("SV14").setAttribute("style","display:none");
 				document.getElementById("ST14").removeAttribute("hidden");
 			}
 			if (math.sum(Skills.slice(0,64))==64){
@@ -713,22 +713,22 @@ function GetSkillTree(){
 	Zero--;
 	document.getElementById("NBNullif").innerHTML=(Zero-math.sum(Skills.slice(0,64)));
 	if (Skills[64]>0){
-		document.getElementById("SV3").setAttribute("hidden",true);
+		document.getElementById("SV3").setAttribute("style","display:none");
 		document.getElementById("ST3").removeAttribute("hidden");
 		if (Skills[64]>1){
-			document.getElementById("SV53").setAttribute("hidden",true);
+			document.getElementById("SV53").setAttribute("style","display:none");
 			document.getElementById("ST53").removeAttribute("hidden");
 		if (Skills[64]>2){
-			document.getElementById("SV6").setAttribute("hidden",true);
+			document.getElementById("SV6").setAttribute("style","display:none");
 			document.getElementById("ST6").removeAttribute("hidden");
 		if (Skills[64]>3){
-			document.getElementById("SV35").setAttribute("hidden",true);
+			document.getElementById("SV35").setAttribute("style","display:none");
 			document.getElementById("ST35").removeAttribute("hidden");
 		if (Skills[64]>4){
-			document.getElementById("SV36").setAttribute("hidden",true);
+			document.getElementById("SV36").setAttribute("style","display:none");
 			document.getElementById("ST36").removeAttribute("hidden");
 		if (Skills[64]>5){
-			document.getElementById("SV14").setAttribute("hidden",true);
+			document.getElementById("SV14").setAttribute("style","display:none");
 			document.getElementById("ST14").removeAttribute("hidden");
 		}}}}}
 	}
@@ -817,7 +817,7 @@ function ResetST(){
 		Skills[i]=0;
 		document.getElementById("SB"+i).removeAttribute("hidden");
 		if (i!=28){
-		document.getElementById("SV"+i).removeAttribute("hidden");
+		document.getElementById("SV"+i).removeAttribute("style");
 		document.getElementById("ST"+i).setAttribute("hidden",true);}
 	}
 	for (i=0;i<10;i++){
@@ -825,24 +825,24 @@ function ResetST(){
 	document.getElementById("Phi"+(i+1)).value=100;	
 	}
 	document.getElementById("NBNullif").innerHTML=(Zero-math.sum(Skills.slice(0,64)));
-	document.getElementById("Autosave").setAttribute("hidden",true);
+	document.getElementById("Autosave").setAttribute("style","display:none");
 	if (Skills[64]>0){
-		document.getElementById("SV3").setAttribute("hidden",true);
+		document.getElementById("SV3").setAttribute("style","display:none");
 		document.getElementById("ST3").removeAttribute("hidden");
 		if (Skills[64]>1){
-			document.getElementById("SV53").setAttribute("hidden",true);
+			document.getElementById("SV53").setAttribute("style","display:none");
 			document.getElementById("ST53").removeAttribute("hidden");
 			if (Skills[64]>2){
-				document.getElementById("SV6").setAttribute("hidden",true);
+				document.getElementById("SV6").setAttribute("style","display:none");
 				document.getElementById("ST6").removeAttribute("hidden");
 				if (Skills[64]>3){
-					document.getElementById("SV35").setAttribute("hidden",true);
+					document.getElementById("SV35").setAttribute("style","display:none");
 					document.getElementById("ST35").removeAttribute("hidden");
 					if (Skills[64]>4){
-						document.getElementById("SV36").setAttribute("hidden",true);
+						document.getElementById("SV36").setAttribute("style","display:none");
 						document.getElementById("ST36").removeAttribute("hidden");
 						if (Skills[64]>5){
-							document.getElementById("SV14").setAttribute("hidden",true);
+							document.getElementById("SV14").setAttribute("style","display:none");
 							document.getElementById("ST14").removeAttribute("hidden");
 						}
 					}

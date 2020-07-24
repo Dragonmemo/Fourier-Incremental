@@ -288,16 +288,16 @@ function PrestigeNegative(){
 	FormulaRewriter();
 }
 function NPowIncrease(){
-	FicNeg[8]=FicNeg[8].plus(FicNeg[9].plus(negatives[9]).mul((1.33+0.17*Skills[15])**(negatives[9]*(1+Achieves[30]*0.1*math.log10(positives[0])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
-	FicNeg[7]=FicNeg[7].plus(FicNeg[8].plus(negatives[8]).mul((1.33+0.17*Skills[62])**(negatives[8]*(1+Achieves[31]*0.1*math.log10(positives[1])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
-	FicNeg[6]=FicNeg[6].plus(FicNeg[7].plus(negatives[7]).mul((1.33+0.17*Skills[59])**(negatives[7]*(1+Achieves[32]*0.1*math.log10(positives[2])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
-	FicNeg[5]=FicNeg[5].plus(FicNeg[6].plus(negatives[6]).mul((1.33+0.17*Skills[11])**(negatives[6]*(1+Achieves[33]*0.1*math.log10(positives[3])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
-	FicNeg[4]=FicNeg[4].plus(FicNeg[5].plus(negatives[5]).mul((1.33+0.17*Skills[23])**(negatives[5]*(1+Achieves[34]*0.1*math.log10(positives[4])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
-	FicNeg[3]=FicNeg[3].plus(FicNeg[4].plus(negatives[4]).mul((1.33+0.17*Skills[46])**(negatives[4]*(1+Achieves[35]*0.1*math.log10(positives[5])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
-	FicNeg[2]=FicNeg[2].plus(FicNeg[3].plus(negatives[3]).mul((1.33+0.17*Skills[22])**(negatives[3]*(1+Achieves[36]*0.1*math.log10(positives[6])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
-	FicNeg[1]=FicNeg[1].plus(FicNeg[2].plus(negatives[2]).mul((1.33+0.17*Skills[19])**(negatives[2]*(1+Achieves[37]*0.1*math.log10(positives[7])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
-	FicNeg[0]=FicNeg[0].plus(FicNeg[1].plus(negatives[1]).mul((1.33+0.17*Skills[43])**(negatives[1]*(1+Achieves[38]*0.1*math.log10(positives[8])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
-	NPOW=NPOW.plus(FicNeg[0].plus(negatives[0]).mul((1.33+0.17*Skills[18])**(negatives[0]*(1+Achieves[39]*0.1*math.log10(positives[9])*math.log(2+8*Skills[25])/math.log(2)))*0.033));
+	FicNeg[8]=FicNeg[8].plus(FicNeg[9].plus(negatives[9]).mul((1.33+0.17*Skills[15])**(negatives[9]*(1+Achieves[30]*0.01*math.log10(positives[0])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
+	FicNeg[7]=FicNeg[7].plus(FicNeg[8].plus(negatives[8]).mul((1.33+0.17*Skills[62])**(negatives[8]*(1+Achieves[31]*0.01*math.log10(positives[1])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
+	FicNeg[6]=FicNeg[6].plus(FicNeg[7].plus(negatives[7]).mul((1.33+0.17*Skills[59])**(negatives[7]*(1+Achieves[32]*0.01*math.log10(positives[2])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
+	FicNeg[5]=FicNeg[5].plus(FicNeg[6].plus(negatives[6]).mul((1.33+0.17*Skills[11])**(negatives[6]*(1+Achieves[33]*0.01*math.log10(positives[3])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
+	FicNeg[4]=FicNeg[4].plus(FicNeg[5].plus(negatives[5]).mul((1.33+0.17*Skills[23])**(negatives[5]*(1+Achieves[34]*0.01*math.log10(positives[4])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
+	FicNeg[3]=FicNeg[3].plus(FicNeg[4].plus(negatives[4]).mul((1.33+0.17*Skills[46])**(negatives[4]*(1+Achieves[35]*0.01*math.log10(positives[5])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
+	FicNeg[2]=FicNeg[2].plus(FicNeg[3].plus(negatives[3]).mul((1.33+0.17*Skills[22])**(negatives[3]*(1+Achieves[36]*0.01*math.log10(positives[6])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
+	FicNeg[1]=FicNeg[1].plus(FicNeg[2].plus(negatives[2]).mul((1.33+0.17*Skills[19])**(negatives[2]*(1+Achieves[37]*0.01*math.log10(positives[7])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
+	FicNeg[0]=FicNeg[0].plus(FicNeg[1].plus(negatives[1]).mul((1.33+0.17*Skills[43])**(negatives[1]*(1+Achieves[38]*0.01*math.log10(positives[8])*math.log(2+8*Skills[25])/math.log(2)))*0.033))
+	NPOW=NPOW.plus(FicNeg[0].plus(negatives[0]).mul((1.33+0.17*Skills[18])**(negatives[0]*(1+Achieves[39]*0.01*math.log10(positives[9])*math.log(2+8*Skills[25])/math.log(2)))*0.033));
 	if (x.lt(1e10)){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
 	else {
 		document.getElementById('PrestigeN').innerHTML =Decimal.pow(2.5+0.5*Achieves[65],x.log10()-10).toExponential(3);
@@ -963,16 +963,16 @@ function Import(){
 	  GetAchieves();
 	  GetSkillTree();
 	  FormulaRewriter();
-	FicNeg[8]=FicNeg[8].plus(FicNeg[9].plus(negatives[9]).mul((1.33+0.17*Skills[15])**(negatives[9]*(1+Achieves[30]*0.1*math.log10(positives[0])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
-	FicNeg[7]=FicNeg[7].plus(FicNeg[8].plus(negatives[8]).mul((1.33+0.17*Skills[62])**(negatives[8]*(1+Achieves[31]*0.1*math.log10(positives[1])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
-	FicNeg[6]=FicNeg[6].plus(FicNeg[7].plus(negatives[7]).mul((1.33+0.17*Skills[59])**(negatives[7]*(1+Achieves[32]*0.1*math.log10(positives[2])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
-	FicNeg[5]=FicNeg[5].plus(FicNeg[6].plus(negatives[6]).mul((1.33+0.17*Skills[11])**(negatives[6]*(1+Achieves[33]*0.1*math.log10(positives[3])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
-	FicNeg[4]=FicNeg[4].plus(FicNeg[5].plus(negatives[5]).mul((1.33+0.17*Skills[23])**(negatives[5]*(1+Achieves[34]*0.1*math.log10(positives[4])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
-	FicNeg[3]=FicNeg[3].plus(FicNeg[4].plus(negatives[4]).mul((1.33+0.17*Skills[46])**(negatives[4]*(1+Achieves[35]*0.1*math.log10(positives[5])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
-	FicNeg[2]=FicNeg[2].plus(FicNeg[3].plus(negatives[3]).mul((1.33+0.17*Skills[22])**(negatives[3]*(1+Achieves[36]*0.1*math.log10(positives[6])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
-	FicNeg[1]=FicNeg[1].plus(FicNeg[2].plus(negatives[2]).mul((1.33+0.17*Skills[19])**(negatives[2]*(1+Achieves[37]*0.1*math.log10(positives[7])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
-	FicNeg[0]=FicNeg[0].plus(FicNeg[1].plus(negatives[1]).mul((1.33+0.17*Skills[43])**(negatives[1]*(1+Achieves[38]*0.1*math.log10(positives[8])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
-	NPOW=NPOW.plus(FicNeg[0].plus(negatives[0]).mul((1.33+0.17*Skills[18])**(negatives[0]*(1+Achieves[39]*0.1*math.log10(positives[9])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff));
+	FicNeg[8]=FicNeg[8].plus(FicNeg[9].plus(negatives[9]).mul((1.33+0.17*Skills[15])**(negatives[9]*(1+Achieves[30]*0.01*math.log10(positives[0])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[7]=FicNeg[7].plus(FicNeg[8].plus(negatives[8]).mul((1.33+0.17*Skills[62])**(negatives[8]*(1+Achieves[31]*0.01*math.log10(positives[1])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[6]=FicNeg[6].plus(FicNeg[7].plus(negatives[7]).mul((1.33+0.17*Skills[59])**(negatives[7]*(1+Achieves[32]*0.01*math.log10(positives[2])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[5]=FicNeg[5].plus(FicNeg[6].plus(negatives[6]).mul((1.33+0.17*Skills[11])**(negatives[6]*(1+Achieves[33]*0.01*math.log10(positives[3])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[4]=FicNeg[4].plus(FicNeg[5].plus(negatives[5]).mul((1.33+0.17*Skills[23])**(negatives[5]*(1+Achieves[34]*0.01*math.log10(positives[4])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[3]=FicNeg[3].plus(FicNeg[4].plus(negatives[4]).mul((1.33+0.17*Skills[46])**(negatives[4]*(1+Achieves[35]*0.01*math.log10(positives[5])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[2]=FicNeg[2].plus(FicNeg[3].plus(negatives[3]).mul((1.33+0.17*Skills[22])**(negatives[3]*(1+Achieves[36]*0.01*math.log10(positives[6])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[1]=FicNeg[1].plus(FicNeg[2].plus(negatives[2]).mul((1.33+0.17*Skills[19])**(negatives[2]*(1+Achieves[37]*0.01*math.log10(positives[7])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[0]=FicNeg[0].plus(FicNeg[1].plus(negatives[1]).mul((1.33+0.17*Skills[43])**(negatives[1]*(1+Achieves[38]*0.01*math.log10(positives[8])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	NPOW=NPOW.plus(FicNeg[0].plus(negatives[0]).mul((1.33+0.17*Skills[18])**(negatives[0]*(1+Achieves[39]*0.01*math.log10(positives[9])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff));
 	if (x.lt(1e10)){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
 	else {
 		document.getElementById('PrestigeN').innerHTML =Decimal.pow(2.5+0.5*Achieves[65],x.log10()-10).toExponential(3);
@@ -1011,16 +1011,16 @@ if(localStorage.MCur) {
   GetAchieves();
   GetSkillTree();
   FormulaRewriter();
-	FicNeg[8]=FicNeg[8].plus(FicNeg[9].plus(negatives[9]).mul((1.33+0.17*Skills[15])**(negatives[9]*(1+Achieves[30]*0.1*math.log10(positives[0])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
-	FicNeg[7]=FicNeg[7].plus(FicNeg[8].plus(negatives[8]).mul((1.33+0.17*Skills[62])**(negatives[8]*(1+Achieves[31]*0.1*math.log10(positives[1])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
-	FicNeg[6]=FicNeg[6].plus(FicNeg[7].plus(negatives[7]).mul((1.33+0.17*Skills[59])**(negatives[7]*(1+Achieves[32]*0.1*math.log10(positives[2])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
-	FicNeg[5]=FicNeg[5].plus(FicNeg[6].plus(negatives[6]).mul((1.33+0.17*Skills[11])**(negatives[6]*(1+Achieves[33]*0.1*math.log10(positives[3])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
-	FicNeg[4]=FicNeg[4].plus(FicNeg[5].plus(negatives[5]).mul((1.33+0.17*Skills[23])**(negatives[5]*(1+Achieves[34]*0.1*math.log10(positives[4])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
-	FicNeg[3]=FicNeg[3].plus(FicNeg[4].plus(negatives[4]).mul((1.33+0.17*Skills[46])**(negatives[4]*(1+Achieves[35]*0.1*math.log10(positives[5])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
-	FicNeg[2]=FicNeg[2].plus(FicNeg[3].plus(negatives[3]).mul((1.33+0.17*Skills[22])**(negatives[3]*(1+Achieves[36]*0.1*math.log10(positives[6])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
-	FicNeg[1]=FicNeg[1].plus(FicNeg[2].plus(negatives[2]).mul((1.33+0.17*Skills[19])**(negatives[2]*(1+Achieves[37]*0.1*math.log10(positives[7])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
-	FicNeg[0]=FicNeg[0].plus(FicNeg[1].plus(negatives[1]).mul((1.33+0.17*Skills[43])**(negatives[1]*(1+Achieves[38]*0.1*math.log10(positives[8])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
-	NPOW=NPOW.plus(FicNeg[0].plus(negatives[0]).mul((1.33+0.17*Skills[18])**(negatives[0]*(1+Achieves[39]*0.1*math.log10(positives[9])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff));
+	FicNeg[8]=FicNeg[8].plus(FicNeg[9].plus(negatives[9]).mul((1.33+0.17*Skills[15])**(negatives[9]*(1+Achieves[30]*0.01*math.log10(positives[0])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[7]=FicNeg[7].plus(FicNeg[8].plus(negatives[8]).mul((1.33+0.17*Skills[62])**(negatives[8]*(1+Achieves[31]*0.01*math.log10(positives[1])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[6]=FicNeg[6].plus(FicNeg[7].plus(negatives[7]).mul((1.33+0.17*Skills[59])**(negatives[7]*(1+Achieves[32]*0.01*math.log10(positives[2])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[5]=FicNeg[5].plus(FicNeg[6].plus(negatives[6]).mul((1.33+0.17*Skills[11])**(negatives[6]*(1+Achieves[33]*0.01*math.log10(positives[3])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[4]=FicNeg[4].plus(FicNeg[5].plus(negatives[5]).mul((1.33+0.17*Skills[23])**(negatives[5]*(1+Achieves[34]*0.01*math.log10(positives[4])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[3]=FicNeg[3].plus(FicNeg[4].plus(negatives[4]).mul((1.33+0.17*Skills[46])**(negatives[4]*(1+Achieves[35]*0.01*math.log10(positives[5])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[2]=FicNeg[2].plus(FicNeg[3].plus(negatives[3]).mul((1.33+0.17*Skills[22])**(negatives[3]*(1+Achieves[36]*0.01*math.log10(positives[6])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[1]=FicNeg[1].plus(FicNeg[2].plus(negatives[2]).mul((1.33+0.17*Skills[19])**(negatives[2]*(1+Achieves[37]*0.01*math.log10(positives[7])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	FicNeg[0]=FicNeg[0].plus(FicNeg[1].plus(negatives[1]).mul((1.33+0.17*Skills[43])**(negatives[1]*(1+Achieves[38]*0.01*math.log10(positives[8])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff))
+	NPOW=NPOW.plus(FicNeg[0].plus(negatives[0]).mul((1.33+0.17*Skills[18])**(negatives[0]*(1+Achieves[39]*0.01*math.log10(positives[9])*math.log(2+8*Skills[25])/math.log(2)))*0.033*diff));
 	if (x.lt(1e10)){document.getElementById('PrestigeN').innerHTML ="Need 1e10 DP";}
 	else {
 		document.getElementById('PrestigeN').innerHTML =Decimal.pow(2.5+0.5*Achieves[65],x.log10()-10).toExponential(3);

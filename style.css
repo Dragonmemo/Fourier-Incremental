@@ -182,3 +182,14 @@ button {
   padding: 1em;
   line-height: 1.4em;
 }
+
+.column {
+  border: 2px solid currentColor;
+  border-radius: 1em;
+  font-size: inherit;
+  line-height: 1.4em;
+  padding: 0.25em 1em;
+  max-width: 20ch;
+  float: left;
+  width: 100;
+}

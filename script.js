@@ -60,9 +60,9 @@ function myFunction() {
   else {x=x.plus(DPSCALC.mul(33/tickspeed));}
   ctx.beginPath();
   ctx.strokeStyle="#000000";
-  document.getElementById("MCur").innerHTML = "Drawing points (DP) : "+x.toExponential(3);
-  document.getElementById("DPS").innerHTML = Decimal.mul(DPSCALC,1000/tickspeed).toExponential(3);
-  if (Achieves[62]!=0){document.getElementById("PCur").innerHTML = "Negative points (NP) : "+y.toExponential(3);}
+  document.getElementById("MCur").innerHTML = "Drawing points (DP) : "+x.toPrecision(4);
+  document.getElementById("DPS").innerHTML = Decimal.mul(DPSCALC,1000/tickspeed).toPrecision(4);
+  if (Achieves[62]!=0){document.getElementById("PCur").innerHTML = "Negative points (NP) : "+y.toPrecision(4);}
   FourierCalculation(MAX);
   MAX=Math.max(MAX,Math.abs(coords[0]),Math.abs(coords[1]));
   LCoords.push(coords);
@@ -739,22 +739,18 @@ function FormulaRewriter(){
   document.getElementById('AcMult').innerHTML =AchMult;
   document.getElementById('C0V').innerHTML =-Zero;
   for (i=0;i<10;i++){
-		if (positives[i]!=0){
 		document.getElementById("C"+(i+1)+"V").innerHTML = positives[i];
 		document.getElementById("C"+(i+1)+"T").removeAttribute("hidden");
-		};
-		if (negatives[i]!=0){
 		document.getElementById("CM"+(i+1)+"V").innerHTML = negatives[i];
 		document.getElementById("CM"+(i+1)+"T").removeAttribute("hidden");
-		};
 		document.getElementById("C"+(i+1)).innerHTML = positives[i];
-		document.getElementById("C"+(i+1)+"c").innerHTML = "Cost : "+Decimal.pow(pbaseCost[i],positives[i]+1).toExponential(3)+"DP";
+		document.getElementById("C"+(i+1)+"c").innerHTML = "Cost : "+Decimal.pow(pbaseCost[i],positives[i]+1).toPrecision(4)+"DP";
 		document.getElementById("CM"+(i+1)).innerHTML = negatives[i];
-		document.getElementById("CM"+(i+1)+"c").innerHTML = "Cost : "+Decimal.pow(pbaseCost[i],negatives[i]+1).toExponential(3)+"NP";
+		document.getElementById("CM"+(i+1)+"c").innerHTML = "Cost : "+Decimal.pow(pbaseCost[i],negatives[i]+1).toPrecision(4)+"NP";
 	};
-	if (Achieves[61]==0){document.getElementById("QC").innerHTML = "Cost : "+Decimal.pow(5,(OtherQuantity[1]+1)**1.5).toExponential(3)+"DP";}
-	else {document.getElementById("QC").innerHTML = "Cost : "+Decimal.pow(5,(OtherQuantity[1]/2+1)**1.5).toExponential(3)+"DP";}
-	document.getElementById("TC").innerHTML = "Cost : "+Decimal.pow(10,OtherQuantity[0]).toExponential(3)+"DP";
+	if (Achieves[61]==0){document.getElementById("QC").innerHTML = "Cost : "+Decimal.pow(5,(OtherQuantity[1]+1)**1.5).toPrecision(4)+"DP";}
+	else {document.getElementById("QC").innerHTML = "Cost : "+Decimal.pow(5,(OtherQuantity[1]/2+1)**1.5).toPrecision(4)+"DP";}
+	document.getElementById("TC").innerHTML = "Cost : "+Decimal.pow(10,OtherQuantity[0]).toPrecision(4)+"DP";
 	document.getElementById('C0V').innerHTML =-Zero;
 	document.getElementById('Prestige0').innerHTML ="Need at least "+(Zero+1)+" of each other C";
 };

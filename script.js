@@ -941,8 +941,8 @@ function Import(){
 	  R=0;
 	  tickpart=0;
 	  tickspeed=1000;
+	  if (loadgame !="" ) {
 	  loadgame=JSON.parse(atob(loadgame));
-	  if (loadgame !=="" && loadgame!="Fermat") {
 	  localStorage=loadgame;
 	  MAX=parseFloat(localStorage.Max);
 	  x=new Decimal(localStorage.MCur);

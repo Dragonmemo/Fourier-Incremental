@@ -5,6 +5,7 @@
 //Decimal.toExpPos= 2;
 var coords, tickspeed, positives, negatives,i,FicNeg, Zero, LCoords, ARROWSOFHELL;
 var Achieves=[0];
+var BOOLEAN;
 var DPSCALC;
 for (i=0;i<70;i++){
   Achieves[i]=0
@@ -869,6 +870,8 @@ function save() {
   localStorage.setItem("lastTick",Date.now());
 } 
 function SReset(){
+	BOOLEAN=confirm("Are you sure you want to Soft Reset?")
+	if (BOOLEAN){
   Zero=0;
   ResetST();
   Skills=[0];
@@ -876,8 +879,10 @@ function SReset(){
 	Skills[i]=0
 	}
 	GetSkillTree()
-}
+	}}
 function HReset(){
+  BOOLEAN=confirm("Are you sure you want to Hard Reset?")
+	if (BOOLEAN){
   for (i=0;i<70;i++){Achieves[i]=[0];}
   Zero=0;
   pbaseCost=[10,100,1000,1e4,1e5,1e6,1e7,1e8,1e9,1e10];
@@ -887,7 +892,7 @@ function HReset(){
 	Skills[i]=0
 	}
 	GetSkillTree()
-}
+}}
 //loading all the stuff...
 function copyStringToClipboard(str) {
   var el = document.createElement("textarea");

@@ -936,28 +936,11 @@ function Import(){
 	document.getElementById("A7C9").removeAttribute("hidden");
   }
   else {
-	  var coords, tickspeed, positives, negatives,i,FicNeg, Zero, LCoords, ARROWSOFHELL;
-		var Achieves=[0];
-		var BOOLEAN;
-		var DPSCALC;
-		for (i=0;i<70;i++){
-		  Achieves[i]=0
-		}
-		var Skills=[0];
-		for (i=0;i<65;i++){
-		  Skills[i]=0
-		}
-		var MAX=1;
-		var AchMult=1.01;
-		x=new Decimal(0); coords=[0,0]; y=new Decimal(0); NPOW=new Decimal(0); Zero=0; LCoords=[];
-		positives=[0,0,0,0,0,0,0,0,0,0];
-		negatives=[0,0,0,0,0,0,0,0,0,0];
-		FicNeg=[new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0),new Decimal(0)];
-		var pbaseCost=[10,100,1000,1e4,1e5,1e6,1e7,1e8,1e9,1e10];
-		var OtherQuantity=[0,0];
-		var qual=1, R=0, I=2*Math.PI;
-		var tickpart=0;
-		tickspeed=1000;
+	  AchMult=1.01;
+	  LCoords=[];
+	  R=0;
+	  tickpart=0;
+	  tickspeed=1000;
 	  loadgame=JSON.parse(atob(loadgame));
 	  if (loadgame !=="" && loadgame!="Fermat") {
 	  localStorage=loadgame;

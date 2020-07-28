@@ -344,7 +344,7 @@ function GetSkill(n){
 	if (Zero-math.sum(Skills.slice(0,64))>=1){
 		document.getElementById("SB"+n).setAttribute("hidden",true);
 		Skills[n]=1
-		if (Achieves[69]==0 &&Skills.slice(0,64).toString()==[1,1,1,0,1,1,0,0,0,0,0,1,1,1,1,0,1,0,0,1,1,0,0,0,1,1,1,1,1,0,0,1,1,0,0,0,1,0,1,1,1,0,0,1,1,0,0,0,1,1,1,1,0,1,0,0,0,0,0,1,1,1,1,1].toString()){
+		if (Achieves[69]==0 && Skills.slice(0,64).toString()==[1,1,1,0,1,1,0,0,0,0,0,1,1,1,1,0,1,0,0,1,1,0,0,0,1,1,1,1,1,0,0,1,1,0,0,0,1,0,1,1,1,0,0,1,1,0,0,0,1,1,1,1,0,1,0,0,0,0,0,1,1,1,1,1].toString()){
 		Achieves[69]++;}
 		if (n==0){//C1 pow
 			document.getElementById("ST1").removeAttribute("hidden");

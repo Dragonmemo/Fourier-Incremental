@@ -540,15 +540,16 @@
       <p>6 feet under (last achievement) requires you to get 6 C0 and is the end of the gameplay for now.</p>
       <p>LEET = 1337</p>
       <p>B = 2, R = 18, E = 5, A = 1, D = 4</p>
-	  <p>Same logic for BAGUETTE</p>
-      <p>4 is the number of death and 666 is the one of the beast, you need all Cn from -6 to 6 (except 0) to unleash the evil (and get an achievement)</p>
-      <p>Have 3 "7" equally distributed between C1 and C7 to get lucky (and unlock an achievement)</p>
+	  <p>Same logic for BAGUETTE</p><br>
+      <p>4 is the number of death and 666 is the one of the beast, you need all Cn from -6 to 6 to be equal to 6 (except 0) to unleash the evil (and get an achievement)</p><br>
+      <p>Have 3 "7" equally distributed between C1 and C7 to get lucky (that means 7 in C1, C4 and C7) (and unlock an achievement)</p>
       <p>"One for all..." requires you to have simultaneously 1 of each Cn (positive and negative, not counting C0)</p>
       <p>"... and all for one" requires you to prestige with only C1, no other positive Cn</p>
-      <p>There is a factor that multiplies DP production : it represent the scaling of the drawing, it resets on prestige (any)</p>
+      <p>There is a factor that multiplies DP production : it represent the scaling of the drawing, it resets on prestige (any), the skills related to it makes it squared if you have 1, cubed if you have 2 etc</p>
       <p>Positive Cns all multiplies your production by 1.5</p>
       <p>There is a factor that added to 1, multiplies DP production. It grows with negative Cns</p>
       <p>Each negative Cn (except for C-1) increase the Cn before it on a fictive way, that does count for the increase of the next one etc, then C-1 and fictive C-1 increase the negative product that multiplies DP production</p>
+	  <p>"Synergize" means that they increase each other's strength, it's calculated by adding the base 10 logarithm of one's value and adding a portion of it to the power of the multiplier they already have (which is 1)</p>
     </div>
 	<div id="SkillTree" class="tabcontent">
       <h3>Skill Tree</h3>

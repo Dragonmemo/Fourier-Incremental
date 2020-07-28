@@ -936,12 +936,12 @@ function Import(){
 	document.getElementById("A7C9").removeAttribute("hidden");
   }
   else {
+	  if (loadgame !="" ) {
 	  AchMult=1.01;
 	  LCoords=[];
 	  R=0;
 	  tickpart=0;
 	  tickspeed=1000;
-	  if (loadgame !="" ) {
 	  loadgame=JSON.parse(atob(loadgame));
 	  localStorage=loadgame;
 	  MAX=parseFloat(localStorage.Max);

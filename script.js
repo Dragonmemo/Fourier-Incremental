@@ -943,28 +943,27 @@ function Import(){
 	  tickpart=0;
 	  tickspeed=1000;
 	  loadgame=JSON.parse(atob(loadgame));
-	  localStorage=loadgame;
-	  MAX=parseFloat(localStorage.Max);
-	  x=new Decimal(localStorage.MCur);
-	  y=new Decimal(localStorage.PCur);
-	  Zero=parseFloat(localStorage.Zero);
-	  NPOW=new Decimal(localStorage.NPOW);
-	  coords=localStorage.Coords.split(",").map(Number);
-	  positives=localStorage.PCN.split(",").map(Number);
-	  negatives=localStorage.NCN.split(",").map(Number);
-	  pbaseCost=localStorage.PBC.split(",").map(Number);
-	  FicNeg=localStorage.NFIC.split(",").map(DECTIMAL);
-	  OtherQuantity=localStorage.Other.split(",").map(Number);
-	  R=parseInt(localStorage.R);
-	  Achieves=localStorage.Achieves.split(",").map(Number);
-	  if (localStorage.Skills) {Skills=localStorage.Skills.split(",").map(Number);}
+	  MAX=parseFloat(loadgame.Max);
+	  x=new Decimal(loadgame.MCur);
+	  y=new Decimal(loadgame.PCur);
+	  Zero=parseFloat(loadgame.Zero);
+	  NPOW=new Decimal(loadgame.NPOW);
+	  coords=loadgame.Coords.split(",").map(Number);
+	  positives=loadgame.PCN.split(",").map(Number);
+	  negatives=loadgame.NCN.split(",").map(Number);
+	  pbaseCost=loadgame.PBC.split(",").map(Number);
+	  FicNeg=loadgame.NFIC.split(",").map(DECTIMAL);
+	  OtherQuantity=loadgame.Other.split(",").map(Number);
+	  R=parseInt(loadgame.R);
+	  Achieves=loadgame.Achieves.split(",").map(Number);
+	  if (loadgame.Skills) {Skills=loadgame.Skills.split(",").map(Number);}
 	  tickspeed*=(10/11)**OtherQuantity[0];
 	  if (OtherQuantity[1]<8){qual=2**OtherQuantity[1];}
 	  else{qual=2**8}
 	  if (Achieves.length<70) {
 		  for (i=Achieves.length; i<70; i++){Achieves[i]=[0];}
 	  } 
-	  var diff =(Date.now()-parseInt(localStorage.lastTick))/33;
+	  var diff =(Date.now()-parseInt(loadgame.lastTick))/33;
 	  GetAchieves();
 	  GetSkillTree();
 	  FormulaRewriter();

@@ -93,6 +93,7 @@ footer {
 
 .tooltip {
   position: relative;
+  border-style : outset;
 }
 
 .tooltip .tooltiptext {

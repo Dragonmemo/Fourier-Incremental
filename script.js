@@ -93,7 +93,9 @@ function myFunction() {
 	Achieves[51]++;
 	document.getElementById("A6C2").setAttribute("style","background-color: #5B5;");
 	pbaseCost[1]=8.2e1
-  }
+  if (math.sum(Achieves.slice(50,60))==10){
+		AchMult+=0.1  
+	  }}
   if (Achieves[65]==0 && x.gt('1e2520')){
     Achieves[65]++;
     document.getElementById("A7C6").setAttribute("style","background-color: #5B5;");
@@ -204,32 +206,58 @@ function IncrementCn(n) {
 	  document.getElementById("A6C1").setAttribute("style","background-color: #5B5;");
 	  Achieves[50]++;
 	  pbaseCost[0]=9.1;
-  }
+  if (math.sum(Achieves.slice(50,60))==10){
+		AchMult+=0.1  
+	  }}
   if (Achieves[53]==0 && positives.toString()==[1,3,3,7,0,0,0,0,0,0].toString()){
 	  Achieves[53]++;
 	  document.getElementById("A6C4").setAttribute("style","background-color: #5B5;");
 	  pbaseCost[3]=6.4e3
-  }
+  if (math.sum(Achieves.slice(50,60))==10){
+		AchMult+=0.1  
+	  }}
 	if (Achieves[54]==0 && positives.toString()==[2,18,5,1,4,0,0,0,0,0].toString()){
 	  Achieves[54]++;
 	  document.getElementById("A6C5").setAttribute("style","background-color: #5B5;");
 	  pbaseCost[4]=5.5e4
-  }
+  if (math.sum(Achieves.slice(50,60))==10){
+		AchMult+=0.1  
+	  }}
 	if (Achieves[57]==0 && positives.toString()==[2,1,7,21,5,20,20,5,0,0].toString()){
 	  Achieves[57]++;
 	  document.getElementById("A6C8").setAttribute("style","background-color: #5B5;");
 	  pbaseCost[7]=2.8e7
-  }
+  if (math.sum(Achieves.slice(50,60))==10){
+		AchMult+=0.1  
+	  }}
     if (Achieves[55]==0 && positives.toString()==[6,6,6,6,6,6,0,0,0,0].toString() && negatives.toString()==[6,6,6,6,6,6,0,0,0,0].toString()){
 	  Achieves[55]++;
 	  document.getElementById("A6C6").setAttribute("style","background-color: #5B5;");
 	  pbaseCost[5]=4.6e5
-  }
+  if (math.sum(Achieves.slice(50,60))==10){
+		AchMult+=0.1  
+	  }}
     if (Achieves[56]==0 && positives.toString()==[7,0,0,7,0,0,7,0,0,0].toString()){
 	  Achieves[56]++;
 	  document.getElementById("A6C7").setAttribute("style","background-color: #5B5;");
 	  pbaseCost[6]=3.7e6
-  }
+  if (math.sum(Achieves.slice(50,60))==10){
+		AchMult+=0.1  
+	  }}
+  if (Achieves[52]==0 && positives.toString()==[3,1,4,1,5,9,2,6,5,3].toString()){
+	  Achieves[52]++;
+	  document.getElementById("A6C3").setAttribute("style","background-color: #5B5;");
+	  pbaseCost[2]=7.3e2
+  if (math.sum(Achieves.slice(50,60))==10){
+		AchMult+=0.1  
+	  }}
+  if (Achieves[58]==0 && negatives.toString()==[0,0,0,0,0,0,0,0,9,0].toString() && positives.toString()==[0,0,0,0,0,0,0,0,9,0].toString()){
+	  Achieves[58]++;
+	  document.getElementById("A6C9").setAttribute("style","background-color: #5B5;");
+	  pbaseCost[8]=1.9e8
+  if (math.sum(Achieves.slice(50,60))==10){
+		AchMult+=0.1  
+	  }}
   FormulaRewriter()
 };
 function IncrementCMn(n) {
@@ -250,12 +278,24 @@ function IncrementCMn(n) {
 	  document.getElementById("A6C1").setAttribute("style","background-color: #5B5;");
 	  Achieves[50]++;
 	  pbaseCost[0]=9.1;
+	  if (math.sum(Achieves.slice(50,60))==10){
+		AchMult+=0.1  
+	  }
   }
   if (Achieves[55]==0 && positives.toString()==[6,6,6,6,6,6,0,0,0,0].toString() && negatives.toString()==[6,6,6,6,6,6,0,0,0,0].toString()){
 	  Achieves[55]++;
 	  document.getElementById("A6C6").setAttribute("style","background-color: #5B5;");
 	  pbaseCost[5]=4.6e5
-  }
+  if (math.sum(Achieves.slice(50,60))==10){
+		AchMult+=0.1  
+	  }}
+  if (Achieves[58]==0 && negatives.toString()==[0,0,0,0,0,0,0,0,9,0].toString() && positives.toString()==[0,0,0,0,0,0,0,0,9,0].toString()){
+	  Achieves[58]++;
+	  document.getElementById("A6C9").setAttribute("style","background-color: #5B5;");
+	  pbaseCost[8]=1.9e8
+  if (math.sum(Achieves.slice(50,60))==10){
+		AchMult+=0.1  
+	  }}
   FormulaRewriter()
 };
 function PrestigeNegative(){
@@ -274,7 +314,9 @@ function PrestigeNegative(){
 		Achieves[59]++;
 		document.getElementById("A6C10").setAttribute("style","background-color: #5B5;");
 		pbaseCost[9]=1e9
-	}
+	if (math.sum(Achieves.slice(50,60))==10){
+		AchMult+=0.1  
+	  }}
 	MAX=1;
 	x=new Decimal(0);
 	coords=[0,0];

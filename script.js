@@ -812,6 +812,10 @@ function MaxAll(){
 function THELASTCLICK(){
 	if (math.sum(Skills.slice(0,64))==64 && Zero>=100){
 		document.getElementById("CODES").removeAttribute("hidden")
+		for (i=0;i<10;i++){
+			document.getElementById("Slider"+(i+1)).removeAttribute("hidden");
+			document.getElementById("SliderM"+(i+1)).removeAttribute("hidden");
+		}
 	}
 	else {return}
 }
@@ -861,8 +865,8 @@ function ResetST(){
 		document.getElementById("ST"+i).setAttribute("hidden",true);}
 	}
 	for (i=0;i<10;i++){
-	document.getElementById("PhiM"+(i+1)).value=100;
-	document.getElementById("Phi"+(i+1)).value=100;	
+	document.getElementById("Slider"+(i+1)).removeAttribute("hidden");
+	document.getElementById("SliderM"+(i+1)).removeAttribute("hidden");
 	}
 	document.getElementById("NBNullif").innerHTML=(Zero-math.sum(Skills.slice(0,64)));
 	if (Skills[64]>0){

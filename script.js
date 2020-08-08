@@ -66,28 +66,29 @@ function myFunction() {
   FourierCalculation(MAX);
   MAX=Math.max(MAX,Math.abs(coords[0]),Math.abs(coords[1]));
   LCoords.push(coords);
-  if (Skills[58]==1){ReduceTickspeed();}
-  if (Skills[51]==1){ImproveQuality();}
-  if (Skills[63]==1){IncrementCMn(9);}
-  if (Skills[39]==1){IncrementCMn(8);}
-  if (Skills[61]==1){IncrementCMn(7);}
-  if (Skills[10]==1){IncrementCMn(6);}
-  if (Skills[8]==1){IncrementCMn(5);}
-  if (Skills[55]==1){IncrementCMn(4);}
-  if (Skills[5]==1){IncrementCMn(3);}
-  if (Skills[4]==1){IncrementCMn(2);}
-  if (Skills[17]==1){IncrementCMn(1);}
-  if (Skills[2]==1){IncrementCMn(0);}
-  if (Skills[1]==1){IncrementCn(0);}
-  if (Skills[52]==1){IncrementCn(1);}
-  if (Skills[21]==1){IncrementCn(2);}
-  if (Skills[33]==1){IncrementCn(3);}
-  if (Skills[45]==1){IncrementCn(4);}
-  if (Skills[56]==1){IncrementCn(5);}
-  if (Skills[12]==1){IncrementCn(6);}
-  if (Skills[60]==1){IncrementCn(7);}
-  if (Skills[13]==1){IncrementCn(8);}
-  if (Skills[50]==1){IncrementCn(9);}
+  if (document.getElementById("AUTOBUYS").checked == true){  
+	  if (Skills[58]==1){ReduceTickspeed();}
+	  if (Skills[51]==1){ImproveQuality();}
+	  if (Skills[63]==1){IncrementCMn(9);}
+	  if (Skills[39]==1){IncrementCMn(8);}
+	  if (Skills[61]==1){IncrementCMn(7);}
+	  if (Skills[10]==1){IncrementCMn(6);}
+	  if (Skills[8]==1){IncrementCMn(5);}
+	  if (Skills[55]==1){IncrementCMn(4);}
+	  if (Skills[5]==1){IncrementCMn(3);}
+	  if (Skills[4]==1){IncrementCMn(2);}
+	  if (Skills[17]==1){IncrementCMn(1);}
+	  if (Skills[2]==1){IncrementCMn(0);}
+	  if (Skills[1]==1){IncrementCn(0);}
+	  if (Skills[52]==1){IncrementCn(1);}
+	  if (Skills[21]==1){IncrementCn(2);}
+	  if (Skills[33]==1){IncrementCn(3);}
+	  if (Skills[45]==1){IncrementCn(4);}
+	  if (Skills[56]==1){IncrementCn(5);}
+	  if (Skills[12]==1){IncrementCn(6);}
+	  if (Skills[60]==1){IncrementCn(7);}
+	  if (Skills[13]==1){IncrementCn(8);}
+	  if (Skills[50]==1){IncrementCn(9);}}
   
   if (Achieves[51]==0 && positives.toString()==[2,1,0,0,0,0,0,0,0,0].toString() && negatives.toString()==[2,1,0,0,0,0,0,0,0,0].toString() && parseInt(document.getElementById("Phi1").value)==100 && parseInt(document.getElementById("PhiM1").value)==100 && ((48<parseInt(document.getElementById("Phi2").value)<52 && parseInt(document.getElementById("PhiM2").value)==100)||(48<parseInt(document.getElementById("PhiM2").value)<52 && parseInt(document.getElementById("Phi2").value)==100))){
 	Achieves[51]++;

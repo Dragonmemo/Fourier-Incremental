@@ -180,8 +180,8 @@ button {
   border: 1px solid currentColor;
   cursor: pointer;
   font-size: auto;
-  padding: 0.25em 1em;
-  line-height: 1.4em;
+  padding: 0.25em;
+  line-height: 1em;
 }
 
 .column {

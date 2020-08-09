@@ -832,8 +832,8 @@ function MaxAll(){
 		ImproveQuality();
 		ReduceTickspeed();
 		for (j=0;j<10;j++){
-			IncrementCn(k);
-			IncrementCMn(k);
+			IncrementCn(9-k);
+			IncrementCMn(9-k);
 		}
 	}
 }

@@ -15,6 +15,7 @@ for (i=0;i<65;i++){
   Skills[i]=0
 }
 var MAX=1;
+var SOUND=document.getElementById("AnnoyingSound")
 var AchMult=1.01;
 x=new Decimal(0); coords=[0,0]; y=new Decimal(0); NPOW=new Decimal(0); Zero=0; LCoords=[];
 positives=[0,0,0,0,0,0,0,0,0,0];
@@ -94,19 +95,23 @@ function myFunction() {
 	Achieves[51]++;
 	document.getElementById("A6C2").setAttribute("style","background-color: #5B5;");
 	pbaseCost[1]=8.2e1
+	SOUND.pause();SOUND.play();
   if (math.sum(Achieves.slice(50,60))==10){
 		AchMult+=0.1  
 	  }}
   if (Achieves[65]==0 && x.gt('1e2520')){
     Achieves[65]++;
+	SOUND.pause();SOUND.play();
     document.getElementById("A7C6").setAttribute("style","background-color: #5B5;");
   };
   if (Achieves[66]==0 && y.gt('1e2520')){
     Achieves[66]++;
+	SOUND.pause();SOUND.play();
     document.getElementById("A7C7").setAttribute("style","background-color: #5B5;");
   };
   if (Achieves[67]==0 && positives.toString()==[1,1,2,3,5,8,13,21,34,55].toString() && negatives.toString()==[1,1,2,3,5,8,13,21,34,55].toString() && parseInt(document.getElementById("Phi1").value)==100 && parseInt(document.getElementById("PhiM1").value)==100 && parseInt(document.getElementById("Phi2").value)==100 && parseInt(document.getElementById("PhiM2")).value==50 && parseInt(document.getElementById("PhiM3").value)==100 && parseInt(document.getElementById("Phi3").value)==100 && parseInt(document.getElementById("Phi4").value)==100 && parseInt(document.getElementById("PhiM4").value)==50 && parseInt(document.getElementById("Phi5").value)==100 && parseInt(document.getElementById("PhiM5").value)==100 && parseInt(document.getElementById("PhiM6").value)==50 && parseInt(document.getElementById("Phi6").value)==100 && parseInt(document.getElementById("Phi7").value)==100 && parseInt(document.getElementById("PhiM7").value)==100 && parseInt(document.getElementById("PhiM8").value)==50 && parseInt(document.getElementById("Phi8").value)==100 && parseInt(document.getElementById("PhiM9").value)==100 && parseInt(document.getElementById("Phi9").value)==100 && parseInt(document.getElementById("PhiM10").value)==50 && parseInt(document.getElementById("Phi10").value)==100){
 	Achieves[67]++;
+	SOUND.pause();SOUND.play();
 	document.getElementById("A7C8").setAttribute("style","background-color: #5B5;");
 	document.getElementById("A7C8").removeAttribute("hidden");
   }
@@ -150,6 +155,7 @@ function ImproveQuality() {
   OtherQuantity[1]++;
 if (Achieves[60]==0 && OtherQuantity[1]==5 && math.sum(positives)+math.sum(negatives)==0){
 	Achieves[60]++;
+	SOUND.pause();SOUND.play();
 	document.getElementById("A7C1").setAttribute("style","background-color: #5B5;");
 	document.getElementById("Help").removeAttribute("hidden");
 }
@@ -171,6 +177,7 @@ function IncrementCn(n) {
   if (positives[n]==1 && Achieves[n]==0){
     document.getElementById("A1C"+(n+1)).setAttribute("style","background-color: #5B5;");
     Achieves[n]++;
+	SOUND.pause();SOUND.play();
     if (n!=9){document.getElementById("C"+(n+2)+"Tab").removeAttribute("hidden");}
 	else {
 		document.getElementById("PUnlock").removeAttribute("hidden");
@@ -182,6 +189,7 @@ function IncrementCn(n) {
   if (positives[n]==10 && Achieves[n+10]==0){
     document.getElementById("A2C"+(n+1)).setAttribute("style","background-color: #5B5;");
     Achieves[n+10]++;
+	SOUND.pause();SOUND.play();
     if (n!=9){AchMult+=0.01;}
 	else {document.getElementById("MaxAll").removeAttribute("hidden");}
 	if (math.sum(Achieves.slice(10,20))==10){
@@ -193,12 +201,14 @@ function IncrementCn(n) {
 	document.getElementById("Slider"+(n+1)).removeAttribute("hidden");
 	document.getElementById("SliderM"+(n+1)).removeAttribute("hidden");
     Achieves[n+20]++;
+	SOUND.pause();SOUND.play();
 	GetSkillTree();
 	if (math.sum(Achieves.slice(20,30))==10){AchMult+=0.1}
   }
   if (positives[n]==100 && Achieves[n+30]==0){
     document.getElementById("A4C"+(n+1)).setAttribute("style","background-color: #5B5;");
     Achieves[n+30]++;
+	SOUND.pause();SOUND.play();
 	if (math.sum(Achieves.slice(30,40))==10){
 	AchMult+=0.1  
   }
@@ -206,12 +216,14 @@ function IncrementCn(n) {
   if (Achieves[50]==0 && math.max(positives)==1 && math.min(positives)==1 && math.max(negatives)==1 && math.min(negatives)==1){
 	  document.getElementById("A6C1").setAttribute("style","background-color: #5B5;");
 	  Achieves[50]++;
+	SOUND.pause();SOUND.play();
 	  pbaseCost[0]=9.1;
   if (math.sum(Achieves.slice(50,60))==10){
 		AchMult+=0.1  
 	  }}
   if (Achieves[53]==0 && positives.toString()==[1,3,3,7,0,0,0,0,0,0].toString()){
 	  Achieves[53]++;
+	SOUND.pause();SOUND.play();
 	  document.getElementById("A6C4").setAttribute("style","background-color: #5B5;");
 	  pbaseCost[3]=6.4e3
   if (math.sum(Achieves.slice(50,60))==10){
@@ -219,6 +231,7 @@ function IncrementCn(n) {
 	  }}
 	if (Achieves[54]==0 && positives.toString()==[2,18,5,1,4,0,0,0,0,0].toString()){
 	  Achieves[54]++;
+	SOUND.pause();SOUND.play();
 	  document.getElementById("A6C5").setAttribute("style","background-color: #5B5;");
 	  pbaseCost[4]=5.5e4
   if (math.sum(Achieves.slice(50,60))==10){
@@ -226,6 +239,7 @@ function IncrementCn(n) {
 	  }}
 	if (Achieves[57]==0 && positives.toString()==[2,1,7,21,5,20,20,5,0,0].toString()){
 	  Achieves[57]++;
+	SOUND.pause();SOUND.play();
 	  document.getElementById("A6C8").setAttribute("style","background-color: #5B5;");
 	  pbaseCost[7]=2.8e7
   if (math.sum(Achieves.slice(50,60))==10){
@@ -233,6 +247,7 @@ function IncrementCn(n) {
 	  }}
     if (Achieves[55]==0 && positives.toString()==[6,6,6,6,6,6,0,0,0,0].toString() && negatives.toString()==[6,6,6,6,6,6,0,0,0,0].toString()){
 	  Achieves[55]++;
+	SOUND.pause();SOUND.play();
 	  document.getElementById("A6C6").setAttribute("style","background-color: #5B5;");
 	  pbaseCost[5]=4.6e5
   if (math.sum(Achieves.slice(50,60))==10){
@@ -240,6 +255,7 @@ function IncrementCn(n) {
 	  }}
     if (Achieves[56]==0 && positives.toString()==[7,0,0,7,0,0,7,0,0,0].toString()){
 	  Achieves[56]++;
+	SOUND.pause();SOUND.play();
 	  document.getElementById("A6C7").setAttribute("style","background-color: #5B5;");
 	  pbaseCost[6]=3.7e6
   if (math.sum(Achieves.slice(50,60))==10){
@@ -247,6 +263,7 @@ function IncrementCn(n) {
 	  }}
   if (Achieves[52]==0 && positives.toString()==[3,1,4,1,5,9,2,6,5,3].toString()){
 	  Achieves[52]++;
+	SOUND.pause();SOUND.play();
 	  document.getElementById("A6C3").setAttribute("style","background-color: #5B5;");
 	  pbaseCost[2]=7.3e2
   if (math.sum(Achieves.slice(50,60))==10){
@@ -254,6 +271,7 @@ function IncrementCn(n) {
 	  }}
   if (Achieves[58]==0 && negatives.toString()==[0,0,0,0,0,0,0,0,9,0].toString() && positives.toString()==[0,0,0,0,0,0,0,0,9,0].toString()){
 	  Achieves[58]++;
+	SOUND.pause();SOUND.play();
 	  document.getElementById("A6C9").setAttribute("style","background-color: #5B5;");
 	  pbaseCost[8]=1.9e8
   if (math.sum(Achieves.slice(50,60))==10){
@@ -269,6 +287,7 @@ function IncrementCMn(n) {
   if (negatives[n]==1 && Achieves[n+40]==0){
     document.getElementById("A5C"+(n+1)).setAttribute("style","background-color: #5B5;");
     Achieves[n+40]++;
+	SOUND.pause();SOUND.play();
     if (n!=9){document.getElementById("CM"+(n+2)+"Tab").removeAttribute("hidden");}
 	else {document.getElementById("NullUnlock").removeAttribute("hidden");}
 	if (math.sum(Achieves.slice(40,50))==10){
@@ -278,6 +297,7 @@ function IncrementCMn(n) {
   if (Achieves[50]==0 && math.max(positives)==1 && math.min(positives)==1 && math.max(negatives)==1 && math.min(negatives)==1){
 	  document.getElementById("A6C1").setAttribute("style","background-color: #5B5;");
 	  Achieves[50]++;
+	SOUND.pause();SOUND.play();
 	  pbaseCost[0]=9.1;
 	  if (math.sum(Achieves.slice(50,60))==10){
 		AchMult+=0.1  
@@ -285,6 +305,7 @@ function IncrementCMn(n) {
   }
   if (Achieves[55]==0 && positives.toString()==[6,6,6,6,6,6,0,0,0,0].toString() && negatives.toString()==[6,6,6,6,6,6,0,0,0,0].toString()){
 	  Achieves[55]++;
+	SOUND.pause();SOUND.play();
 	  document.getElementById("A6C6").setAttribute("style","background-color: #5B5;");
 	  pbaseCost[5]=4.6e5
   if (math.sum(Achieves.slice(50,60))==10){
@@ -292,6 +313,7 @@ function IncrementCMn(n) {
 	  }}
   if (Achieves[58]==0 && negatives.toString()==[0,0,0,0,0,0,0,0,9,0].toString() && positives.toString()==[0,0,0,0,0,0,0,0,9,0].toString()){
 	  Achieves[58]++;
+	SOUND.pause();SOUND.play();
 	  document.getElementById("A6C9").setAttribute("style","background-color: #5B5;");
 	  pbaseCost[8]=1.9e8
   if (math.sum(Achieves.slice(50,60))==10){
@@ -304,15 +326,18 @@ function PrestigeNegative(){
 	y=y.plus(Decimal.pow(2.5+0.1*Achieves[65],x.log10()-10));
 	if (Achieves[62]==0) {
 		Achieves[62]++;
+	SOUND.pause();SOUND.play();
 		document.getElementById("A7C3").setAttribute("style","background-color: #5B5;");
         document.getElementById("CM1Tab").removeAttribute("hidden");		
 		};
 	if (Achieves[61]==0 && OtherQuantity[1]==0){
 		Achieves[61]++;
+	SOUND.pause();SOUND.play();
 		document.getElementById("A7C2").setAttribute("style","background-color: #5B5;");
 	}
 	if (Achieves[59]==0 && math.max(positives.slice(1,10))==0){
 		Achieves[59]++;
+	SOUND.pause();SOUND.play();
 		document.getElementById("A6C10").setAttribute("style","background-color: #5B5;");
 		pbaseCost[9]=1e9
 	if (math.sum(Achieves.slice(50,60))==10){
@@ -372,11 +397,13 @@ function PrestigeNull(){
 			document.getElementById("A7C4").setAttribute("style","background-color: #5B5;");
 			document.getElementById("SkillTreeB").removeAttribute("hidden");
 			Achieves[63]++;
+	SOUND.pause();SOUND.play();
 		};
 		if (Zero==6 && Achieves[64]==0){
 			document.getElementById("A7C5").setAttribute("style","background-color: #5B5;");
 			document.getElementById("Slider0").removeAttribute("hidden");
 			Achieves[64]++;
+	SOUND.pause();SOUND.play();
 		};
   		FormulaRewriter();
 	}
@@ -388,7 +415,8 @@ function GetSkill(n){
 		document.getElementById("SB"+n).setAttribute("hidden",true);
 		Skills[n]=1
 		if (Achieves[69]==0 && Skills.slice(0,64).toString()==[1,1,1,0,1,1,0,0,0,0,0,1,1,1,1,0,1,0,0,1,1,0,0,0,1,1,1,1,1,0,0,1,1,0,0,0,1,0,1,1,1,0,0,1,1,0,0,0,1,1,1,1,0,1,0,0,0,0,0,1,1,1,1,1].toString()){
-		Achieves[69]++;}
+		Achieves[69]++;
+	SOUND.pause();SOUND.play();}
 		if (n==0){//C1 pow
 			document.getElementById("ST1").removeAttribute("hidden");
 			document.getElementById("SV1").setAttribute("style","display:none");
@@ -811,6 +839,7 @@ function MaxAll(){
 }
 function THELASTCLICK(){
 	if (math.sum(Skills.slice(0,64))==64 && Zero>=100){
+	SOUND.pause();SOUND.play();
 		document.getElementById("CODES").removeAttribute("hidden")
 		for (i=0;i<10;i++){
 			document.getElementById("Slider"+(i+1)).removeAttribute("hidden");
@@ -979,6 +1008,7 @@ function Import(){
   loadgame = prompt("Paste in your save WARNING: WILL OVERWRITE YOUR CURRENT SAVE");
   if (loadgame=="Fermat" && Achieves[68]==0){
 	  Achieves[68]++;
+	SOUND.pause();SOUND.play();
 	document.getElementById("A7C9").setAttribute("style","background-color: #5B5;");
 	document.getElementById("A7C9").removeAttribute("hidden");
   }

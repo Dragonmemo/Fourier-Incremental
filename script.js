@@ -66,7 +66,7 @@ function myFunction() {
   FourierCalculation(MAX);
   MAX=Math.max(MAX,Math.abs(coords[0]),Math.abs(coords[1]));
   LCoords.push(coords);
-  if (document.getElementById("AUTOBUYS").checked == true){  
+  if (document.getElementById("AUTOBUY").checked == true){  
 	  if (Skills[58]==1){ReduceTickspeed();}
 	  if (Skills[51]==1){ImproveQuality();}
 	  if (Skills[63]==1){IncrementCMn(9);}

@@ -187,9 +187,9 @@ button {
 .column {
   border: 2px solid currentColor;
   border-radius: 1em;
-  font-size: inherit;
+  font-size: small;
   line-height: 1.4em;
-  padding: 0.25em 1em;
+  padding: 0.25em;
   max-width: 19ch;
   float: left;
   width: 130px;

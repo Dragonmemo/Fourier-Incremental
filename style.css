@@ -179,7 +179,7 @@ footer {
 button {
   border: 1px solid currentColor;
   cursor: pointer;
-  font-size: auto;
+  font-size: small;
   padding: 0.25em;
   line-height: 1em;
 }
@@ -190,7 +190,7 @@ button {
   font-size: inherit;
   line-height: 1.4em;
   padding: 0.25em 1em;
-  max-width: 20ch;
+  max-width: 19ch;
   float: left;
-  width: 80;
+  width: 130px;
 }

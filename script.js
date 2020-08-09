@@ -940,6 +940,7 @@ function save() {
   localStorage.setItem("Achieves",Achieves);
   localStorage.setItem("Skills",Skills);
   localStorage.setItem("lastTick",Date.now());
+  localStorage.setItem("AutoBuy",document.getElementById("AUTOBUY").checked)
 } 
 function SReset(){
 	BOOLEAN=confirm("Are you sure you want to Soft Reset?")
@@ -1034,7 +1035,8 @@ function Import(){
 	  R=parseInt(loadgame.R);
 	  Achieves=loadgame.Achieves.split(",").map(Number);
 	  if (loadgame.Skills) {Skills=loadgame.Skills.split(",").map(Number);}
-	  tickspeed*=(10/11)**OtherQuantity[0];
+	  if (Boolean(loadgame.AutoBuy)){document.getElementById("AUTOBUY").setAttribute("checked",true)}
+		tickspeed*=(10/11)**OtherQuantity[0];
 	  if (OtherQuantity[1]<8){qual=2**OtherQuantity[1];}
 	  else{qual=2**8}
 	  if (Achieves.length<70) {
@@ -1082,6 +1084,8 @@ if(localStorage.MCur) {
   R=parseInt(localStorage.R);
   Achieves=localStorage.Achieves.split(",").map(Number);
   if (localStorage.Skills) {Skills=localStorage.Skills.split(",").map(Number);}
+  if (!localStorage.AutoBuy){localStorage.setItem("AutoBuy",true)} 
+  if (Boolean(localStorage.AutoBuy)){document.getElementById("AUTOBUY").setAttribute("checked",true)}
   tickspeed*=(10/11)**OtherQuantity[0];
   if (OtherQuantity[1]<8){qual=2**OtherQuantity[1];}
   else{qual=2**8}

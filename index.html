@@ -55,6 +55,8 @@
     <button class="tablinks" onclick="openCity(event, 'AboutPlus')">About+</button>
     </div>
     <div id="Main" class="tabcontent">
+	<table><tr>
+	<td style="display:table-cell;">
     <canvas id="myCanvas" width="500" height="500"></canvas>
     <script>
     var canvas = document.getElementById("myCanvas");
@@ -77,7 +79,9 @@
     <button type="button" onclick="ReduceTickspeed()">Increase tick rate by 10%
       <p id="TC">Cost : 1DP</p></button>
 	<button type="button" onclick="MaxAll()" hidden id="MaxAll" class="tooltip">Max All<span class="tooltiptext">Actually clicks 10 times on each positive Cn</span></button>
-    <div class="row" style="color:#fff">
+    </td>
+	<td style="display:table-cell;">
+	<div class="row" style="color:#fff">
       <div class="column" style="background-color:#500;">
         <button type="button" onclick="IncrementCn(0)">increase C1</button>
         <p id="C1">0</p>
@@ -263,7 +267,8 @@
       </span>
     </div>
     <button type="button" onclick="PrestigeNull()" hidden id="NullUnlock" class="tooltip">Reduce C0 by 1<p id="Prestige0">Need at least 1 of each other C</p><span class="tooltiptext">Wait, did you said "Reduce" ?</span></button>
-    </div>
+    </td></tr></table>
+	</div>
     <div id="Achievements" class="tabcontent">
       <h3>Achievements</h3>
       <p>Achievements can unlock features and will multiply your DP production by <span id="AcMult">1.01</span>.</p>

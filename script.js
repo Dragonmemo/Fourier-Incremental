@@ -70,7 +70,10 @@ function myFunction() {
   document.getElementById("DPS").innerHTML = Decimal.mul(DPSCALC,1000/tickspeed).toPrecision(4);
   if (Achieves[62]!=0){document.getElementById("PCur").innerHTML = "Negative points (NP) : "+y.toPrecision(4);}
   FourierCalculation(MAX);
-  O.setPeriodicWave(AUDIOFUCK.createPeriodicWave(Float32Array.from(([0,1,2,3,4,5,6,7,8,9]).map(t =>positives[t]*math.cos(parseInt(document.getElementById("Phi"+(t+1)).value)/50*Math.PI)/(2*math.sum(positives)+1)+negatives[t]*math.cos(parseInt(document.getElementById("PhiM"+(t+1)).value)/50*Math.PI)/(2*math.sum(negatives)+1)).unshift(0)),Float32Array.from(([0,1,2,3,4,5,6,7,8,9]).map(t =>positives[t]*math.sin(parseInt(document.getElementById("Phi"+(t+1)).value)/50*Math.PI)/(2*math.sum(positives)+1)-negatives[t]*math.sin(parseInt(document.getElementById("PhiM"+(t+1)).value)/50*Math.PI)/(2*math.sum(negatives)+1)).unshift(0)),{disableNormalization: true}));
+  var real =([0,1,2,3,4,5,6,7,8,9]).map(t =>positives[t]*math.cos(parseInt(document.getElementById("Phi"+(t+1)).value)/50*Math.PI)/(2*math.sum(positives)+1)+negatives[t]*math.cos(parseInt(document.getElementById("PhiM"+(t+1)).value)/50*Math.PI)/(2*math.sum(negatives)+1));
+  var imag =([0,1,2,3,4,5,6,7,8,9]).map(t =>positives[t]*math.sin(parseInt(document.getElementById("Phi"+(t+1)).value)/50*Math.PI)/(2*math.sum(positives)+1)-negatives[t]*math.sin(parseInt(document.getElementById("PhiM"+(t+1)).value)/50*Math.PI)/(2*math.sum(negatives)+1))
+  real.unshift(0);imag.unshift(0);
+  O.setPeriodicWave(AUDIOFUCK.createPeriodicWave(Float32Array.from(real),Float32Array.from(imag),{disableNormalization: true}));
   MAX=Math.max(MAX,Math.abs(coords[0]),Math.abs(coords[1]));
   LCoords.push(coords);
   if (document.getElementById("AUTOBUY").checked == true){  

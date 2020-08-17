@@ -17,6 +17,7 @@ for (i=0;i<65;i++){
 
 var AUDIOFUCK = new AudioContext();
 var O= AUDIOFUCK.createOscillator();
+O.frequency.setValueAtTime(110, AUDIOFUCK.currentTime)
 O.connect(AUDIOFUCK.destination)
 O.start()
 var MAX=1;

@@ -14,6 +14,11 @@ var Skills=[0];
 for (i=0;i<65;i++){
   Skills[i]=0
 }
+
+var AUDIOFUCK = new AudioContext();
+var O= AUDIOFUCK.createOscillator();
+O.connect(AUDIOFUCK.destination)
+O.start()
 var MAX=1;
 var SOUND=document.getElementById("AnnoyingSound")
 var AchMult=1.01;
@@ -65,6 +70,9 @@ function myFunction() {
   document.getElementById("DPS").innerHTML = Decimal.mul(DPSCALC,1000/tickspeed).toPrecision(4);
   if (Achieves[62]!=0){document.getElementById("PCur").innerHTML = "Negative points (NP) : "+y.toPrecision(4);}
   FourierCalculation(MAX);
+  positives.unshift(0);negatives.unshift(0);
+  O.setPeriodicWave(AUDIOFUCK.createPeriodicWave(Float32Array.from(positives.map(t =>t/(2*math.sum(positives)+1))),Float32Array.from(negatives.map(t=>t/(2*math.sum(negatives)+1))),{disableNormalization: true}));
+  positives.shift();negatives.shift();
   MAX=Math.max(MAX,Math.abs(coords[0]),Math.abs(coords[1]));
   LCoords.push(coords);
   if (document.getElementById("AUTOBUY").checked == true){  

@@ -1,0 +1,3 @@
+(50,100,250,Reiker,Reiker, i)... it's just a dummy you now, it's not like he was gonna move//pour un perso, on le défini avec (R,G,B, Icone (fichier ou null),Nom à afficher, Style du texte(null pour rien)) puis on met ce qu'il a à dire derière)
+(100,100,100,Dummy,Dummy,)...
+[Action à réaliser si besoin... pour appeler un autre dialogue après une anim par exemple]

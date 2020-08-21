@@ -1,0 +1,14 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/script.rpy", line 126: play requires a file
+    play audio.Clash
+              ^
+
+File "game/script.rpy", line 237: play requires a file
+    play audio.Fireball
+              ^
+
+Ren'Py Version: Ren'Py 7.3.0.271
+Mon Mar 23 19:52:21 2020

@@ -1,0 +1,7 @@
+running ['F:\\VN Wild Magic\\renpy-7.3.0-sdk\\lib\\windows-i686\\zsync.exe', '-o', 'F:\\VN Wild Magic\\renpy-7.3.0-sdk\\update\\atom-windows.update.new', '-k', 'F:\\VN Wild Magic\\renpy-7.3.0-sdk\\update\\atom-windows.zsync', '-i', 'F:\\VN Wild Magic\\renpy-7.3.0-sdk\\update\\atom-windows.update', 'http://update.renpy.org/7.3.0/renpy-7.3.0-atom-windows.zsync']
+partfile does not exist
+partfile does not exist
+partfile does not exist
+partfile does not exist
+partfile does not exist
+partfile does not exist

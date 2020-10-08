@@ -8,7 +8,7 @@ var SETTER = false;
 function myFunction1() {
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
-  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+  ctx.clearRect(0,0, 500, 500);
   ctx.strokeStyle="#000000";
   LISTER = [0];
   LISTER[0] = parseInt(document.getElementById("Slider1").value)
@@ -16,20 +16,59 @@ function myFunction1() {
   LISTER[2] = parseInt(document.getElementById("Slider3").value)
   LISTER[3] = parseInt(document.getElementById("Slider4").value)
   var MAX = Math.max(LISTER[3], LISTER[0]+LISTER[1]+LISTER[2]);
-  ctx.moveTo(1, 499);
-  ctx.lineTo(1+498*LISTER[3]/MAX, 499);
+  ctx.moveTo(0, 500);
+  ctx.lineTo(500*LISTER[3]/MAX, 500);
+  ctx.closePath()
   ctx.stroke(); 
-  ctx.moveTo(1, 499);
-  ctx.strokeStyle="#33AAFF";
-  ctx.lineTo(0, 1+498*(1-LISTER[2]/MAX));
+  ctx.beginPath()
+  ctx.moveTo(0, 500);
+  ctx.strokeStyle="#3366aa";
+  ctx.lineTo(0, 500*(1-LISTER[2]/MAX));
+  ctx.closePath()
   ctx.stroke(); 
-  ctx.strokeStyle="#00FF00";
-  ctx.lineTo(0, 1+498*(1-(LISTER[2]+LISTER[1])/MAX));
+  ctx.beginPath() 
+  ctx.strokeStyle="#11aa11";
+  ctx.moveTo(0, 500*(1-LISTER[2]/MAX));
+  ctx.lineTo(0, 500*(1-(LISTER[2]+LISTER[1])/MAX));
+  ctx.closePath()
   ctx.stroke(); 
-  ctx.strokeStyle="#aacc00";
-  ctx.lineTo(0, 1+498*(1-(LISTER[0]+LISTER[1]+LISTER[2])/MAX));
+  ctx.beginPath()
+  ctx.strokeStyle="#ffcc11";
+  ctx.moveTo(0, 500*(1-(LISTER[2]+LISTER[1])/MAX));
+  ctx.lineTo(0, 500*(1-(LISTER[0]+LISTER[1]+LISTER[2])/MAX));
+  ctx.closePath()
+  ctx.stroke(); 
+  var M, MPrime;
+  M=[dichotomie(function (x){return Math.sqrt(x*x+LISTER[1]**2)+1.33*Math.sqrt((x-LISTER[3])**2+LISTER[2]**2},0,LISTER[3]),LISTER[2]];
+  MPrime=[dichotomie(function (x){return Math.sqrt(x*x+(LISTER[1]+LISTER[0])**2)+1.33*Math.sqrt((x-LISTER[3])**2+LISTER[2]**2},0,LISTER[3]),LISTER[2]];
+  ctx.beginPath();
+  ctx.moveTo(500*LISTER[3]/MAX, 500);
+  ctx.lineTo(500*M[0]/MAX, 500*(1-M[1]/MAX));
+  ctx.lineTo(0, 500*(1-(LISTER[2]+LISTER[1])/MAX));
+  ctx.closePath();
+  ctx.stroke(); 
+  ctx.beginPath();
+  ctx.moveTo(500*LISTER[3]/MAX, 500);
+  ctx.lineTo(500*MPrime[0]/MAX, 500*(1-MPrime[1]/MAX));
+  ctx.lineTo(0, 500*(1-(LISTER[2]+LISTER[1])/MAX));
+  ctx.closePath();
   ctx.stroke(); 
 }
+
+function derivee(f,x){
+	var h = 1e-6;
+	return (f(x+h)-f(x-h))/(2*h)
+}
+
+function dichotomie(f,a,b){
+	eps=1e-6
+	while (b-a>eps){
+		if (derivee(f,a)*derivee(f,(a+b)/2)>0){a=(a+b)/2}
+		else {b=(a+b)/2}
+	}
+	return (a+b)/2
+}
+
   /*ctx.lineTo(500, 250);
   ctx.stroke();
   ctx.strokeStyle="#BBBBBB";

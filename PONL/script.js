@@ -39,8 +39,8 @@ function myFunction1() {
   ctx.closePath()
   ctx.stroke(); 
   var M, MPrime;
-  M=[dichotomie(function (x){return Math.sqrt(x*x+LISTER[1]**2)+1.33*Math.sqrt((x-LISTER[3])**2+LISTER[2]**2},0,LISTER[3]),LISTER[2]];
-  MPrime=[dichotomie(function (x){return Math.sqrt(x*x+(LISTER[1]+LISTER[0])**2)+1.33*Math.sqrt((x-LISTER[3])**2+LISTER[2]**2},0,LISTER[3]),LISTER[2]];
+  M=[dichotomie(function (x){return Math.sqrt(x*x+LISTER[1]**2)+1.33*Math.sqrt((x-LISTER[3])**2+LISTER[2]**2)},0,LISTER[3]),LISTER[2]];
+  MPrime=[dichotomie(function (x){return Math.sqrt(x*x+(LISTER[1]+LISTER[0])**2)+1.33*Math.sqrt((x-LISTER[3])**2+LISTER[2]**2)},0,LISTER[3]),LISTER[2]];
   ctx.beginPath();
   ctx.moveTo(500*LISTER[3]/MAX, 500);
   ctx.lineTo(500*M[0]/MAX, 500*(1-M[1]/MAX));

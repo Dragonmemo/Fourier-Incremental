@@ -8,7 +8,7 @@ var SETTER = false;
 function myFunction1() {
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
-  ctx.clearRect(-1, -1, 501, 501);
+  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
   ctx.strokeStyle="#000000";
   LISTER = [0];
   LISTER[0] = parseInt(document.getElementById("Slider1").value)
@@ -16,18 +16,18 @@ function myFunction1() {
   LISTER[2] = parseInt(document.getElementById("Slider3").value)
   LISTER[3] = parseInt(document.getElementById("Slider4").value)
   var MAX = Math.max(LISTER[3], LISTER[0]+LISTER[1]+LISTER[2]);
-  ctx.moveTo(500, 0);
-  ctx.lineTo(500, 500*LISTER[3]/MAX);
+  ctx.moveTo(0, 500);
+  ctx.lineTo(500*LISTER[3]/MAX, 500);
   ctx.stroke(); 
-  ctx.moveTo(500, 0);
+  ctx.moveTo(0, 500);
   ctx.strokeStyle="#33AAFF";
-  ctx.lineTo(500*(1-LISTER[2]/MAX), 0);
+  ctx.lineTo(0, 500*(1-LISTER[2]/MAX));
   ctx.stroke(); 
   ctx.strokeStyle="#00FF00";
-  ctx.lineTo(500*(1-(LISTER[2]+LISTER[1])/MAX), 0);
+  ctx.lineTo(0, 500*(1-(LISTER[2]+LISTER[1])/MAX));
   ctx.stroke(); 
   ctx.strokeStyle="#aacc00";
-  ctx.lineTo(500*(1-(LISTER[0]+LISTER[1]+LISTER[2])/MAX), 0);
+  ctx.lineTo(0, 500*(1-(LISTER[0]+LISTER[1]+LISTER[2])/MAX));
   ctx.stroke(); 
 }
   /*ctx.lineTo(500, 250);

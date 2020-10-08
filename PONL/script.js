@@ -100,8 +100,7 @@ var mainGameLoop = window.setInterval(function() { // runs the loop
 		loop();
 	}
 	//console.log((new Date().getTime())-n);
-	}
-}, 33);
+	}, 33);
 
 function loop() { // production
 	if Onglet == 1 {myFunction1();}

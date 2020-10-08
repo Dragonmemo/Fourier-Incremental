@@ -90,17 +90,11 @@ function FourierCalculation(MAX) {
 };*/
 
 var mainGameLoop = window.setInterval(function() { // runs the loop
-	tickpart += 33;
 	//var d = new Date();
 	//var n = d.getTime();
-	if (tickpart>=100) {
-	//d=new Date();
-	//n=d.getTime();
-		tickpart -= tickspeed;
-		loop();
-	}
+	loop();
 	//console.log((new Date().getTime())-n);
-	}, 33);
+	}, 100);
 
 function loop() { // production
 	if (Onglet == 1) {myFunction1();}

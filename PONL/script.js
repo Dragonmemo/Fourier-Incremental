@@ -13,10 +13,10 @@ function myFunction1() {
   ctx.clearRect(0, 0, 500, 500);
   ctx.strokeStyle="#000000";
   LISTER = [0];
-  LISTER[0] = parseInt(document.getElementById("dVal1.0").value)
-  LISTER[1] = parseInt(document.getElementById("eVal1.0").value)
-  LISTER[2] = parseInt(document.getElementById("pVal1.0").value)
-  LISTER[3] = parseInt(document.getElementById("xVal1.0").value)
+  LISTER[0] = parseInt(document.getElementById("Slider1").value)
+  LISTER[1] = parseInt(document.getElementById("Slider2").value)
+  LISTER[2] = parseInt(document.getElementById("Slider3").value)
+  LISTER[3] = parseInt(document.getElementById("Slider4").value)
   var MAX = Math.max(LISTER[3], LISTER[0]+LISTER[1]+LISTER[2]);
   ctx.moveTo(500, 0);
   ctx.lineTo(500, 500*LISTER[3]/MAX);
@@ -90,11 +90,8 @@ function FourierCalculation(MAX) {
 };*/
 
 var mainGameLoop = window.setInterval(function() { // runs the loop
-	//var d = new Date();
-	//var n = d.getTime();
 	loop();
-	//console.log((new Date().getTime())-n);
-	}, 100);
+	}, 33);
 
 function loop() { // production
 	if (Onglet == 1) {myFunction1();}

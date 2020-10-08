@@ -31,7 +31,7 @@ function myFunction1() {
   ctx.strokeStyle="#aacc00";
   ctx.lineTo(500*(1-(LISTER[0]+LISTER[1]+LISTER[2])/MAX), 0);
   ctx.stroke(); 
-  
+}
   /*ctx.lineTo(500, 250);
   ctx.stroke();
   ctx.strokeStyle="#BBBBBB";

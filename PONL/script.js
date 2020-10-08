@@ -103,7 +103,7 @@ var mainGameLoop = window.setInterval(function() { // runs the loop
 	}, 33);
 
 function loop() { // production
-	if (Onglet) == 1 {myFunction1();}
-	if (Onglet) == 5 {myFunction5();}
-	if (Onglet) == 6 {myFunction6();}
+	if (Onglet == 1) {myFunction1();}
+	if (Onglet == 5) {myFunction5();}
+	if (Onglet == 6) {myFunction6();}
 }

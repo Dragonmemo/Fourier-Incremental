@@ -8,7 +8,7 @@ var SETTER = false;
 function myFunction1() {
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
-  ctx.clearRect(0, 0, 500, 500);
+  ctx.clearRect(-1, -1, 501, 501);
   ctx.strokeStyle="#000000";
   LISTER = [0];
   LISTER[0] = parseInt(document.getElementById("Slider1").value)

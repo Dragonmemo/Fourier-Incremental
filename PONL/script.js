@@ -38,6 +38,12 @@ function myFunction1() {
   ctx.lineTo(0, 500*(1-(LISTER[0]+LISTER[1]+LISTER[2])/MAX));
   ctx.closePath()
   ctx.stroke(); 
+  ctx.beginPath()
+  ctx.strokeStyle="#3366aa";
+  ctx.moveTo(0, 500*(1-LISTER[2]/MAX));
+  ctx.lineTo(500, 500*(1-LISTER[2]/MAX));
+  ctx.closePath()
+  ctx.stroke(); 
   var M, MPrime;
   M=[dichotomie(function (x){return Math.sqrt(x*x+LISTER[1]**2)+1.33*Math.sqrt((x-LISTER[3])**2+LISTER[2]**2)},0,LISTER[3]),LISTER[2]];
   MPrime=[dichotomie(function (x){return Math.sqrt(x*x+(LISTER[1]+LISTER[0])**2)+1.33*Math.sqrt((x-LISTER[3])**2+LISTER[2]**2)},0,LISTER[3]),LISTER[2]];
@@ -50,7 +56,7 @@ function myFunction1() {
   ctx.beginPath();
   ctx.moveTo(500*LISTER[3]/MAX, 500);
   ctx.lineTo(500*MPrime[0]/MAX, 500*(1-MPrime[1]/MAX));
-  ctx.lineTo(0, 500*(1-(LISTER[2]+LISTER[1])/MAX));
+  ctx.lineTo(0, 500*(1-(LISTER[0]+LISTER[1]+LISTER[2])/MAX));
   ctx.closePath();
   ctx.stroke(); 
 }

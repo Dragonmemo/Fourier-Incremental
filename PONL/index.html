@@ -1,0 +1,112 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LOL, i have NO idea where this shows up">
+
+    <title>Fourier Incremental</title>
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/PONL/style.css">
+
+    <!-- import the webpage's client-side javascript file -->
+    <script src="/PONL/math.js" defer></script>
+    <script src="/PONL/complex.js" defer></script>
+    <script src="/PONL/script.js" defer></script>
+    <style>
+    * {
+      box-sizing: border-box;
+    }
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    </style>
+     
+  </head>
+  <body style="background-color:#eee;">
+    <header>
+      <h1>Projects : Non Linear Optimisation</h1>
+    </header>
+    <div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'P1')" id="MainTab">Project 1</button>
+    <button class="tablinks" onclick="openCity(event, 'P2')">Project 2</button>
+    <button class="tablinks" onclick="openCity(event, 'P3')">Project 3</button>
+    <button class="tablinks" onclick="openCity(event, 'P4')">Project 4</button>
+    <button class="tablinks" onclick="openCity(event, 'P1.1')">Project 1 +</button>
+    <button class="tablinks" onclick="openCity(event, 'P1.2')">Project 1 ++</button>
+    <button class="tablinks" onclick="openCity(event, 'P2.1')">Project 2 +</button>
+    </div>
+    <div id="P1" class="tabcontent">
+	<table><tr>
+	<td style="display:table-cell;">
+    <canvas id="myCanvas" width="500" height="500"></canvas>
+    </td>
+	<td style="display:table-cell;">
+	<div class="row" style="color:#fff">
+      <div class="column" style="background-color:#500;">
+        <div class="slidecontainer" hidden id="Slider1">
+		  <input type="range" min="0" max="100" value="100" class="slider" id="Phi1">
+		  <span>d length</span>
+		</div>
+		<div class="slidecontainer" hidden id="Slider1">
+		  <input type="range" min="0" max="100" value="100" class="slider" id="Phi1">
+		  <span>e length</span>
+		</div>
+		<div class="slidecontainer" hidden id="Slider1">
+		  <input type="range" min="0" max="100" value="100" class="slider" id="Phi1">
+		  <span>p length</span>
+		</div>
+		<div class="slidecontainer" hidden id="Slider1">
+		  <input type="range" min="0" max="100" value="100" class="slider" id="Phi1">
+		  <span>x length</span>
+		</div>
+      </div>
+    </div> 
+    </td></tr></table>
+	<td style="display:table-cell;">
+    <span>d = <span id = "dVal1.0"></span><br>
+	e = <span id = "eVal1.0"></span><br>
+	p = <span id = "pVal1.0"></span><br>
+	x = <span id = "xVal1.0"></span><br>
+	alpha = <span id = "alphaVal1.0"></span><br>
+	beta = <span id = "betaVal1.0"></span><br></span>
+    </td>
+	</div>
+    <div id="P2" class="tabcontent">
+    </div>
+    <div id="P3" class="tabcontent">
+    </div>
+    <div id="P4" class="tabcontent">
+    </div>
+    <div id="P1.1" class="tabcontent">
+    </div>
+	<div id="P1.2" class="tabcontent">
+    </div>
+    <div id="P2.1" class="tabcontent">
+    </div>
+	<script>
+    function openCity(evt, cityName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+
+    document.getElementById("MainTab").click();
+    </script>
+  </body>
+</html>

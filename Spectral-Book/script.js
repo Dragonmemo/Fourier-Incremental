@@ -20,8 +20,8 @@ var tickpart2=0;
 var mainGameLoop = window.setInterval(function() { // runs the loop
 	tickpart += 50;
 	tickpart2+=50;
-	if (tickpart>=tickspeed) {
-		tickpart -= tickspeed;
+	if (tickpart>=500) {
+		tickpart -= 500;
 		loop();
 	}
 	if (tickpart2>=10000){

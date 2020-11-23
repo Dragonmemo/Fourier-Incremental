@@ -2,7 +2,7 @@
 function myFunction() {
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
-  ctx.clearRect(0, 0, 500, 500);
+  /*ctx.clearRect(0, 0, 500, 500);
   ctx.strokeStyle="#000099";
   ctx.moveTo(250, 0);
   ctx.lineTo(250, 500);
@@ -12,7 +12,7 @@ function myFunction() {
   ctx.stroke();
   ctx.strokeStyle="#BBBBBB";
   ctx.beginPath();
-  ctx.closePath();
+  ctx.closePath();*/
 };
 
 var tickpart=0;

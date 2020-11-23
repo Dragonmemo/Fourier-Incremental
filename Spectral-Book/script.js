@@ -15,6 +15,7 @@ function POINT(event){
 function myFunction() {
 	var ctx = canvas.getContext("2d");
 	ctx.clearRect(0, 0, 1000, 750);
+	ctx.beginPath();
 	ctx.strokeStyle="#ccc";
 	ctx.moveTo(1+Pointer[0], 1+Pointer[1]);
 	ctx.lineTo(1000+Pointer[0], 750+Pointer[1]);
@@ -22,6 +23,7 @@ function myFunction() {
 	ctx.moveTo(1+Pointer[0], 750+Pointer[1]);
 	ctx.lineTo(1000+Pointer[0], 1+Pointer[1]);
 	ctx.stroke();
+	ctx.closePath();
 };
 
 var tickpart=0;

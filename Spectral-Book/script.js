@@ -1,34 +1,43 @@
+var Pointer =[0,0]
+var canvas = document.getElementById("myCanvas");
+var BOOLER= false
+var x,y
+canvas.addEventListener("mousedown", function(){BOOLER=true;x=[event.clientX,Pointer[0]];y=[event.clientY,Pointer[1]]});
+canvas.addEventListener("mouseup", function(){BOOLER=false});
+canvas.addEventListener("mousemove",function(){POINT(event)})
+function POINT(event){
+  if (BOOLER){
+    Pointer[0]=event.clientX-x[0]+x[1]
+    Pointer[1]=event.clientY-y[0]+y[1]
+}}
+
 
 function myFunction() {
-  var canvas = document.getElementById("myCanvas");
-  var ctx = canvas.getContext("2d");
-  /*ctx.clearRect(0, 0, 500, 500);
-  ctx.strokeStyle="#000099";
-  ctx.moveTo(250, 0);
-  ctx.lineTo(250, 500);
-  ctx.stroke(); 
-  ctx.moveTo(0, 250);
-  ctx.lineTo(500, 250);
-  ctx.stroke();
-  ctx.strokeStyle="#BBBBBB";
-  ctx.beginPath();
-  ctx.closePath();*/
+	var ctx = canvas.getContext("2d");
+	ctx.clearRect(0, 0, 1000, 750);
+	ctx.strokeStyle="#ccc";
+	ctx.moveTo(1+Pointer[0], 1+Pointer[1]);
+	ctx.lineTo(1000+Pointer[0], 750+Pointer[1]);
+	ctx.stroke(); 
+	ctx.moveTo(1+Pointer[0], 750+Pointer[1]);
+	ctx.lineTo(1000+Pointer[0], 1+Pointer[1]);
+	ctx.stroke();
 };
 
 var tickpart=0;
 var tickpart2=0;
 var mainGameLoop = window.setInterval(function() { // runs the loop
-	tickpart += 50;
-	tickpart2+=50;
-	if (tickpart>=500) {
-		tickpart -= 500;
+	tickpart += 33;
+	tickpart2+=33;
+	if (tickpart>=33) {
+		tickpart -= 33;
 		loop();
 	}
 	if (tickpart2>=10000){
 		tickpart2-=10000
 		//if (document.getElementById("Autosave").checked == true){save();}
 	}
-}, 50);
+}, 33);
 
 function loop() { // production
   myFunction();

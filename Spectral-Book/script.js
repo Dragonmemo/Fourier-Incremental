@@ -1,10 +1,29 @@
 var Pointer =[0,0]
 var canvas = document.getElementById("myCanvas");
 var BOOLER= false
-var x,y
+var i,j; var OldI
 canvas.addEventListener("mousedown", function(){BOOLER=true;x=[event.clientX,Pointer[0]];y=[event.clientY,Pointer[1]]});
 canvas.addEventListener("mouseup", function(){BOOLER=false});
 canvas.addEventListener("mousemove",function(){POINT(event)})
+for (i=1;i<3;i++){
+	document.getElementById("HAND"+i).addEventListener("click",function(){SelectIt(i)})
+}
+function SelectIt(i){
+	if (OldI){
+		if (OldI==i){
+			document.getElementById("HAND"+OldI).removeAttribute("style");
+			OldI=undefined
+		}
+		else{
+		document.getElementById("HAND"+OldI).removeAttribute("style");
+		OldI=i
+		document.getElementById("HAND"+OldI).setAttribute("style","background-color: #db2;");
+	}}
+	else {
+		OldI=i
+		document.getElementById("HAND"+OldI).setAttribute("style","background-color: #db2;");
+	}
+}
 function POINT(event){
   if (BOOLER){
     Pointer[0]=event.clientX-x[0]+x[1]

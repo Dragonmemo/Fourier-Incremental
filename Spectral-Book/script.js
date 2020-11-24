@@ -8,20 +8,20 @@ canvas.addEventListener("mousemove",function(){POINT(event)})
 for (i=1;i<3;i++){
 	document.getElementById("HAND"+i).addEventListener("click",function(){SelectIt(i)})
 }
-function SelectIt(i){
+function SelectIt(k){
 	if (OldI){
-		if (OldI==i){
-			document.getElementById("HAND"+OldI).removeAttribute("style");
+		if (OldI==k){
+			document.getElementById("HAND"+k).removeAttribute("style");
 			OldI=undefined
 		}
 		else{
 		document.getElementById("HAND"+OldI).removeAttribute("style");
-		OldI=i
-		document.getElementById("HAND"+OldI).setAttribute("style","background-color: #db2;");
+		OldI=k
+		document.getElementById("HAND"+k).setAttribute("style","background-color: #db2;");
 	}}
 	else {
-		OldI=i
-		document.getElementById("HAND"+OldI).setAttribute("style","background-color: #db2;");
+		OldI=k
+		document.getElementById("HAND"+k).setAttribute("style","background-color: #db2;");
 	}
 }
 function POINT(event){

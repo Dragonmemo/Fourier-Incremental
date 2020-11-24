@@ -42,7 +42,7 @@ function DrawSettings(){
 	SETTINGS=true;
 	var ctx= canvas.getContext("2d");
 	ctx.clearRect(0,0,1000,750);
-	ctx.font("10px Lucida Console")
+	ctx.font = "10px Lucida Console"
 	ctx.fillText("SAVE",20,20)
 	ctx.beginPath()
 	ctx.strokeStyle="#999";

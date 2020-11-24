@@ -43,14 +43,14 @@ function DrawSettings(){
 	var ctx= canvas.getContext("2d");
 	ctx.clearRect(0,0,1000,750);
 	ctx.strokeStyle="#eee";
-	ctx.font = "10px Lucida Console"
+	ctx.font = "30px Lucida Console"
 	ctx.fillText("SAVE",20,20)
 	ctx.beginPath()
 	ctx.strokeStyle="#999";
 	ctx.moveTo(10,20)
+	ctx.lineTo(50,20)
+	ctx.lineTo(50,50)
 	ctx.lineTo(10,50)
-	ctx.lineTo(20,50)
-	ctx.lineTo(20,20)
 	ctx.stroke()
 	ctx.closePath();
 }

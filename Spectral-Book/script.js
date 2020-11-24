@@ -1,10 +1,12 @@
 var Pointer =[0,0]
 var canvas = document.getElementById("myCanvas");
 var BOOLER= false
+var SETTINGS = false
 var i,j; var OldI
 canvas.addEventListener("mousedown", function(){BOOLER=true;x=[event.clientX,Pointer[0]];y=[event.clientY,Pointer[1]]});
 canvas.addEventListener("mouseup", function(){BOOLER=false});
 canvas.addEventListener("mousemove",function(){POINT(event)})
+canvas.addEventListener("click",function(){PRESS(event)})
 document.getElementById("HAND1").addEventListener("click",function(){SelectIt(1)})
 document.getElementById("HAND2").addEventListener("click",function(){SelectIt(2)})
 
@@ -17,20 +19,40 @@ function SelectIt(k){
 		else{
 		document.getElementById("HAND"+OldI).removeAttribute("style");
 		OldI=k
-		document.getElementById("HAND"+k).setAttribute("style","background-color: #db2;");
+		document.getElementById("HAND"+k).setAttribute("style","background-color: #c92;");
 	}}
 	else {
 		OldI=k
-		document.getElementById("HAND"+k).setAttribute("style","background-color: #db2;");
+		document.getElementById("HAND"+k).setAttribute("style","background-color: #c92;");
 	}
 }
 function POINT(event){
-  if (BOOLER){
+  if (BOOLER and !SETTINGS){
     Pointer[0]=event.clientX-x[0]+x[1]
     Pointer[1]=event.clientY-y[0]+y[1]
 }}
+function PRESS(event){
+  if (SETTINGS){
+    if (event.clientX && event.clientY){
+		
+	}
+}}
 
-
+function DrawSettings(){
+	SETTINGS=true;
+	var ctx= canvas.getContext("2d");
+	ctx.clearRect(0,0,1000,750);
+	ctx.font("10px Lucida Console")
+	ctx.fillText("SAVE",20,20)
+	ctx.beginPath()
+	ctx.strokeStyle="#999";
+	ctx.moveTo(10,20)
+	ctx.lineTo(10,50)
+	ctx.lineTo(20,50)
+	ctx.lineTo(20,20)
+	ctx.stroke()
+	ctx.closePath();
+}
 function myFunction() {
 	var ctx = canvas.getContext("2d");
 	ctx.clearRect(0, 0, 1000, 750);

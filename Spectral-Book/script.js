@@ -27,7 +27,7 @@ function SelectIt(k){
 	}
 }
 function POINT(event){
-  if (BOOLER and !SETTINGS){
+  if (BOOLER && !SETTINGS){
     Pointer[0]=event.clientX-x[0]+x[1]
     Pointer[1]=event.clientY-y[0]+y[1]
 }}

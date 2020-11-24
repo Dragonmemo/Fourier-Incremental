@@ -12,6 +12,7 @@ document.getElementById("HAND2").addEventListener("click",function(){SelectIt(2)
 
 function SelectIt(k){
 	if (OldI){
+		if (k==2){DrawSettings}
 		if (OldI==k){
 			document.getElementById("HAND"+k).removeAttribute("style");
 			OldI=undefined
@@ -42,7 +43,7 @@ function DrawSettings(){
 	SETTINGS=true;
 	var ctx= canvas.getContext("2d");
 	ctx.clearRect(0,0,1000,750);
-	ctx.strokeStyle="#eee";
+	ctx.fillStyle="#eee";
 	ctx.font = "30px Lucida Console"
 	ctx.fillText("SAVE",20,20)
 	ctx.beginPath()

@@ -5,9 +5,9 @@ var i,j; var OldI
 canvas.addEventListener("mousedown", function(){BOOLER=true;x=[event.clientX,Pointer[0]];y=[event.clientY,Pointer[1]]});
 canvas.addEventListener("mouseup", function(){BOOLER=false});
 canvas.addEventListener("mousemove",function(){POINT(event)})
-for (i=1;i<3;i++){
-	document.getElementById("HAND"+i).addEventListener("click",function(){SelectIt(i)})
-}
+document.getElementById("HAND1").addEventListener("click",function(){SelectIt(1)})
+document.getElementById("HAND2").addEventListener("click",function(){SelectIt(2)})
+
 function SelectIt(k){
 	if (OldI){
 		if (OldI==k){

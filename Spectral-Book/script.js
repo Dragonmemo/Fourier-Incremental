@@ -53,7 +53,7 @@ function DrawSettings(){
 	ctx.stroke()
 	ctx.closePath();
 }
-function myFunction() {
+function DrawScreen(){
 	var ctx = canvas.getContext("2d");
 	ctx.clearRect(0, 0, 1000, 750);
 	ctx.beginPath();
@@ -65,6 +65,9 @@ function myFunction() {
 	ctx.lineTo(1000+Pointer[0], 1+Pointer[1]);
 	ctx.stroke();
 	ctx.closePath();
+}
+function myFunction() {
+	if (!SETTINGS){DrawScreen()}
 };
 
 var tickpart=0;

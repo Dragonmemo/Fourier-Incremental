@@ -51,11 +51,6 @@ function DrawSettings(){
 	ctx.fillText("IMPORT",445,340)
 	ctx.beginPath()
 	ctx.strokeStyle="#999";
-	ctx.moveTo(420,110)
-	ctx.lineTo(420,70)
-	ctx.lineTo(580,70)
-	ctx.lineTo(580,110)
-	ctx.lineTo(420,110)
 	ctx.moveTo(455,230)
 	ctx.lineTo(455,190)
 	ctx.lineTo(545,190)

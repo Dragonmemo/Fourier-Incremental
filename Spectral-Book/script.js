@@ -40,44 +40,47 @@ function PRESS(event){
 }}
 
 function DrawSettings(){
-	SETTINGS=true;
-	var ctx= canvas.getContext("2d");
-	ctx.clearRect(0,0,1000,750);
-	ctx.fillStyle="#eee";
-	ctx.font = "30px Lucida Console"
-	ctx.fillText("SETTINGS",430,100)
-	ctx.fillText("SAVE",465,220)
-	ctx.fillText("EXPORT",445,280)
-	ctx.fillText("IMPORT",445,340)
-	ctx.beginPath()
-	ctx.strokeStyle="#999";
-	ctx.moveTo(455,230)
-	ctx.lineTo(455,190)
-	ctx.lineTo(545,190)
-	ctx.lineTo(545,230)
-	ctx.lineTo(455,230)
-	ctx.moveTo(435,290)
-	ctx.lineTo(435,250)
-	ctx.lineTo(565,250)
-	ctx.lineTo(565,290)
-	ctx.lineTo(435,290)
-	ctx.moveTo(435,350)
-	ctx.lineTo(435,310)
-	ctx.lineTo(565,310)
-	ctx.lineTo(565,350)
-	ctx.lineTo(435,350)
-	/*
-	for (i=0;i<1000;i=i+10){
-		ctx.moveTo(i,0)
-		ctx.lineTo(i,750)
+	SETTINGS=!SETTINGS;
+	if (SETTINGS){
+		var ctx= canvas.getContext("2d");
+		ctx.clearRect(0,0,1000,750);
+		ctx.fillStyle="#eee";
+		ctx.font = "30px Lucida Console"
+		ctx.fillText("SETTINGS",430,100)
+		ctx.fillText("SAVE",465,220)
+		ctx.fillText("EXPORT",445,280)
+		ctx.fillText("IMPORT",445,340)
+		ctx.beginPath()
+		ctx.strokeStyle="#999";
+		ctx.moveTo(455,230)
+		ctx.lineTo(455,190)
+		ctx.lineTo(545,190)
+		ctx.lineTo(545,230)
+		ctx.lineTo(455,230)
+		ctx.moveTo(435,290)
+		ctx.lineTo(435,250)
+		ctx.lineTo(565,250)
+		ctx.lineTo(565,290)
+		ctx.lineTo(435,290)
+		ctx.moveTo(435,350)
+		ctx.lineTo(435,310)
+		ctx.lineTo(565,310)
+		ctx.lineTo(565,350)
+		ctx.lineTo(435,350)
+		/*
+		for (i=0;i<1000;i=i+10){
+			ctx.moveTo(i,0)
+			ctx.lineTo(i,750)
+		}
+		for (i=0;i<750;i=i+10){
+			ctx.moveTo(0,i)
+			ctx.lineTo(1000,i)
+		}
+		*/
+		ctx.stroke()
+		ctx.closePath();
 	}
-	for (i=0;i<750;i=i+10){
-		ctx.moveTo(0,i)
-		ctx.lineTo(1000,i)
-	}
-	*/
-	ctx.stroke()
-	ctx.closePath();
+	//Ajouter les fonctions et le retirer dans le if et ajouter un else dans le cas de les retirer
 }
 function DrawScreen(){
 	var ctx = canvas.getContext("2d");

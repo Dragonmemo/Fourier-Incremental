@@ -1,4 +1,4 @@
-var Pointer =[0,0]
+var Pointer =[330,220]
 var canvas = document.getElementById("myCanvas");
 var BOOLER= false
 var SETTINGS = false
@@ -111,6 +111,9 @@ function DrawScreen(){
 	ctx.lineTo(Pointer[0]+320,Pointer[1]+60)
 	ctx.moveTo(Pointer[0]+200,Pointer[1]+100)
 	ctx.lineTo(Pointer[0]+320,Pointer[1]+100)
+	//Premier mur de fond
+	ctx.moveTo(Pointer[0]+400,Pointer[1]+160)
+	ctx.lineTo(Pointer[0]+400,Pointer[1])
 	ctx.stroke();
 	ctx.closePath();
 }

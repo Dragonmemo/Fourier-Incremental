@@ -142,7 +142,7 @@ function TextItAll(){
 		if (Texter[i][3]<=0){j=i;}
 	}
 	if (j+1){
-		delete Texter[j];
+		Texter.pop(j);
 		j=undefined
 	}
 }

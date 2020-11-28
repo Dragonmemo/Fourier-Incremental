@@ -11,6 +11,7 @@ canvas.addEventListener("click",function(){PRESS(event)})
 document.getElementById("HAND1").addEventListener("click",function(){SelectIt(1)})
 document.getElementById("HAND2").addEventListener("click",function(){SelectIt(2)})
 
+async function
 function SelectIt(k){
 	if (k==2){DrawSettings();}
 	if (OldI){
@@ -19,6 +20,7 @@ function SelectIt(k){
 			OldI=undefined
 		}
 		else{
+			if (OldI==2){DrawSettings();}
 		document.getElementById("HAND"+OldI).removeAttribute("style");
 		OldI=k
 		document.getElementById("HAND"+k).setAttribute("style","background-color: #c92;");
@@ -126,6 +128,26 @@ function myFunction() {
 		}
 	}
 };
+var Texter=[];// Texte, Couleur ( rgba(bla,bla,bla, ), Position, Temps
+function TextItAll(){
+	var ctx=canvas.getContext("2d");
+	ctx.beginPath();
+	for (i=0;i<Texter.length;i++){
+		ctx.fillStyle=Texter[i][1]+(1/(1+0.08/Texter[i][3]))+")"
+		ctx.fillText(Texter[i][0],Texter[i][2][0],Texter[i][2][1]);
+		ctx.stroke();
+		Texter[i][3]=Texter[i][3]-1
+	}
+	ctx.closePath();
+	for (i=0;i<Texter.length;i++){
+		if (Texter[i][3]<=0){j=i;}
+	}
+	if (j){
+		delete Texter[j];
+		j=undefined
+	}
+}
+
 
 var tickpart=0;
 var tickpart2=0;
@@ -142,8 +164,9 @@ var mainGameLoop = window.setInterval(function() { // runs the loop
 	}
 }, 33);
 
-function loop() { // production
+function loop() {
   myFunction();
+  TextItAll();
 }
 /*
 if(!(localStorage.lastTick)){localStorage.lastTick=Date.now();}

@@ -141,7 +141,7 @@ function TextItAll(){
 	for (i=0;i<Texter.length;i++){
 		if (Texter[i][3]<=0){j=i;}
 	}
-	if (j){
+	if (j+1){
 		delete Texter[j];
 		j=undefined
 	}

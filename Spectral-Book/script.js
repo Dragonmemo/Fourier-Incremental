@@ -48,11 +48,19 @@ function DrawSettings(){
 	ctx.fillText("SAVE",20,50)
 	ctx.beginPath()
 	ctx.strokeStyle="#999";
-	ctx.moveTo(10,10)
+	/*ctx.moveTo(10,10)
 	ctx.lineTo(90,10)
 	ctx.lineTo(90,60)
 	ctx.lineTo(10,60)
-	ctx.lineTo(10,10)
+	ctx.lineTo(10,10)*/
+	for (i=0;i<1000;i=i+10){
+		ctx.moveTo(i,0)
+		ctx.lineTo(i,750)
+	}
+	for (i=0;i<750;i=i+10){
+		ctx.moveTo(0,i)
+		ctx.lineTo(1000,i)
+	}
 	ctx.stroke()
 	ctx.closePath();
 }

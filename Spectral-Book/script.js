@@ -94,8 +94,8 @@ function DrawScreen(){
 	ctx.lineTo(Pointer[0]+400,Pointer[1])
 	ctx.moveTo(Pointer[0]+30,Pointer[1]+30)
 	ctx.lineTo(Pointer[0]+55,Pointer[1]+5)
-	ctx.lineTo(Pointer[0]+45,Pointer[1]+15)
-	ctx.lineTo(Pointer[0]+20,Pointer[1]+40)
+	ctx.lineTo(Pointer[0]+65,Pointer[1]+15)
+	ctx.lineTo(Pointer[0]+40,Pointer[1]+40)
 	ctx.lineTo(Pointer[0]+30,Pointer[1]+30)
 	//première zone de pose
 	ctx.moveTo(Pointer[0]+200,Pointer[1]+20)

@@ -3,6 +3,7 @@ var canvas = document.getElementById("myCanvas");
 var BOOLER= false
 var SETTINGS = false
 var i,j; var OldI
+var GlassesLevel=0;
 canvas.addEventListener("mousedown", function(){BOOLER=true;x=[event.clientX,Pointer[0]];y=[event.clientY,Pointer[1]]});
 canvas.addEventListener("mouseup", function(){BOOLER=false});
 canvas.addEventListener("mousemove",function(){POINT(event)})
@@ -84,7 +85,6 @@ function DrawSettings(){
 }
 function DrawScreen(){
 	var ctx = canvas.getContext("2d");
-	ctx.clearRect(0, 0, 1000, 750);
 	ctx.beginPath();
 	ctx.strokeStyle="#ccc";
 	//Table Et mur gauche (ne change pas)
@@ -118,7 +118,13 @@ function DrawScreen(){
 	ctx.closePath();
 }
 function myFunction() {
-	if (!SETTINGS){DrawScreen()}
+	if (!SETTINGS){
+		var ctx = canvas.getContext("2d");
+		ctx.clearRect(0, 0, 1000, 750);
+		if (GlassesLevel>0 || OldI==1){
+			DrawScreen()
+		}
+	}
 };
 
 var tickpart=0;

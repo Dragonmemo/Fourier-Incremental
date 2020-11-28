@@ -45,18 +45,33 @@ function DrawSettings(){
 	ctx.clearRect(0,0,1000,750);
 	ctx.fillStyle="#eee";
 	ctx.font = "30px Lucida Console"
-	ctx.fillText("SETTINGS",20,100)
-	ctx.fillText("BACK",465,160)
+	ctx.fillText("SETTINGS",430,100)
 	ctx.fillText("SAVE",465,220)
-	ctx.fillText("EXPORT",20,280)
-	ctx.fillText("IMPORT",20,340)
+	ctx.fillText("EXPORT",445,280)
+	ctx.fillText("IMPORT",445,340)
 	ctx.beginPath()
 	ctx.strokeStyle="#999";
-	/*ctx.moveTo(10,10)
-	ctx.lineTo(90,10)
-	ctx.lineTo(90,60)
-	ctx.lineTo(10,60)
-	ctx.lineTo(10,10)*/
+	ctx.moveTo(420,110)
+	ctx.lineTo(420,70)
+	ctx.lineTo(580,70)
+	ctx.lineTo(580,110)
+	ctx.lineTo(420,110)
+	ctx.moveTo(455,230)
+	ctx.lineTo(455,190)
+	ctx.lineTo(545,190)
+	ctx.lineTo(545,230)
+	ctx.lineTo(455,230)
+	ctx.moveTo(435,290)
+	ctx.lineTo(435,250)
+	ctx.lineTo(565,250)
+	ctx.lineTo(565,290)
+	ctx.lineTo(435,290)
+	ctx.moveTo(435,350)
+	ctx.lineTo(435,310)
+	ctx.lineTo(565,310)
+	ctx.lineTo(565,350)
+	ctx.lineTo(435,350)
+	/*
 	for (i=0;i<1000;i=i+10){
 		ctx.moveTo(i,0)
 		ctx.lineTo(i,750)
@@ -65,6 +80,7 @@ function DrawSettings(){
 		ctx.moveTo(0,i)
 		ctx.lineTo(1000,i)
 	}
+	*/
 	ctx.stroke()
 	ctx.closePath();
 }

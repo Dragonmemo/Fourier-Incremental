@@ -45,7 +45,11 @@ function DrawSettings(){
 	ctx.clearRect(0,0,1000,750);
 	ctx.fillStyle="#eee";
 	ctx.font = "30px Lucida Console"
-	ctx.fillText("SAVE",20,50)
+	ctx.fillText("SETTINGS",20,100)
+	ctx.fillText("BACK",465,160)
+	ctx.fillText("SAVE",465,220)
+	ctx.fillText("EXPORT",20,280)
+	ctx.fillText("IMPORT",20,340)
 	ctx.beginPath()
 	ctx.strokeStyle="#999";
 	/*ctx.moveTo(10,10)

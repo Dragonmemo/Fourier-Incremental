@@ -87,18 +87,30 @@ function DrawScreen(){
 	ctx.clearRect(0, 0, 1000, 750);
 	ctx.beginPath();
 	ctx.strokeStyle="#ccc";
-	for (i=0;i<1000;i=i+10){
-			ctx.moveTo(i+Pointer[0],Pointer[1])
-			ctx.lineTo(i+Pointer[0],750+Pointer[1])
-	}
-	for (i=0;i<750;i=i+10){
-		ctx.moveTo(Pointer[0],i+Pointer[1])
-		ctx.lineTo(1000+Pointer[0],i+Pointer[1])
-	}
-	ctx.moveTo(1+Pointer[0], 1+Pointer[1]);
-	ctx.lineTo(1000+Pointer[0], 750+Pointer[1]);
-	ctx.moveTo(1+Pointer[0], 750+Pointer[1]);
-	ctx.lineTo(1000+Pointer[0], 1+Pointer[1]);
+	//Table Et mur gauche (ne change pas)
+	ctx.moveTo(Pointer[0]+500,Pointer[1]+160)
+	ctx.lineTo(Pointer[0],Pointer[1]+160)
+	ctx.lineTo(Pointer[0],Pointer[1])
+	ctx.lineTo(Pointer[0]+500,Pointer[1])
+	ctx.moveTo(Pointer[0]+30,Pointer[1]+30)
+	ctx.lineTo(Pointer[0]+55,Pointer[1]+55)
+	ctx.lineTo(Pointer[0]+65,Pointer[1]+45)
+	ctx.lineTo(Pointer[0]+40,Pointer[1]+20)
+	ctx.lineTo(Pointer[0]+30,Pointer[1]+30)
+	//première zone de pose
+	ctx.moveTo(Pointer[0]+100,Pointer[1]+20)
+	ctx.lineTo(Pointer[0]+220,Pointer[1]+20)
+	ctx.lineTo(Pointer[0]+220,Pointer[1]+140)
+	ctx.lineTo(Pointer[0]+100,Pointer[1]+140)
+	ctx.lineTo(Pointer[0]+100,Pointer[1]+20)
+	ctx.moveTo(Pointer[0]+140,Pointer[1]+20)
+	ctx.lineTo(Pointer[0]+140,Pointer[1]+140)
+	ctx.moveTo(Pointer[0]+180,Pointer[1]+20)
+	ctx.lineTo(Pointer[0]+180,Pointer[1]+140)
+	ctx.moveTo(Pointer[0]+100,Pointer[1]+60)
+	ctx.lineTo(Pointer[0]+220,Pointer[1]+60)
+	ctx.moveTo(Pointer[0]+100,Pointer[1]+100)
+	ctx.lineTo(Pointer[0]+220,Pointer[1]+100)
 	ctx.stroke();
 	ctx.closePath();
 }

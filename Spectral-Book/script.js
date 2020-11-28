@@ -132,7 +132,7 @@ function TextItAll(){
 	var ctx=canvas.getContext("2d");
 	ctx.beginPath();
 	for (i=0;i<Texter.length;i++){
-		ctx.fillStyle=Texter[i][1]+(1/(1+0.001/Texter[i][3]))+")"
+		ctx.fillStyle=Texter[i][1]+(1/(1+33/Texter[i][3]))+")"
 		ctx.fillText(Texter[i][0],Texter[i][2][0],Texter[i][2][1]);
 		ctx.stroke();
 		Texter[i][3]=Texter[i][3]-1

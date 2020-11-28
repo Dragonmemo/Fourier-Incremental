@@ -131,6 +131,7 @@ var Texter=[];// Texte, Couleur ( rgba(bla,bla,bla, ), Position, Temps
 function TextItAll(){
 	var ctx=canvas.getContext("2d");
 	ctx.beginPath();
+	ctx.font = "30px Lucida Console"
 	for (i=0;i<Texter.length;i++){
 		ctx.fillStyle=Texter[i][1]+(1/(1+2/Texter[i][3]))+")"
 		ctx.fillText(Texter[i][0],Texter[i][2][0],Texter[i][2][1]);

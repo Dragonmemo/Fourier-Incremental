@@ -11,7 +11,6 @@ canvas.addEventListener("click",function(){PRESS(event)})
 document.getElementById("HAND1").addEventListener("click",function(){SelectIt(1)})
 document.getElementById("HAND2").addEventListener("click",function(){SelectIt(2)})
 
-async function
 function SelectIt(k){
 	if (k==2){DrawSettings();}
 	if (OldI){

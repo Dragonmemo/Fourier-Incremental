@@ -43,8 +43,8 @@ function PRESS(event){
 var CELLAR=[];//Xe elem = Xe emplacement, puis une matrice de bordel. un bordel = Cellule [Objet, niveau]
 var ActiveSigil;// Cellule cliqué [num emplacement, coords]
 function CellClick(event){
-	if (Pointer[0]+200<event.clientX<Pointer[0]+320 && Pointer[1]+20<event.clientY<Pointer[1]+140){
-		ActiveSigil=[0,parseInt((event.clientX-Pointer[0]-200)/40),parseInt((event.clientY-Pointer[1]-20)/40)]
+	if (200<event.clientX+Pointer[0]<320 && 20<event.clientY+Pointer[1]<140){
+		ActiveSigil=[0,parseInt((event.clientX+Pointer[0]-200)/40),parseInt((event.clientY+Pointer[1]-20)/40)]
 		canvas.addEventListener("click",function kappa(){
 			if (600<event.clientX || 400>event.clientX || 100>event.clientY || 650<event.clientY){
 				ActiveSigil=undefined;
@@ -59,7 +59,7 @@ function SelectedSigilDraw(SIGIL){
 	if (SIGIL[0]==0){
 		ctx.fillRect(40*SIGIL[1]+200+Pointer[0],40*SIGIL[2]+20+Pointer[1],40*SIGIL[1]+240+Pointer[0],40*SIGIL[2]+60+Pointer[1])
 	}
-	ctx.clearRect(400,100,600,650);
+	ctx.clearRect(400,100,200,450);
 	ctx.strokeStyle="#eee"
 	ctx.beginPath();
 	ctx.moveTo(400,100)

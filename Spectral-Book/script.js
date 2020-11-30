@@ -57,14 +57,14 @@ function SelectedSigilDraw(SIGIL){
 	var ctx=canvas.getContext("2d");
 	ctx.fillStyle="#c92";
 	if (SIGIL[0]==0){
-		ctx.fillRect(40*SIGIL[1]+200+Pointer[0],40*SIGIL[2]+20+Pointer[1],40*SIGIL[1]+240+Pointer[0],40*SIGIL[2]+60+Pointer[1])
+		ctx.fillRect(40*SIGIL[1]+200+Pointer[0],40*SIGIL[2]+20+Pointer[1],40,40)
 	}
 	ctx.clearRect(400,100,200,450);
 	ctx.strokeStyle="#eee"
 	ctx.beginPath();
 	ctx.moveTo(400,100)
-	ctx.lineTo(400,650)
-	ctx.lineTo(600,650)
+	ctx.lineTo(400,550)
+	ctx.lineTo(600,550)
 	ctx.lineTo(600,100)
 	ctx.lineTo(400,100)
 	ctx.stroke();

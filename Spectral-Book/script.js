@@ -1,13 +1,13 @@
 var Pointer =[330,220]
 var canvas = document.getElementById("myCanvas");
-var BOOLER= false
-var SETTINGS = false
-var i,j; var OldI
+var BOOLER= false;
+var SETTINGS = false;
+var i,j; var OldI;
 var GlassesLevel=0;
 canvas.addEventListener("mousedown", function(){BOOLER=true;x=[event.clientX,Pointer[0]];y=[event.clientY,Pointer[1]]});
 canvas.addEventListener("mouseup", function(){BOOLER=false});
 canvas.addEventListener("mousemove",function(){POINT(event)})
-canvas.addEventListener("click",function(){PRESS(event)})
+canvas.addEventListener("click",function(){if (SETTINGS){PRESS(event)} else {CellClick(event)}})
 document.getElementById("HAND1").addEventListener("click",function(){SelectIt(1)})
 document.getElementById("HAND2").addEventListener("click",function(){SelectIt(2)})
 
@@ -35,11 +35,41 @@ function POINT(event){
     Pointer[1]=event.clientY-y[0]+y[1]
 }}
 function PRESS(event){
-  if (SETTINGS){
-    if (event.clientX && event.clientY){
+	if (event.clientX && event.clientY){
 		
 	}
-}}
+}
+
+var CELLAR=[];//Xe elem = Xe emplacement, puis une matrice de bordel. un bordel = Cellule [Objet, niveau]
+var ActiveSigil;// Cellule cliqué [num emplacement, coords]
+function CellClick(event){
+	if (Pointer[0]+200<event.clientX<Pointer[0]+320 && Pointer[1]+20<event.clientY<Pointer[1]+140){
+		ActiveSigil=[0,parseInt((event.clientX-Pointer[0]-200)/40),parseInt((event.clientY-Pointer[1]-20)/40)]
+		canvas.addEventListener("click",function kappa(){
+			if (600<event.clientX || 400>event.clientX || 100>event.clientY || 650<event.clientY){
+				ActiveSigil=undefined;
+				canvas.removeEventListener("click",kappa);
+			}
+		})
+	}
+}
+function SelectedSigilDraw(SIGIL){
+	var ctx=canvas.getContext("2d");
+	ctx.fillStyle="#c92";
+	if (SIGIL[0]==0){
+		ctx.fillRect(40*SIGIL[1]+200+Pointer[0],40*SIGIL[2]+20+Pointer[1],40*SIGIL[1]+240+Pointer[0],40*SIGIL[2]+60+Pointer[1])
+	}
+	ctx.clearRect(400,100,600,650);
+	ctx.strokeStyle="#eee"
+	ctx.beginPath();
+	ctx.moveTo(400,100)
+	ctx.lineTo(400,650)
+	ctx.lineTo(600,650)
+	ctx.lineTo(600,100)
+	ctx.lineTo(400,100)
+	ctx.stroke();
+	ctx.closePath()
+}
 
 function DrawSettings(){
 	SETTINGS=!SETTINGS;
@@ -116,6 +146,9 @@ function DrawScreen(){
 	ctx.moveTo(Pointer[0]+400,Pointer[1]+160)
 	ctx.lineTo(Pointer[0]+400,Pointer[1])
 	ctx.stroke();
+	if (ActiveSigil){
+		SelectedSigilDraw(ActiveSigil);
+	}
 	ctx.closePath();
 }
 function myFunction() {
@@ -160,7 +193,7 @@ var mainGameLoop = window.setInterval(function() { // runs the loop
 	}
 	if (tickpart2>=10000){
 		tickpart2-=10000
-		//if (document.getElementById("Autosave").checked == true){save();}
+		//save();
 	}
 }, 33);
 

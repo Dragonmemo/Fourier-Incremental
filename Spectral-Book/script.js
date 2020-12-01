@@ -7,7 +7,7 @@ var GlassesLevel=0;
 canvas.addEventListener("mousedown", function(){BOOLER=true;x=[event.clientX,Pointer[0]];y=[event.clientY,Pointer[1]]});
 canvas.addEventListener("mouseup", function(){BOOLER=false});
 canvas.addEventListener("mousemove",function(){POINT(event)})
-canvas.addEventListener("click",function(){if (SETTINGS){PRESS(event)} else {CellClick(event)}})
+canvas.addEventListener("click",function Celler(){if (SETTINGS){PRESS(event)} else {CellClick(event)}})
 document.getElementById("HAND1").addEventListener("click",function(){SelectIt(1)})
 document.getElementById("HAND2").addEventListener("click",function(){SelectIt(2)})
 
@@ -43,16 +43,16 @@ function PRESS(event){
 var CELLAR=[];//Xe elem = Xe emplacement, puis une matrice de bordel. un bordel = Cellule [Objet, niveau]
 var ActiveSigil;// Cellule cliqué [num emplacement, coords]
 function CellClick(e){
-	console.log(e.clientX-Pointer[0]-10,e.clientY-Pointer[1]-10);
 	if (210+Pointer[0]<e.clientX && e.clientX<Pointer[0]+330 && 30<e.clientY-Pointer[1] && e.clientY<150+Pointer[1]){
 		ActiveSigil=[0,parseInt((e.clientX-Pointer[0]-210)/40),parseInt((e.clientY-Pointer[1]-30)/40)]
 		canvas.addEventListener("click",function kappa(){
-			console.log("KAPPA",event.clientX-10,event.clientY-10);
 			if (610<event.clientX || 410>event.clientX || 110>event.clientY || 660<event.clientY){
 				ActiveSigil=undefined;
 				canvas.removeEventListener("click",kappa);
 			}
 		})
+		canvas.removeEventListener("click",Celler);
+		canvas.addEventListener("click",function Celler(){if (SETTINGS){PRESS(event)} else {CellClick(event)}});
 	}
 }
 function SelectedSigilDraw(SIGIL){

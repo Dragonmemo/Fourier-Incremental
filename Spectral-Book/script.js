@@ -46,6 +46,7 @@ function CellClick(event){
 	console.log(event.clientX-Pointer[0],event.clientY-Pointer[1]);
 	if (200+Pointer[0]<event.clientX && event.clientX<Pointer[0]+320 && 20<event.clientY-Pointer[1] && event.clientY<140+Pointer[1]){
 		ActiveSigil=[0,parseInt((event.clientX-Pointer[0]-200)/40),parseInt((event.clientY-Pointer[1]-20)/40)]
+		delete event;
 		canvas.addEventListener("click",function kappa(){
 			console.log("KAPPA",event.clientX,event.clientY);
 			if (600<event.clientX || 400>event.clientX || 100>event.clientY || 650<event.clientY){

@@ -42,13 +42,13 @@ function PRESS(event){
 
 var CELLAR=[];//Xe elem = Xe emplacement, puis une matrice de bordel. un bordel = Cellule [Objet, niveau]
 var ActiveSigil;// Cellule cliqué [num emplacement, coords]
-function CellClick(event){
-	console.log(event.clientX-Pointer[0]-10,event.clientY-Pointer[1]-10);
-	if (210+Pointer[0]<event.clientX && event.clientX<Pointer[0]+330 && 30<event.clientY-Pointer[1] && event.clientY<150+Pointer[1]){
-		ActiveSigil=[0,parseInt((event.clientX-Pointer[0]-210)/40),parseInt((event.clientY-Pointer[1]-30)/40)]
+function CellClick(e){
+	console.log(e.clientX-Pointer[0]-10,e.clientY-Pointer[1]-10);
+	if (210+Pointer[0]<e.clientX && e.clientX<Pointer[0]+330 && 30<e.clientY-Pointer[1] && e.clientY<150+Pointer[1]){
+		ActiveSigil=[0,parseInt((e.clientX-Pointer[0]-210)/40),parseInt((e.clientY-Pointer[1]-30)/40)]
 		canvas.addEventListener("click",function kappa(){
-			console.log("KAPPA",e.clientX-10,e.clientY-10);
-			if (610<e.clientX || 410>e.clientX || 110>e.clientY || 660<e.clientY){
+			console.log("KAPPA",event.clientX-10,event.clientY-10);
+			if (610<event.clientX || 410>event.clientX || 110>event.clientY || 660<event.clientY){
 				ActiveSigil=undefined;
 				canvas.removeEventListener("click",kappa);
 			}

@@ -7,7 +7,8 @@ var GlassesLevel=0;
 canvas.addEventListener("mousedown", function(){BOOLER=true;x=[event.clientX,Pointer[0]];y=[event.clientY,Pointer[1]]});
 canvas.addEventListener("mouseup", function(){BOOLER=false});
 canvas.addEventListener("mousemove",function(){POINT(event)})
-canvas.addEventListener("click",function Celler(){if (SETTINGS){PRESS(event)} else {CellClick(event)}})
+function Celler(){if (SETTINGS){PRESS(event)} else {CellClick(event)}}
+canvas.addEventListener("click",Celler)
 document.getElementById("HAND1").addEventListener("click",function(){SelectIt(1)})
 document.getElementById("HAND2").addEventListener("click",function(){SelectIt(2)})
 
@@ -52,7 +53,7 @@ function CellClick(e){
 			}
 		})
 		canvas.removeEventListener("click",Celler);
-		canvas.addEventListener("click",function Celler(){if (SETTINGS){PRESS(event)} else {CellClick(event)}});
+		canvas.addEventListener("click",Celler);
 	}
 }
 function SelectedSigilDraw(SIGIL){

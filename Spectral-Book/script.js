@@ -4,6 +4,7 @@ var BOOLER= false;
 var SETTINGS = false;
 var i,j; var OldI;
 var GlassesLevel=0;
+var Chapter;
 canvas.addEventListener("mousedown", function(){BOOLER=true;x=[event.clientX,Pointer[0]];y=[event.clientY,Pointer[1]]});
 canvas.addEventListener("mouseup", function(){BOOLER=false});
 canvas.addEventListener("mousemove",function(){POINT(event)})
@@ -36,8 +37,11 @@ function POINT(event){
     Pointer[1]=event.clientY-y[0]+y[1]
 }}
 function PRESS(event){
-	if (event.clientX && event.clientY){
-		
+	if (Chapter && 430<event.clientX && event.clientX<590 && 380<event.clientY && event.clientY<420){
+		ctx.clearRect(0, 0, 1000, 750);
+		for (i=0;i<=Chapter;i++){
+			Object.entries(LORE)[i][0]
+		}
 	}
 }
 
@@ -85,7 +89,7 @@ function DrawSettings(){
 		ctx.fillText("SAVE",465,220)
 		ctx.fillText("EXPORT",445,280)
 		ctx.fillText("IMPORT",445,340)
-		ctx.fillText("MEMORIES",430,400)
+		if (Chapter){ctx.fillText("MEMORIES",430,400)}
 		ctx.beginPath()
 		ctx.strokeStyle="#999";
 		ctx.moveTo(455,230)
@@ -103,11 +107,11 @@ function DrawSettings(){
 		ctx.lineTo(565,310)
 		ctx.lineTo(565,350)
 		ctx.lineTo(435,350)
-		ctx.moveTo(420,410)
+	if (Chapter){ctx.moveTo(420,410)
 		ctx.lineTo(420,370)
 		ctx.lineTo(580,370)
 		ctx.lineTo(580,410)
-		ctx.lineTo(420,410)
+	ctx.lineTo(420,410)}
 		/*
 		for (i=0;i<1000;i=i+10){
 			ctx.moveTo(i,0)

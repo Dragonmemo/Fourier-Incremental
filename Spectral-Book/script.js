@@ -85,6 +85,7 @@ function DrawSettings(){
 		ctx.fillText("SAVE",465,220)
 		ctx.fillText("EXPORT",445,280)
 		ctx.fillText("IMPORT",445,340)
+		ctx.fillText("MEMORIES",430,400)
 		ctx.beginPath()
 		ctx.strokeStyle="#999";
 		ctx.moveTo(455,230)
@@ -102,6 +103,11 @@ function DrawSettings(){
 		ctx.lineTo(565,310)
 		ctx.lineTo(565,350)
 		ctx.lineTo(435,350)
+		ctx.moveTo(420,410)
+		ctx.lineTo(420,370)
+		ctx.lineTo(580,370)
+		ctx.lineTo(580,410)
+		ctx.lineTo(420,410)
 		/*
 		for (i=0;i<1000;i=i+10){
 			ctx.moveTo(i,0)

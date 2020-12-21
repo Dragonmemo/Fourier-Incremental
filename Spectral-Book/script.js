@@ -117,7 +117,6 @@ function DrawSettings(){
 		ctx.lineTo(580,370)
 		ctx.lineTo(580,410)
 		ctx.lineTo(420,410)
-		
 		/*
 		for (i=0;i<1000;i=i+10){
 			ctx.moveTo(i,0)
@@ -144,17 +143,17 @@ function OpenYourMind(){
 	ctx.beginPath()
 	ctx.strokeStyle="#999";
 	i=0;
-	ctx.moveTo(120,10)
+	ctx.moveTo(220,10)
 	ctx.lineTo(990,10)
 	ctx.lineTo(990,740)
-	ctx.lineTo(120,740)
-	ctx.lineTo(120,10)
+	ctx.lineTo(220,740)
+	ctx.lineTo(220,10)
 	for (let k in LORE){
 		if (i<=Chapter){
 		ctx.moveTo(10,60*i+10)
 		ctx.lineTo(10,60*i+50)
-		ctx.lineTo(110,60*i+50)
-		ctx.lineTo(110,60*i+10)
+		ctx.lineTo(210,60*i+50)
+		ctx.lineTo(210,60*i+10)
 		ctx.lineTo(10,60*i+10)
 		ctx.fillText(k,20,60*i+40)}
 		i++;

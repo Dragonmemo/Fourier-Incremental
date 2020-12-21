@@ -13,7 +13,11 @@ function Celler(){if (SETTINGS){PRESS(event)} else {CellClick(event)}}
 canvas.addEventListener("click",Celler)
 document.getElementById("HAND1").addEventListener("click",function(){SelectIt(1)})
 document.getElementById("HAND2").addEventListener("click",function(){SelectIt(2)})
-
+canvas.addEventListener("click",function(){
+			if (SETTINGS && !SETTINGS2 && 430<event.clientX && 590>event.clientX && 420>event.clientY && 380<event.clientY){
+				OpenYourMind()
+			}
+		})
 function SelectIt(k){
 	if (k==2){DrawSettings();}
 	if (OldI){
@@ -113,11 +117,7 @@ function DrawSettings(){
 		ctx.lineTo(580,370)
 		ctx.lineTo(580,410)
 		ctx.lineTo(420,410)
-		canvas.addEventListener("click",function Chaptering(){
-			if (430<event.clientX && 590>event.clientX && 420>event.clientY && 380<event.clientY){
-				OpenYourMind()
-			}
-		})
+		
 		/*
 		for (i=0;i<1000;i=i+10){
 			ctx.moveTo(i,0)
@@ -137,7 +137,6 @@ function DrawSettings(){
 function OpenYourMind(){
 	SETTINGS=!SETTINGS
 	SETTINGS2=!SETTINGS2
-	canvas.removeEventListener("click", Chaptering);
 	var ctx= canvas.getContext("2d");
 	ctx.clearRect(0,0,1000,750);
 	ctx.fillStyle="#eee";

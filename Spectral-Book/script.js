@@ -154,8 +154,8 @@ function OpenYourMind(){
 	ctx.strokeStyle="#999";
 	i=0;
 	ctx.moveTo(220,10)
-	ctx.lineTo(790,10)
-	ctx.lineTo(790,740)
+	ctx.lineTo(740,10)
+	ctx.lineTo(740,740)
 	ctx.lineTo(220,740)
 	ctx.lineTo(220,10)
 	for (let keys in LORE){
@@ -174,7 +174,7 @@ function OpenYourMind(){
 }
 function WriteLog(WALLOFTEXT){
 	var ctx= canvas.getContext("2d");
-	ctx.clearRect(212,12,496,650);
+	ctx.clearRect(222,12,436,728);
 	ctx.fillStyle="#eee";
 	ctx.font = "14px Lucida Console"
 	var words = WALLOFTEXT.split(" ");

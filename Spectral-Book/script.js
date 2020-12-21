@@ -197,6 +197,7 @@ function WriteLog(WALLOFTEXT){
 		}
 		else {lines.push(line); line=""}
 	}
+	if (line!=''){lines.push(line)}
 	for (i=0;i<lines.length;i++){
 		ctx.fillText(lines[i],220,20*i+40)
 	}

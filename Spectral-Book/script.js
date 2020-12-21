@@ -155,8 +155,8 @@ function OpenYourMind(){
 	i=0;
 	ctx.moveTo(220,10)
 	ctx.lineTo(990,10)
-	ctx.lineTo(990,740)
-	ctx.lineTo(220,740)
+	ctx.lineTo(990,540)
+	ctx.lineTo(220,540)
 	ctx.lineTo(220,10)
 	for (let keys in LORE){
 		if (i<=Chapter){
@@ -174,7 +174,7 @@ function OpenYourMind(){
 }
 function WriteLog(WALLOFTEXT){
 	var ctx= canvas.getContext("2d");
-	ctx.clearRect(210,10,990,740);
+	ctx.clearRect(212,12,988,538);
 	ctx.fillStyle="#eee";
 	ctx.font = "14px Lucida Console"
 	var words = WALLOFTEXT.split(" ");

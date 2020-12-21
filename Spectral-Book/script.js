@@ -18,7 +18,17 @@ canvas.addEventListener("click",function(){
 				OpenYourMind()
 			}
 		})
+i=0
+for (let keys in LORE){
+	canvas.addEventListener("click",function(){
+			if (SETTINGS2 && Chapter>=i && 20<event.clientX && 220>event.clientX && 60+60*i>event.clientY && 20+60*i<event.clientY){
+				WriteLog(LORE[keys])
+			}
+	})
+	i++;
+}
 function SelectIt(k){
+	if (SETTINGS2){SETTINGS2=false;SETTINGS=!SETTINGS}
 	if (k==2){DrawSettings();}
 	if (OldI){
 		if (OldI==k){
@@ -148,20 +158,51 @@ function OpenYourMind(){
 	ctx.lineTo(990,740)
 	ctx.lineTo(220,740)
 	ctx.lineTo(220,10)
-	for (let k in LORE){
+	for (let keys in LORE){
 		if (i<=Chapter){
 		ctx.moveTo(10,60*i+10)
 		ctx.lineTo(10,60*i+50)
 		ctx.lineTo(210,60*i+50)
 		ctx.lineTo(210,60*i+10)
 		ctx.lineTo(10,60*i+10)
-		ctx.fillText(k,20,60*i+40)}
+		ctx.fillText(keys,20,60*i+40)
+		}
 		i++;
 	}
 	ctx.stroke();
 	ctx.closePath();
-	
 }
+function WriteLog(WALLOFTEXT){
+	var ctx= canvas.getContext("2d");
+	ctx.clearRect(210,10,990,740);
+	ctx.fillStyle="#eee";
+	ctx.font = "14px Lucida Console"
+	var words = WALLOFTEXT.split(" ");
+	var lines = [];
+	var line="";
+	i=0;
+	while (i<words.length){
+		if (words[i] == "|")
+		{
+			i++;
+			lines.push(line);
+			line = "";
+			continue;
+		}
+		testLine = line+" "+words[i];
+		if (ctx.measureText(testLine).width < 510)
+		{
+			line = testLine;
+			i++;
+		}
+		else {lines.push(line); line=""}
+	}
+	for (i=0;i<lines.length;i++){
+		ctx.fillText(lines[i],220,20*i+40)
+	}
+}
+function CloseYourMind(){}
+
 function DrawScreen(){
 	var ctx = canvas.getContext("2d");
 	ctx.beginPath();

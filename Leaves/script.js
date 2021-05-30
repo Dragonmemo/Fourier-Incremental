@@ -29,7 +29,7 @@ function myFunction1() {
 			}
 		}
 		//imageData=blur(imageData,2,1)
-		ctx.putImageData(imageData,10,10,10,10,x[0],x[1])
+		ctx.putImageData(imageData,10,10)
 	}
 	else{
 		document.getElementById("NL").disabled = false;

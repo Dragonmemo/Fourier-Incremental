@@ -11,7 +11,6 @@ var tickspeed=1000
 
 function myFunction1() {
 	if (bourgeon.length!=0){
-		ctx.clearRect(0,0, 500, 500);
 		document.getElementById("NL").disabled = true;
         Actif=bourgeon.pop()
         if (imageData.data[4*(Actif[1][0]*500+Actif[1][1])+3]!=255){

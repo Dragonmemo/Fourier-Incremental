@@ -28,7 +28,7 @@ function myFunction1() {
 			}
 		}
 		//imageData=blur(imageData,2,1)
-		ctx.putImageData(imageData,10,10)
+		ctx.putImageData(imageData,0,0)
 	}
 	else{
 		document.getElementById("NL").disabled = false;

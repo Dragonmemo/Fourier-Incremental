@@ -8,6 +8,7 @@ var imageData = ctx.createImageData(16, 16); //=pixels
 var x=[16,16]//x=MAGIE.size ici on connait x
 var bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
 var tickspeed=1000
+var leaves=0
 
 function myFunction1() {
 	if (bourgeon.length!=0){
@@ -36,8 +37,10 @@ function myFunction1() {
 }
 
 function newReset(){
+	leaves++;
 	ctx.clearRect(0,0, 500, 500);
-	var bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
+	imageData = ctx.createImageData(16, 16);
+	bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
 }
 
 function popXeEl(Liste,Nombre){

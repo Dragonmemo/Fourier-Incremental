@@ -1,46 +1,21 @@
 // client-side js, loaded by index.html
 // run by the browser each time the page is loaded
 
-var canvas = document.getElementById("myCanvas");
-var ctx = canvas.getContext("2d");
-var nouveau_bourgeons;
-var imageData = ctx.createImageData(16, 16); //=pixels
-var x=[16,16]//x=MAGIE.size ici on connait x
-var bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
-var tickspeed=1000
-
 function myFunction1() {
-	if (bourgeon.length!=0){
-		ctx.clearRect(0,0, 500, 500);
-		document.getElementById("NL").disabled = true;
-        Actif=bourgeon.pop()
-        if (imageData.data[4*(Actif[1][0]*500+Actif[1][1])+3]!=255){
-            var depart=Actif[1];
-			var vecteur= [Actif[1][0]-Actif[0][0], Actif[1][1]-Actif[0][1]]
-            nouveau_bourgeons=suite(depart,vecteur)
-            imageData.data[4*(Actif[1][0]*500+Actif[1][1])]=Actif[1][2][0]
-            imageData.data[4*(Actif[1][0]*500+Actif[1][1])+1]=Actif[1][2][1]
-            imageData.data[4*(Actif[1][0]*500+Actif[1][1])+2]=Actif[1][2][2]
-            imageData.data[4*(Actif[1][0]*500+Actif[1][1])+3]=255
-            for (i=0;i<nouveau_bourgeons.length;i++){
-				if (nouveau_bourgeons[i][0]!=-1 && nouveau_bourgeons[i][1]!=-1 && nouveau_bourgeons[i][0]!=x[0] && nouveau_bourgeons[i][1]!=x[1] && imageData.data[4*(nouveau_bourgeons[i][0]*500+nouveau_bourgeons[i][1])+3]!=255){
-					bourgeon.push([Actif[1],nouveau_bourgeons[i]])
-				}
-			}
-		}
-		//imageData=blur(imageData,2,1)
-		ctx.putImageData(imageData,0,0)
-	}
-	else{
-		document.getElementById("NL").disabled = false;
-	}
+  var canvas = document.getElementById("myCanvas");
+  var ctx = canvas.getContext("2d");
+  ctx.clearRect(0,0, 500, 500);
+  /*	ctx.beginPath()
+  ctx.strokeStyle="#ccaa11";
+  ctx.moveTo(0, 250);
+  ctx.lineTo(500, 250);
+  ctx.moveTo(0, 251);
+  ctx.lineTo(500, 251);
+  ctx.moveTo(0, 252);
+  ctx.lineTo(500, 252);
+  ctx.closePath()
+  ctx.stroke(); */
 }
-
-function newReset(){
-	ctx.clearRect(0,0, 500, 500);
-	var bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
-}
-
 function popXeEl(Liste,Nombre){
 	var LTemp=[];
 	for (i=0;i<Nombre;i++){LTemp.push(Liste.shift())}
@@ -195,8 +170,14 @@ function blur(imageData, radius, quality) {
 }
 
 function dessineMoiUneFeuille(){
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+	var nouveau_bourgeons;
 	ctx.clearRect(0,0, 500, 500);
-	while (bourgeon.length!=0){
+	var imageData = ctx.createImageData(500, 500); //=pixels
+    x=[500,500]//x=MAGIE.size ici on connait x
+    var bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
+    while (bourgeon.length!=0){
         //console.log(bourgeon)
 		Actif=bourgeon.pop()
         //console.log(Actif)
@@ -219,14 +200,67 @@ function dessineMoiUneFeuille(){
     ctx.putImageData(imageData,0,0)
 }
 
-var ticks=0;
+  /*ctx.lineTo(500, 250);
+  ctx.stroke();
+  ctx.strokeStyle="#BBBBBB";
+  ctx.beginPath();
+  if (LCoords.length<qual){
+	  if (LCoords.length>0) {ctx.moveTo(LCoords[0][0]/MAX*250+250,LCoords[0][1]/MAX*250+250);}
+	  for (i=0;i<LCoords.length;i++){
+		  ctx.lineTo(LCoords[i][0]/MAX*250+250,LCoords[i][1]/MAX*250+250);
+	      ctx.stroke();
+  }}
+	  
+  else{
+	  ctx.moveTo(LCoords[0][0]/MAX*250+250,LCoords[0][1]/MAX*250+250);
+	  for (i=0;i<LCoords.length;i++){
+		  ctx.lineTo(LCoords[i][0]/MAX*250+250,LCoords[i][1]/MAX*250+250);
+	      ctx.stroke();
+	  }
+	  LCoords.shift();
+  }
+  ctx.closePath();
+  if (tickspeed>33){x=x.plus(DPSCALC);}
+  else {x=x.plus(DPSCALC.mul(33/tickspeed));}
+  ctx.beginPath();
+  ctx.strokeStyle="#000000";
+  document.getElementById("MCur").innerHTML = "Drawing points (DP) : "+x.toPrecision(4);
+  document.getElementById("DPS").innerHTML = Decimal.mul(DPSCALC,1000/tickspeed).toPrecision(4);
+  if (Achieves[62]!=0){document.getElementById("PCur").innerHTML = "Negative points (NP) : "+y.toPrecision(4);}
+  FourierCalculation(MAX);
+  MAX=Math.max(MAX,Math.abs(coords[0]),Math.abs(coords[1]));
+  LCoords.push(coords);
+};
+
+function FourierCalculation(MAX) {
+  var TempVar=math.complex({r:Zero,phi:I*parseInt(document.getElementById("Phi0").value)/100});
+  var canvas = document.getElementById("myCanvas");
+  var ctx = canvas.getContext("2d");
+  ctx.moveTo(coords[0]/MAX*250+250,coords[1]/MAX*250+250);
+  ARROWSOFHELL=[[TempVar.re,TempVar.im]]
+  for (i=0; i<10;i++){
+    TempVar=math.add(TempVar,math.multiply(math.complex({r: 1, phi:R*(i+1)*I/qual+I*parseInt(document.getElementById("Phi"+(i+1)).value)/100}),positives[i]));
+	ARROWSOFHELL[1+2*i]=[TempVar.re,TempVar.im]
+	TempVar=math.add(TempVar,math.multiply(math.complex({r: 1, phi:-R*(i+1)*I/qual+I*parseInt(document.getElementById("PhiM"+(i+1)).value)/100}),negatives[i]));
+    ARROWSOFHELL[2+2*i]=[TempVar.re,TempVar.im]
+  };
+  R=R%qual + 1;
+  coords=[TempVar.re,TempVar.im];
+  ctx.lineTo(coords[0]/MAX*250+250,coords[1]/MAX*250+250);
+  ctx.stroke();
+  if (document.getElementById("Arrows").checked == true){
+	  ctx.strokeStyle="#009900";
+	  ctx.moveTo(250,250);
+	  for (i=0;i<ARROWSOFHELL.length;i++){
+		  ctx.lineTo(ARROWSOFHELL[i][0]/MAX*250+250,ARROWSOFHELL[i][1]/MAX*250+250);
+			ctx.stroke();
+	}}
+};*/
+
 var mainGameLoop = window.setInterval(function() { // runs the loop
 	loop();
 	}, 33);
 
 function loop() { // production
-	ticks+=33;
-	if tickspeed<ticks :
-		myFunction1();
-		ticks=ticks-tickspeed;
+	//myFunction1();
 }

@@ -13,16 +13,16 @@ function myFunction1() {
 	if (bourgeon.length!=0){
 		document.getElementById("NL").disabled = true;
         Actif=bourgeon.pop()
-        if (imageData.data[4*(Actif[1][0]*500+Actif[1][1])+3]!=255){
+        if (imageData.data[4*(Actif[1][0]*x[0]+Actif[1][1])+3]!=255){
             var depart=Actif[1];
 			var vecteur= [Actif[1][0]-Actif[0][0], Actif[1][1]-Actif[0][1]]
             nouveau_bourgeons=suite(depart,vecteur)
-            imageData.data[4*(Actif[1][0]*500+Actif[1][1])]=Actif[1][2][0]
-            imageData.data[4*(Actif[1][0]*500+Actif[1][1])+1]=Actif[1][2][1]
-            imageData.data[4*(Actif[1][0]*500+Actif[1][1])+2]=Actif[1][2][2]
-            imageData.data[4*(Actif[1][0]*500+Actif[1][1])+3]=255
+            imageData.data[4*(Actif[1][0]*x[0]+Actif[1][1])]=Actif[1][2][0]
+            imageData.data[4*(Actif[1][0]*x[0]+Actif[1][1])+1]=Actif[1][2][1]
+            imageData.data[4*(Actif[1][0]*x[0]+Actif[1][1])+2]=Actif[1][2][2]
+            imageData.data[4*(Actif[1][0]*x[0]+Actif[1][1])+3]=255
             for (i=0;i<nouveau_bourgeons.length;i++){
-				if (nouveau_bourgeons[i][0]!=-1 && nouveau_bourgeons[i][1]!=-1 && nouveau_bourgeons[i][0]!=x[0] && nouveau_bourgeons[i][1]!=x[1] && imageData.data[4*(nouveau_bourgeons[i][0]*500+nouveau_bourgeons[i][1])+3]!=255){
+				if (nouveau_bourgeons[i][0]!=-1 && nouveau_bourgeons[i][1]!=-1 && nouveau_bourgeons[i][0]!=x[0] && nouveau_bourgeons[i][1]!=x[1] && imageData.data[4*(nouveau_bourgeons[i][0]*x[0]+nouveau_bourgeons[i][1])+3]!=255){
 					bourgeon.push([Actif[1],nouveau_bourgeons[i]])
 				}
 			}

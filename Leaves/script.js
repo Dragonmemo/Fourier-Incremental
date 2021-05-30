@@ -226,7 +226,8 @@ var mainGameLoop = window.setInterval(function() { // runs the loop
 
 function loop() { // production
 	ticks+=33;
-	if tickspeed<ticks :
+	if (tickspeed<ticks){
 		myFunction1();
 		ticks=ticks-tickspeed;
+	}
 }

@@ -64,7 +64,7 @@ function budUp(){
 
 function twigUp(){
 	if (twigs>=parseInt(2**(t+3))){
-		twigs=twigs-parseInt(2**(t+3)
+		twigs=twigs-parseInt(2**(t+3))
 		t++
 		document.getElementById("TCost").innerHTML=parseInt(2**(t+3))
 	} 

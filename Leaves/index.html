@@ -11,7 +11,7 @@
     <title>Projects</title>
 
     <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="/PONL/style.css">
+    <link rel="stylesheet" href="style.css">
 
     <!-- import the webpage's client-side javascript file -->
     <script src="math.js" defer></script>
@@ -34,18 +34,57 @@
     <header id="TITLE">
 	0 bud(s), 0 twig(s), 0 leaf(ves)
     </header>
-    <table><tr>
+	<div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'Bud')" id="BudTab">Buds</button>
+    <button class="tablinks" onclick="openCity(event, 'Bolt')"  id="BoltTab" hidden>Bolts</button>
+    <button class="tablinks" onclick="openCity(event, 'Lava')" id="LavaTab" hidden>Lava</button>
+    <button class="tablinks" onclick="openCity(event, 'Settings')">Settings</button>
+    <button class="tablinks" onclick="openCity(event, 'About')">About</button>
+    <button class="tablinks" onclick="openCity(event, 'Help')">Q & A</button>
+    <div id="Bud" class="tabcontent">
+	<table><tr>
 	<td style="display:table-cell;">
     <button type="button" onclick="budUp()" id="BU">Use the growing power<br>of your buds to grow<br>your plant faster for<br>
-	<div id="BCost">16</div> buds</button>
+	<span id="BCost">16</span> buds</button>
 	<button type="button" onclick="twigUp()">Use your twigs to make<br>more pens and draw more<br>pixels at the same time for<br>
-	<div id="TCost">16</div> twigs</button>
+	<span id="TCost">16</span> twigs</button>
 	<button type="button" onclick="increaseSize()">Increase the size of the<br>sheet with your leaves for<br>
-	<div id="LCost">2</div> leaves</button>
+	<span id="LCost">2</span> leaves</button>
 	<button type="button" onclick="newReset()" disabled id="NL">Make a new pattern</button><br>
 	<canvas id="myCanvas" width="16" height="16"></canvas>
-	
     </td>
 	</tr></table>
+	</div>
+	<div id="Bolt" class="tabcontent">
+	</div>
+	<div id="Lava" class="tabcontent">
+	</div>
+	<div id="Settings" class="tabcontent">
+	<button type="button" onclick="save()" class="tooltip">Save
+      <span class="tooltiptext">Autosaves each tick</span></button>
+      <button type="button" onclick="HReset()" class="tooltip">Hard Reset
+      <span class="tooltiptext">Resets everything</span></button>
+      <br><button type="button" onclick="Export()" class="tooltip">Export</button>
+      <button type="button" onclick="Import()" class="tooltip">Import</button>
+	<input type="checkbox" id="Autosave" checked><span> Enable Autosave</span><br>
+	BE WARNED THAT THIS GAME WON'T RUN OFFLINE OR IF THE TAB ISN'T FOCUSED ON<br>
+	BE ALSO WARNED THAT WHEN LAUNCHING THE GAME THE IMAGES ARE RESETTED SINCE IT WOULD TAKE WAY TOO LONG TO SAVE THEM (I guess)
+	</div>
+	<div id="About" class="tabcontent">
+		<p>Here is a link to the discord server of the game : <a href="https://discord.gg/xTzYrey">Click me! i'm innoffensive</a></p>
+		<p>The server is pretty empty and the main purpose of it was not to be about that incremental game, but a RPG that i'm programming. Still, it has a Fourier bot you can mess with!</p>
+		<br>
+		<br>Changelog<br>
+		<br>0.1 Don't leaf me alone<br>
+		Added first layer<br>
+		<br>0.2 Optionned<br>
+		Added tabs and options more specifically<br>
+		<br>0.3 Call the god of thunder<br>
+		???
+	</div>
+	<div id="Help" class="tabcontent">
+	</div>
+	</div>
+	
   </body>
 </html>

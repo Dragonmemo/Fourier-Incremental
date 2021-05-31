@@ -12,6 +12,7 @@ var t=1;
 var buds=0
 var twigs=0
 var leaves=0
+var bolts=0
 
 function myFunction1() {
 	DrawIt(t);
@@ -279,5 +280,110 @@ function loop() { // production
 	if (tickspeed<ticks){
 		myFunction1();
 		ticks=ticks-tickspeed;
+		if (document.getElementById("Autosave").checked == true){save();}
 	}
+}
+
+function save() { 
+  localStorage.setItem('Buds',buds);
+  localStorage.setItem("Twigs",twigs);
+  localStorage.setItem("Leaves",leaves);
+  localStorage.setItem("Size",x);
+  localStorage.setItem("prod",t);
+  localStorage.setItem("TS",tickspeed);
+  localStorage.setItem("Bolts",bolts);
+  
+} 
+
+function HReset(){
+	var BOOLEAN=confirm("Are you sure you want to Hard Reset?")
+	if (BOOLEAN){
+		var imageData = ctx.createImageData(16, 16); //=pixels
+		var x=[16,16]//x=MAGIE.size ici on connait x
+		var bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
+		var tickspeed=1000
+		var t=1;
+		var buds=0
+		var twigs=0
+		var leaves=0
+		var bolts=0
+}}
+
+function copyStringToClipboard(str) {
+  var el = document.createElement("textarea");
+  el.value = str;
+  el.setAttribute("readonly", "");
+  el.style = {
+    position: "absolute",
+    left: "-9999px"
+  };
+  document.body.appendChild(el);
+  copyToClipboard(el);
+  document.body.removeChild(el);
+  alert("Copied to clipboard");
+}
+
+function copyToClipboard(el) {
+  el = typeof el === "string" ? document.querySelector(el) : el;
+  if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
+    var editable = el.contentEditable;
+    var readOnly = el.readOnly;
+    el.contentEditable = true;
+    el.readOnly = true;
+    var range = document.createRange();
+    range.selectNodeContents(el);
+    var selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    el.setSelectionRange(0, 999999);
+    el.contentEditable = editable;
+    el.readOnly = readOnly;
+  } else {
+    el.select();
+  }
+  document.execCommand("copy");
+}
+function Export(){
+	copyStringToClipboard(btoa(JSON.stringify(localStorage)));
+}
+function Import(){
+	let loadgame = "";
+	loadgame = prompt("Paste in your save WARNING: WILL OVERWRITE YOUR CURRENT SAVE");
+	else {
+		if (loadgame !="" ) {
+			loadgame=JSON.parse(atob(loadgame));
+			buds=parseInt(loadgame.Buds);
+			twigs=parseInt(loadgame.Twigs);
+			x=loadgame.Size.split(",").map(Number);
+			leaves=parseInt(loadgame.Leaves);
+			t=parseInt(loadgame.prod);
+			tickspeed=parseInt(loadgame.TS);
+			bolts=parseInt(loadgame.Bolts);
+			ctx.clearRect(0,0, x[0], x[1]);
+			imageData = ctx.createImageData(x[0], x[1]);
+			bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
+			document.getElementById("LCost").innerHTML=parseInt(2**Math.log2(x[0]/8))
+			canvas.width=x[0]
+			canvas.height=x[1]
+			document.getElementById("TCost").innerHTML=parseInt(2**(t+3))
+			document.getElementById("BCost").innerHTML=parseInt(2**((1040-tickspeed)/10))
+  }}
+}
+
+if(localStorage.prod) {
+	buds=parseInt(localStorage.Buds);
+	twigs=parseInt(localStorage.Twigs);
+	x=localStorage.Size.split(",").map(Number);
+	leaves=parseInt(localStorage.Leaves);
+	t=parseInt(localStorage.prod);
+	tickspeed=parseInt(localStorage.TS);
+	bolts=parseInt(localStorage.Bolts);
+	ctx.clearRect(0,0, x[0], x[1]);
+	imageData = ctx.createImageData(x[0], x[1]);
+	bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
+	document.getElementById("LCost").innerHTML=parseInt(2**Math.log2(x[0]/8))
+	canvas.width=x[0]
+	canvas.height=x[1]
+	document.getElementById("TCost").innerHTML=parseInt(2**(t+3))
+	document.getElementById("BCost").innerHTML=parseInt(2**((1040-tickspeed)/10))
 }

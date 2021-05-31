@@ -35,8 +35,8 @@ function DrawIt(g){
 					if (nouveau_bourgeons[i][0]!=-1 && nouveau_bourgeons[i][1]!=-1 && nouveau_bourgeons[i][0]!=x[0] && nouveau_bourgeons[i][1]!=x[1] && imageData.data[4*(nouveau_bourgeons[i][0]*x[0]+nouveau_bourgeons[i][1])+3]!=255){
 						bourgeon.push([Actif[1],nouveau_bourgeons[i]])
 					}
-				twigs=twigs+parseInt(Math.sqrt(x[0]*x[1])/16)
 				}
+				twigs=twigs+parseInt(Math.sqrt(x[0]*x[1])/16)
 			}
 			else{
 				buds=buds+parseInt(Math.sqrt(x[0]*x[1])/16)

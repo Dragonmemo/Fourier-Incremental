@@ -78,14 +78,14 @@ function newReset(){
 }
 
 function increaseSize(){
-	if (leaves>=parseInt(10**Math.log2(x[0]/8))){
-		leaves=leaves-parseInt(10**Math.log2(x[0]/8))
+	if (leaves>=parseInt(2**Math.log2(x[0]/8))){
+		leaves=leaves-parseInt(2**Math.log2(x[0]/8))
 		x[0]*=2
 		x[1]*=2
 		ctx.clearRect(0,0, x[0], x[1]);
 		imageData = ctx.createImageData(x[0], x[1]);
 		bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
-		document.getElementById("LCost").innerHTML=parseInt(10**Math.log2(x[0]/8))
+		document.getElementById("LCost").innerHTML=parseInt(2**Math.log2(x[0]/8))
 		canvas.width=x[0]
 		canvas.height=x[1]
 	}

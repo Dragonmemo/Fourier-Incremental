@@ -349,25 +349,24 @@ function Export(){
 function Import(){
 	let loadgame = "";
 	loadgame = prompt("Paste in your save WARNING: WILL OVERWRITE YOUR CURRENT SAVE");
-	else {
-		if (loadgame !="" ) {
-			loadgame=JSON.parse(atob(loadgame));
-			buds=parseInt(loadgame.Buds);
-			twigs=parseInt(loadgame.Twigs);
-			x=loadgame.Size.split(",").map(Number);
-			leaves=parseInt(loadgame.Leaves);
-			t=parseInt(loadgame.prod);
-			tickspeed=parseInt(loadgame.TS);
-			bolts=parseInt(loadgame.Bolts);
-			ctx.clearRect(0,0, x[0], x[1]);
-			imageData = ctx.createImageData(x[0], x[1]);
-			bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
-			document.getElementById("LCost").innerHTML=parseInt(2**Math.log2(x[0]/8))
-			canvas.width=x[0]
-			canvas.height=x[1]
-			document.getElementById("TCost").innerHTML=parseInt(2**(t+3))
-			document.getElementById("BCost").innerHTML=parseInt(2**((1040-tickspeed)/10))
-  }}
+	if (loadgame !="" ) {
+		loadgame=JSON.parse(atob(loadgame));
+		buds=parseInt(loadgame.Buds);
+		twigs=parseInt(loadgame.Twigs);
+		x=loadgame.Size.split(",").map(Number);
+		leaves=parseInt(loadgame.Leaves);
+		t=parseInt(loadgame.prod);
+		tickspeed=parseInt(loadgame.TS);
+		bolts=parseInt(loadgame.Bolts);
+		ctx.clearRect(0,0, x[0], x[1]);
+		imageData = ctx.createImageData(x[0], x[1]);
+		bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
+		document.getElementById("LCost").innerHTML=parseInt(2**Math.log2(x[0]/8))
+		canvas.width=x[0]
+		canvas.height=x[1]
+		document.getElementById("TCost").innerHTML=parseInt(2**(t+3))
+		document.getElementById("BCost").innerHTML=parseInt(2**((1040-tickspeed)/10))
+	}
 }
 
 if(localStorage.prod) {

@@ -60,7 +60,7 @@ function DrawIt(g){
 		document.getElementById("PresBud").removeAttribute("hidden")
 	}
 	if (stade>1){
-		document.getElementById("presBud").innerHTML="Call the thunder and<br>Get "+parseInt(Math.log10(twigs)-3)+" bolts"
+		document.getElementById("PresBud").innerHTML="Call the thunder and<br>Get "+parseInt(Math.log10(twigs)-3)+" bolts"
 	}
 }
 

@@ -2,7 +2,11 @@
 // run by the browser each time the page is loaded
 
 var canvas = document.getElementById("myCanvas");
+var canvasB = document.getElementById("myCanvas1");
+var canvasL = document.getElementById("myCanvas2");
 var ctx = canvas.getContext("2d");
+var ctxB = canvasB.getContext("2d");
+var ctxL = canvasL.getContext("2d");
 var nouveau_bourgeons;
 var imageData = ctx.createImageData(16, 16); //=pixels
 var x=[16,16]//x=MAGIE.size ici on connait x
@@ -13,9 +17,11 @@ var buds=0
 var twigs=0
 var leaves=0
 var bolts=0
+var stade=0
+
 
 function myFunction1() {
-	DrawIt(t);
+	DrawIt(t*(bolts+1));
 	document.getElementById("TITLE").innerHTML=buds+" bud(s), "+twigs+" twig(s), "+leaves+" leaf(ves)"
 }
 
@@ -49,7 +55,50 @@ function DrawIt(g){
 			document.getElementById("NL").disabled = false;
 		}
 	}
+	if (stade==0 && twigs>=10000){
+		stade++
+		document.getElementById("PresBud").removeAttribute("hidden")
+	}
+	if (stade>1){
+		document.getElementById("BoltTab").innerHTML="Call the thunder and<br>Get "+parseInt(Math.log(twigs)-3)+" bolts"
+	}
 }
+
+function drawBolts(){
+	var imageDataB = ctxB.createImageData(512, 512);
+    //x=[512x512]
+    for (var m;m<512*512;m++){
+		imageDataB.data[4*m+3]=255
+	}
+    var Point=[255,255]
+    var PixRange=[]
+    var PixVal=[]
+	var col=[parseInt(256*Math.random()),parseInt(256*Math.random()),parseInt(256*Math.random())]
+    for (var m=0;m<bolts;m++){
+        for (var n=0;n<255;n++){
+            if (PixRange.include(Point)){PixVal[PixRange.indexOf(Point)]++}
+            else {
+                PixRange.push(Point)
+                PixVal.push(1)
+			}
+            var L=[[Point[0]-1,Point[1]],[Point[0]+1,Point[1]],[Point[0],Point[1]-1],[Point[0],Point[1]+1],[Point[0]+1,Point[1]+1],[Point[0]-1,Point[1]+1],[Point[0]+1,Point[1]-1],[Point[0]-1,Point[1]-1]]
+            var Lprime=[]
+            for (var mu=0;mu<8;mu++){
+                if (Math.sqrt((L[mu][0]-255)**2+(L[mu][1]-255)**2)>Math.sqrt((Point[0]-255)**2+(Point[1]-255)**2)-0.45 :
+                    Lprime.push(L[mu])
+			}
+            Point=popXeEl(Lprime,Math.floor(Math.random()*(Lprime.length)))[0]
+        }
+		Point=[255,255]
+	}
+    for (var m=0;m<PixRange.length;m++){
+        imageData.data[4*(500*PixRange[m][0]+PixRange[k][1])]=parseInt((1-0.95**PixVal[m])*col[0])
+        imageData.data[4*(500*PixRange[m][0]+PixRange[k][1])+1]=parseInt((1-0.95**PixVal[m])*col[1])
+        imageData.data[4*(500*PixRange[m][0]+PixRange[k][1])+2]=parseInt((1-0.95**PixVal[m])*col[2])
+	}
+    ctxB.putImageData(imageDataB,0,0)
+}
+
 
 function budUp(){
 	if (buds>=parseInt(2**((1040-tickspeed)/10))){
@@ -89,6 +138,17 @@ function increaseSize(){
 		document.getElementById("LCost").innerHTML=parseInt(2**Math.log2(x[0]/8))
 		canvas.width=x[0]
 		canvas.height=x[1]
+	}
+}
+
+function GetBolts(){
+	if (twigs>10000){
+		if (stade==1){
+			stade++
+			document.getElementById("BoltTab").removeAttribute("hidden")
+		}
+		bolts+=parseInt(Math.log(twigs)-3)
+		drawBolts()
 	}
 }
 

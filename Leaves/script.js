@@ -298,15 +298,15 @@ function save() {
 function HReset(){
 	var BOOLEAN=confirm("Are you sure you want to Hard Reset?")
 	if (BOOLEAN){
-		var imageData = ctx.createImageData(16, 16); //=pixels
-		var x=[16,16]//x=MAGIE.size ici on connait x
-		var bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
-		var tickspeed=1000
-		var t=1;
-		var buds=0
-		var twigs=0
-		var leaves=0
-		var bolts=0
+		imageData = ctx.createImageData(16, 16); //=pixels
+		x=[16,16]//x=MAGIE.size ici on connait x
+		bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
+		tickspeed=1000
+		t=1;
+		buds=0
+		twigs=0
+		leaves=0
+		bolts=0
 }}
 
 function copyStringToClipboard(str) {
@@ -368,6 +368,16 @@ function Import(){
 		document.getElementById("BCost").innerHTML=parseInt(2**((1040-tickspeed)/10))
 	}
 }
+
+function SaveLeaves(){
+	var LINK=document.getElementById("DFWMB")
+	LINK.download = 'Leaves'+x[0]+'x'+x[1]+'.png';
+	LINK.href = canvas.toDataURL("image/jpg");
+	LINK.click();
+}
+
+
+
 
 if(localStorage.prod) {
 	buds=parseInt(localStorage.Buds);

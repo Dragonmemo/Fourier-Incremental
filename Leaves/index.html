@@ -51,14 +51,27 @@
 	<span id="TCost">16</span> twigs</button>
 	<button type="button" onclick="increaseSize()">Increase the size of the<br>sheet with your leaves for<br>
 	<span id="LCost">2</span> leaves</button>
-	<button type="button" onclick="newReset()" disabled id="NL">Make a new pattern</button><br>
+	<button type="button" onclick="newReset()" disabled id="NL">Make a new pattern</button>
+	<button type="button" onclick="SaveLeaves()"><a id="DFWMB">Save as PNG</a></button><br>
 	<canvas id="myCanvas" width="16" height="16"></canvas>
     </td>
 	</tr></table>
 	</div>
-	<div id="Bolt" class="tabcontent">
+	<div id="Bolt" class="tabcontent" hidden>
+	<table><tr>
+	<td style="display:table-cell;">
+	<button type="button" onclick="newReset()">Reset the pattern</button><br>
+	<canvas id="myCanvas1" width="16" height="16"></canvas>
+    </td>
+	</tr></table>
 	</div>
-	<div id="Lava" class="tabcontent">
+	<div id="Lava" class="tabcontent" hidden>
+	<table><tr>
+	<td style="display:table-cell;">
+    <button type="button" onclick="newReset()">Reset the pattern</button><br>
+	<canvas id="myCanvas2" width="16" height="16"></canvas>
+    </td>
+	</tr></table>
 	</div>
 	<div id="Settings" class="tabcontent">
 	<button type="button" onclick="save()" class="tooltip">Save
@@ -80,6 +93,7 @@
 		Added first layer<br>
 		<br>0.2 Optionned<br>
 		Added tabs and options more specifically<br>
+		0.2.1 Fixed Hard Reset and added option to save an image<br>
 		<br>0.3 Call the god of thunder<br>
 		???
 	</div>

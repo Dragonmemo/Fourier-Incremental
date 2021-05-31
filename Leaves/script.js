@@ -149,6 +149,14 @@ function GetBolts(){
 		}
 		bolts+=parseInt(Math.log10(twigs)-3)
 		drawBolts()
+		imageData = ctx.createImageData(16, 16); //=pixels
+		x=[16,16]//x=MAGIE.size ici on connait x
+		bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
+		tickspeed=1000
+		t=1;
+		buds=0
+		twigs=0
+		leaves=0
 	}
 }
 

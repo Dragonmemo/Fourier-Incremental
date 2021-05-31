@@ -31,13 +31,20 @@
      
   </head>
   <body style="background-color:#eee;">
-    <header>
-    FEUILLES
+    <header id="TITLE">
+	0 bud(s), 0 twig(s), 0 leaf(ves)
     </header>
     <table><tr>
 	<td style="display:table-cell;">
-    <canvas id="myCanvas" width="16" height="16"></canvas><br>
+    <button type="button" onclick="budUp()" id="BU">Use the growing power of your buds to grow your plant faster for<br>
+	<div id="BCost">16</div> buds</button>
+	<button type="button" onclick="twigUp()">Use your twigs to make more pens and draw more pixels at the same time for<br>
+	<div id="TCost">10</div> twigs</button>
+	<button type="button" onclick="increaseSize()">Increase the size of the sheet with your leaves for<br>
+	<div id="LCost">10</div> leaves</button>
 	<button type="button" onclick="newReset()" disabled id="NL">Make a new pattern</button>
+	<canvas id="myCanvas" width="16" height="16"></canvas><br>
+	
     </td>
 	</tr></table>
   </body>

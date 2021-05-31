@@ -8,39 +8,85 @@ var imageData = ctx.createImageData(16, 16); //=pixels
 var x=[16,16]//x=MAGIE.size ici on connait x
 var bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
 var tickspeed=1000
+var t=1;
+var buds=0
+var twigs=0
 var leaves=0
 
 function myFunction1() {
-	if (bourgeon.length!=0){
-		document.getElementById("NL").disabled = true;
-        Actif=bourgeon.pop()
-        if (imageData.data[4*(Actif[1][0]*x[0]+Actif[1][1])+3]!=255){
-            var depart=Actif[1];
-			var vecteur= [Actif[1][0]-Actif[0][0], Actif[1][1]-Actif[0][1]]
-            nouveau_bourgeons=suite(depart,vecteur)
-            imageData.data[4*(Actif[1][0]*x[0]+Actif[1][1])]=Actif[1][2][0]
-            imageData.data[4*(Actif[1][0]*x[0]+Actif[1][1])+1]=Actif[1][2][1]
-            imageData.data[4*(Actif[1][0]*x[0]+Actif[1][1])+2]=Actif[1][2][2]
-            imageData.data[4*(Actif[1][0]*x[0]+Actif[1][1])+3]=255
-            for (i=0;i<nouveau_bourgeons.length;i++){
-				if (nouveau_bourgeons[i][0]!=-1 && nouveau_bourgeons[i][1]!=-1 && nouveau_bourgeons[i][0]!=x[0] && nouveau_bourgeons[i][1]!=x[1] && imageData.data[4*(nouveau_bourgeons[i][0]*x[0]+nouveau_bourgeons[i][1])+3]!=255){
-					bourgeon.push([Actif[1],nouveau_bourgeons[i]])
+	DrawIt(t);
+	document.getElementById("TITLE").innerHTML=buds+" bud(s), "+twigs+" twig(s), "+leaves+" leaf(ves)"
+}
+
+function DrawIt(g){
+	for (var f;f<g;f++){
+		if (bourgeon.length!=0){
+			document.getElementById("NL").disabled = true;
+			Actif=bourgeon.pop()
+			if (imageData.data[4*(Actif[1][0]*x[0]+Actif[1][1])+3]!=255){
+				var depart=Actif[1];
+				var vecteur= [Actif[1][0]-Actif[0][0], Actif[1][1]-Actif[0][1]]
+				nouveau_bourgeons=suite(depart,vecteur)
+				imageData.data[4*(Actif[1][0]*x[0]+Actif[1][1])]=Actif[1][2][0]
+				imageData.data[4*(Actif[1][0]*x[0]+Actif[1][1])+1]=Actif[1][2][1]
+				imageData.data[4*(Actif[1][0]*x[0]+Actif[1][1])+2]=Actif[1][2][2]
+				imageData.data[4*(Actif[1][0]*x[0]+Actif[1][1])+3]=255
+				for (i=0;i<nouveau_bourgeons.length;i++){
+					if (nouveau_bourgeons[i][0]!=-1 && nouveau_bourgeons[i][1]!=-1 && nouveau_bourgeons[i][0]!=x[0] && nouveau_bourgeons[i][1]!=x[1] && imageData.data[4*(nouveau_bourgeons[i][0]*x[0]+nouveau_bourgeons[i][1])+3]!=255){
+						bourgeon.push([Actif[1],nouveau_bourgeons[i]])
+					}
+				twigs=twigs+parseInt(Math.sqrt(x[0]*x[1])/16)
 				}
 			}
+			else{
+				buds=buds+parseInt(Math.sqrt(x[0]*x[1])/16)
+			}
+			//imageData=blur(imageData,2,1)
+			ctx.putImageData(imageData,0,0)
 		}
-		//imageData=blur(imageData,2,1)
-		ctx.putImageData(imageData,0,0)
-	}
-	else{
-		document.getElementById("NL").disabled = false;
+		else{
+			document.getElementById("NL").disabled = false;
+		}
 	}
 }
 
+function budUp(){
+	if (buds>=parseInt(2**((1040-tickspeed)/10))){
+		buds=buds-parseInt(2**((1040-tickspeed)/10))
+		tickspeed=tickspeed-10
+		document.getElementById("BCost").innerHTML=parseInt(2**((1040-tickspeed)/10))
+	} 
+	if (tickspeed<40){
+		document.getElementById("BCost").innerHTML="MAXED"
+		document.getElementById("BU").disabled=true
+	}
+}
+
+function twigUp(){
+	if (twigs>=parseInt(10**t)){
+		twigs=twigs-parseInt(10**t)
+		t++
+		document.getElementById("TCost").innerHTML=parseInt(10**t)
+	} 
+}
+
 function newReset(){
-	leaves++;
-	ctx.clearRect(0,0, 500, 500);
-	imageData = ctx.createImageData(16, 16);
+	leaves=leaves+parseInt(Math.sqrt(x[0]*x[1])/16);
+	ctx.clearRect(0,0, x[0], x[1]);
+	imageData = ctx.createImageData(x[0], x[1]);
 	bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
+}
+
+function increaseSize(){
+	if (leaves>=parseInt(10**Math.log2(x[0]/8))){
+		leaves=leaves-parseInt(10**Math.log2(x[0]/8))
+		x[0]*=2
+		x[1]*=2
+		ctx.clearRect(0,0, x[0], x[1]);
+		imageData = ctx.createImageData(x[0], x[1]);
+		bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
+		document.getElementById("LCost").innerHTML=parseInt(10**Math.log2(x[0]/8))
+	}
 }
 
 function popXeEl(Liste,Nombre){

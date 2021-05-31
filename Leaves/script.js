@@ -86,6 +86,8 @@ function increaseSize(){
 		imageData = ctx.createImageData(x[0], x[1]);
 		bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
 		document.getElementById("LCost").innerHTML=parseInt(10**Math.log2(x[0]/8))
+		canvas.width=x[0]
+		canvas.height=x[1]
 	}
 }
 

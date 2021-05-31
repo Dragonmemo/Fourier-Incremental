@@ -60,7 +60,7 @@ function DrawIt(g){
 		document.getElementById("PresBud").removeAttribute("hidden")
 	}
 	if (stade>1){
-		document.getElementById("BoltTab").innerHTML="Call the thunder and<br>Get "+parseInt(Math.log(twigs)-3)+" bolts"
+		document.getElementById("presBud").innerHTML="Call the thunder and<br>Get "+parseInt(Math.log10(twigs)-3)+" bolts"
 	}
 }
 
@@ -76,7 +76,7 @@ function drawBolts(){
 	var col=[parseInt(256*Math.random()),parseInt(256*Math.random()),parseInt(256*Math.random())]
     for (var m=0;m<bolts;m++){
         for (var n=0;n<255;n++){
-            if (PixRange.include(Point)){PixVal[PixRange.indexOf(Point)]++}
+            if (PixRange.includes(Point)){PixVal[PixRange.indexOf(Point)]++}
             else {
                 PixRange.push(Point)
                 PixVal.push(1)
@@ -147,7 +147,7 @@ function GetBolts(){
 			stade++
 			document.getElementById("BoltTab").removeAttribute("hidden")
 		}
-		bolts+=parseInt(Math.log(twigs)-3)
+		bolts+=parseInt(Math.log10(twigs)-3)
 		drawBolts()
 	}
 }

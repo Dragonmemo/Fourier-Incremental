@@ -84,7 +84,7 @@ function drawBolts(){
             var L=[[Point[0]-1,Point[1]],[Point[0]+1,Point[1]],[Point[0],Point[1]-1],[Point[0],Point[1]+1],[Point[0]+1,Point[1]+1],[Point[0]-1,Point[1]+1],[Point[0]+1,Point[1]-1],[Point[0]-1,Point[1]-1]]
             var Lprime=[]
             for (var mu=0;mu<8;mu++){
-                if (Math.sqrt((L[mu][0]-255)**2+(L[mu][1]-255)**2)>Math.sqrt((Point[0]-255)**2+(Point[1]-255)**2)-0.45 :
+                if (Math.sqrt((L[mu][0]-255)**2+(L[mu][1]-255)**2)>Math.sqrt((Point[0]-255)**2+(Point[1]-255)**2)-0.45)
                     Lprime.push(L[mu])
 			}
             Point=popXeEl(Lprime,Math.floor(Math.random()*(Lprime.length)))[0]
@@ -352,6 +352,7 @@ function save() {
   localStorage.setItem("prod",t);
   localStorage.setItem("TS",tickspeed);
   localStorage.setItem("Bolts",bolts);
+  localStorage.setItem("Stade",stade);
   
 } 
 

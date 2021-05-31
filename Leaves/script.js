@@ -19,7 +19,7 @@ function myFunction1() {
 }
 
 function DrawIt(g){
-	for (var f;f<g;f++){
+	for (var f=0;f<g;f++){
 		if (bourgeon.length!=0){
 			document.getElementById("NL").disabled = true;
 			Actif=bourgeon.pop()

@@ -65,36 +65,36 @@ function DrawIt(g){
 }
 
 function drawBolts(){
-	ctxB.clearRect(0,0, 256, 256);
-	var imageDataB = ctxB.createImageData(256, 256);
-    for (var m=0;m<256*256;m++){
+	ctxB.clearRect(0,0, 512, 512);
+	var imageDataB = ctxB.createImageData(512, 512);
+    for (var m=0;m<512*512;m++){
 		imageDataB.data[4*m+3]=255
 	}
-    var Point=[127,127]
+    var Point=[255,255]
     var PixRange=[]
     var PixVal=[]
 	var col=[parseInt(256*Math.random()),parseInt(256*Math.random()),parseInt(256*Math.random())]
     for (var m=0;m<bolts;m++){
-        for (var n=0;n<127;n++){
-            if (arrayIncludes(PixRange,Point)){PixVal[arrayIndexOf(PixRange,Point)]++}
+        for (var n=0;n<255;n++){
+            if (PixRange.includes(512*Point[0]+Point[1])){PixVal[PixRange.indexOf(512*Point[0]+Point[1])]++}
             else {
-                PixRange.push(Point)
+                PixRange.push(512*Point[0]+Point[1])
                 PixVal.push(1)
 			}
             var L=[[Point[0]-1,Point[1]],[Point[0]+1,Point[1]],[Point[0],Point[1]-1],[Point[0],Point[1]+1],[Point[0]+1,Point[1]+1],[Point[0]-1,Point[1]+1],[Point[0]+1,Point[1]-1],[Point[0]-1,Point[1]-1]]
             var Lprime=[]
             for (var mu=0;mu<8;mu++){
-                if (Math.sqrt((L[mu][0]-127)**2+(L[mu][1]-127)**2)>Math.sqrt((Point[0]-127)**2+(Point[1]-127)**2)-0.45)
+                if (Math.sqrt((L[mu][0]-255)**2+(L[mu][1]-255)**2)>Math.sqrt((Point[0]-255)**2+(Point[1]-255)**2)-0.45)
                     Lprime.push(L[mu])
 			}
             Point=popXeEl(Lprime,Math.floor(Math.random()*Lprime.length))[0]
         }
-		Point=[127,127]
+		Point=[255,255]
 	}
     for (var m=0;m<PixRange.length;m++){
-        imageDataB.data[4*(256*PixRange[m][0]+PixRange[m][1])]=parseInt((1-0.9**PixVal[m])*col[0])
-        imageDataB.data[4*(256*PixRange[m][0]+PixRange[m][1])+1]=parseInt((1-0.9**PixVal[m])*col[1])
-        imageDataB.data[4*(256*PixRange[m][0]+PixRange[m][1])+2]=parseInt((1-0.9**PixVal[m])*col[2])
+        imageDataB.data[4*PixRange[m]]=parseInt((1-0.9**PixVal[m])*col[0])
+        imageDataB.data[4*PixRange[m]+1]=parseInt((1-0.9**PixVal[m])*col[1])
+        imageDataB.data[4*PixRange[m]+2]=parseInt((1-0.9**PixVal[m])*col[2])
 	}
     ctxB.putImageData(imageDataB,0,0)
 }
@@ -177,17 +177,6 @@ function popXeEl(Liste,Nombre){
 
 function arrayEquals(a, b) {
   return JSON.stringify(a) === JSON.stringify(b);
-}
-function arrayIncludes(LIST,ARRAY){
-	for (var m=0;m<LIST.length;m++){
-		if (arrayEquals(ARRAY,LIST[m])){return true}
-	}
-	return false
-}
-function arrayIndexOf(LIST,ARRAY){
-	for (var m=0;m<LIST.length;m++){
-		if (arrayEquals(ARRAY,LIST[m])){return m}
-	}
 }
 
 function suite(d,v){

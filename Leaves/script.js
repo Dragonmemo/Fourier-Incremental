@@ -92,9 +92,9 @@ function drawBolts(){
 		Point=[255,255]
 	}
     for (var m=0;m<PixRange.length;m++){
-        imageDataB.data[4*(500*PixRange[m][0]+PixRange[m][1])]=parseInt((1-0.95**PixVal[m])*col[0])
-        imageDataB.data[4*(500*PixRange[m][0]+PixRange[m][1])+1]=parseInt((1-0.95**PixVal[m])*col[1])
-        imageDataB.data[4*(500*PixRange[m][0]+PixRange[m][1])+2]=parseInt((1-0.95**PixVal[m])*col[2])
+        imageDataB.data[4*(512*PixRange[m][0]+PixRange[m][1])]=parseInt((1-0.95**PixVal[m])*col[0])
+        imageDataB.data[4*(512*PixRange[m][0]+PixRange[m][1])+1]=parseInt((1-0.95**PixVal[m])*col[1])
+        imageDataB.data[4*(512*PixRange[m][0]+PixRange[m][1])+2]=parseInt((1-0.95**PixVal[m])*col[2])
 	}
     ctxB.putImageData(imageDataB,0,0)
 }

@@ -67,20 +67,11 @@ function DrawIt(g){
 function drawBolts(){
 	ctxB.clearRect(0,0, 512, 512);
 	var imageDataB = ctxB.createImageData(512, 512);
-    for (var m=0;m<512*512;m++){
-		imageDataB.data[4*m+3]=255
-	}
     var Point=[255,255]
-    var PixRange=[]
-    var PixVal=[]
-	var col=[parseInt(256*Math.random()),parseInt(256*Math.random()),parseInt(256*Math.random())]
+    var col=[parseInt(256*Math.random()),parseInt(256*Math.random()),parseInt(256*Math.random())]
     for (var m=0;m<bolts;m++){
         for (var n=0;n<255;n++){
-            if (PixRange.includes(512*Point[0]+Point[1])){PixVal[PixRange.indexOf(512*Point[0]+Point[1])]++}
-            else {
-                PixRange.push(512*Point[0]+Point[1])
-                PixVal.push(1)
-			}
+            imageDataB.data[4*(512*Point[0]+Point[1])]++
             var L=[[Point[0]-1,Point[1]],[Point[0]+1,Point[1]],[Point[0],Point[1]-1],[Point[0],Point[1]+1],[Point[0]+1,Point[1]+1],[Point[0]-1,Point[1]+1],[Point[0]+1,Point[1]-1],[Point[0]-1,Point[1]-1]]
             var Lprime=[]
             for (var mu=0;mu<8;mu++){
@@ -91,11 +82,12 @@ function drawBolts(){
         }
 		Point=[255,255]
 	}
-    for (var m=0;m<PixRange.length;m++){
-        imageDataB.data[4*PixRange[m]]=parseInt((1-0.9**PixVal[m])*col[0])
-        imageDataB.data[4*PixRange[m]+1]=parseInt((1-0.9**PixVal[m])*col[1])
-        imageDataB.data[4*PixRange[m]+2]=parseInt((1-0.9**PixVal[m])*col[2])
-	}
+    for (var m=0;m<512*512;m++){
+		imageDataB.data[4*m+1]=parseInt((1-0.9**imageDataB.data[4*m])*col[1])
+        imageDataB.data[4*m+2]=parseInt((1-0.9**imageDataB.data[4*m])*col[2])
+		imageDataB.data[4*m]=parseInt((1-0.9**imageDataB.data[4*m])*col[0])
+        imageDataB.data[4*m+3]=255
+	}    
     ctxB.putImageData(imageDataB,0,0)
 }
 

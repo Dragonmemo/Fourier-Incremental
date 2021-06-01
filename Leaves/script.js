@@ -65,8 +65,8 @@ function DrawIt(g){
 }
 
 function drawBolts(){
+	ctxB.clearRect(0,0, 512, 512);
 	var imageDataB = ctxB.createImageData(512, 512);
-    //x=[512x512]
     for (var m=0;m<512*512;m++){
 		imageDataB.data[4*m+3]=255
 	}

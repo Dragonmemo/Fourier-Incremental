@@ -87,14 +87,14 @@ function drawBolts(){
                 if (Math.sqrt((L[mu][0]-255)**2+(L[mu][1]-255)**2)>Math.sqrt((Point[0]-255)**2+(Point[1]-255)**2)-0.45)
                     Lprime.push(L[mu])
 			}
-            Point=popXeEl(Lprime,Math.floor(Math.random()*(Lprime.length)))[0]
+            Point=popXeEl(Lprime,Math.floor(Math.random()*Lprime.length))[0]
         }
 		Point=[255,255]
 	}
     for (var m=0;m<PixRange.length;m++){
-        imageDataB.data[4*(500*PixRange[m][0]+PixRange[k][1])]=parseInt((1-0.95**PixVal[m])*col[0])
-        imageDataB.data[4*(500*PixRange[m][0]+PixRange[k][1])+1]=parseInt((1-0.95**PixVal[m])*col[1])
-        imageDataB.data[4*(500*PixRange[m][0]+PixRange[k][1])+2]=parseInt((1-0.95**PixVal[m])*col[2])
+        imageDataB.data[4*(500*PixRange[m][0]+PixRange[m][1])]=parseInt((1-0.95**PixVal[m])*col[0])
+        imageDataB.data[4*(500*PixRange[m][0]+PixRange[m][1])+1]=parseInt((1-0.95**PixVal[m])*col[1])
+        imageDataB.data[4*(500*PixRange[m][0]+PixRange[m][1])+2]=parseInt((1-0.95**PixVal[m])*col[2])
 	}
     ctxB.putImageData(imageDataB,0,0)
 }
@@ -146,6 +146,7 @@ function GetBolts(){
 		if (stade==1){
 			stade++
 			document.getElementById("BoltTab").removeAttribute("hidden")
+			document.getElementById("BOLTS").removeAttribute("hidden")
 		}
 		bolts+=parseInt(Math.log10(twigs)-3)
 		drawBolts()
@@ -157,6 +158,13 @@ function GetBolts(){
 		buds=0
 		twigs=0
 		leaves=0
+		document.getElementById("TCost").innerHTML=parseInt(2**(t+3))
+		document.getElementById("BCost").innerHTML=parseInt(2**((1040-tickspeed)/10))
+		document.getElementById("BU").disabled=false
+		document.getElementById("LCost").innerHTML=parseInt(2**Math.log2(x[0]/8))
+		ctx.clearRect(0,0, x[0], x[1]);
+		canvas.width=x[0]
+		canvas.height=x[1]
 	}
 }
 
@@ -348,6 +356,7 @@ function loop() { // production
 	if (tickspeed<ticks){
 		myFunction1();
 		ticks=ticks-tickspeed;
+		document.getElementById("BOLTS").innerHTML=", "+bolts+" bolt(s)"
 		if (document.getElementById("Autosave").checked == true){save();}
 	}
 }
@@ -376,6 +385,7 @@ function HReset(){
 		twigs=0
 		leaves=0
 		bolts=0
+		stade=0
 }}
 
 function copyStringToClipboard(str) {
@@ -435,6 +445,16 @@ function Import(){
 		canvas.height=x[1]
 		document.getElementById("TCost").innerHTML=parseInt(2**(t+3))
 		document.getElementById("BCost").innerHTML=parseInt(2**((1040-tickspeed)/10))
+		if (loadgame.Stade){stade=parseInt(loadgame.Stade)}
+		if (stade>0){
+			document.getElementById("PresBud").removeAttribute("hidden")
+			if (stade>1){
+				document.getElementById("BoltTab").removeAttribute("hidden")
+				document.getElementById("BOLTS").removeAttribute("hidden")
+				document.getElementById("PresBud").innerHTML="Call the thunder and<br>Get "+parseInt(Math.log10(twigs)-3)+" bolts"
+				drawBolts()
+			}
+		}
 	}
 }
 
@@ -464,4 +484,14 @@ if(localStorage.prod) {
 	canvas.height=x[1]
 	document.getElementById("TCost").innerHTML=parseInt(2**(t+3))
 	document.getElementById("BCost").innerHTML=parseInt(2**((1040-tickspeed)/10))
+	if (localStorage.Stade){stade=parseInt(localStorage.Stade)}
+	if (stade>0){
+		document.getElementById("PresBud").removeAttribute("hidden")
+		if (stade>1){
+			document.getElementById("BoltTab").removeAttribute("hidden")
+			document.getElementById("BOLTS").removeAttribute("hidden")
+			document.getElementById("PresBud").innerHTML="Call the thunder and<br>Get "+parseInt(Math.log10(twigs)-3)+" bolts"
+			drawBolts()
+		}
+	}
 }

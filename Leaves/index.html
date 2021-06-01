@@ -61,7 +61,16 @@
 	<div id="Bolt" class="tabcontent" hidden>
 	<table><tr>
 	<td style="display:table-cell;">
-	<button type="button" onclick="drawBolts()">Reset the pattern</button><br>
+	<button type="button" onclick="TSUp()" id="BoltUp1">Electricity has more power<br>Use it to halve base tickspeed for<br>
+	<span id="TSUp">5</span> bolts</button>
+	<button type="button" onclick="BoltUp2()" id="BoltUp2">Buds can also attract charges<br>
+	Cost 20 bolts</button>
+	<button type="button" onclick="BoltUp3()" id="BoltUp3">Leaves can also attract charges<br>
+	Cost 50 bolts</button>
+	<button type="button" onclick="BoltUp4()" id="BoltUp4">Halve leaves requirement to<br>increase the sheet of paper<br>
+	Cost 50 bolts</button>
+	<button type="button" onclick="drawBolts()">Reset the pattern</button>
+	<button type="button" onclick="SaveBolts()"><a id="DFWMB2">Save as PNG</a></button><br>
 	<canvas id="myCanvas1" width="512" height="512"></canvas>
     </td>
 	</tr></table>
@@ -98,7 +107,7 @@
 		<br>0.3 Call the god of thunder<br>
 		Started Implementing Bolts, works passively for now<br>
 		0.3.1 Fixed prices not showing they updated and the count of bolts, next update will have the upgrades in !<br>
-		0.3.2 ???
+		0.3.2 Added bolts upgrades, optimised bolt art, next prestige will require someting like 1000 bolts, not sure yet
 	</div>
 	<div id="Help" class="tabcontent">
 	</div>

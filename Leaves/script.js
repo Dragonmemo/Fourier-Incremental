@@ -18,7 +18,7 @@ var twigs=0
 var leaves=0
 var bolts=0
 var stade=0
-
+var BoltsUp=[0,0,0,0]
 
 function myFunction1() {
 	DrawIt(t*(bolts+1));
@@ -60,7 +60,7 @@ function DrawIt(g){
 		document.getElementById("PresBud").removeAttribute("hidden")
 	}
 	if (stade>1){
-		document.getElementById("PresBud").innerHTML="Call the thunder and<br>Get "+parseInt(Math.log10(twigs)-3)+" bolts"
+		document.getElementById("PresBud").innerHTML="Call the thunder and<br>Get "+parseInt((Math.log10(twigs)-3)*(Math.log10(buds+1)**BoltsUp[1]+1)*(Math.log10(leaves+1)**BoltsUp[2]+1))+" bolts"
 	}
 }
 
@@ -112,6 +112,39 @@ function twigUp(){
 	} 
 }
 
+function TSUp(){
+	if (bolts>=5*10**BoltsUp[0]){
+		bolts=bolts-5*10**BoltsUp[0]
+		BoltsUp[0]++
+		document.getElementById("TSUp").innerHTML=5*10**BoltsUp[0]
+	} 
+	if (BoltsUp[0]==2){
+		document.getElementById("TSUp").innerHTML="MAXED"
+		document.getElementById("BoltUp1").disabled=true
+	}
+}
+function BoltUp2(){
+	if (bolts>=20){
+		bolts=bolts-20
+		BoltsUp[1]++
+		document.getElementById("BoltUp2").disabled=true
+	}
+}
+function BoltUp3(){
+	if (bolts>=50){
+		bolts=bolts-50
+		BoltsUp[2]++
+		document.getElementById("BoltUp3").disabled=true
+	}
+}
+function BoltUp4(){
+	if (bolts>=50){
+		bolts=bolts-50
+		BoltsUp[3]++
+		document.getElementById("BoltUp4").disabled=true
+	}
+}
+
 function newReset(){
 	leaves=leaves+parseInt(Math.sqrt(x[0]*x[1])/16);
 	ctx.clearRect(0,0, x[0], x[1]);
@@ -120,14 +153,14 @@ function newReset(){
 }
 
 function increaseSize(){
-	if (leaves>=parseInt(2**Math.log2(x[0]/8))){
-		leaves=leaves-parseInt(2**Math.log2(x[0]/8))
+	if (leaves>=parseInt(2**(Math.log2(x[0]/8)-BoltsUp[3]))){
+		leaves=leaves-parseInt(2**(Math.log2(x[0]/8)-BoltsUp[3]))
 		x[0]*=2
 		x[1]*=2
 		ctx.clearRect(0,0, x[0], x[1]);
 		imageData = ctx.createImageData(x[0], x[1]);
 		bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
-		document.getElementById("LCost").innerHTML=parseInt(2**Math.log2(x[0]/8))
+		document.getElementById("LCost").innerHTML=parseInt(2**(Math.log2(x[0]/8)-BoltsUp[3]))
 		canvas.width=x[0]
 		canvas.height=x[1]
 	}
@@ -140,7 +173,7 @@ function GetBolts(){
 			document.getElementById("BoltTab").removeAttribute("hidden")
 			document.getElementById("BOLTS").removeAttribute("hidden")
 		}
-		bolts+=parseInt(Math.log10(twigs)-3)
+		bolts+=parseInt((Math.log10(twigs)-3)*Math.log10(buds+1)**BoltsUp[1]*Math.log10(leaves+1)**BoltsUp[2])
 		drawBolts()
 		imageData = ctx.createImageData(16, 16); //=pixels
 		x=[16,16]//x=MAGIE.size ici on connait x
@@ -347,7 +380,7 @@ function loop() { // production
 	ticks+=33;
 	if (tickspeed<ticks){
 		myFunction1();
-		ticks=ticks-tickspeed;
+		ticks=ticks-tickspeed-1000+1000/(2**BoltsUp[0]);
 		document.getElementById("BOLTS").innerHTML=", "+bolts+" bolt(s)"
 		if (document.getElementById("Autosave").checked == true){save();}
 	}
@@ -362,7 +395,7 @@ function save() {
   localStorage.setItem("TS",tickspeed);
   localStorage.setItem("Bolts",bolts);
   localStorage.setItem("Stade",stade);
-  
+  localStorage.setItem("BoltsUp",BoltsUp);
 } 
 
 function HReset(){
@@ -378,6 +411,7 @@ function HReset(){
 		leaves=0
 		bolts=0
 		stade=0
+		BoltsUp=[0,0,0,0]
 }}
 
 function copyStringToClipboard(str) {
@@ -429,6 +463,25 @@ function Import(){
 		t=parseInt(loadgame.prod);
 		tickspeed=parseInt(loadgame.TS);
 		bolts=parseInt(loadgame.Bolts);
+		if (loadgame.BoltsUp){
+			BoltsUp=loadgame.BoltsUp.split(",").map(Number);
+			if (BoltsUp[0]==1){
+				document.getElementById("TSUp").innerHTML=50
+			}
+			if (BoltsUp[0]==2){
+				document.getElementById("TSUp").innerHTML="MAXED"
+				document.getElementById("BoltUp1").disabled=true
+			}
+			if (BoltsUp[1]==1){
+				document.getElementById("BoltUp2").disabled=true
+			}
+			if (BoltsUp[2]==1){
+				document.getElementById("BoltUp3").disabled=true
+			}
+			if (BoltsUp[3]==1){
+				document.getElementById("BoltUp4").disabled=true
+			}
+		}
 		ctx.clearRect(0,0, x[0], x[1]);
 		imageData = ctx.createImageData(x[0], x[1]);
 		bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
@@ -457,7 +510,12 @@ function SaveLeaves(){
 	LINK.click();
 }
 
-
+function SaveBolts(){
+	var LINK=document.getElementById("DFWMB2")
+	LINK.download = 'Leaves'+x[0]+'x'+x[1]+'.png';
+	LINK.href = canvasB.toDataURL("image/jpg");
+	LINK.click();
+}
 
 
 if(localStorage.prod) {
@@ -484,6 +542,25 @@ if(localStorage.prod) {
 			document.getElementById("BOLTS").removeAttribute("hidden")
 			document.getElementById("PresBud").innerHTML="Call the thunder and<br>Get "+parseInt(Math.log10(twigs)-3)+" bolts"
 			drawBolts()
+		}
+	}
+	if (localStorage.BoltsUp){
+		BoltsUp=localStorage.BoltsUp.split(",").map(Number);
+		if (BoltsUp[0]==1){
+			document.getElementById("TSUp").innerHTML=50
+		}
+		if (BoltsUp[0]==2){
+			document.getElementById("TSUp").innerHTML="MAXED"
+			document.getElementById("BoltUp1").disabled=true
+		}
+		if (BoltsUp[1]==1){
+			document.getElementById("BoltUp2").disabled=true
+		}
+		if (BoltsUp[2]==1){
+			document.getElementById("BoltUp3").disabled=true
+		}
+		if (BoltsUp[3]==1){
+			document.getElementById("BoltUp4").disabled=true
 		}
 	}
 }

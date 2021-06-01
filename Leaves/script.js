@@ -512,7 +512,7 @@ function SaveLeaves(){
 
 function SaveBolts(){
 	var LINK=document.getElementById("DFWMB2")
-	LINK.download = 'Leaves'+x[0]+'x'+x[1]+'.png';
+	LINK.download = 'Bolts'+x[0]+'x'+x[1]+'.png';
 	LINK.href = canvasB.toDataURL("image/jpg");
 	LINK.click();
 }

@@ -26,9 +26,9 @@ function myFunction1() {
 }
 
 function DrawIt(g){
+	document.getElementById("NL").disabled = true;
 	for (var f=0;f<g;f++){
 		if (bourgeon.length!=0){
-			document.getElementById("NL").disabled = true;
 			Actif=bourgeon.pop()
 			if (imageData.data[4*(Actif[1][0]*x[0]+Actif[1][1])+3]!=255){
 				var depart=Actif[1];

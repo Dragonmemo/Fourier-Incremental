@@ -229,15 +229,13 @@ function suite(d,v){
     var N=[];
     for (k=0;k<3;k++){
         if (Math.random()>1-1/(1.01**k)){
-            var x=popXeEl(liste,Math.floor(Math.random()*(liste.length)))
-			liste=x[1];
-			x=x[0];
-            N.unshift(x)
+            var x=liste.splice(Math.floor(Math.random()*(liste.length)),1)[0]
+			N.unshift(x)
             var j=-1
             for (i=0;i<liste.length;i++){
                 j++
                 if (liste[j][0]==x[0] && liste[j][1]==x[1]){
-                    liste=popXeEl(liste,j)[1]
+                    liste.splice(j,1)
                     j=j-1
 				}
 			}

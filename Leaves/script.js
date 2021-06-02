@@ -173,7 +173,7 @@ function GetBolts(){
 			document.getElementById("BoltTab").removeAttribute("hidden")
 			document.getElementById("BOLTS").removeAttribute("hidden")
 		}
-		bolts+=parseInt((Math.log10(twigs)-3)*Math.log10(buds+1)**BoltsUp[1]*Math.log10(leaves+1)**BoltsUp[2])
+		bolts+=parseInt((Math.log10(twigs)-3)*(Math.log10(buds+1)**BoltsUp[1]+1)*(Math.log10(leaves+1)**BoltsUp[2]+1))
 		drawBolts()
 		imageData = ctx.createImageData(16, 16); //=pixels
 		x=[16,16]//x=MAGIE.size ici on connait x

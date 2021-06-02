@@ -29,35 +29,35 @@ function arrayEquals(a, b) {
 
 function suite(d,v){
 	var liste;
-    if (arrayEquals(v,[0,1])){liste=[[1,1],[0,1],[0,1],[-1,1]]}
-    if (arrayEquals(v,[1,1])){liste=[[0,1],[1,1],[1,1],[1,0]]}
-    if (arrayEquals(v,[1,0])){liste=[[1,-1],[1,0],[1,0],[1,1]]}
-    if (arrayEquals(v,[1,-1])){liste=[[0,-1],[1,-1],[1,-1],[1,0]]}
-	if (arrayEquals(v,[0,-1])){liste=[[1,-1],[0,-1],[0,-1],[-1,-1]]}
-    if (arrayEquals(v,[-1,-1])){liste=[[0,-1],[-1,-1],[-1,-1],[-1,0]]}
-    if (arrayEquals(v,[-1,0])){liste=[[-1,-1],[-1,0],[-1,0],[-1,1]]}
-    if (arrayEquals(v,[-1,1])){liste=[[0,1],[-1,1],[-1,1],[-1,0]]}
+	//console.log(v)
+    if (v==1){liste=[x[1]+1,1,1,-x[1]+1]}
+    if (v==x[1]+1){liste=[1,x[1]+1,x[1]+1,x[1]]}
+    if (v==x[1]){liste=[x[1]-1,x[1],x[1],x[1]+1]}
+    if (v==x[1]-1){liste=[-1,x[1]-1,x[1]-1,x[1]]}
+	if (v==-1){liste=[x[1]-1,-1,-1,-x[1]-1]}
+    if (v==-x[1]-1){liste=[-1,v,v,-x[1]]}
+    if (v==-x[1]){liste=[-x[1]-1,v,v,-x[1]+1]}
+    if (v==-x[1]+1){liste=[1,v,v,-x[1]]}
     var N=[];
     for (k=0;k<3;k++){
         if (Math.random()>1-1/(1.01**k)){
-            var x=popXeEl(liste,Math.floor(Math.random()*(liste.length)))
-			liste=x[1];
-			x=x[0];
-            N.unshift(x)
+            var elt=popXeEl(liste,Math.floor(Math.random()*(liste.length)))
+			liste=elt[1];
+			elt=elt[0];
+            N.unshift(elt)
             var j=-1
             for (i=0;i<liste.length;i++){
                 j++
-                if (arrayEquals(liste[j],x)){
+                if (arrayEquals(liste[j],elt)){
                     liste=popXeEl(liste,j)[1]
                     j=j-1
 				}
 			}
             if (k!=2){
-				N[0]=[N[0][0]+d[0],N[0][1]+d[1],[d[2][0],d[2][1],d[2][2],255]]
+				N[0]=[N[0]+d[0],[d[1][0],d[1][1],d[1][2]]]
 			}
             else {
-                N[0]=[N[0][0]+d[0],N[0][1]+d[1],[d[2][0]+math.floor(Math.random()*3)-1,d[2][1]+math.floor(Math.random()*3)-1,d[2][2]+math.floor(Math.random()*3)-1]]
-				N[0]=[N[0][0],N[0][1],[N[0][2][0],N[0][2][1],N[0][2][2],255]]
+                N[0]=[N[0]+d[0],[d[1][0]+math.floor(Math.random()*3)-1,d[1][1]+math.floor(Math.random()*3)-1,d[1][2]+math.floor(Math.random()*3)-1]]
 			}
 	}}
 	return N
@@ -169,97 +169,43 @@ function blur(imageData, radius, quality) {
     return imageData;
 }
 
+var x=[500,500]//x=MAGIE.size ici on connait x
+    
 function dessineMoiUneFeuille(){
 	var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
 	var nouveau_bourgeons;
 	ctx.clearRect(0,0, 500, 500);
 	var imageData = ctx.createImageData(500, 500); //=pixels
-    x=[500,500]//x=MAGIE.size ici on connait x
-    var bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
+    var bourgeon=[[[parseInt(x[1]*x[0]/2+x[1]/2)],
+		[parseInt(x[1]*x[0]/2+x[1]/2+1),
+			[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
     while (bourgeon.length!=0){
         //console.log(bourgeon)
-		Actif=bourgeon.pop()
+		var Actif=bourgeon.pop()
         //console.log(Actif)
-		if (imageData.data[4*(Actif[1][0]*500+Actif[1][1])+3]!=255){
+		if (imageData.data[4*Actif[1]+3]!=255){
             var depart=Actif[1];
-			var vecteur= [Actif[1][0]-Actif[0][0], Actif[1][1]-Actif[0][1]]
+			var vecteur= Actif[1][0]-Actif[0]
             nouveau_bourgeons=suite(depart,vecteur)
-            imageData.data[4*(Actif[1][0]*500+Actif[1][1])]=Actif[1][2][0]
-            imageData.data[4*(Actif[1][0]*500+Actif[1][1])+1]=Actif[1][2][1]
-            imageData.data[4*(Actif[1][0]*500+Actif[1][1])+2]=Actif[1][2][2]
-            imageData.data[4*(Actif[1][0]*500+Actif[1][1])+3]=255
+			//console.log(nouveau_bourgeons)
+			//console.log([nouveau_bourgeons[i][0]-(depart[0]-depart[0]%x[1]),nouveau_bourgeons[i][0]-(depart[0]-depart[0]%x[1])+x[1],nouveau_bourgeons[i][0]-(depart[0]-depart[0]%x[1])-x[1]])
+            imageData.data[4*Actif[1][0]]=Actif[1][1][0]
+            imageData.data[4*Actif[1][0]+1]=Actif[1][1][1]
+            imageData.data[4*Actif[1][0]+2]=Actif[1][1][2]
+            imageData.data[4*Actif[1][0]+3]=255
             for (i=0;i<nouveau_bourgeons.length;i++){
-				if (nouveau_bourgeons[i][0]!=-1 && nouveau_bourgeons[i][1]!=-1 && nouveau_bourgeons[i][0]!=x[0] && nouveau_bourgeons[i][1]!=x[1] && imageData.data[4*(nouveau_bourgeons[i][0]*500+nouveau_bourgeons[i][1])+3]!=255){
-					bourgeon.push([Actif[1],nouveau_bourgeons[i]])
+				if (nouveau_bourgeons[i][0]>=0 && nouveau_bourgeons[i][0]<=x[0]*x[1] && ![nouveau_bourgeons[i][0]-(depart[0]-depart[0]%x[1]),nouveau_bourgeons[i][0]-(depart[0]-depart[0]%x[1])+x[1],nouveau_bourgeons[i][0]-(depart[0]-depart[0]%x[1])-x[1]].includes(x[1]) && ![nouveau_bourgeons[i][0]-(depart[0]-depart[0]%x[1]),nouveau_bourgeons[i][0]-(depart[0]-depart[0]%x[1])+x[1],nouveau_bourgeons[i][0]-(depart[0]-depart[0]%x[1])-x[1]].includes(-1) && imageData.data[4*nouveau_bourgeons[i][0]+3]!=255){
+					bourgeon.push([Actif[1][0],nouveau_bourgeons[i]])
 				}
 			}
 		}
 	}
-	imageData=blur(imageData,2,1)
+	//imageData=blur(imageData,2,1)
     ctx.putImageData(imageData,0,0)
 }
 
-  /*ctx.lineTo(500, 250);
-  ctx.stroke();
-  ctx.strokeStyle="#BBBBBB";
-  ctx.beginPath();
-  if (LCoords.length<qual){
-	  if (LCoords.length>0) {ctx.moveTo(LCoords[0][0]/MAX*250+250,LCoords[0][1]/MAX*250+250);}
-	  for (i=0;i<LCoords.length;i++){
-		  ctx.lineTo(LCoords[i][0]/MAX*250+250,LCoords[i][1]/MAX*250+250);
-	      ctx.stroke();
-  }}
-	  
-  else{
-	  ctx.moveTo(LCoords[0][0]/MAX*250+250,LCoords[0][1]/MAX*250+250);
-	  for (i=0;i<LCoords.length;i++){
-		  ctx.lineTo(LCoords[i][0]/MAX*250+250,LCoords[i][1]/MAX*250+250);
-	      ctx.stroke();
-	  }
-	  LCoords.shift();
-  }
-  ctx.closePath();
-  if (tickspeed>33){x=x.plus(DPSCALC);}
-  else {x=x.plus(DPSCALC.mul(33/tickspeed));}
-  ctx.beginPath();
-  ctx.strokeStyle="#000000";
-  document.getElementById("MCur").innerHTML = "Drawing points (DP) : "+x.toPrecision(4);
-  document.getElementById("DPS").innerHTML = Decimal.mul(DPSCALC,1000/tickspeed).toPrecision(4);
-  if (Achieves[62]!=0){document.getElementById("PCur").innerHTML = "Negative points (NP) : "+y.toPrecision(4);}
-  FourierCalculation(MAX);
-  MAX=Math.max(MAX,Math.abs(coords[0]),Math.abs(coords[1]));
-  LCoords.push(coords);
-};
-
-function FourierCalculation(MAX) {
-  var TempVar=math.complex({r:Zero,phi:I*parseInt(document.getElementById("Phi0").value)/100});
-  var canvas = document.getElementById("myCanvas");
-  var ctx = canvas.getContext("2d");
-  ctx.moveTo(coords[0]/MAX*250+250,coords[1]/MAX*250+250);
-  ARROWSOFHELL=[[TempVar.re,TempVar.im]]
-  for (i=0; i<10;i++){
-    TempVar=math.add(TempVar,math.multiply(math.complex({r: 1, phi:R*(i+1)*I/qual+I*parseInt(document.getElementById("Phi"+(i+1)).value)/100}),positives[i]));
-	ARROWSOFHELL[1+2*i]=[TempVar.re,TempVar.im]
-	TempVar=math.add(TempVar,math.multiply(math.complex({r: 1, phi:-R*(i+1)*I/qual+I*parseInt(document.getElementById("PhiM"+(i+1)).value)/100}),negatives[i]));
-    ARROWSOFHELL[2+2*i]=[TempVar.re,TempVar.im]
-  };
-  R=R%qual + 1;
-  coords=[TempVar.re,TempVar.im];
-  ctx.lineTo(coords[0]/MAX*250+250,coords[1]/MAX*250+250);
-  ctx.stroke();
-  if (document.getElementById("Arrows").checked == true){
-	  ctx.strokeStyle="#009900";
-	  ctx.moveTo(250,250);
-	  for (i=0;i<ARROWSOFHELL.length;i++){
-		  ctx.lineTo(ARROWSOFHELL[i][0]/MAX*250+250,ARROWSOFHELL[i][1]/MAX*250+250);
-			ctx.stroke();
-	}}
-};*/
-
-var mainGameLoop = window.setInterval(function() { // runs the loop
-	loop();
-	}, 33);
+//var mainGameLoop = window.setInterval(loop(), 33);
 
 function loop() { // production
 	//myFunction1();

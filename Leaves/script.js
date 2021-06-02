@@ -378,9 +378,9 @@ var mainGameLoop = window.setInterval(function() { // runs the loop
 
 function loop() { // production
 	ticks+=33;
-	if (tickspeed<ticks){
+	if (tickspeed-1000+1000/(2**BoltsUp[0])<ticks){
 		myFunction1();
-		ticks=ticks-tickspeed-1000+1000/(2**BoltsUp[0]);
+		ticks=ticks-tickspeed+1000-1000/(2**BoltsUp[0])
 		document.getElementById("BOLTS").innerHTML=", "+bolts+" bolt(s)"
 		if (document.getElementById("Autosave").checked == true){save();}
 	}

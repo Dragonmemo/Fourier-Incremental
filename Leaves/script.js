@@ -206,14 +206,26 @@ function arrayEquals(a, b) {
 
 function suite(d,v){
 	var liste;
-    if (arrayEquals(v,[0,1])){liste=[[1,1],[0,1],[0,1],[-1,1]]}
-    if (arrayEquals(v,[1,1])){liste=[[0,1],[1,1],[1,1],[1,0]]}
-    if (arrayEquals(v,[1,0])){liste=[[1,-1],[1,0],[1,0],[1,1]]}
-    if (arrayEquals(v,[1,-1])){liste=[[0,-1],[1,-1],[1,-1],[1,0]]}
-	if (arrayEquals(v,[0,-1])){liste=[[1,-1],[0,-1],[0,-1],[-1,-1]]}
-    if (arrayEquals(v,[-1,-1])){liste=[[0,-1],[-1,-1],[-1,-1],[-1,0]]}
-    if (arrayEquals(v,[-1,0])){liste=[[-1,-1],[-1,0],[-1,0],[-1,1]]}
-    if (arrayEquals(v,[-1,1])){liste=[[0,1],[-1,1],[-1,1],[-1,0]]}
+    if (v[0]==0){
+		if (v[1]==1){liste=[[1,1],[0,1],[0,1],[-1,1]]}
+		else {liste=[[1,-1],[0,-1],[0,-1],[-1,-1]]}
+	}
+    else{
+		if (v[0]==1){
+			if (v[1]==1){liste=[[0,1],[1,1],[1,1],[1,0]]}
+			else{
+				if (v[1]==0){liste=[[1,-1],[1,0],[1,0],[1,1]]}
+				else {liste=[[0,-1],[1,-1],[1,-1],[1,0]]}
+			}
+		}
+		else{
+			if (v[1]==1){liste=[[0,1],[-1,1],[-1,1],[-1,0]]}
+			else{
+				if (v[1]==0){liste=[[-1,-1],[-1,0],[-1,0],[-1,1]]}
+				else{liste=[[0,-1],[-1,-1],[-1,-1],[-1,0]]}
+			}
+		}
+	}
     var N=[];
     for (k=0;k<3;k++){
         if (Math.random()>1-1/(1.01**k)){
@@ -224,7 +236,7 @@ function suite(d,v){
             var j=-1
             for (i=0;i<liste.length;i++){
                 j++
-                if (arrayEquals(liste[j],x)){
+                if (liste[j][0]==x[0] && liste[j][1]==x[1]){
                     liste=popXeEl(liste,j)[1]
                     j=j-1
 				}

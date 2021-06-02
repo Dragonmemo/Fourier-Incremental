@@ -10,7 +10,7 @@ var ctxL = canvasL.getContext("2d");
 var nouveau_bourgeons;
 var imageData = ctx.createImageData(16, 16); //=pixels
 var x=[16,16]//x=MAGIE.size ici on connait x
-var bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
+var bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
 var tickspeed=1000
 var t=1;
 var buds=0
@@ -149,7 +149,7 @@ function newReset(){
 	leaves=leaves+parseInt(Math.sqrt(x[0]*x[1])/16);
 	ctx.clearRect(0,0, x[0], x[1]);
 	imageData = ctx.createImageData(x[0], x[1]);
-	bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
+	bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
 }
 
 function increaseSize(){
@@ -159,7 +159,7 @@ function increaseSize(){
 		x[1]*=2
 		ctx.clearRect(0,0, x[0], x[1]);
 		imageData = ctx.createImageData(x[0], x[1]);
-		bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
+		bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
 		document.getElementById("LCost").innerHTML=parseInt(2**(Math.log2(x[0]/8)-BoltsUp[3]))
 		canvas.width=x[0]
 		canvas.height=x[1]
@@ -177,7 +177,7 @@ function GetBolts(){
 		drawBolts()
 		imageData = ctx.createImageData(16, 16); //=pixels
 		x=[16,16]//x=MAGIE.size ici on connait x
-		bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
+		bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
 		tickspeed=1000
 		t=1;
 		buds=0
@@ -242,11 +242,10 @@ function suite(d,v){
 				}
 			}
             if (k!=2){
-				N[0]=[N[0][0]+d[0],N[0][1]+d[1],[d[2][0],d[2][1],d[2][2],255]]
+				N[0]=[N[0][0]+d[0],N[0][1]+d[1],[d[2][0],d[2][1],d[2][2]]]
 			}
             else {
                 N[0]=[N[0][0]+d[0],N[0][1]+d[1],[d[2][0]+math.floor(Math.random()*3)-1,d[2][1]+math.floor(Math.random()*3)-1,d[2][2]+math.floor(Math.random()*3)-1]]
-				N[0]=[N[0][0],N[0][1],[N[0][2][0],N[0][2][1],N[0][2][2],255]]
 			}
 	}}
 	return N
@@ -415,7 +414,7 @@ function HReset(){
 	if (BOOLEAN){
 		imageData = ctx.createImageData(16, 16); //=pixels
 		x=[16,16]//x=MAGIE.size ici on connait x
-		bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
+		bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
 		tickspeed=1000
 		t=1;
 		buds=0
@@ -496,7 +495,7 @@ function Import(){
 		}
 		ctx.clearRect(0,0, x[0], x[1]);
 		imageData = ctx.createImageData(x[0], x[1]);
-		bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
+		bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
 		document.getElementById("LCost").innerHTML=parseInt(2**Math.log2(x[0]/8))
 		canvas.width=x[0]
 		canvas.height=x[1]
@@ -540,7 +539,7 @@ if(localStorage.prod) {
 	bolts=parseInt(localStorage.Bolts);
 	ctx.clearRect(0,0, x[0], x[1]);
 	imageData = ctx.createImageData(x[0], x[1]);
-	bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256),255]]]]
+	bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
 	document.getElementById("LCost").innerHTML=parseInt(2**Math.log2(x[0]/8))
 	canvas.width=x[0]
 	canvas.height=x[1]

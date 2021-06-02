@@ -85,7 +85,7 @@
 	</div>
 	<div id="Settings" class="tabcontent">
 	<button type="button" onclick="save()" class="tooltip">Save
-      <span class="tooltiptext">Autosaves each tick</span></button>
+      <span class="tooltiptext">Autosaves every 10s</span></button>
       <button type="button" onclick="HReset()" class="tooltip">Hard Reset
       <span class="tooltiptext">Resets everything</span></button>
       <br><button type="button" onclick="Export()" class="tooltip">Export</button>
@@ -110,6 +110,12 @@
 		0.3.2 Added bolts upgrades, optimised bolt art, next prestige will require someting like 1000 bolts, not sure yet
 	</div>
 	<div id="Help" class="tabcontent">
+	Why do I sometimes earn buds and sometimes twigs ?<br><br>
+	You always start a picture with a lonely bud that will grow. Each time a bud grows and a pixel is drawn, a twig is earnt (not counting multipliers). But at the same time, each growing bud adds more bud from where to grow next. If the pixel has already been drawn, I "cut off" the bud and continue with another one, granting you one bud (not counting multipliers)<br><br>
+	How does bolts works ?<br><br>
+	Your current bolts multiply the number of pixels drawn per ticks by 1+bolts. Without upgrades, you get, rounding down, log10(twigs)-3 bolts per prestige.<br><br>
+	The game is slow !/The game is laggy !<br><br>
+	The game starts slow because it will make you hit the laggy part later, i'm currently working on improving that but doesn't happen to make significant improvements...
 	</div>
 	<script>
     function openCity(evt, cityName) {

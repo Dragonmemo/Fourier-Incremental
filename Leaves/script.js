@@ -381,17 +381,22 @@ function dessineMoiUneFeuille(){
 }
 
 var ticks=0;
+var saveticks=0;
 var mainGameLoop = window.setInterval(function() { // runs the loop
 	loop();
 	}, 33);
 
 function loop() { // production
 	ticks+=33;
+	saveticks+=33
 	if (tickspeed-1000+1000/(2**BoltsUp[0])<ticks){
 		myFunction1();
 		ticks=ticks-tickspeed+1000-1000/(2**BoltsUp[0])
 		document.getElementById("BOLTS").innerHTML=", "+bolts+" bolt(s)"
+	}
+	if (saveticks>10000){
 		if (document.getElementById("Autosave").checked == true){save();}
+		saveticks-=10000
 	}
 }
 

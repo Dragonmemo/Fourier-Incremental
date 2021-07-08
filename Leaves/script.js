@@ -22,7 +22,7 @@ var BoltsUp=[0,0,0,0]
 
 function myFunction1() {
 	DrawIt(t*(bolts+1));
-	document.getElementById("TITLE").innerHTML=buds+" bud(s), "+twigs+" twig(s), "+leaves+" leaf(ves)"
+	document.getElementById("TITLE").innerHTML=twigs+" twig(s), "+buds+" bud(s), "+leaves+" leaf(ves)"
 }
 
 function DrawIt(g){

@@ -6,7 +6,7 @@ var ctx = canvas.getContext("2d");
 var imageData = ctx.createImageData(500, 500); //=pixels
 var x=[500,500]
 var i
-var j
+var j,tau
 
 function DerivPoly(StrPoly){ //StrPoly = an*X**n+an-1*X**n-1...+a1*X**1+a0*X**0
     var P=[]
@@ -26,9 +26,9 @@ function DerivPoly(StrPoly){ //StrPoly = an*X**n+an-1*X**n-1...+a1*X**1+a0*X**0
 		var p=[]
 		var dp=[]
 		for (i=0;i<P.length;i++){
-			p.push(((x => (y => x[0]*y**x[1]))(P[i])))
+			p.push(((x => (y => math.multiply(x[0],math.pow(y,x[1]))))(P[i])))
 			if (P[i][1]!=0) {
-			dp.push(((x => (y => x[0]*x[1]*y**(x[1]-1)))(P[i])))
+			dp.push(((x => (y => math.multiply(x[0],math.multiply(x[1],math.pow(y,x[1]-1)))))(P[i])))
 			}
 		}
 	}
@@ -37,48 +37,71 @@ function DerivPoly(StrPoly){ //StrPoly = an*X**n+an-1*X**n-1...+a1*X**1+a0*X**0
 }}
 
 function SuiteNewton(x0,p,dp){
-    var k=10000
-    var Num = 0
-	for (i=0;i<p.length;i++){Num+=p[i](x0)}
-	var Denum = 0
-	for (i=0;i<dp.length;i++){Denum+=dp[i](x0)}
-	var y = x0 - Num / Denum
+    var k=1000
+    var Num = math.complex(0.)
+	for (i=0;i<p.length;i++){Num=Num.add(p[i](x0))}
+	var Denum = math.complex(0.)
+	for (i=0;i<dp.length;i++){Denum=Denum.add(dp[i](x0))}
+	var y = math.subtract(x0,Num.div(Denum))
     for (j=0;j<k;j++){
-        if (math.abs(Num/Denum)<1/k){
+        if (math.abs(Num.div(Denum))<1/k){
             break
 		}
-        Num = 0
-		for (i=0;i<p.length;i++){Num+=p[i](y)}
-		Denum = 0
-		for (i=0;i<dp.length;i++){Denum+=dp[i](y)}
-		y = y - Num / Denum
+        Num = math.complex(0.)
+		for (i=0;i<p.length;i++){Num=Num.add(p[i](y))}
+		Denum = math.complex(0.)
+		for (i=0;i<dp.length;i++){Denum=Denum.add(dp[i](y))}
+		y = math.subtract(y, Num.div(Denum))
 	}
     return [y,j]
 }
-/*
-def FractNewton(StrPoly):
-    PIX=IMG.load()
-    LRAC=[]
-    LP=[]
-    p,dp=DerivPoly(StrPoly)
-    for i in range(512):
-        if i%10==0 :print(i)
-        for j in range(512):
-            try :
-                Rac=SuiteNewton(10*(i-256)*1j/256+10*(j-256)/256,p,dp)
-                if Rac[1]==9999 :
-                    PIX[i,j]=(0,0,0)
-                elif LRAC!=[] and True in [abs(x-Rac[0])<0.1 for x in LRAC]:
-                    LP.append([i,j,[abs(x-Rac[0])<0.1 for x in LRAC].index(True)])
-                else :
-                    LRAC.append(Rac[0])
-                    LP.append([i,j,len(LRAC)-1])
-                    print(LRAC)
-            except Exception as e:
-                PIX[i,j]=(0,0,0)
-                print(e)
-    LEN=len(LRAC)
-    for k in LP:
-        PIX[k[0],k[1]]=(int(255*abs(math.sin(k[2]/LEN*math.pi))),int(255*abs(math.sin(k[2]/LEN*math.pi+math.pi/3))),int(255*abs(math.sin(k[2]/LEN*math.pi+2*math.pi/3))))
-    IMG.show()
-*/
+
+function FractNewton(){
+	var StrPoly=document.getElementById("Polynom").value
+    var LRAC=[]
+    var LP=[]
+    var [p,dp]=DerivPoly(StrPoly)
+	var col, lig
+    for (lig=0;lig<500;lig++){
+        if (lig%10==0){console.log(lig)}
+        for (col=0;col<500;col++){ //j in range(512):
+			try {
+                Rac=SuiteNewton(math.complex("i").mul(10*(lig-250)/250).add(10*(col-250)/250),p,dp)
+                if (Rac[1]==1000){
+                    imageData[4*500*lig+4*col]=0
+					imageData[4*500*lig+4*col+1]=0
+					imageData[4*500*lig+4*col+2]=0
+					imageData[4*500*lig+4*col+3]=255
+				}
+                else{
+					var LMin=[]
+					for (tau=0;tau<LRAC.length;tau++){LMin.push(math.abs(math.subtract(LRAC[tau],Rac[0]))<0.1)}
+					if(LRAC!=[] && LMin.includes(true)){
+                    LP.push([lig,col,LMin.indexOf(true)])
+					}
+					else {
+						LRAC.push(Rac[0])
+						LP.push([lig,col,LRAC.length-1])
+						console.log(LRAC)
+					}
+				}
+			}
+            catch(error){
+				console.error(error)
+                imageData[4*500*lig+4*col]=0
+				imageData[4*500*lig+4*col+1]=0
+				imageData[4*500*lig+4*col+2]=0
+				imageData[4*500*lig+4*col+3]=255
+			}
+		}
+	}
+    var LEN=LRAC.length
+    for (j=0;j<LP.length;j++){
+        imageData[4*500*LP[j][0]+4*LP[j][1]]=parseInt(255*math.abs(math.sin(LP[j][2]/LEN*math.pi)))
+		imageData[4*500*LP[j][0]+4*LP[j][1]+1]=parseInt(255*math.abs(math.sin(LP[j][2]/LEN*math.pi+math.pi/3)))
+		imageData[4*500*LP[j][0]+4*LP[j][1]+2]=parseInt(255*math.abs(math.sin(LP[j][2]/LEN*math.pi+2*math.pi/3)))
+		imageData[4*500*LP[j][0]+4*LP[j][1]+3]=255
+	}
+    ctx.putImageData(imageData,0,0)
+}
+

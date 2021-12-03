@@ -68,10 +68,10 @@ function FractNewton(){
 			try {
                 Rac=SuiteNewton(math.complex("i").mul(10*(lig-250)/250).add(10*(col-250)/250),p,dp)
                 if (Rac[1]==1000){
-                    imageData[4*500*lig+4*col]=0
-					imageData[4*500*lig+4*col+1]=0
-					imageData[4*500*lig+4*col+2]=0
-					imageData[4*500*lig+4*col+3]=255
+                    imageData.data[4*500*lig+4*col]=0
+					imageData.data[4*500*lig+4*col+1]=0
+					imageData.data[4*500*lig+4*col+2]=0
+					imageData.data[4*500*lig+4*col+3]=255
 				}
                 else{
 					var LMin=[]
@@ -88,19 +88,19 @@ function FractNewton(){
 			}
             catch(error){
 				console.error(error)
-                imageData[4*500*lig+4*col]=0
-				imageData[4*500*lig+4*col+1]=0
-				imageData[4*500*lig+4*col+2]=0
-				imageData[4*500*lig+4*col+3]=255
+                imageData.data[4*500*lig+4*col]=0
+				imageData.data[4*500*lig+4*col+1]=0
+				imageData.data[4*500*lig+4*col+2]=0
+				imageData.data[4*500*lig+4*col+3]=255
 			}
 		}
 	}
     var LEN=LRAC.length
     for (j=0;j<LP.length;j++){
-        imageData[4*500*LP[j][0]+4*LP[j][1]]=parseInt(255*math.abs(math.sin(LP[j][2]/LEN*math.pi)))
-		imageData[4*500*LP[j][0]+4*LP[j][1]+1]=parseInt(255*math.abs(math.sin(LP[j][2]/LEN*math.pi+math.pi/3)))
-		imageData[4*500*LP[j][0]+4*LP[j][1]+2]=parseInt(255*math.abs(math.sin(LP[j][2]/LEN*math.pi+2*math.pi/3)))
-		imageData[4*500*LP[j][0]+4*LP[j][1]+3]=255
+        imageData.data[4*500*LP[j][0]+4*LP[j][1]]=parseInt(255*math.abs(math.sin(LP[j][2]/LEN*math.pi)))
+		imageData.data[4*500*LP[j][0]+4*LP[j][1]+1]=parseInt(255*math.abs(math.sin(LP[j][2]/LEN*math.pi+math.pi/3)))
+		imageData.data[4*500*LP[j][0]+4*LP[j][1]+2]=parseInt(255*math.abs(math.sin(LP[j][2]/LEN*math.pi+2*math.pi/3)))
+		imageData.data[4*500*LP[j][0]+4*LP[j][1]+3]=255
 	}
     ctx.putImageData(imageData,0,0)
 }

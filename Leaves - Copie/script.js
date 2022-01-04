@@ -205,6 +205,13 @@ function dessineMoiUneFeuille(){
     ctx.putImageData(imageData,0,0)
 }
 
+function SaveLeaves(){
+	var LINK=document.getElementById("DFWMB")
+	LINK.download = 'Leaves'+x[0]+'x'+x[1]+'.png';
+	LINK.href = canvas.toDataURL("image/jpg");
+	LINK.click();
+}
+
 //var mainGameLoop = window.setInterval(loop(), 33);
 
 function loop() { // production

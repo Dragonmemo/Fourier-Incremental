@@ -206,6 +206,7 @@ function dessineMoiUneFeuille(){
 }
 
 function SaveLeaves(){
+        var canvas = document.getElementById("myCanvas");
 	var LINK=document.getElementById("DFWMB")
 	LINK.download = 'Leaves'+x[0]+'x'+x[1]+'.png';
 	LINK.href = canvas.toDataURL("image/jpg");

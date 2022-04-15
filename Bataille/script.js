@@ -3,7 +3,6 @@
 
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
-var imageData = ctx.createImageData(500, 500); //=pixels
 var x=[500,500]
 var L1,L2
 var C1,C2

@@ -2,7 +2,7 @@
 // run by the browser each time the page is loaded
 
 var LISTER;
-var Onglet=1;
+var Onglet=5;
 var SETTER = false;
 
 function myFunction1() {
@@ -72,6 +72,109 @@ function dichotomie(f,a,b){
 	}
 	return (a+b)/2
 }
+var L=[]
+var Movement=[]
+var n=100
+function Reset(){
+	var k;
+	n=document.getElementById("NumDot").value;
+	for (k=0;k<n;k++){
+		L[k]=[math.floor(math.random()*501),math.floor(math.random()*501)]
+		Movement[k]=[math.random()*4-2,math.random()*4-2]
+	}
+}
+
+function myFunction5() {
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+	ctx.clearRect(0,0, 500, 500);
+	ctx.strokeStyle="#000000";
+	var k;
+	var lks= document.getElementById("LINKS").value;
+	for (k=0;k<n;k++){
+		L[k]=[(L[k][0]+Movement[k][0]+500)%500,(L[k][1]+Movement[k][1]+500)%500]
+	}
+	var LISTE =[];
+	for (k=0;k<n;k++){
+		var LL=[];
+		var i;
+		for (i=0;i<n;i++){
+			LL[i]=[math.sqrt((L[i][0]-L[k][0])**2+(L[i][1]-L[k][1])**2),[k,i].sort(function(a,b){return a-b})]
+		}
+		LL.sort(function(a,b){return a[0]-b[0]})
+		LL.shift()
+		LISTE[k]=LL
+	}
+  //console.log(LISTE)
+  //Ensemble de listes triés dans l'ordre croissant
+  var BOOLER=true;
+  var COMPTEUR=[];
+  for (k=0;k<n;k++){COMPTEUR[k]=0}
+  var Lignage=[];
+  while (BOOLER){
+	  BOOLER=false;
+	  L_Liens_Tour=[]
+	  for (k=0;k<n;k++){
+		  if (LISTE[k].length!=0 && LISTE[LISTE[k][0][1][0]].length!=0 && LISTE[k][0][0]==LISTE[LISTE[k][0][1][0]][0][0] && LISTE[k][0][0]==LISTE[LISTE[k][0][1][0]][0][0]){
+			  L_Liens_Tour.push(LISTE[k][0][1])
+			  BOOLER=true
+			  
+		  }
+	  }
+	  //L_Liens a tout en double 
+	  L_Liens_Tour.sort(function(a,b){return a[0]-b[0]})
+	  for (k=0;k<L_Liens_Tour.length-1;k++){
+		  if (L_Liens_Tour[k][0]==L_Liens_Tour[k+1][0]){
+			  k--;
+			  L_Liens_Tour.splice(k,1);
+		  }
+	  }
+	  //console.log(LISTE)
+		//console.log(L_Liens_Tour)
+	  //Maintenant on remplit la liste pour le dessin et on ajoute au compteur en retirant les éléments :
+	  for (var element of L_Liens_Tour){
+		  Lignage.push(element);
+		  COMPTEUR[element[0]]++;
+		  COMPTEUR[element[1]]++;
+		  LISTE[element[0]].shift();
+		  LISTE[element[1]].shift();
+	  }
+	  //console.log(COMPTEUR)
+	  //Enfin, check si le compteur dépasse un seuil :
+	  for (k=0;k<n;k++){
+		  if (COMPTEUR[k]>=lks){
+			  while (LISTE[k].length!=0){
+				  //console.log(LISTE[k][0])
+				  var M1=LISTE[k][0][1][0]
+				  var M2=LISTE[k][0][1][1]
+				  var LGT=LISTE[k][0][0]
+				  var LOST1=[]
+				  for (i=0;i<LISTE[M1].length;i++){
+					  LOST1[i]=LISTE[M1][i][0]
+				  }
+				  //console.log(LOST1)
+				  //console.log(JSON.parse(JSON.stringify(LISTE[M1])))
+				  var LOST2=[]
+				  for (i=0;i<LISTE[M2].length;i++){
+					  LOST2[i]=LISTE[M2][i][0]
+				  }
+				  //console.log(LOST2)
+				  //console.log(JSON.parse(JSON.stringify(LISTE[M2])))
+				  LISTE[M1].splice(LOST1.indexOf(LGT),1)
+				  LISTE[M2].splice(LOST2.indexOf(LGT),1)
+			  }
+			  LISTE[k]=[]
+		  }
+	  }
+  }
+  //on dessine le fameux bordel :D
+  for (var element of Lignage){
+	  ctx.beginPath()
+	  ctx.moveTo(L[element[0]][0], L[element[0]][1]);
+	  ctx.lineTo(L[element[1]][0], L[element[1]][1]);
+	  ctx.stroke(); 
+  }
+}
 
   /*ctx.lineTo(500, 250);
   ctx.stroke();
@@ -130,12 +233,19 @@ function FourierCalculation(MAX) {
 	}}
 };*/
 
+Reset()
+myFunction5()
+
 var mainGameLoop = window.setInterval(function() { // runs the loop
 	loop();
 	}, 33);
 
 function loop() { // production
-	if (Onglet == 1) {myFunction1();}
-	if (Onglet == 5) {myFunction5();}
-	if (Onglet == 6) {myFunction6();}
+	if (document.getElementById("Anim").checked){
+		//var T0=Date.now()
+		if (Onglet == 1) {myFunction1();}
+		if (Onglet == 5) {myFunction5();}
+		if (Onglet == 6) {myFunction6();}
+		//console.log(Date.now()-T0)
+	}
 }

@@ -14,9 +14,9 @@
     <link rel="stylesheet" href="/PONL/style.css">
 
     <!-- import the webpage's client-side javascript file -->
-    <script src="/PONL/math.js" defer></script>
-    <script src="/PONL/complex.js" defer></script>
-    <script src="/PONL/script.js" defer></script>
+    <script src="math.js" defer></script>
+    <script src="complex.js" defer></script>
+    <script src="script.js" defer></script>
     <style>
     * {
       box-sizing: border-box;
@@ -69,6 +69,12 @@
 		</div>
       </div>
     </div> 
+	<button onclick="Reset()">Reset</button><br>
+	<input type="checkbox" id="Anim">Animate !<br>
+	<input type="range" min="0" max="100" value="100" class="slider" id="NumDot">
+	<span>Dots</span><br>
+	<input type="range" min="0" max="10" value="3" class="slider" id="LINKS">
+	<span>Links</span>
     </td>
 	<td style="display:table-cell;">
     <span>d = <span id = "dVal1.0"></span><br>

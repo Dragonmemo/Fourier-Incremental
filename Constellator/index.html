@@ -1,0 +1,152 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An upcoming game about growing leaves">
+
+    <title>Constellation Builder</title>
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- import the webpage's client-side javascript file -->
+    <script src="math.js" defer></script>
+    <script src="complex.js" defer></script>
+    <script src="script.js" defer></script>
+    <style>
+    * {
+      box-sizing: border-box;
+    }
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    </style>
+     
+  </head>
+  <body style="background-color:#eee;">
+    <header>
+		<h1><span id="STARRED">0 Star Points</span><span id="BUDDING" hidden>, 0 bud(s), 0 twig(s), 0 leaf(ves)</span><span id="BOLTS" hidden>, 0 bolt(s)</span></h1>
+    </header>
+	<div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'Stars')" id="StarsTab">Constellation</button>
+    <button class="tablinks" onclick="openCity(event, 'Bud')" id="BudTab" hidden>Buds</button>
+    <button class="tablinks" onclick="openCity(event, 'Bolt')"  id="BoltTab" hidden>Bolts</button>
+    <button class="tablinks" onclick="openCity(event, 'Lava')" id="LavaTab" hidden>Lava</button>
+    <button class="tablinks" onclick="openCity(event, 'Settings')">Settings</button>
+    <button class="tablinks" onclick="openCity(event, 'About')">About</button>
+    <button class="tablinks" onclick="openCity(event, 'Help')">Q & A</button>
+	</div>
+    <div id="Stars" class="tabcontent">
+	<table><tr>
+	<td style="display:table-cell;">
+    <button type="button" onclick="StarReset()">Reset Star Position</button><br>
+	<button type="button" onclick="AddStars()" id="AS">Add another star to the sky for<br>
+	<span id="S1Cost">10</span> Star Points</button>
+	<button type="button" onclick="StarSpeed()">Power up your stars' speed for<br>
+	<span id="S2Cost">10</span> Star Points</button>
+	<button type="button" onclick="StarLinks()">Link stars together more for<br>
+	<span id="S3Cost">10</span> Star Points</button>
+	<button type="button" onclick="StarStruck()" id='TSS'>Make constellation scanner<br>automation faster for<br>
+	<span id="S4Cost">10</span> Star Points</button>
+	<button type="button" onclick="PrestigeStars()" hidden id="PresStar">Prestige for ...<br>plant matter ?</button>
+	<canvas id="myCanvas0" width="512" height="512"></canvas>
+    </td>
+	</tr></table>
+	</div>
+	<div id="Bud" class="tabcontent" hidden>
+	<table><tr>
+	<td style="display:table-cell;">
+    <button type="button" onclick="budUp()" id="BU">Use the growing power<br>of your buds to grow<br>your plant faster for<br>
+	<span id="BCost">16</span> buds</button>
+	<button type="button" onclick="twigUp()">Use your twigs to make<br>more pens and draw more<br>pixels at the same time for<br>
+	<span id="TCost">16</span> twigs</button>
+	<button type="button" onclick="increaseSize()" id="LU">Increase the size of the<br>sheet with your leaves for<br>
+	<span id="LCost">2</span> leaves</button>
+	<button type="button" onclick="newReset()" disabled id="NL">Make a new pattern</button>
+	<button type="button" onclick="SaveLeaves()"><a id="DFWMB">Save as PNG</a></button>
+	<button type="button" onclick="GetBolts()" hidden id="PresBud">Call for the god of thunder<br>Francis (what a terrifying name)<br>to capture electrical bolts<br>on your pile of twigs</button><br>
+	<canvas id="myCanvas" width="16" height="16"></canvas>
+    </td>
+	</tr></table>
+	</div>
+	<div id="Bolt" class="tabcontent" hidden>
+	<table><tr>
+	<td style="display:table-cell;">
+	<button type="button" onclick="TSUp()" id="BoltUp1">Electricity has more power<br>Use it to halve base tickspeed for<br>
+	<span id="TSUp">5</span> bolts</button>
+	<button type="button" onclick="BoltUp2()" id="BoltUp2">Buds can also attract charges<br>
+	Cost 20 bolts</button>
+	<button type="button" onclick="BoltUp3()" id="BoltUp3">Leaves can also attract charges<br>
+	Cost 50 bolts</button>
+	<button type="button" onclick="BoltUp4()" id="BoltUp4">Halve leaves requirement to<br>increase the sheet of paper<br>
+	Cost 50 bolts</button>
+	<button type="button" onclick="drawBolts()">Reset the pattern</button>
+	<button type="button" onclick="SaveBolts()"><a id="DFWMB2">Save as PNG</a></button><br>
+	<canvas id="myCanvas1" width="512" height="512"></canvas>
+    </td>
+	</tr></table>
+	</div>
+	<div id="Lava" class="tabcontent" hidden>
+	<table><tr>
+	<td style="display:table-cell;">
+    <button type="button" onclick="newReset()">Reset the pattern</button><br>
+	<canvas id="myCanvas2" width="512" height="512"></canvas>
+    </td>
+	</tr></table>
+	</div>
+	<div id="Settings" class="tabcontent">
+	<button type="button" onclick="save()" class="tooltip">Save
+      <span class="tooltiptext">Autosaves every 10s</span></button>
+      <button type="button" onclick="HReset()" class="tooltip" hidden>Hard Reset
+      <span class="tooltiptext">Resets everything</span></button>
+      <br><button type="button" onclick="Export()" class="tooltip" hidden>Export</button>
+      <button type="button" onclick="Import()" class="tooltip" hidden>Import</button>
+	<input type="checkbox" id="Autosave" checked><span> Enable Autosave</span><br>
+	BE WARNED THAT THIS GAME WON'T RUN OFFLINE OR IF THE TAB ISN'T FOCUSED ON<br>
+	BE ALSO WARNED THAT WHEN LAUNCHING THE GAME THE IMAGES ARE RESETTED SINCE IT WOULD TAKE WAY TOO LONG TO SAVE THEM (I guess)
+	</div>
+	<div id="About" class="tabcontent">
+		<p>Here is a link to the discord server of the game : <a href="https://discord.gg/xTzYrey">Click me! i'm innoffensive</a></p>
+		<p>The server is pretty empty and the main purpose of it was not to be about that incremental game, but a RPG that i'm programming. Still, it has a Fourier bot you can mess with!</p>
+		<br>
+		<br>Changelog<br>
+		<br>0.1 Starring : Stars<br>
+		Added first layer<br>
+		Reworked some stuff not yet unlockable<br>
+		1000 Star Points needed for the first prestige, that SHOULD speed up everything a bit<br>
+		
+	</div>
+	<div id="Help" class="tabcontent">
+	Why do I sometimes earn buds and sometimes twigs ?<br><br>
+	You always start a picture with a lonely bud that will grow. Each time a bud grows and a pixel is drawn, a twig is earnt (not counting multipliers). But at the same time, each growing bud adds more bud from where to grow next. If the pixel has already been drawn, I "cut off" the bud and continue with another one, granting you one bud (not counting multipliers)<br><br>
+	How does bolts works ?<br><br>
+	Your current bolts multiply the number of pixels drawn per ticks by 1+bolts. Without upgrades, you get, rounding down, log10(twigs)-3 bolts per prestige.<br><br>
+	The game is slow !/The game is laggy !<br><br>
+	The game starts slow because it will make you hit the laggy part later, i'm currently working on improving that but doesn't happen to make significant improvements...
+	</div>
+	<script>
+    function openCity(evt, cityName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+
+    document.getElementById("StarsTab").click();
+    </script>
+  </body>
+</html>

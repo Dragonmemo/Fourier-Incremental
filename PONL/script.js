@@ -115,7 +115,7 @@ function myFunction5() {
 	  BOOLER=false;
 	  L_Liens_Tour=[]
 	  for (k=0;k<n;k++){
-		  if (LISTE[k].length!=0 && LISTE[LISTE[k][0][1][0]].length!=0 && LISTE[k][0][0]==LISTE[LISTE[k][0][1][0]][0][0] && LISTE[k][0][0]==LISTE[LISTE[k][0][1][0]][0][0]){
+		  if (LISTE[k].length!=0 && LISTE[LISTE[k][0][1][0]].length!=0 && LISTE[LISTE[k][0][1][1]].length!=0 && LISTE[k][0][0]==LISTE[LISTE[k][0][1][0]][0][0] && LISTE[k][0][0]==LISTE[LISTE[k][0][1][1]][0][0]){
 			  L_Liens_Tour.push(LISTE[k][0][1])
 			  BOOLER=true
 			  

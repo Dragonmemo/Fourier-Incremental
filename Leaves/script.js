@@ -99,7 +99,7 @@ function budUp(){
 		document.getElementById("BCost").innerHTML=parseInt(2**((1040-tickspeed)/10))
 		document.getElementById("TITLE").innerHTML=buds+" bud(s), "+twigs+" twig(s), "+leaves+" leaf(ves)"
 	} 
-	if (tickspeed<40){
+	if (tickspeed<100){
 		document.getElementById("BCost").innerHTML="MAXED"
 		document.getElementById("BU").disabled=true
 	}
@@ -170,6 +170,10 @@ function increaseSize(){
 		canvas.width=x[0]
 		canvas.height=x[1]
 		document.getElementById("TITLE").innerHTML=buds+" bud(s), "+twigs+" twig(s), "+leaves+" leaf(ves)"
+	}
+	if (x[0]>128){
+		document.getElementById("LCost").innerHTML="MAXED"
+		document.getElementById("LU").disabled=true
 	}
 }
 
@@ -395,6 +399,7 @@ var mainGameLoop = window.setInterval(function() { // runs the loop
 	}, 33);
 
 function loop() { // production
+	//var T0=Date.now()
 	ticks+=33;
 	saveticks+=33
 	if (tickspeed-1000+1000/(2**BoltsUp[0])<ticks){
@@ -406,6 +411,7 @@ function loop() { // production
 		if (document.getElementById("Autosave").checked == true){save();}
 		saveticks-=10000
 	}
+	//console.log(Date.now()-T0)
 }
 
 function save() { 

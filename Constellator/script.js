@@ -10,13 +10,13 @@ var ctx = canvas.getContext("2d");
 var ctxB = canvasB.getContext("2d");
 var ctxL = canvasL.getContext("2d");
 var nouveau_bourgeons;
-var imageData = ctx.createImageData(16, 16); //=pixels
-var x=[16,16]//x=MAGIE.size ici on connait x
-var bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
+var imageData = ctx.createImageData(256, 256); //=pixels
+var bourgeon=[[[128,128],[128,129,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
+	
 var tickspeed=1000
 var tickspeed2=1000
-var t=1;
 var leaves=0
+var LeavesUp=[0,0,0]
 var bolts=0
 var stade=0
 var BoltsUp=[0,0,0,0]
@@ -26,6 +26,8 @@ var StarUp=[0,0,0,0]
 var L=[]
 var Movement=[]
 var n
+var LeafPower=0
+var leavesMult=1
 
 function StarReset(){
 	var k;
@@ -119,14 +121,60 @@ function myFunction0() {
 	  }
   }
   //on dessine le fameux bordel :D
-  for (var element of Lignage){
-	  ctxS.beginPath()
-	  ctxS.moveTo(L[element[0]][0], L[element[0]][1]);
-	  ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
-	  ctxS.stroke(); 
-	  StarPoints+=1
+  if (LeavesUp[0]==0){
+	  for (var element of Lignage){
+		  ctxS.beginPath()
+		  ctxS.moveTo(L[element[0]][0], L[element[0]][1]);
+		  ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
+		  ctxS.stroke(); 
+		  StarPoints+=1*parseInt((1+math.log10(1+LeafPower))*leavesMult)
+	  }
+  }
+  if (LeavesUp[0]==1){
+	  for (var element of Lignage){
+		  ctxS.beginPath()
+		  ctxS.moveTo(L[element[0]][0], L[element[0]][1]);
+		  ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
+		  ctxS.stroke();
+			if (parseInt(1+math.log10((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2) < 1){
+				StarPoints+=1*parseInt((1+math.log10(1+LeafPower))*leavesMult)
+			}
+		    else {StarPoints+=parseInt((1+math.log10((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.log10(1+LeafPower))*leavesMult)}
+	  }
+  }
+  if (LeavesUp[0]==2){
+	  for (var element of Lignage){
+		  ctxS.beginPath()
+		  ctxS.moveTo(L[element[0]][0], L[element[0]][1]);
+		  ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
+		  ctxS.stroke(); 
+		  if (parseInt(1+math.log2((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2) < 1){
+				StarPoints+=1*parseInt((1+math.log10(1+LeafPower))*leavesMult)
+			}
+		    else {StarPoints+=parseInt((1+math.log2((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.log10(1+LeafPower))*leavesMult)}
+	  }
+  }
+  if (LeavesUp[0]>2){
+	  for (var element of Lignage){
+		  ctxS.beginPath()
+		  ctxS.moveTo(L[element[0]][0], L[element[0]][1]);
+		  ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
+		  ctxS.stroke(); 
+		  if (parseInt(((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)**0.5) < 1){
+				StarPoints+=1*parseInt((1+math.log10(1+LeafPower))*leavesMult)
+			}
+		    else {StarPoints+=parseInt((((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)**0.5)*(1+math.log10(1+LeafPower))*leavesMult)}
+	  }
   }
   document.getElementById("STARRED").innerHTML=StarPoints+" Star Points"
+  
+	if (stade==0 && StarPoints>=1000){
+		stade++
+		document.getElementById("PresStar").removeAttribute("hidden")
+	}
+	if (stade>1){
+		document.getElementById("PresStar").innerHTML="gather some more leaves and<br>Get "+parseInt((Math.log10(StarPoints)-2)*((StarUp[0]+2)**LeavesUp[2]))+" leaves"
+	}
 }
 
 function AddStars(){
@@ -175,8 +223,10 @@ function StarStruck(){
 }
 
 function myFunction1() {
-	DrawIt(t*(bolts+1));
-	document.getElementById("TITLE").innerHTML=buds+" bud(s), "+twigs+" twig(s), "+leaves+" leaf(ves)"
+	DrawIt(leaves);
+	document.getElementById("BUDDING").innerHTML=", "+leaves+" leaf(ves)"
+	document.getElementById("LM").innerHTML=LeafPower
+	document.getElementById("LM2").innerHTML=(1+math.log10(1+LeafPower))
 }
 
 function DrawIt(g){
@@ -184,23 +234,23 @@ function DrawIt(g){
 	for (var f=0;f<g;f++){
 		if (bourgeon.length!=0){
 			Actif=bourgeon.pop()
-			if (imageData.data[4*(Actif[1][0]*x[0]+Actif[1][1])+3]!=255){
+			if (imageData.data[4*(Actif[1][0]*256+Actif[1][1])+3]!=255){
 				var depart=Actif[1];
 				var vecteur= [Actif[1][0]-Actif[0][0], Actif[1][1]-Actif[0][1]]
 				nouveau_bourgeons=suite(depart,vecteur)
-				imageData.data[4*(Actif[1][0]*x[0]+Actif[1][1])]=Actif[1][2][0]
-				imageData.data[4*(Actif[1][0]*x[0]+Actif[1][1])+1]=Actif[1][2][1]
-				imageData.data[4*(Actif[1][0]*x[0]+Actif[1][1])+2]=Actif[1][2][2]
-				imageData.data[4*(Actif[1][0]*x[0]+Actif[1][1])+3]=255
+				imageData.data[4*(Actif[1][0]*256+Actif[1][1])]=Actif[1][2][0]
+				imageData.data[4*(Actif[1][0]*256+Actif[1][1])+1]=Actif[1][2][1]
+				imageData.data[4*(Actif[1][0]*256+Actif[1][1])+2]=Actif[1][2][2]
+				imageData.data[4*(Actif[1][0]*256+Actif[1][1])+3]=255
 				for (i=0;i<nouveau_bourgeons.length;i++){
-					if (nouveau_bourgeons[i][0]!=-1 && nouveau_bourgeons[i][1]!=-1 && nouveau_bourgeons[i][0]!=x[0] && nouveau_bourgeons[i][1]!=x[1] && imageData.data[4*(nouveau_bourgeons[i][0]*x[0]+nouveau_bourgeons[i][1])+3]!=255){
+					if (nouveau_bourgeons[i][0]!=-1 && nouveau_bourgeons[i][1]!=-1 && nouveau_bourgeons[i][0]!=256 && nouveau_bourgeons[i][1]!=256 && imageData.data[4*(nouveau_bourgeons[i][0]*256+nouveau_bourgeons[i][1])+3]!=255){
 						bourgeon.push([Actif[1],nouveau_bourgeons[i]])
 					}
 				}
-				twigs=twigs+parseInt(Math.sqrt(x[0]*x[1])/16)
+				LeafPower=LeafPower+2
 			}
 			else{
-				buds=buds+parseInt(Math.sqrt(x[0]*x[1])/16)
+				LeafPower=LeafPower+1
 			}
 			//imageData=blur(imageData,2,1)
 			ctx.putImageData(imageData,0,0)
@@ -209,12 +259,12 @@ function DrawIt(g){
 			document.getElementById("NL").disabled = false;
 		}
 	}
-	if (stade==0 && twigs>=10000){
+	if (stade==2 && leaves>=10000){
 		stade++
 		document.getElementById("PresBud").removeAttribute("hidden")
 	}
-	if (stade>1){
-		document.getElementById("PresBud").innerHTML="Call the thunder and<br>Get "+parseInt((Math.log10(twigs)-3)*(Math.log10(buds+1)**BoltsUp[1]+1)*(Math.log10(leaves+1)**BoltsUp[2]+1))+" bolts"
+	if (stade>3){
+		document.getElementById("PresBud").innerHTML="Call the thunder and<br>Get "+" bolts"
 	}
 }
 
@@ -246,26 +296,33 @@ function drawBolts(){
 }
 
 
-function budUp(){
-	if (buds>=parseInt(2**((1040-tickspeed)/10))){
-		buds=buds-parseInt(2**((1040-tickspeed)/10))
-		tickspeed=tickspeed-10
-		document.getElementById("BCost").innerHTML=parseInt(2**((1040-tickspeed)/10))
-		document.getElementById("TITLE").innerHTML=buds+" bud(s), "+twigs+" twig(s), "+leaves+" leaf(ves)"
-	} 
-	if (tickspeed<100){
-		document.getElementById("BCost").innerHTML="MAXED"
-		document.getElementById("BU").disabled=true
+function LeafUp1(){
+	if (leaves>=parseInt(10**LeavesUp[0])){
+		leaves=leaves-1
+		LeavesUp[0]++
+		document.getElementById("LU1").innerHTML=parseInt(10**LeavesUp[0])
+	document.getElementById("BUDDING").innerHTML=leaves+" leaf(ves)"
+		//document.getElementById("BU").disabled=true
 	}
 }
 
 function twigUp(){
-	if (twigs>=parseInt(2**(t+3))){
-		twigs=twigs-parseInt(2**(t+3))
-		t++
-		document.getElementById("TCost").innerHTML=parseInt(2**(t+3))
-		document.getElementById("TITLE").innerHTML=buds+" bud(s), "+twigs+" twig(s), "+leaves+" leaf(ves)"
+	if (leaves>=parseInt(2**(LeavesUp[1]+1))){
+		leaves=leaves-parseInt(2**(LeavesUp[1]+1))
+		LeavesUp[1]++
+		tickspeed*=0.9
+		document.getElementById("TCost").innerHTML=parseInt(2**(LeavesUp[1]+1))
+		document.getElementById("BUDDING").innerHTML=leaves+" leaf(ves)"
 	} 
+}
+
+function LeafUp2(){
+	if (leaves>=10){
+		leaves=leaves-10
+		LeavesUp[2]++
+		document.getElementById("LU").disabled=true
+		document.getElementById("BUDDING").innerHTML=leaves+" leaf(ves)"
+	}
 }
 
 function TSUp(){
@@ -306,34 +363,41 @@ function BoltUp4(){
 }
 
 function newReset(){
-	leaves=leaves+parseInt(Math.sqrt(x[0]*x[1])/16);
-	ctx.clearRect(0,0, x[0], x[1]);
-	imageData = ctx.createImageData(x[0], x[1]);
-	bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
+	leavesMult*=1.5
+	ctx.clearRect(0,0, 256, 256);
+	imageData = ctx.createImageData(256, 256);
+	bourgeon=[[[128,128],[128,129,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
 }
 
-function increaseSize(){
-	if (leaves>=parseInt(2**(Math.log2(x[0]/8)-BoltsUp[3]))){
-		leaves=leaves-parseInt(2**(Math.log2(x[0]/8)-BoltsUp[3]))
-		x[0]*=2
-		x[1]*=2
-		ctx.clearRect(0,0, x[0], x[1]);
-		imageData = ctx.createImageData(x[0], x[1]);
-		bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
-		document.getElementById("LCost").innerHTML=parseInt(2**(Math.log2(x[0]/8)-BoltsUp[3]))
-		canvas.width=x[0]
-		canvas.height=x[1]
-		document.getElementById("TITLE").innerHTML=buds+" bud(s), "+twigs+" twig(s), "+leaves+" leaf(ves)"
-	}
-	if (x[0]>128){
-		document.getElementById("LCost").innerHTML="MAXED"
-		document.getElementById("LU").disabled=true
+function PrestigeStars(){
+	if (StarPoints>1000){
+		if (stade==1){
+			stade++
+			document.getElementById("BudTab").removeAttribute("hidden")
+			document.getElementById("BUDDING").removeAttribute("hidden")
+		}
+		leaves+=parseInt((Math.log10(StarPoints)-2)*((StarUp[0]+2)**LeavesUp[2]))
+		tickspeed2=1000
+		ticks2=0
+		StarPoints=0
+		StarUp=[0,0,0,0]
+		L=[]
+		Movement=[]
+		document.getElementById("S1Cost").innerHTML=parseInt(10**(1+StarUp[0]))
+		document.getElementById("S2Cost").innerHTML=parseInt(10**(1+StarUp[1]))
+		document.getElementById("AS").disabled=false
+		document.getElementById("S3Cost").innerHTML=parseInt(10**(2**StarUp[2]))
+		document.getElementById("S4Cost").innerHTML=parseInt(10**(1+StarUp[3]))
+		document.getElementById("TSS").disabled=false
+		ctxS.clearRect(0,0, 512, 512);
+		document.getElementById("BUDDING").innerHTML=", "+leaves+" leaf(ves)"
+		StarReset()
 	}
 }
 
 function GetBolts(){
 	if (twigs>10000){
-		if (stade==1){
+		if (stade==3){
 			stade++
 			document.getElementById("BoltTab").removeAttribute("hidden")
 			document.getElementById("BOLTS").removeAttribute("hidden")
@@ -558,9 +622,9 @@ function loop() { // production
 	ticks+=33;
 	ticks2+=33;
 	saveticks+=33;
-	if (tickspeed-1000+1000/(2**BoltsUp[0])<ticks && UnlockLeaves){
+	if (tickspeed<ticks && stade>1){
 		myFunction1();
-		ticks=ticks-tickspeed+1000-1000/(2**BoltsUp[0])
+		ticks=ticks-tickspeed
 		document.getElementById("BOLTS").innerHTML=", "+bolts+" bolt(s)"
 	}
 	if (tickspeed2<ticks2){

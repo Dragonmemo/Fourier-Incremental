@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="An upcoming game about growing leaves">
+    <meta name="description" content="Look at those beautiful stars">
 
     <title>Constellation Builder</title>
 
@@ -63,16 +63,15 @@
 	<div id="Bud" class="tabcontent" hidden>
 	<table><tr>
 	<td style="display:table-cell;">
-    <button type="button" onclick="budUp()" id="BU">Use the growing power<br>of your buds to grow<br>your plant faster for<br>
-	<span id="BCost">16</span> buds</button>
-	<button type="button" onclick="twigUp()">Use your twigs to make<br>more pens and draw more<br>pixels at the same time for<br>
-	<span id="TCost">16</span> twigs</button>
-	<button type="button" onclick="increaseSize()" id="LU">Increase the size of the<br>sheet with your leaves for<br>
-	<span id="LCost">2</span> leaves</button>
+	Your growing leaves have generated <span id="LM">0</span> leaf power, which multiplies your Star Power gain by <span id="LM2">1</span><br>
+    <button type="button" onclick="LeafUp1()" id="BU">Make the length of stars<br>power themselves for<br><span id="LU1">1</span> leaf</button>
+	<button type="button" onclick="twigUp()">Speed up leaf pattern progress for<br>
+	<span id="TCost">2</span> leaves</button>
+	<button type="button" onclick="LeafUp2()" id="LU">Your amount of stars<br>multiply your leaves<br>10 leaves</button>
 	<button type="button" onclick="newReset()" disabled id="NL">Make a new pattern</button>
 	<button type="button" onclick="SaveLeaves()"><a id="DFWMB">Save as PNG</a></button>
 	<button type="button" onclick="GetBolts()" hidden id="PresBud">Call for the god of thunder<br>Francis (what a terrifying name)<br>to capture electrical bolts<br>on your pile of twigs</button><br>
-	<canvas id="myCanvas" width="16" height="16"></canvas>
+	<canvas id="myCanvas" width="256" height="256"></canvas>
     </td>
 	</tr></table>
 	</div>
@@ -117,6 +116,12 @@
 		<p>The server is pretty empty and the main purpose of it was not to be about that incremental game, but a RPG that i'm programming. Still, it has a Fourier bot you can mess with!</p>
 		<br>
 		<br>Changelog<br>
+		<br>0.2 Leaving : Leaves<br>
+		Having fun with changelogs<br>
+		Added second layer<br>
+		I guess 100 Leaves to the next prestige is ok ?<br>
+		No saves yet<br>
+		TOOLTIPS COMING !<br>
 		<br>0.1 Starring : Stars<br>
 		Added first layer<br>
 		Reworked some stuff not yet unlockable<br>

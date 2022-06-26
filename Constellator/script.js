@@ -150,7 +150,7 @@ function myFunction0() {
 			if (parseInt(1+math.log10((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2) < 1){
 				StarPoints=StarPoints.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))
 			}
-		    else {StarPoints=StarPoints.plus(parseInt((1+math.log10((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2])})
+		    else {StarPoints=StarPoints.plus(parseInt((1+math.log10((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))}
 	  }
   }
   if (LeavesUp[0]==2){
@@ -166,7 +166,7 @@ function myFunction0() {
 		  if (parseInt(1+math.log2((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2) < 1){
 				StarPoints=StarPoints.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))
 			}
-		    else {StarPoints=StarPoints.plus(parseInt((1+math.log2((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2])})
+		    else {StarPoints=StarPoints.plus(parseInt((1+math.log2((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))}
 	  }
   }
 	if (LeavesUp[0]>2){
@@ -182,7 +182,7 @@ function myFunction0() {
 			if (parseInt(((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)**0.5) < 1){
 				StarPoints=StarPoints.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))
 			}
-			else {StarPoints=StarPoints.plus(parseInt((((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)**0.5)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2])})
+			else {StarPoints=StarPoints.plus(parseInt((((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)**0.5)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))}
 		}
 	}
 	document.getElementById("STARRED").innerHTML=StarPoints.toPrecision(4)+" Star Points"

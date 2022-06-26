@@ -395,6 +395,7 @@ function PrestigeStars(){
 		leaves+=parseInt((Math.log10(StarPoints)-2)*((StarUp[0]+2)**LeavesUp[2])*(math.sqrt(1+bolts)**BoltsUp[2]))
 		tickspeed2=1000
 		ticks2=0
+		ticks=0
 		StarPoints=0
 		StarUp=[0,0,0,0]
 		L=[]

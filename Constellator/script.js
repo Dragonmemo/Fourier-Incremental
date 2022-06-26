@@ -20,7 +20,7 @@ var LeavesUp=[0,0,0]
 var bolts=0
 var stade=0
 var BoltsUp=[0,0,0,0]
-var StarPoints=0
+var StarPoints=new Decimal(0)
 var StarUp=[0,0,0,0]
 var L=[]
 var Movement=[]
@@ -134,7 +134,7 @@ function myFunction0() {
 		  ctxS.moveTo(L[element[0]][0], L[element[0]][1]);
 		  ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
 		  ctxS.stroke(); 
-		  StarPoints+=parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2])
+		  StarPoints=StarPoints.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))
 	  }
   }
   if (LeavesUp[0]==1){
@@ -148,9 +148,9 @@ function myFunction0() {
 		  ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
 		  ctxS.stroke();
 			if (parseInt(1+math.log10((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2) < 1){
-				StarPoints+=1*parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2])
+				StarPoints=StarPoints.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))
 			}
-		    else {StarPoints+=parseInt((1+math.log10((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2])}
+		    else {StarPoints=StarPoints.plus(parseInt((1+math.log10((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2])})
 	  }
   }
   if (LeavesUp[0]==2){
@@ -164,9 +164,9 @@ function myFunction0() {
 		  ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
 		  ctxS.stroke(); 
 		  if (parseInt(1+math.log2((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2) < 1){
-				StarPoints+=1*parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2])
+				StarPoints=StarPoints.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))
 			}
-		    else {StarPoints+=parseInt((1+math.log2((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2])}
+		    else {StarPoints=StarPoints.plus(parseInt((1+math.log2((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2])})
 	  }
   }
 	if (LeavesUp[0]>2){
@@ -180,28 +180,28 @@ function myFunction0() {
 			ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
 			ctxS.stroke(); 
 			if (parseInt(((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)**0.5) < 1){
-				StarPoints+=1*parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2])
+				StarPoints=StarPoints.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))
 			}
-			else {StarPoints+=parseInt((((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)**0.5)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2])}
+			else {StarPoints=StarPoints.plus(parseInt((((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)**0.5)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2])})
 		}
 	}
-	document.getElementById("STARRED").innerHTML=StarPoints+" Star Points"
+	document.getElementById("STARRED").innerHTML=StarPoints.toPrecision(4)+" Star Points"
   
 	if (stade==0 && StarPoints>=1000){
 		stade++
 		document.getElementById("PresStar").removeAttribute("hidden")
 	}
 	if (stade>1){
-		document.getElementById("PresStar").innerHTML="gather some more leaves and<br>Get "+parseInt((Math.log10(StarPoints)-2)*((StarUp[0]+2)**LeavesUp[2]))+" leaves"
+		document.getElementById("PresStar").innerHTML="gather some more leaves and<br>Get "+parseInt((StarPoints.log10()-2)*((StarUp[0]+2)**LeavesUp[2]))+" leaves"
 	}
 }
 
 function AddStars(){
-	if (StarPoints>=parseInt(10**(1+StarUp[0]))){
-		StarPoints=StarPoints-parseInt(10**(1+StarUp[0]))
+	if (StarPoints.gte(parseInt(10**(1+StarUp[0])))){
+		StarPoints=StarPoints.minus(parseInt(10**(1+StarUp[0])))
 		StarUp[0]++
-		document.getElementById("S1Cost").innerHTML=parseInt(10**(1+StarUp[0]))
-		document.getElementById("STARRED").innerHTML=StarPoints+" Star Points"
+		document.getElementById("S1Cost").innerHTML=parseInt(10**(1+StarUp[0])).toPrecision(4)
+		document.getElementById("STARRED").innerHTML=StarPoints.toPrecision(4)+" Star Points"
 		StarReset()
 	} 
 	if (StarUp[0]>125){
@@ -211,30 +211,30 @@ function AddStars(){
 }
 
 function StarSpeed(){
-	if (StarPoints>=parseInt(10**(1+StarUp[1]))){
-		StarPoints=StarPoints-parseInt(10**(1+StarUp[1]))
+	if (StarPoints.gte(parseInt(10**(1+StarUp[1])))){
+		StarPoints=StarPoints.minus(parseInt(10**(1+StarUp[1])))
 		StarUp[1]++
-		document.getElementById("S2Cost").innerHTML=parseInt(10**(1+StarUp[1]))
-		document.getElementById("STARRED").innerHTML=StarPoints+" Star Points"
+		document.getElementById("S2Cost").innerHTML=parseInt(10**(1+StarUp[1])).toPrecision(4)
+		document.getElementById("STARRED").innerHTML=StarPoints.toPrecision(4)+" Star Points"
 	}
 }
 
 function StarLinks(){
-	if (StarPoints>=parseInt(10**(2**StarUp[2]))){
-		StarPoints=StarPoints-parseInt(10**(2**StarUp[2]))
+	if (StarPoints.gte(parseInt(10**(2**StarUp[2])))){
+		StarPoints=StarPoints.minus(parseInt(10**(2**StarUp[2])))
 		StarUp[2]++
-		document.getElementById("S3Cost").innerHTML=parseInt(10**(2**StarUp[2]))
-		document.getElementById("STARRED").innerHTML=StarPoints+" Star Points"
+		document.getElementById("S3Cost").innerHTML=parseInt(10**(2**StarUp[2])).toPrecision(4)
+		document.getElementById("STARRED").innerHTML=StarPoints.toPrecision(4)+" Star Points"
 	}
 }
 
 function StarStruck(){
-	if (StarPoints>=parseInt(10**(StarUp[3]+1))){
-		StarPoints=StarPoints-parseInt(10**(1+StarUp[3]))
+	if (StarPoints.gte(parseInt(10**(StarUp[3]+1)))){
+		StarPoints=StarPoints.minus(parseInt(10**(1+StarUp[3])))
 		StarUp[3]++
 		tickspeed2=tickspeed2*0.9
-		document.getElementById("S4Cost").innerHTML=parseInt(10**(1+StarUp[3]))
-		document.getElementById("STARRED").innerHTML=StarPoints+" Star Points"
+		document.getElementById("S4Cost").innerHTML=parseInt(10**(1+StarUp[3])).toPrecision(4)
+		document.getElementById("STARRED").innerHTML=StarPoints.toPrecision(4)+" Star Points"
 	} 
 	if (tickspeed2<100){
 		document.getElementById("S4Cost").innerHTML="MAXED"
@@ -386,17 +386,17 @@ function newReset(){
 }
 
 function PrestigeStars(){
-	if (StarPoints>1000){
+	if (StarPoints.gte(1000)){
 		if (stade==1){
 			stade++
 			document.getElementById("BudTab").removeAttribute("hidden")
 			document.getElementById("BUDDING").removeAttribute("hidden")
 		}
-		leaves+=parseInt((Math.log10(StarPoints)-2)*((StarUp[0]+2)**LeavesUp[2])*(math.sqrt(1+bolts)**BoltsUp[2]))
+		leaves+=parseInt((StarPoints.log10()-2)*((StarUp[0]+2)**LeavesUp[2])*(math.sqrt(1+bolts)**BoltsUp[2]))
 		tickspeed2=1000
 		ticks2=0
 		ticks=0
-		StarPoints=0
+		StarPoints=new Decimal(0)
 		StarUp=[0,0,0,0]
 		L=[]
 		Movement=[]
@@ -435,7 +435,7 @@ function GetBolts(){
 		ctx.clearRect(0,0, 256, 256);
 		document.getElementById("BOLTS").innerHTML=", "+bolts+" bolt(s)"
 		ticks2=0
-		StarPoints=0
+		StarPoints=new Decimal(0)
 		StarUp=[0,0,0,0]
 		L=[]
 		Movement=[]
@@ -742,7 +742,7 @@ function Import(){
 	loadgame = prompt("Paste in your save WARNING: WILL OVERWRITE YOUR CURRENT SAVE");
 	if (loadgame !="" ) {
 		loadgame=JSON.parse(atob(loadgame));
-		StarPoints=parseInt(loadgame.StarP);
+		StarPoints=new Decimal(parseInt(loadgame.StarP);)
 		leaves=parseInt(loadgame.Leaves);
 		LeafPower=parseInt(loadgame.LeafPower);
 		leavesMult=parseInt(loadgame.LeafMult);
@@ -802,7 +802,7 @@ function Import(){
 		else {
 			document.getElementById("BoltUp4").disabled=false
 		}
-		document.getElementById("STARRED").innerHTML=StarPoints+" Star Points"
+		document.getElementById("STARRED").innerHTML=StarPoints.toPrecision(4)+" Star Points"
 		ctx.clearRect(0,0, 256, 256);
 		imageData = ctx.createImageData(256, 256);
 		bourgeon=[[[128,128],[128,129,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
@@ -842,7 +842,7 @@ function SaveLeaves(){
 StarReset()
 
 if(localStorage.LeafMult) {
-	StarPoints=parseInt(localStorage.StarP);
+	StarPoints=new Decimal(parseInt(localStorage.StarP);)
 	leaves=parseInt(localStorage.Leaves);
 	LeafPower=parseInt(localStorage.LeafPower);
 	leavesMult=parseInt(localStorage.LeafMult);

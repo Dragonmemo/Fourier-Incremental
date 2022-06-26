@@ -842,7 +842,7 @@ function SaveLeaves(){
 StarReset()
 
 if(localStorage.LeafMult) {
-	StarPoints=new Decimal(parseInt(localStorage.StarP);)
+	StarPoints=new Decimal(parseInt(localStorage.StarP));
 	leaves=parseInt(localStorage.Leaves);
 	LeafPower=parseInt(localStorage.LeafPower);
 	leavesMult=parseInt(localStorage.LeafMult);

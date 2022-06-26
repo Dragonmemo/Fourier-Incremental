@@ -346,7 +346,7 @@ function LeafUp2(){
 }
 
 function TSUp(){
-	if (bolts>=1){
+	if (bolts>=0.9){
 		bolts=bolts-1
 		BoltsUp[0]++
 		document.getElementById("BOLTS").innerHTML=", "+bolts+" bolt(s)"

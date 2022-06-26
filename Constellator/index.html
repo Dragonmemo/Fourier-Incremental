@@ -41,7 +41,7 @@
     <button class="tablinks" onclick="openCity(event, 'Lava')" id="LavaTab" hidden>Lava</button>
     <button class="tablinks" onclick="openCity(event, 'Settings')">Settings</button>
     <button class="tablinks" onclick="openCity(event, 'About')">About</button>
-    <button class="tablinks" onclick="openCity(event, 'Help')">Q & A</button>
+    <button class="tablinks" onclick="openCity(event, 'Help')" hidden>Q & A</button>
 	</div>
     <div id="Stars" class="tabcontent">
 	<table><tr>
@@ -99,7 +99,7 @@
     </td>
 	</tr></table>
 	</div>
-	<div id="Settings" class="tabcontent">
+	<div id="Settings" class="tabcontent" hidden>
 	<button type="button" onclick="save()" class="tooltip">Save
       <span class="tooltiptext">Autosaves every 10s</span></button>
       <button type="button" onclick="HReset()" class="tooltip">Hard Reset
@@ -110,7 +110,7 @@
 	<span style="color:#FFFFFF">BE WARNED THAT THIS GAME WON'T RUN OFFLINE OR IF THE TAB ISN'T FOCUSED ON<br>
 	BE ALSO WARNED THAT WHEN LAUNCHING THE GAME THE IMAGES ARE RESETTED SINCE IT WOULD TAKE WAY TOO LONG TO SAVE THEM (I guess)</span>
 	</div>
-	<div id="About" class="tabcontent" style="color:#FFFFFF">
+	<div id="About" class="tabcontent" style="color:#FFFFFF" hidden>
 		<p>Here is a link to the discord server of the game : <a href="https://discord.gg/xTzYrey">Click me! i'm innoffensive</a></p>
 		<p>The server is pretty empty and the main purpose of it was not to be about that incremental game, but a RPG that i'm programming. Still, it has a Fourier bot you can mess with!</p>
 		<br>

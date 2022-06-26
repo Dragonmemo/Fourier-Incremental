@@ -20,7 +20,6 @@ var LeavesUp=[0,0,0]
 var bolts=0
 var stade=0
 var BoltsUp=[0,0,0,0]
-var UnlockLeaves=false
 var StarPoints=0
 var StarUp=[0,0,0,0]
 var L=[]
@@ -661,19 +660,21 @@ function loop() { // production
 		ticks2=ticks2-tickspeed2
 	}
 	if (saveticks>10000){
-		//if (document.getElementById("Autosave").checked == true){save();}
+		if (document.getElementById("Autosave").checked == true){save();}
 		saveticks-=10000
 	}
 	//console.log(Date.now()-T0)
 }
 
 function save() { 
-  localStorage.setItem('Buds',buds);
-  localStorage.setItem("Twigs",twigs);
+  localStorage.setItem('StarP',StarPoints);
+  localStorage.setItem("StarUp",StarUp);
   localStorage.setItem("Leaves",leaves);
-  localStorage.setItem("Size",x);
-  localStorage.setItem("prod",t);
+  localStorage.setItem("LeavesUp",LeavesUp);
+  localStorage.setItem("LeafPower",LeafPower);
+  localStorage.setItem("LeafMult",leavesMult);
   localStorage.setItem("TS",tickspeed);
+  localStorage.setItem("TS2",tickspeed2);
   localStorage.setItem("Bolts",bolts);
   localStorage.setItem("Stade",stade);
   localStorage.setItem("BoltsUp",BoltsUp);
@@ -682,17 +683,20 @@ function save() {
 function HReset(){
 	var BOOLEAN=confirm("Are you sure you want to Hard Reset?")
 	if (BOOLEAN){
-		imageData = ctx.createImageData(16, 16); //=pixels
-		x=[16,16]//x=MAGIE.size ici on connait x
-		bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
-		tickspeed=1000
-		t=1;
-		buds=0
-		twigs=0
-		leaves=0
-		bolts=0
-		stade=0
-		BoltsUp=[0,0,0,0]
+		imageData = ctx.createImageData(256, 256); //=pixels
+		bourgeon=[[[128,128],[128,129,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
+		var tickspeed=1000
+		var tickspeed2=1000
+		var leaves=0
+		var LeavesUp=[0,0,0]
+		var bolts=0
+		var stade=0
+		var BoltsUp=[0,0,0,0]
+		var StarPoints=0
+		var StarUp=[0,0,0,0]
+		var LeafPower=0
+		var leavesMult=1
+		StarReset()
 }}
 
 function copyStringToClipboard(str) {
@@ -737,50 +741,92 @@ function Import(){
 	loadgame = prompt("Paste in your save WARNING: WILL OVERWRITE YOUR CURRENT SAVE");
 	if (loadgame !="" ) {
 		loadgame=JSON.parse(atob(loadgame));
-		buds=parseInt(loadgame.Buds);
-		twigs=parseInt(loadgame.Twigs);
-		x=loadgame.Size.split(",").map(Number);
+		StarPoints=parseInt(loadgame.StarP);
 		leaves=parseInt(loadgame.Leaves);
-		t=parseInt(loadgame.prod);
+		LeafPower=parseInt(loadgame.LeafPower);
+		leavesMult=parseInt(loadgame.LeafMult);
+		tickspeed2=parseInt(loadgame.TS2);
 		tickspeed=parseInt(loadgame.TS);
 		bolts=parseInt(loadgame.Bolts);
-		if (loadgame.BoltsUp){
-			BoltsUp=loadgame.BoltsUp.split(",").map(Number);
-			if (BoltsUp[0]==1){
-				document.getElementById("TSUp").innerHTML=50
-			}
-			if (BoltsUp[0]==2){
-				document.getElementById("TSUp").innerHTML="MAXED"
-				document.getElementById("BoltUp1").disabled=true
-			}
-			if (BoltsUp[1]==1){
-				document.getElementById("BoltUp2").disabled=true
-			}
-			if (BoltsUp[2]==1){
-				document.getElementById("BoltUp3").disabled=true
-			}
-			if (BoltsUp[3]==1){
-				document.getElementById("BoltUp4").disabled=true
-			}
+		StarUp=loadgame.StarUp.split(",").map(Number);
+		if (StarUp[0]<=125){
+			document.getElementById("S1Cost").innerHTML=parseInt(10**(1+StarUp[0]))
+			document.getElementById("AS").disabled=false
+		} 
+		if (StarUp[0]>125){
+			document.getElementById("S1Cost").innerHTML="MAXED"
+			document.getElementById("AS").disabled=true
 		}
-		ctx.clearRect(0,0, x[0], x[1]);
-		imageData = ctx.createImageData(x[0], x[1]);
-		bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
-		document.getElementById("LCost").innerHTML=parseInt(2**Math.log2(x[0]/8))
-		canvas.width=x[0]
-		canvas.height=x[1]
-		document.getElementById("TCost").innerHTML=parseInt(2**(t+3))
-		document.getElementById("BCost").innerHTML=parseInt(2**((1040-tickspeed)/10))
+		document.getElementById("S2Cost").innerHTML=parseInt(10**(1+StarUp[1]))
+		document.getElementById("S3Cost").innerHTML=parseInt(10**(2**StarUp[2]))
+		if (tickspeed2>=100){
+			document.getElementById("S4Cost").innerHTML=parseInt(10**(1+StarUp[3]))
+			document.getElementById("TSS").disabled=false
+		} 
+		if (tickspeed2<100){
+			document.getElementById("S4Cost").innerHTML="MAXED"
+			document.getElementById("TSS").disabled=true
+		}
+		LeavesUp=loadgame.LeavesUp.split(",").map(Number);
+		document.getElementById("LU1").innerHTML=parseInt(10**LeavesUp[0])
+		document.getElementById("TCost").innerHTML=parseInt(2**(LeavesUp[1]+1))
+		if (LeavesUp[2]==1){
+			document.getElementById("LU").disabled=true
+		}
+		else {
+			document.getElementById("LU").disabled=false
+		}
+		BoltsUp=loadgame.BoltsUp.split(",").map(Number);
+		if (BoltsUp[0]==1){
+			document.getElementById("BoltUp1").disabled=true
+		}
+		else {
+			document.getElementById("BoltUp1").disabled=false
+		}
+		if (BoltsUp[1]==1){
+			document.getElementById("BoltUp2").disabled=true
+		}
+		else {
+			document.getElementById("BoltUp2").disabled=false
+		}
+		if (BoltsUp[2]==1){
+			document.getElementById("BoltUp3").disabled=true
+		}
+		else {
+			document.getElementById("BoltUp3").disabled=false
+		}
+		if (BoltsUp[3]==1){
+			document.getElementById("BoltUp4").disabled=true
+		}
+		else {
+			document.getElementById("BoltUp4").disabled=false
+		}
+		document.getElementById("STARRED").innerHTML=StarPoints+" Star Points"
+		ctx.clearRect(0,0, 256, 256);
+		imageData = ctx.createImageData(256, 256);
+		bourgeon=[[[128,128],[128,129,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
 		if (loadgame.Stade){stade=parseInt(loadgame.Stade)}
 		if (stade>0){
-			document.getElementById("PresBud").removeAttribute("hidden")
+			document.getElementById("PresStar").removeAttribute("hidden")
 			if (stade>1){
-				document.getElementById("BoltTab").removeAttribute("hidden")
-				document.getElementById("BOLTS").removeAttribute("hidden")
-				document.getElementById("PresBud").innerHTML="Call the thunder and<br>Get "+parseInt(Math.log10(twigs)-3)+" bolts"
+				document.getElementById("BUDDING").innerHTML=", "+leaves+" leaf(ves)"
+				document.getElementById("BudTab").removeAttribute("hidden")
+				document.getElementById("BUDDING").removeAttribute("hidden")
+				document.getElementById("PresStar").innerHTML="gather some more leaves and<br>Get "+parseInt((Math.log10(StarPoints)-2)*((StarUp[0]+2)**LeavesUp[2]))+" leaves"
 				drawBolts()
+				if (stade>2){
+					document.getElementById("PresBud").removeAttribute("hidden")
+					if (stade>3){
+						document.getElementById("BoltTab").removeAttribute("hidden")
+						document.getElementById("BOLTS").removeAttribute("hidden")
+						document.getElementById("BOLTS").innerHTML=", "+bolts+" bolt(s)"
+						document.getElementById("PresBud").innerHTML="Call the thunder and<br>Get "+parseInt(Math.log10(leaves)-1)+" bolts"
+						drawBolts()
+					}
+				}
 			}
 		}
+		StarReset()
 	}
 }
 
@@ -794,51 +840,91 @@ function SaveLeaves(){
 
 StarReset()
 
-/*
-if(localStorage.prod) {
-	buds=parseInt(localStorage.Buds);
-	twigs=parseInt(localStorage.Twigs);
-	x=localStorage.Size.split(",").map(Number);
+if(localStorage.LeafMult) {
+	StarPoints=parseInt(localStorage.StarP);
 	leaves=parseInt(localStorage.Leaves);
-	t=parseInt(localStorage.prod);
+	LeafPower=parseInt(localStorage.LeafPower);
+	leavesMult=parseInt(localStorage.LeafMult);
+	tickspeed2=parseInt(localStorage.TS2);
 	tickspeed=parseInt(localStorage.TS);
 	bolts=parseInt(localStorage.Bolts);
-	ctx.clearRect(0,0, x[0], x[1]);
-	imageData = ctx.createImageData(x[0], x[1]);
-	bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
-	document.getElementById("LCost").innerHTML=parseInt(2**Math.log2(x[0]/8))
-	canvas.width=x[0]
-	canvas.height=x[1]
-	document.getElementById("TCost").innerHTML=parseInt(2**(t+3))
-	document.getElementById("BCost").innerHTML=parseInt(2**((1040-tickspeed)/10))
+	StarUp=localStorage.StarUp.split(",").map(Number);
+	if (StarUp[0]<=125){
+		document.getElementById("S1Cost").innerHTML=parseInt(10**(1+StarUp[0]))
+		document.getElementById("AS").disabled=false
+	} 
+	if (StarUp[0]>125){
+		document.getElementById("S1Cost").innerHTML="MAXED"
+		document.getElementById("AS").disabled=true
+	}
+	document.getElementById("S2Cost").innerHTML=parseInt(10**(1+StarUp[1]))
+	document.getElementById("S3Cost").innerHTML=parseInt(10**(2**StarUp[2]))
+	if (tickspeed2>=100){
+		document.getElementById("S4Cost").innerHTML=parseInt(10**(1+StarUp[3]))
+		document.getElementById("TSS").disabled=false
+	} 
+	if (tickspeed2<100){
+		document.getElementById("S4Cost").innerHTML="MAXED"
+		document.getElementById("TSS").disabled=true
+	}
+	LeavesUp=localStorage.LeavesUp.split(",").map(Number);
+	document.getElementById("LU1").innerHTML=parseInt(10**LeavesUp[0])
+	document.getElementById("TCost").innerHTML=parseInt(2**(LeavesUp[1]+1))
+	if (LeavesUp[2]==1){
+		document.getElementById("LU").disabled=true
+	}
+	else {
+		document.getElementById("LU").disabled=false
+	}
+	BoltsUp=localStorage.BoltsUp.split(",").map(Number);
+	if (BoltsUp[0]==1){
+		document.getElementById("BoltUp1").disabled=true
+	}
+	else {
+		document.getElementById("BoltUp1").disabled=false
+	}
+	if (BoltsUp[1]==1){
+		document.getElementById("BoltUp2").disabled=true
+	}
+	else {
+		document.getElementById("BoltUp2").disabled=false
+	}
+	if (BoltsUp[2]==1){
+		document.getElementById("BoltUp3").disabled=true
+	}
+	else {
+		document.getElementById("BoltUp3").disabled=false
+	}
+	if (BoltsUp[3]==1){
+		document.getElementById("BoltUp4").disabled=true
+	}
+	else {
+		document.getElementById("BoltUp4").disabled=false
+	}
+	document.getElementById("STARRED").innerHTML=StarPoints+" Star Points"
+	ctx.clearRect(0,0, 256, 256);
+	imageData = ctx.createImageData(256, 256);
+	bourgeon=[[[128,128],[128,129,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
 	if (localStorage.Stade){stade=parseInt(localStorage.Stade)}
 	if (stade>0){
-		document.getElementById("PresBud").removeAttribute("hidden")
+		document.getElementById("PresStar").removeAttribute("hidden")
 		if (stade>1){
-			document.getElementById("BoltTab").removeAttribute("hidden")
-			document.getElementById("BOLTS").removeAttribute("hidden")
-			document.getElementById("PresBud").innerHTML="Call the thunder and<br>Get "+parseInt(Math.log10(twigs)-3)+" bolts"
+			document.getElementById("BUDDING").innerHTML=", "+leaves+" leaf(ves)"
+			document.getElementById("BudTab").removeAttribute("hidden")
+			document.getElementById("BUDDING").removeAttribute("hidden")
+			document.getElementById("PresStar").innerHTML="gather some more leaves and<br>Get "+parseInt((Math.log10(StarPoints)-2)*((StarUp[0]+2)**LeavesUp[2]))+" leaves"
 			drawBolts()
+			if (stade>2){
+				document.getElementById("PresBud").removeAttribute("hidden")
+				if (stade>3){
+					document.getElementById("BoltTab").removeAttribute("hidden")
+					document.getElementById("BOLTS").removeAttribute("hidden")
+					document.getElementById("BOLTS").innerHTML=", "+bolts+" bolt(s)"
+					document.getElementById("PresBud").innerHTML="Call the thunder and<br>Get "+parseInt(Math.log10(leaves)-1)+" bolts"
+					drawBolts()
+				}
+			}
 		}
 	}
-	if (localStorage.BoltsUp){
-		BoltsUp=localStorage.BoltsUp.split(",").map(Number);
-		if (BoltsUp[0]==1){
-			document.getElementById("TSUp").innerHTML=50
-		}
-		if (BoltsUp[0]==2){
-			document.getElementById("TSUp").innerHTML="MAXED"
-			document.getElementById("BoltUp1").disabled=true
-		}
-		if (BoltsUp[1]==1){
-			document.getElementById("BoltUp2").disabled=true
-		}
-		if (BoltsUp[2]==1){
-			document.getElementById("BoltUp3").disabled=true
-		}
-		if (BoltsUp[3]==1){
-			document.getElementById("BoltUp4").disabled=true
-		}
-	}
+	StarReset()
 }
-*/

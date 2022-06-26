@@ -62,8 +62,8 @@
 	</div>
 	<div id="Bud" class="tabcontent" hidden>
 	<table><tr>
-	<td style="display:table-cell;">
-	Your growing leaves have generated <span id="LM">0</span> leaf power, which multiplies your Star Power gain by <span id="LM2">1</span><br>
+	<td style="display:table-cell;" >
+	<span style="color:#FFFFFF">Your growing leaves have generated <span id="LM">0</span> leaf power, which multiplies your Star Power gain by <span id="LM2">1</span></span><br>
     <button type="button" onclick="LeafUp1()" id="BU">Make the length of stars<br>power themselves for<br><span id="LU1">1</span> leaf</button>
 	<button type="button" onclick="twigUp()">Speed up leaf pattern progress for<br>
 	<span id="TCost">2</span> leaves</button>
@@ -77,7 +77,7 @@
 	</div>
 	<div id="Bolt" class="tabcontent" hidden>
 	<table><tr>
-	Square root of bolts plus one multiply your Star point gain
+	<span style="color:#FFFFFF">Square root of bolts plus one multiply your Star point gain</span>
 	<td style="display:table-cell;">
 	<button type="button" onclick="TSUp()" id="BoltUp1" class="tooltip"><span class="tooltiptext">Yellow stars square the<br>star power amount given<br>by links using them !</span>Charge up some stars<br>and have 20% chance to<br>get yellow stars for<br>
 	<span id="TSUp">5</span> bolts</button>
@@ -86,7 +86,7 @@
 	<button type="button" onclick="BoltUp3()" id="BoltUp3">Bolts also power<br>up Leaves given<br>
 	Cost 50 bolts</button>
 	<button type="button" onclick="BoltUp4()" id="BoltUp4">Leaves power also power<br>up Bolts given<br>
-	Cost 50 bolts</button>
+	Cost 50 bolts</button><br>
 	<canvas id="myCanvas1" width="512" height="512"></canvas>
     </td>
 	</tr></table>
@@ -101,20 +101,24 @@
 	</div>
 	<div id="Settings" class="tabcontent">
 	<button type="button" onclick="save()" class="tooltip">Save
-      <span class="tooltiptext">Autosaves every 10s (doesn't works yet)</span></button>
-      <button type="button" onclick="HReset()" class="tooltip" hidden>Hard Reset
+      <span class="tooltiptext">Autosaves every 10s</span></button>
+      <button type="button" onclick="HReset()" class="tooltip">Hard Reset
       <span class="tooltiptext">Resets everything</span></button>
-      <br><button type="button" onclick="Export()" class="tooltip" hidden>Export</button>
-      <button type="button" onclick="Import()" class="tooltip" hidden>Import</button>
+      <br><button type="button" onclick="Export()" class="tooltip">Export</button>
+      <button type="button" onclick="Import()" class="tooltip">Import</button>
 	<input type="checkbox" id="Autosave" checked><span> Enable Autosave</span><br>
-	BE WARNED THAT THIS GAME WON'T RUN OFFLINE OR IF THE TAB ISN'T FOCUSED ON<br>
-	BE ALSO WARNED THAT WHEN LAUNCHING THE GAME THE IMAGES ARE RESETTED SINCE IT WOULD TAKE WAY TOO LONG TO SAVE THEM (I guess)
+	<span style="color:#FFFFFF">BE WARNED THAT THIS GAME WON'T RUN OFFLINE OR IF THE TAB ISN'T FOCUSED ON<br>
+	BE ALSO WARNED THAT WHEN LAUNCHING THE GAME THE IMAGES ARE RESETTED SINCE IT WOULD TAKE WAY TOO LONG TO SAVE THEM (I guess)</span>
 	</div>
-	<div id="About" class="tabcontent">
+	<div id="About" class="tabcontent" style="color:#FFFFFF">
 		<p>Here is a link to the discord server of the game : <a href="https://discord.gg/xTzYrey">Click me! i'm innoffensive</a></p>
 		<p>The server is pretty empty and the main purpose of it was not to be about that incremental game, but a RPG that i'm programming. Still, it has a Fourier bot you can mess with!</p>
 		<br>
 		<br>Changelog<br>
+		<br>0.2.1 Saving : Saved<br>
+		Saving is back guys !<br>
+		Updated text color too, it should always be readable now<br>
+		Next update, unless bug fixing required, will add new upgrades in other tabs if you unlocked some in the bolts prestige !<br>
 		<br>0.3 Thundering : Bolts<br>
 		Woohoo, bolts !<br>
 		Added third layer<br>
@@ -136,7 +140,7 @@
 		1000 Star Points needed for the first prestige, that SHOULD speed up everything a bit<br>
 		
 	</div>
-	<div id="Help" class="tabcontent">
+	<div id="Help" class="tabcontent" hidden>
 	Why do I sometimes earn buds and sometimes twigs ?<br><br>
 	You always start a picture with a lonely bud that will grow. Each time a bud grows and a pixel is drawn, a twig is earnt (not counting multipliers). But at the same time, each growing bud adds more bud from where to grow next. If the pixel has already been drawn, I "cut off" the bud and continue with another one, granting you one bud (not counting multipliers)<br><br>
 	How does bolts works ?<br><br>

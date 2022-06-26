@@ -346,24 +346,24 @@ function LeafUp2(){
 }
 
 function TSUp(){
-	if (bolts>=5){
-		bolts=bolts-5
+	if (bolts>=1){
+		bolts=bolts-1
 		BoltsUp[0]++
 		document.getElementById("BOLTS").innerHTML=", "+bolts+" bolt(s)"
 		document.getElementById("BoltUp1").disabled=true
 	}
 }
 function BoltUp2(){
-	if (bolts>=20){
-		bolts=bolts-20
+	if (bolts>=10){
+		bolts=bolts-10
 		BoltsUp[1]++
 		document.getElementById("BoltUp2").disabled=true
 		document.getElementById("BOLTS").innerHTML=", "+bolts+" bolt(s)"
 	}
 }
 function BoltUp3(){
-	if (bolts>=50){
-		bolts=bolts-50
+	if (bolts>=20){
+		bolts=bolts-20
 		BoltsUp[2]++
 		document.getElementById("BoltUp3").disabled=true
 		document.getElementById("BOLTS").innerHTML=", "+bolts+" bolt(s)"

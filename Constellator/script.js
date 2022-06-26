@@ -742,7 +742,7 @@ function Import(){
 	loadgame = prompt("Paste in your save WARNING: WILL OVERWRITE YOUR CURRENT SAVE");
 	if (loadgame !="" ) {
 		loadgame=JSON.parse(atob(loadgame));
-		StarPoints=new Decimal(parseInt(loadgame.StarP);)
+		StarPoints=new Decimal(parseInt(loadgame.StarP));
 		leaves=parseInt(loadgame.Leaves);
 		LeafPower=parseInt(loadgame.LeafPower);
 		leavesMult=parseInt(loadgame.LeafMult);

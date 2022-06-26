@@ -318,10 +318,10 @@ function drawBolts(){
 
 function LeafUp1(){
 	if (leaves>=parseInt(10**LeavesUp[0])){
-		leaves=leaves-1
+		leaves=leaves-parseInt(10**LeavesUp[0])
 		LeavesUp[0]++
 		document.getElementById("LU1").innerHTML=parseInt(10**LeavesUp[0])
-	document.getElementById("BUDDING").innerHTML=leaves+" leaf(ves)"
+	document.getElementById("BUDDING").innerHTML=", "+leaves+" leaf(ves)"
 		//document.getElementById("BU").disabled=true
 	}
 }
@@ -332,7 +332,7 @@ function twigUp(){
 		LeavesUp[1]++
 		tickspeed*=0.9
 		document.getElementById("TCost").innerHTML=parseInt(2**(LeavesUp[1]+1))
-		document.getElementById("BUDDING").innerHTML=leaves+" leaf(ves)"
+		document.getElementById("BUDDING").innerHTML=", "+leaves+" leaf(ves)"
 	} 
 }
 
@@ -341,7 +341,7 @@ function LeafUp2(){
 		leaves=leaves-10
 		LeavesUp[2]++
 		document.getElementById("LU").disabled=true
-		document.getElementById("BUDDING").innerHTML=leaves+" leaf(ves)"
+		document.getElementById("BUDDING").innerHTML=", "+leaves+" leaf(ves)"
 	}
 }
 

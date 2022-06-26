@@ -30,7 +30,7 @@
     </style>
      
   </head>
-  <body style="background-color:#eee;">
+  <body style="background-color:#222;">
     <header>
 		<h1><span id="STARRED">0 Star Points</span><span id="BUDDING" hidden>, 0 bud(s), 0 twig(s), 0 leaf(ves)</span><span id="BOLTS" hidden>, 0 bolt(s)</span></h1>
     </header>
@@ -77,17 +77,16 @@
 	</div>
 	<div id="Bolt" class="tabcontent" hidden>
 	<table><tr>
+	Square root of bolts plus one multiply your Star point gain
 	<td style="display:table-cell;">
-	<button type="button" onclick="TSUp()" id="BoltUp1">Electricity has more power<br>Use it to halve base tickspeed for<br>
+	<button type="button" onclick="TSUp()" id="BoltUp1" class="tooltip"><span class="tooltiptext">Yellow stars square the<br>star power amount given<br>by links using them !</span>Charge up some stars<br>and have 20% chance to<br>get yellow stars for<br>
 	<span id="TSUp">5</span> bolts</button>
-	<button type="button" onclick="BoltUp2()" id="BoltUp2">Buds can also attract charges<br>
+	<button type="button" onclick="BoltUp2()" id="BoltUp2">Star points also power<br>up Bolts given<br>
 	Cost 20 bolts</button>
-	<button type="button" onclick="BoltUp3()" id="BoltUp3">Leaves can also attract charges<br>
+	<button type="button" onclick="BoltUp3()" id="BoltUp3">Bolts also power<br>up Leaves given<br>
 	Cost 50 bolts</button>
-	<button type="button" onclick="BoltUp4()" id="BoltUp4">Halve leaves requirement to<br>increase the sheet of paper<br>
+	<button type="button" onclick="BoltUp4()" id="BoltUp4">Leaves power also power<br>up Bolts given<br>
 	Cost 50 bolts</button>
-	<button type="button" onclick="drawBolts()">Reset the pattern</button>
-	<button type="button" onclick="SaveBolts()"><a id="DFWMB2">Save as PNG</a></button><br>
 	<canvas id="myCanvas1" width="512" height="512"></canvas>
     </td>
 	</tr></table>
@@ -116,6 +115,12 @@
 		<p>The server is pretty empty and the main purpose of it was not to be about that incremental game, but a RPG that i'm programming. Still, it has a Fourier bot you can mess with!</p>
 		<br>
 		<br>Changelog<br>
+		<br>0.3 Thundering : Bolts<br>
+		Woohoo, bolts !<br>
+		Added third layer<br>
+		I dunno the bolts amount for next prestige, stuff should grow fast now<br>
+		Dark background might make it look WAY better<br>
+		Saves coming on the next small update !<br>
 		<br>0.2.1 Tool-tipping : At the tip of your tool<br>
 		I'm not yet crazy, I assure you !<br>
 		Added some tooltips, and changed some<br>

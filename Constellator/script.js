@@ -28,6 +28,7 @@ var Movement=[]
 var n
 var LeafPower=0
 var leavesMult=1
+var StarRank=["#fff","#ff0","0ff","0f0","f00"]
 
 function StarReset(){
 	var k;
@@ -35,18 +36,21 @@ function StarReset(){
 	Movement=[]
 	n=StarUp[0]+2;
 	for (k=0;k<n;k++){
-		L[k]=[math.floor(math.random()*513),math.floor(math.random()*513)]
+		var RANK=math.random();
+		if (RANK<0.2 && BoltsUp[0]==1){RANK=2}
+		else {RANK=1}
+		L[k]=[math.floor(math.random()*513),math.floor(math.random()*513),RANK];
 		Movement[k]=[math.random()*0.5*(1+StarUp[1])-0.25*(1+StarUp[1]),math.random()*0.5*(1+StarUp[1])-0.25*(1+StarUp[1])]
 	}
 }
 
 function myFunction0() {
 	ctxS.clearRect(0,0, 512, 512);
-	ctxS.strokeStyle="#000000";
+	ctxS.strokeStyle="#FFFFFF";
 	var k;
 	var lks= StarUp[2]+1
 	for (k=0;k<n;k++){
-		L[k]=[(L[k][0]+Movement[k][0]+512)%512,(L[k][1]+Movement[k][1]+512)%512]
+		L[k]=[(L[k][0]+Movement[k][0]+512)%512,(L[k][1]+Movement[k][1]+512)%512,L[k][2]]
 	}
 	var LISTE =[];
 	for (k=0;k<n;k++){
@@ -59,13 +63,13 @@ function myFunction0() {
 		LL.shift()
 		LISTE[k]=LL
 	}
-  //console.log(LISTE)
-  //Ensemble de listes triés dans l'ordre croissant
-  var BOOLER=true;
-  var COMPTEUR=[];
-  for (k=0;k<n;k++){COMPTEUR[k]=0}
-  var Lignage=[];
-  while (BOOLER){
+	//console.log(LISTE)
+	//Ensemble de listes triés dans l'ordre croissant
+	var BOOLER=true;
+	var COMPTEUR=[];
+	for (k=0;k<n;k++){COMPTEUR[k]=0}
+	var Lignage=[];
+	while (BOOLER){
 	  BOOLER=false;
 	  L_Liens_Tour=[]
 	  for (k=0;k<n;k++){
@@ -123,50 +127,66 @@ function myFunction0() {
   //on dessine le fameux bordel :D
   if (LeavesUp[0]==0){
 	  for (var element of Lignage){
+		  var SGrad=ctxS.createLinearGradient(L[element[0]][0], L[element[0]][1], L[element[1]][0], L[element[1]][1]);
+		  SGrad.addColorStop(0, StarRank[L[element[0]][2]-1]);
+			SGrad.addColorStop(1, StarRank[L[element[1]][2]-1]);
+			ctxS.strokeStyle = SGrad;
 		  ctxS.beginPath()
 		  ctxS.moveTo(L[element[0]][0], L[element[0]][1]);
 		  ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
 		  ctxS.stroke(); 
-		  StarPoints+=1*parseInt((1+math.log10(1+LeafPower))*leavesMult)
+		  StarPoints+=parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2])
 	  }
   }
   if (LeavesUp[0]==1){
 	  for (var element of Lignage){
+		  var SGrad=ctxS.createLinearGradient(L[element[0]][0], L[element[0]][1], L[element[1]][0], L[element[1]][1]);
+		  SGrad.addColorStop(0, StarRank[L[element[0]][2]-1]);
+			SGrad.addColorStop(1, StarRank[L[element[1]][2]-1]);
+			ctxS.strokeStyle = SGrad;
 		  ctxS.beginPath()
 		  ctxS.moveTo(L[element[0]][0], L[element[0]][1]);
 		  ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
 		  ctxS.stroke();
 			if (parseInt(1+math.log10((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2) < 1){
-				StarPoints+=1*parseInt((1+math.log10(1+LeafPower))*leavesMult)
+				StarPoints+=1*parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2])
 			}
-		    else {StarPoints+=parseInt((1+math.log10((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.log10(1+LeafPower))*leavesMult)}
+		    else {StarPoints+=parseInt((1+math.log10((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2])}
 	  }
   }
   if (LeavesUp[0]==2){
 	  for (var element of Lignage){
+		  var SGrad=ctxS.createLinearGradient(L[element[0]][0], L[element[0]][1], L[element[1]][0], L[element[1]][1]);
+		  SGrad.addColorStop(0, StarRank[L[element[0]][2]-1]);
+			SGrad.addColorStop(1, StarRank[L[element[1]][2]-1]);
+			ctxS.strokeStyle = SGrad;
 		  ctxS.beginPath()
 		  ctxS.moveTo(L[element[0]][0], L[element[0]][1]);
 		  ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
 		  ctxS.stroke(); 
 		  if (parseInt(1+math.log2((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2) < 1){
-				StarPoints+=1*parseInt((1+math.log10(1+LeafPower))*leavesMult)
+				StarPoints+=1*parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2])
 			}
-		    else {StarPoints+=parseInt((1+math.log2((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.log10(1+LeafPower))*leavesMult)}
+		    else {StarPoints+=parseInt((1+math.log2((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2])}
 	  }
   }
-  if (LeavesUp[0]>2){
-	  for (var element of Lignage){
-		  ctxS.beginPath()
-		  ctxS.moveTo(L[element[0]][0], L[element[0]][1]);
-		  ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
-		  ctxS.stroke(); 
-		  if (parseInt(((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)**0.5) < 1){
-				StarPoints+=1*parseInt((1+math.log10(1+LeafPower))*leavesMult)
+	if (LeavesUp[0]>2){
+		for (var element of Lignage){
+			var SGrad=ctxS.createLinearGradient(L[element[0]][0], L[element[0]][1], L[element[1]][0], L[element[1]][1]);
+			SGrad.addColorStop(0, StarRank[L[element[0]][2]-1]);
+			SGrad.addColorStop(1, StarRank[L[element[1]][2]-1]);
+			ctxS.strokeStyle = SGrad;
+			ctxS.beginPath()
+			ctxS.moveTo(L[element[0]][0], L[element[0]][1]);
+			ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
+			ctxS.stroke(); 
+			if (parseInt(((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)**0.5) < 1){
+				StarPoints+=1*parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2])
 			}
-		    else {StarPoints+=parseInt((((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)**0.5)*(1+math.log10(1+LeafPower))*leavesMult)}
-	  }
-  }
-  document.getElementById("STARRED").innerHTML=StarPoints+" Star Points"
+			else {StarPoints+=parseInt((((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)**0.5)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2])}
+		}
+	}
+	document.getElementById("STARRED").innerHTML=StarPoints+" Star Points"
   
 	if (stade==0 && StarPoints>=1000){
 		stade++
@@ -183,6 +203,7 @@ function AddStars(){
 		StarUp[0]++
 		document.getElementById("S1Cost").innerHTML=parseInt(10**(1+StarUp[0]))
 		document.getElementById("STARRED").innerHTML=StarPoints+" Star Points"
+		StarReset()
 	} 
 	if (StarUp[0]>125){
 		document.getElementById("S1Cost").innerHTML="MAXED"
@@ -259,12 +280,12 @@ function DrawIt(g){
 			document.getElementById("NL").disabled = false;
 		}
 	}
-	if (stade==2 && leaves>=10000){
+	if (stade==2 && leaves>=100){
 		stade++
 		document.getElementById("PresBud").removeAttribute("hidden")
 	}
 	if (stade>3){
-		document.getElementById("PresBud").innerHTML="Call the thunder and<br>Get "+" bolts"
+		document.getElementById("PresBud").innerHTML="Call the thunder and<br>Get "+parseInt((Math.log10(leaves)-1)*((Math.log10(StarPoints+1)+1)**BoltsUp[1])*((math.log10(1+LeafPower)+1)**BoltsUp[3]))+" bolts"
 	}
 }
 
@@ -326,14 +347,10 @@ function LeafUp2(){
 }
 
 function TSUp(){
-	if (bolts>=5*10**BoltsUp[0]){
-		bolts=bolts-5*10**BoltsUp[0]
+	if (bolts>=5){
+		bolts=bolts-5
 		BoltsUp[0]++
-		document.getElementById("TSUp").innerHTML=5*10**BoltsUp[0]
 		document.getElementById("BOLTS").innerHTML=", "+bolts+" bolt(s)"
-	} 
-	if (BoltsUp[0]==2){
-		document.getElementById("TSUp").innerHTML="MAXED"
 		document.getElementById("BoltUp1").disabled=true
 	}
 }
@@ -376,7 +393,7 @@ function PrestigeStars(){
 			document.getElementById("BudTab").removeAttribute("hidden")
 			document.getElementById("BUDDING").removeAttribute("hidden")
 		}
-		leaves+=parseInt((Math.log10(StarPoints)-2)*((StarUp[0]+2)**LeavesUp[2]))
+		leaves+=parseInt((Math.log10(StarPoints)-2)*((StarUp[0]+2)**LeavesUp[2])*(math.sqrt(1+bolts)**BoltsUp[2]))
 		tickspeed2=1000
 		ticks2=0
 		StarPoints=0
@@ -396,30 +413,41 @@ function PrestigeStars(){
 }
 
 function GetBolts(){
-	if (twigs>10000){
+	if (leaves>100){
 		if (stade==3){
 			stade++
 			document.getElementById("BoltTab").removeAttribute("hidden")
 			document.getElementById("BOLTS").removeAttribute("hidden")
 		}
-		bolts+=parseInt((Math.log10(twigs)-3)*(Math.log10(buds+1)**BoltsUp[1]+1)*(Math.log10(leaves+1)**BoltsUp[2]+1))
-		drawBolts()
-		imageData = ctx.createImageData(16, 16); //=pixels
-		x=[16,16]//x=MAGIE.size ici on connait x
-		bourgeon=[[[parseInt(x[0]/2),parseInt(x[1]/2)],[parseInt(x[0]/2),parseInt(x[1]/2)+1,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
+		bolts+=parseInt((Math.log10(leaves)-1)*((Math.log10(StarPoints+1)+1)**BoltsUp[1])*((math.log10(1+LeafPower)+1)**BoltsUp[3]))
+		imageData = ctx.createImageData(256, 256); //=pixels
+		var bourgeon=[[[128,128],[128,129,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
 		tickspeed=1000
-		t=1;
-		buds=0
-		twigs=0
+		tickspeed2=1000;
+		ticks=0
 		leaves=0
-		document.getElementById("TCost").innerHTML=parseInt(2**(t+3))
-		document.getElementById("BCost").innerHTML=parseInt(2**((1040-tickspeed)/10))
-		document.getElementById("BU").disabled=false
-		document.getElementById("LCost").innerHTML=parseInt(2**Math.log2(x[0]/8))
-		ctx.clearRect(0,0, x[0], x[1]);
-		canvas.width=x[0]
-		canvas.height=x[1]
+		LeavesUp=[0,0,0]
+		LeafPower=0
+		leavesMult=1
+		document.getElementById("LU1").innerHTML=1
+		document.getElementById("TCost").innerHTML=2
+		document.getElementById("LU").disabled=false
+		ctx.clearRect(0,0, 256, 256);
 		document.getElementById("BOLTS").innerHTML=", "+bolts+" bolt(s)"
+		ticks2=0
+		StarPoints=0
+		StarUp=[0,0,0,0]
+		L=[]
+		Movement=[]
+		document.getElementById("S1Cost").innerHTML=parseInt(10**(1+StarUp[0]))
+		document.getElementById("S2Cost").innerHTML=parseInt(10**(1+StarUp[1]))
+		document.getElementById("AS").disabled=false
+		document.getElementById("S3Cost").innerHTML=parseInt(10**(2**StarUp[2]))
+		document.getElementById("S4Cost").innerHTML=parseInt(10**(1+StarUp[3]))
+		document.getElementById("TSS").disabled=false
+		ctxS.clearRect(0,0, 512, 512);
+		document.getElementById("BUDDING").innerHTML=", "+leaves+" leaf(ves)"
+		StarReset()
 	}
 }
 
@@ -622,6 +650,7 @@ function loop() { // production
 	ticks+=33;
 	ticks2+=33;
 	saveticks+=33;
+	drawBolts()
 	if (tickspeed<ticks && stade>1){
 		myFunction1();
 		ticks=ticks-tickspeed
@@ -762,12 +791,6 @@ function SaveLeaves(){
 	LINK.click();
 }
 
-function SaveBolts(){
-	var LINK=document.getElementById("DFWMB2")
-	LINK.download = 'Bolts'+x[0]+'x'+x[1]+'.png';
-	LINK.href = canvasB.toDataURL("image/jpg");
-	LINK.click();
-}
 
 StarReset()
 

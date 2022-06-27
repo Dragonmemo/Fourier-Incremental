@@ -309,10 +309,10 @@ var mainGameLoop = window.setInterval(function() { // runs the loop
 
 function loop() { // production
 	if (document.getElementById("Anim").checked){
-		var T0=Date.now()
+		//var T0=Date.now()
 		if (Onglet == 1) {myFunction1();}
 		if (Onglet == 5) {myFunction5();}
 		if (Onglet == 6) {myFunction6();}
-		console.log(Date.now()-T0)
+		//console.log(Date.now()-T0)
 	}
 }

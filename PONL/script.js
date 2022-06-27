@@ -2,7 +2,7 @@
 // run by the browser each time the page is loaded
 
 var LISTER;
-var Onglet=5;
+var Onglet=6;
 var SETTER = false;
 
 function myFunction1() {
@@ -75,12 +75,46 @@ function dichotomie(f,a,b){
 var L=[]
 var Movement=[]
 var n=100
+var ticker=0
 function Reset(){
-	var k;
-	n=document.getElementById("NumDot").value;
-	for (k=0;k<n;k++){
-		L[k]=[math.floor(math.random()*501),math.floor(math.random()*501)]
-		Movement[k]=[math.random()*4-2,math.random()*4-2]
+	if (Onglet==5){
+		var k;
+		n=document.getElementById("NumDot").value;
+		for (k=0;k<n;k++){
+			L[k]=[math.floor(math.random()*501),math.floor(math.random()*501)]
+			Movement[k]=[math.random()*4-2,math.random()*4-2]
+		}
+	}
+	if (Onglet==6){
+		var canvas = document.getElementById("myCanvas");
+		var ctx = canvas.getContext("2d");
+		//ctx.fillStyle = "#FFFFFF";
+		//ctx.fillRect(0,0,500,500);
+		ticker=0;
+		n=100*document.getElementById("NumDot").value;
+		var k=0;
+		L=[];
+		for (k=0;k<500*500;k++){
+			L[k]=[]
+		}
+		k=0
+		while (k<n){
+			var t=parseInt(math.random()*(n-k)/2+1);
+			k+=t;
+			//canvas is 500*500
+			L[parseInt(math.random()*500*500)].push([t,[parseInt(math.random()*255),parseInt(math.random()*255),parseInt(math.random()*255)]])
+		}
+		for (k=0;k<500*500;k++){
+			if (L[k].length){
+				var t=0
+				for (var element of L[k]){
+					element[0]=element[0]+t
+					t=element[0]
+				}
+				L[k].push([parseInt(t/L[k].length)+t,[255,255,255]])
+				L[k].reverse()
+			}
+		}
 	}
 }
 
@@ -176,6 +210,39 @@ function myFunction5() {
   }
 }
 
+function myFunction6(){
+	var k;
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+	var IMDATA=ctx.getImageData(0,0,500,500)
+	for (k=0;k<500*500;k++){
+		if (L[k].length){
+			for (var element of L[k]){
+				if (ticker%L[k][0][0]<element[0]){
+					IMDATA.data[4*k]=element[1][0]
+					IMDATA.data[4*k+1]=element[1][1]
+					IMDATA.data[4*k+2]=element[1][2]
+				}
+			}
+		}
+	}
+	
+	var IMNEW=ctx.createImageData(IMDATA);
+	
+	for (k=0;k<500*500;k++){
+		IMNEW.data[k*4+3]=255
+	}
+	
+	for (k=0;k<500*500;k++){
+		IMNEW.data[4*k]=parseInt((IMDATA.data[4*k]*4+IMDATA.data[4*((k+1)%(500*500))]*2+IMDATA.data[4*((k-1+500*500)%(500*500))]*2+IMDATA.data[4*((k+500)%(500*500))]*2+IMDATA.data[4*((k-500+500*500)%(500*500))]*2+IMDATA.data[4*((k-500+1+500*500)%(500*500))]*1+IMDATA.data[4*((k-500-1+500*500)%(500*500))]*1+IMDATA.data[4*((k+500+1+500*500)%(500*500))]*1+IMDATA.data[4*((k+500-1+500*500)%(500*500))]*1)/16)
+		IMNEW.data[4*k+1]=parseInt((IMDATA.data[4*k+1]*4+IMDATA.data[4*((k+1)%(500*500))+1]*2+IMDATA.data[4*((k-1+500*500)%(500*500))+1]*2+IMDATA.data[4*((k+500)%(500*500))+1]*2+IMDATA.data[4*((k-500+500*500)%(500*500))+1]*2+IMDATA.data[4*((k-500+1+500*500)%(500*500))+1]*1+IMDATA.data[4*((k-500-1+500*500)%(500*500))+1]*1+IMDATA.data[4*((k+500+1+500*500)%(500*500))+1]*1+IMDATA.data[4*((k+500-1+500*500)%(500*500))+1]*1)/16)
+		IMNEW.data[4*k+2]=parseInt((IMDATA.data[4*k+2]*4+IMDATA.data[4*((k+1)%(500*500))+2]*2+IMDATA.data[4*((k-1+500*500)%(500*500))+2]*2+IMDATA.data[4*((k+500)%(500*500))+2]*2+IMDATA.data[4*((k-500+500*500)%(500*500))+2]*2+IMDATA.data[4*((k-500+1+500*500)%(500*500))+2]*1+IMDATA.data[4*((k-500-1+500*500)%(500*500))+2]*1+IMDATA.data[4*((k+500+1+500*500)%(500*500))+2]*1+IMDATA.data[4*((k+500-1+500*500)%(500*500))+2]*1)/16)
+	}
+	
+	ctx.putImageData(IMNEW,0,0)
+	ticker++;
+}
+
   /*ctx.lineTo(500, 250);
   ctx.stroke();
   ctx.strokeStyle="#BBBBBB";
@@ -234,7 +301,7 @@ function FourierCalculation(MAX) {
 };*/
 
 Reset()
-myFunction5()
+//myFunction5()
 
 var mainGameLoop = window.setInterval(function() { // runs the loop
 	loop();
@@ -242,10 +309,10 @@ var mainGameLoop = window.setInterval(function() { // runs the loop
 
 function loop() { // production
 	if (document.getElementById("Anim").checked){
-		//var T0=Date.now()
+		var T0=Date.now()
 		if (Onglet == 1) {myFunction1();}
 		if (Onglet == 5) {myFunction5();}
 		if (Onglet == 6) {myFunction6();}
-		//console.log(Date.now()-T0)
+		console.log(Date.now()-T0)
 	}
 }

@@ -2,8 +2,12 @@
 // run by the browser each time the page is loaded
 
 var LISTER;
-var Onglet=6;
+var Onglet=7;
 var SETTER = false;
+
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
 
 function myFunction1() {
   var canvas = document.getElementById("myCanvas");
@@ -76,9 +80,23 @@ var L=[]
 var Movement=[]
 var n=100
 var ticker=0
+var IMDATA;
+
 function Reset(){
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
 	if (Onglet==5){
 		var k;
+		n=document.getElementById("NumDot").value;
+		for (k=0;k<n;k++){
+			L[k]=[math.floor(math.random()*501),math.floor(math.random()*501)]
+			Movement[k]=[math.random()*4-2,math.random()*4-2]
+		}
+	}
+	if (Onglet==7){
+		IMDATA=ctx.createImageData(500,500)
+		var k;
+		ticker=0
 		n=document.getElementById("NumDot").value;
 		for (k=0;k<n;k++){
 			L[k]=[math.floor(math.random()*501),math.floor(math.random()*501)]
@@ -243,6 +261,124 @@ function myFunction6(){
 	ticker++;
 }
 
+
+function myFunction7() {
+	
+	ctx.clearRect(0,0, 500, 500);
+	ctx.strokeStyle="#FFFFFF";
+	var k;
+	var lks= document.getElementById("LINKS").value;
+	for (k=0;k<n;k++){
+		L[k]=[(L[k][0]+Movement[k][0]+500)%500,(L[k][1]+Movement[k][1]+500)%500]
+	}
+	var LISTE =[];
+	for (k=0;k<n;k++){
+		var LL=[];
+		var i;
+		for (i=0;i<n;i++){
+			LL[i]=[math.sqrt((L[i][0]-L[k][0])**2+(L[i][1]-L[k][1])**2),[k,i].sort(function(a,b){return a-b})]
+		}
+		LL.sort(function(a,b){return a[0]-b[0]})
+		LL.shift()
+		LISTE[k]=LL
+	}
+  //console.log(LISTE)
+  //Ensemble de listes triés dans l'ordre croissant
+  var BOOLER=true;
+  var COMPTEUR=[];
+  for (k=0;k<n;k++){COMPTEUR[k]=0}
+  var Lignage=[];
+  while (BOOLER){
+	  BOOLER=false;
+	  L_Liens_Tour=[]
+	  for (k=0;k<n;k++){
+		  if (LISTE[k].length!=0 && LISTE[LISTE[k][0][1][0]].length!=0 && LISTE[LISTE[k][0][1][1]].length!=0 && LISTE[k][0][0]==LISTE[LISTE[k][0][1][0]][0][0] && LISTE[k][0][0]==LISTE[LISTE[k][0][1][1]][0][0]){
+			  L_Liens_Tour.push(LISTE[k][0][1])
+			  BOOLER=true
+			  
+		  }
+	  }
+	  //L_Liens a tout en double 
+	  L_Liens_Tour.sort(function(a,b){return a[0]-b[0]})
+	  for (k=0;k<L_Liens_Tour.length-1;k++){
+		  if (L_Liens_Tour[k][0]==L_Liens_Tour[k+1][0]){
+			  k--;
+			  L_Liens_Tour.splice(k,1);
+		  }
+	  }
+	  //console.log(LISTE)
+		//console.log(L_Liens_Tour)
+	  //Maintenant on remplit la liste pour le dessin et on ajoute au compteur en retirant les éléments :
+	  for (var element of L_Liens_Tour){
+		  Lignage.push(element);
+		  COMPTEUR[element[0]]++;
+		  COMPTEUR[element[1]]++;
+		  LISTE[element[0]].shift();
+		  LISTE[element[1]].shift();
+	  }
+	  //console.log(COMPTEUR)
+	  //Enfin, check si le compteur dépasse un seuil :
+	  for (k=0;k<n;k++){
+		  if (COMPTEUR[k]>=lks){
+			  while (LISTE[k].length!=0){
+				  //console.log(LISTE[k][0])
+				  var M1=LISTE[k][0][1][0]
+				  var M2=LISTE[k][0][1][1]
+				  var LGT=LISTE[k][0][0]
+				  var LOST1=[]
+				  for (i=0;i<LISTE[M1].length;i++){
+					  LOST1[i]=LISTE[M1][i][0]
+				  }
+				  //console.log(LOST1)
+				  //console.log(JSON.parse(JSON.stringify(LISTE[M1])))
+				  var LOST2=[]
+				  for (i=0;i<LISTE[M2].length;i++){
+					  LOST2[i]=LISTE[M2][i][0]
+				  }
+				  //console.log(LOST2)
+				  //console.log(JSON.parse(JSON.stringify(LISTE[M2])))
+				  LISTE[M1].splice(LOST1.indexOf(LGT),1)
+				  LISTE[M2].splice(LOST2.indexOf(LGT),1)
+			  }
+			  LISTE[k]=[]
+		  }
+	  }
+  }
+  
+  //if (ticker%100>33){
+		for (var element of L){
+			IMDATA.data[4*(parseInt(element[0])+500*parseInt(element[1]))]=255
+			IMDATA.data[4*(parseInt(element[0])+500*parseInt(element[1]))+1]=255
+			IMDATA.data[4*(parseInt(element[0])+500*parseInt(element[1]))+2]=255
+		}
+	//}
+	
+	var IMNEW=ctx.createImageData(IMDATA);
+	
+	for (k=0;k<500*500;k++){
+		IMNEW.data[k*4+3]=255
+	}
+	
+	for (k=0;k<500*500;k++){
+		IMNEW.data[4*k]=parseInt((IMDATA.data[4*k]*4+IMDATA.data[4*((k+1)%(500*500))]*2+IMDATA.data[4*((k-1+500*500)%(500*500))]*2+IMDATA.data[4*((k+500)%(500*500))]*2+IMDATA.data[4*((k-500+500*500)%(500*500))]*2+IMDATA.data[4*((k-500+1+500*500)%(500*500))]*1+IMDATA.data[4*((k-500-1+500*500)%(500*500))]*1+IMDATA.data[4*((k+500+1+500*500)%(500*500))]*1+IMDATA.data[4*((k+500-1+500*500)%(500*500))]*1)/16)
+		IMNEW.data[4*k+1]=parseInt((IMDATA.data[4*k+1]*4+IMDATA.data[4*((k+1)%(500*500))+1]*2+IMDATA.data[4*((k-1+500*500)%(500*500))+1]*2+IMDATA.data[4*((k+500)%(500*500))+1]*2+IMDATA.data[4*((k-500+500*500)%(500*500))+1]*2+IMDATA.data[4*((k-500+1+500*500)%(500*500))+1]*1+IMDATA.data[4*((k-500-1+500*500)%(500*500))+1]*1+IMDATA.data[4*((k+500+1+500*500)%(500*500))+1]*1+IMDATA.data[4*((k+500-1+500*500)%(500*500))+1]*1)/16)
+		IMNEW.data[4*k+2]=parseInt((IMDATA.data[4*k+2]*4+IMDATA.data[4*((k+1)%(500*500))+2]*2+IMDATA.data[4*((k-1+500*500)%(500*500))+2]*2+IMDATA.data[4*((k+500)%(500*500))+2]*2+IMDATA.data[4*((k-500+500*500)%(500*500))+2]*2+IMDATA.data[4*((k-500+1+500*500)%(500*500))+2]*1+IMDATA.data[4*((k-500-1+500*500)%(500*500))+2]*1+IMDATA.data[4*((k+500+1+500*500)%(500*500))+2]*1+IMDATA.data[4*((k+500-1+500*500)%(500*500))+2]*1)/16)
+	}
+	
+	ctx.putImageData(IMNEW,0,0)
+	IMDATA=IMNEW
+	ticker++;
+  
+  
+  //on dessine le fameux bordel :D
+  for (var element of Lignage){
+	  ctx.beginPath()
+	  ctx.moveTo(L[element[0]][0], L[element[0]][1]);
+	  ctx.lineTo(L[element[1]][0], L[element[1]][1]);
+	  ctx.stroke(); 
+  }
+}
+
   /*ctx.lineTo(500, 250);
   ctx.stroke();
   ctx.strokeStyle="#BBBBBB";
@@ -313,6 +449,7 @@ function loop() { // production
 		if (Onglet == 1) {myFunction1();}
 		if (Onglet == 5) {myFunction5();}
 		if (Onglet == 6) {myFunction6();}
+		if (Onglet == 7) {myFunction7();}
 		//console.log(Date.now()-T0)
 	}
 }

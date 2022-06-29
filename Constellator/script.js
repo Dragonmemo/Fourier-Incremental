@@ -197,10 +197,10 @@ function myFunction0() {
 }
 
 function AddStars(){
-	if (StarPoints.gte(parseInt(10**(1+StarUp[0])))){
-		StarPoints=StarPoints.minus(parseInt(10**(1+StarUp[0])))
+	if (StarPoints.gte(new Decimal("1e"+(1+StarUp[0])))){
+		StarPoints=StarPoints.minus(new Decimal("1e"+(1+StarUp[0])))
 		StarUp[0]++
-		document.getElementById("S1Cost").innerHTML=parseInt(10**(1+StarUp[0])).toPrecision(4)
+		document.getElementById("S1Cost").innerHTML=(new Decimal("1e"+(1+StarUp[0]))).toPrecision(4)
 		document.getElementById("STARRED").innerHTML=StarPoints.toPrecision(4)+" Star Points"
 		StarReset()
 	} 
@@ -211,29 +211,29 @@ function AddStars(){
 }
 
 function StarSpeed(){
-	if (StarPoints.gte(parseInt(10**(1+StarUp[1])))){
-		StarPoints=StarPoints.minus(parseInt(10**(1+StarUp[1])))
+	if (StarPoints.gte(new Decimal("1e"+(1+StarUp[1])))){
+		StarPoints=StarPoints.minus(new Decimal("1e"+(1+StarUp[1])))
 		StarUp[1]++
-		document.getElementById("S2Cost").innerHTML=parseInt(10**(1+StarUp[1])).toPrecision(4)
+		document.getElementById("S2Cost").innerHTML=(new Decimal("1e"+(1+StarUp[1]))).toPrecision(4)
 		document.getElementById("STARRED").innerHTML=StarPoints.toPrecision(4)+" Star Points"
 	}
 }
 
 function StarLinks(){
-	if (StarPoints.gte(parseInt(10**(2**StarUp[2])))){
-		StarPoints=StarPoints.minus(parseInt(10**(2**StarUp[2])))
+	if (StarPoints.gte(new Decimal("1e"+(2**StarUp[2])))){
+		StarPoints=StarPoints.minus(new Decimal("1e"+(2**StarUp[2])))
 		StarUp[2]++
-		document.getElementById("S3Cost").innerHTML=parseInt(10**(2**StarUp[2])).toPrecision(4)
+		document.getElementById("S3Cost").innerHTML=(new Decimal("1e"+(2**StarUp[2]))).toPrecision(4)
 		document.getElementById("STARRED").innerHTML=StarPoints.toPrecision(4)+" Star Points"
 	}
 }
 
 function StarStruck(){
-	if (StarPoints.gte(parseInt(10**(StarUp[3]+1)))){
-		StarPoints=StarPoints.minus(parseInt(10**(1+StarUp[3])))
+	if (StarPoints.gte(new Decimal("1e"+(1+StarUp[3])))){
+		StarPoints=StarPoints.minus(new Decimal("1e"+(1+StarUp[3])))
 		StarUp[3]++
 		tickspeed2=tickspeed2*0.9
-		document.getElementById("S4Cost").innerHTML=parseInt(10**(1+StarUp[3])).toPrecision(4)
+		document.getElementById("S4Cost").innerHTML=(new Decimal("1e"+(1+StarUp[3]))).toPrecision(4)
 		document.getElementById("STARRED").innerHTML=StarPoints.toPrecision(4)+" Star Points"
 	} 
 	if (tickspeed2<100){
@@ -651,7 +651,7 @@ var mainGameLoop = window.setInterval(function() { // runs the loop
 	}, 33);
 
 function loop() { // production
-	var T0=Date.now()
+	//var T0=Date.now()
 	ticks+=33;
 	ticks2+=33;
 	saveticks+=33;
@@ -669,7 +669,7 @@ function loop() { // production
 		if (document.getElementById("Autosave").checked == true){save();}
 		saveticks-=10000
 	}
-	console.log(Date.now()-T0)
+	//console.log(Date.now()-T0)
 }
 
 function save() { 

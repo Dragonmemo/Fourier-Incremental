@@ -251,7 +251,7 @@ function myFunction1() {
 
 function DrawIt(g){
 	document.getElementById("NL").disabled = true;
-	for (var f=0;f<g;f++){
+	for (var f=0;f<min(g,400);f++){
 		if (bourgeon.length!=0){
 			Actif=bourgeon.pop()
 			if (imageData.data[4*(Actif[1][0]*256+Actif[1][1])+3]!=255){
@@ -267,10 +267,10 @@ function DrawIt(g){
 						bourgeon.push([Actif[1],nouveau_bourgeons[i]])
 					}
 				}
-				LeafPower=LeafPower+2
+				LeafPower=LeafPower+2*max(1,g/400)
 			}
 			else{
-				LeafPower=LeafPower+1
+				LeafPower=LeafPower+1*max(1,g/400)
 			}
 			//imageData=blur(imageData,2,1)
 			ctx.putImageData(imageData,0,0)
@@ -293,7 +293,7 @@ function drawBolts(){
 	var imageDataB = ctxB.createImageData(512, 512);
     var Point=[255,255]
     var col=[parseInt(256*Math.random()),parseInt(256*Math.random()),parseInt(256*Math.random())]
-    for (var m=0;m<bolts;m++){
+    for (var m=0;m<math.min(bolts,100);m++){
         for (var n=0;n<255;n++){
             imageDataB.data[4*(512*Point[0]+Point[1])]++
             var L=[[Point[0]-1,Point[1]],[Point[0]+1,Point[1]],[Point[0],Point[1]-1],[Point[0],Point[1]+1],[Point[0]+1,Point[1]+1],[Point[0]-1,Point[1]+1],[Point[0]+1,Point[1]-1],[Point[0]-1,Point[1]-1]]
@@ -334,6 +334,10 @@ function twigUp(){
 		document.getElementById("TCost").innerHTML=parseInt(2**(LeavesUp[1]+1))
 		document.getElementById("BUDDING").innerHTML=", "+leaves+" leaf(ves)"
 	} 
+	if (tickspeed<100){
+		document.getElementById("TCost").innerHTML="MAXED"
+		document.getElementById("SpeedU2").disabled=true
+	}
 }
 
 function LeafUp2(){
@@ -445,6 +449,7 @@ function GetBolts(){
 		document.getElementById("S3Cost").innerHTML=parseInt(10**(2**StarUp[2]))
 		document.getElementById("S4Cost").innerHTML=parseInt(10**(1+StarUp[3]))
 		document.getElementById("TSS").disabled=false
+		document.getElementById("SpeedU2").disabled=false
 		ctxS.clearRect(0,0, 512, 512);
 		document.getElementById("BUDDING").innerHTML=", "+leaves+" leaf(ves)"
 		StarReset()
@@ -646,7 +651,7 @@ var mainGameLoop = window.setInterval(function() { // runs the loop
 	}, 33);
 
 function loop() { // production
-	//var T0=Date.now()
+	var T0=Date.now()
 	ticks+=33;
 	ticks2+=33;
 	saveticks+=33;
@@ -664,7 +669,7 @@ function loop() { // production
 		if (document.getElementById("Autosave").checked == true){save();}
 		saveticks-=10000
 	}
-	//console.log(Date.now()-T0)
+	console.log(Date.now()-T0)
 }
 
 function save() { 

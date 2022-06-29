@@ -37,7 +37,7 @@
     </header>
 	<div class="tab">
     <button class="tablinks" onclick="openCity(event, 'Stars')" id="StarsTab">Constellation</button>
-    <button class="tablinks" onclick="openCity(event, 'Bud')" id="BudTab" hidden>Buds</button>
+    <button class="tablinks" onclick="openCity(event, 'Bud')" id="BudTab" hidden>Leaves</button>
     <button class="tablinks" onclick="openCity(event, 'Bolt')"  id="BoltTab" hidden>Bolts</button>
     <button class="tablinks" onclick="openCity(event, 'Lava')" id="LavaTab" hidden>Lava</button>
     <button class="tablinks" onclick="openCity(event, 'Settings')">Settings</button>
@@ -66,7 +66,7 @@
 	<td style="display:table-cell;" >
 	<span style="color:#FFFFFF">Your growing leaves have generated <span id="LM">0</span> leaf power, which multiplies your Star Power gain by <span id="LM2">1</span></span><br>
     <button type="button" onclick="LeafUp1()" id="BU">Make the length of stars<br>power themselves for<br><span id="LU1">1</span> leaf</button>
-	<button type="button" onclick="twigUp()">Speed up leaf pattern progress for<br>
+	<button type="button" onclick="twigUp()" id="SpeedU2">Speed up leaf pattern progress for<br>
 	<span id="TCost">2</span> leaves</button>
 	<button type="button" onclick="LeafUp2()" id="LU">Your amount of stars<br>multiply your leaves<br>10 leaves</button>
 	<button type="button" onclick="newReset()" disabled id="NL" class="tooltip">Make a new pattern<span class="tooltiptext">Multiplies Leaf Power's Power by 1.5</span></button>
@@ -95,7 +95,7 @@
 	<div id="Lava" class="tabcontent" hidden>
 	<table><tr>
 	<td style="display:table-cell;">
-    <button type="button" onclick="newReset()">Reset the pattern</button><br>
+    <button type="button" onclick="newReset()" disabled class="tooltip"><span class="tooltiptext">Actually, it's the constellation one that works for it !</span>Reset the pattern</button><br>
 	<canvas id="myCanvas2" width="512" height="512"></canvas>
     </td>
 	</tr></table>
@@ -116,6 +116,10 @@
 		<p>The server is pretty empty and the main purpose of it was not to be about that incremental game, but a RPG that i'm programming. Still, it has a Fourier bot you can mess with!</p>
 		<br>
 		<br>Changelog<br>
+		<br>0.3.4 Limiting : Limits<br>
+		I heard the game became laggy at some points, it should now be all fixed !<br>
+		There's a vote for background musics, you should go take a look and vote too !<br>
+		Unless more fixing duty, this is the last update before 0.4 !<br>
 		<br>0.3.3 Precising : Precision<br>
 		It became quite unreadable, right ?<br>
 		Now that's fixed !<br>

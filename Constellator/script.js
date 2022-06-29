@@ -856,17 +856,17 @@ if(localStorage.LeafMult) {
 	bolts=parseInt(localStorage.Bolts);
 	StarUp=localStorage.StarUp.split(",").map(Number);
 	if (StarUp[0]<=125){
-		document.getElementById("S1Cost").innerHTML=parseInt(10**(1+StarUp[0]))
+		document.getElementById("S1Cost").innerHTML=(new Decimal("1e"+(1+StarUp[0]))).toPrecision(4)
 		document.getElementById("AS").disabled=false
 	} 
 	if (StarUp[0]>125){
 		document.getElementById("S1Cost").innerHTML="MAXED"
 		document.getElementById("AS").disabled=true
 	}
-	document.getElementById("S2Cost").innerHTML=parseInt(10**(1+StarUp[1]))
-	document.getElementById("S3Cost").innerHTML=parseInt(10**(2**StarUp[2]))
+	document.getElementById("S2Cost").innerHTML=(new Decimal("1e"+(1+StarUp[1]))).toPrecision(4)
+	document.getElementById("S3Cost").innerHTML=(new Decimal("1e"+(2**StarUp[2]))).toPrecision(4)
 	if (tickspeed2>=100){
-		document.getElementById("S4Cost").innerHTML=parseInt(10**(1+StarUp[3]))
+		document.getElementById("S4Cost").innerHTML=(new Decimal("1e"+(1+StarUp[3]))).toPrecision(4)
 		document.getElementById("TSS").disabled=false
 	} 
 	if (tickspeed2<100){
@@ -875,12 +875,19 @@ if(localStorage.LeafMult) {
 	}
 	LeavesUp=localStorage.LeavesUp.split(",").map(Number);
 	document.getElementById("LU1").innerHTML=parseInt(10**LeavesUp[0])
-	document.getElementById("TCost").innerHTML=parseInt(2**(LeavesUp[1]+1))
 	if (LeavesUp[2]==1){
 		document.getElementById("LU").disabled=true
 	}
 	else {
 		document.getElementById("LU").disabled=false
+	}
+	if (tickspeed>=100){
+		document.getElementById("TCost").innerHTML=parseInt(2**(LeavesUp[1]+1)).toPrecision(4)
+		document.getElementById("SpeedU2").disabled=false
+	} 
+	if (tickspeed<100){
+		document.getElementById("TCost").innerHTML="MAXED"
+		document.getElementById("SpeedU2").disabled=true
 	}
 	BoltsUp=localStorage.BoltsUp.split(",").map(Number);
 	if (BoltsUp[0]==1){

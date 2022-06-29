@@ -251,7 +251,7 @@ function myFunction1() {
 
 function DrawIt(g){
 	document.getElementById("NL").disabled = true;
-	for (var f=0;f<min(g,400);f++){
+	for (var f=0;f<math.min(g,400);f++){
 		if (bourgeon.length!=0){
 			Actif=bourgeon.pop()
 			if (imageData.data[4*(Actif[1][0]*256+Actif[1][1])+3]!=255){
@@ -267,10 +267,10 @@ function DrawIt(g){
 						bourgeon.push([Actif[1],nouveau_bourgeons[i]])
 					}
 				}
-				LeafPower=LeafPower+2*max(1,g/400)
+				LeafPower=LeafPower+2*math.max(1,g/400)
 			}
 			else{
-				LeafPower=LeafPower+1*max(1,g/400)
+				LeafPower=LeafPower+1*math.max(1,g/400)
 			}
 			//imageData=blur(imageData,2,1)
 			ctx.putImageData(imageData,0,0)

@@ -121,12 +121,14 @@ ctx.fillRect(P01[0],P01[1],216,340);
 	ctx.closePath()
 	ctx.clearRect(P02[0],P02[1],216,340)
 	ctx.strokeStyle="#000"
+ctx.fillStyle=CoulJoueur[C2[C2.length-1][1]-1];
 	ctx.beginPath();
 	ctx.moveTo(P02[0],P02[1])
 	ctx.lineTo(P02[0]+216,P02[1])
 	ctx.lineTo(P02[0]+216,P02[1]+340)
 	ctx.lineTo(P02[0],P02[1]+340)
-	ctx.lineTo(P02[0],P02[1])
+	ctx.lineTo(P02[0],P02[1]);
+ctx.fillRect(P02[0],P02[1],216,340);
 	ctx.stroke();
 	ctx.closePath()
 	

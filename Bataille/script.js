@@ -106,10 +106,12 @@ function DrawNext(){
 	var P01=[Math.random()*34,Math.random()*160]
 	var P02=[Math.random()*34+250,Math.random()*160]
 	ctx.clearRect(P01[0],P01[1],216,340)
-	ctx.strokeStyle="#000";
-ctx.fillStyle=CoulJoueur[L1[L1.length-1][1]-1]
-	ctx.beginPath();
-	ctx.moveTo(P01[0],P01[1])
+	C1.push(L1.shift());
+	C2.push(L2.shift());
+ctx.strokeStyle="#000";
+ctx.fillStyle=CoulJoueur[C1[C1.length-1][1]-1];
+ctx.beginPath();
+	ctx.moveTo(P01[0],P01[1]);
 	ctx.lineTo(P01[0]+216,P01[1])
 	ctx.lineTo(P01[0]+216,P01[1]+340)
 	ctx.lineTo(P01[0],P01[1]+340)
@@ -127,8 +129,6 @@ ctx.fillRect(P01[0],P01[1],216,340);
 	ctx.lineTo(P02[0],P02[1])
 	ctx.stroke();
 	ctx.closePath()
-	C1.push(L1.shift())
-	C2.push(L2.shift())
 	
 	P01=[Math.random()*34,Math.random()*160]
 	P02=[Math.random()*34+250,Math.random()*160]

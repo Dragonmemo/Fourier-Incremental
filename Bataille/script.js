@@ -114,7 +114,7 @@ ctx.fillStyle=CoulJoueur[L1[L1.length-1][1]-1]
 	ctx.lineTo(P01[0]+216,P01[1]+340)
 	ctx.lineTo(P01[0],P01[1]+340)
 	ctx.lineTo(P01[0],P01[1]);
-ctx.fill(P01[0],P01[1],216,340);
+ctx.fillRect(P01[0],P01[1],216,340);
 	ctx.stroke();
 	ctx.closePath()
 	ctx.clearRect(P02[0],P02[1],216,340)

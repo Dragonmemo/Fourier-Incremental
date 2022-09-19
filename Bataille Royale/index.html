@@ -34,11 +34,15 @@
     </header>
     <table><tr>
 	<td style="display:table-cell;">
-	Joueur 1 : <input id="Deck1" type="string"> Couleur : <input id="Coul1" type="string"> Cartes restantes : <span id="J1C"></span><br>
-	Joueur 2 : <input id="Deck2" type="string"> Couleur : <input id="Coul2" type="string"> Cartes restantes : <span id="J2C"></span><br>
+	Nombre de Joueurs : <input id="Players" type="string"><br>
+	Couleurs (séparer par des virgules, donner le code hexadécimal) : <input id="Couls" type="string"><br>
+	Nom des cartes (de la plus faible à la plus forte) : <input id="Deck" type="string" value="2,3,4,5,6,7,8,9,10,Valet,Dame,Roi,As">
 	<button type="button" onclick="StartNew()">Commencer une nouvelle partie</button><br>
-    <canvas id="myCanvas" width="500" height="500"></canvas><br>
-	<button type="button" onclick="DrawTurn()">Prochain tour</button><br>
+    <canvas id="myCanvas" width="1000" height="1000"></canvas><br>
+	<button type="button" onclick="AddTurn()">Ajoute une action</button><br>
+	<button type="button" onclick="AddFiveTurn()">Ajoute 5 actions</button><br>
+	<button type="button" onclick="AddTenTurn()">Ajoute 10 actions</button><br>
+	Cartes restantes : <span id="JC"></span><br>
     </td>
 	</tr></table>
   </body>

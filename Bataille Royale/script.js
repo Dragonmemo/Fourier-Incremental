@@ -3,55 +3,40 @@
 
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
-var x=[500,500]
-var L1,L2
+var x=[1000,1000]
+var L1
 var C1,C2
 C1=[]
 C2=[]
 L1=[]
-L2=[]
 ctx.font = "70px Arial";
 ctx.textAlign = "center"
+activeTurns=0
 
-var CoulJoueur =["#000","#000"]
-function ChoixCouleur(){
-	if (document.getElementById("Coul1").value != "") {
-		CoulJoueur[0]=document.getElementById("Coul1").value
-	}
-	if (document.getElementById("Coul2").value != "") {
-		CoulJoueur[1]=document.getElementById("Coul2").value
+var CoulJoueur =["#000"]
+function ChoixCouleur(){ //celui là devrait fonctionner
+	if (document.getElementById("Couls").value != "") {
+		CoulJoueurs=(document.getElementById("Couls").value).split(",")
 	}
 }
 
-function EcrireBonneCarte(Nombre,X,Y,Couleur){
+function EcrireBonneCarte(Nombre,X,Y,Couleur){ //Celui là devrait fonctionner
 	ctx.fillStyle=Couleur
-	if (Nombre<10){
+	if (Nombre<L1.length){
+		ctx.fillText(L1[Nombre],X,Y)
+	}
+	else {
 		ctx.fillText(Nombre+1,X,Y)
-	}
-	if (Nombre==10){
-		ctx.fillText("Valet",X,Y)
-	}
-	if (Nombre==11){
-		ctx.fillText("Dame",X,Y)
-	}
-	if (Nombre==12){
-		ctx.fillText("Roi",X,Y)
-	}
-	if (Nombre==13){
-		ctx.fillText("As",X,Y)
 	}
 }
 
 function StartNew(){
 	ChoixCouleur()
-	L1 = document.getElementById("Deck1").value.split(",")
-	L2 = document.getElementById("Deck2").value.split(",")
-	for(var k=0; k<L1.length;k++){
-		L1[k]=[parseInt(L1[k]),1]
-		L2[k]=[parseInt(L2[k]),2]
-	}
+	L1 = document.getElementById("Deck").value.split(",")
+	DICTCARDS={}
+	//faire de quoi randomiser les mains des gens
 	ctx.strokeStyle="#000"
-	ctx.clearRect(0,0,500,500)
+	ctx.clearRect(0,0,1000,1000)
 	ctx.beginPath();
 	ctx.moveTo(250,0)
 	ctx.lineTo(250,500)
@@ -182,28 +167,33 @@ ctx.fillRect(P02[0],P02[1],216,340);
 	}
 }
 
+function AddTurn(){activeTurns++}
+function AddFiveTurn(){activeTurns+=5}
+function AddTenTurn(){activeTurns+=10}
+
 var mainGameLoop = window.setInterval(function() { // runs the loop
 	loop();
 	}, 1000);
 
 function loop() { // production
-	if (L1.length != 0 && L2.length !=0){
-		if(C1.length == 0) {DrawTurn();}
-		else{DrawNext()}
-	}
-	document.getElementById("J1C").innerHTML=L1.length
-	document.getElementById("J2C").innerHTML=L2.length
-	if (L1.length == 0) {
-		ctx.strokeStyle=CoulJoueur[1]
-		ctx.font = "30px Arial";
-		ctx.fillText("Joueur 2 Gagne !",250,250)
-		ctx.font = "70px Arial";
-	}
-	else{if (L2.length == 0) {
-		ctx.strokeStyle=CoulJoueur[0]
-		ctx.font = "30px Arial";
-		ctx.fillText("Joueur 1 Gagne !",250,250)
-		ctx.font = "70px Arial";
-	}}
+	if (activeTurns>0) {
+		if (L1.length != 0){ //changer ça aussi : conditions de continuation de partie
+			if(C1.length == 0) {DrawTurn();}
+			else{DrawNext()}
+		}
+		document.getElementById("JC").innerHTML=L1.length // Changer le script pour inclure les joueurs différents, leurs couleur et leur quantité de cartes, peut-être passer la souris dessus pour avoir les différentes cartes avec leur couleur
+		if (L1.length == 0) { //changer ça et la prochaine : Condition de victoire
+			ctx.strokeStyle=CoulJoueur[1]
+			ctx.font = "30px Arial";
+			ctx.fillText("Joueur 2 Gagne !",250,250)
+			ctx.font = "70px Arial";
+		}
+		else{if (L2.length == 0) {
+			ctx.strokeStyle=CoulJoueur[0]
+			ctx.font = "30px Arial";
+			ctx.fillText("Joueur 1 Gagne !",250,250)
+			ctx.font = "70px Arial";
+		}}
+		activeTurns--}
 }
 

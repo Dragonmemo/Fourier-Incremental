@@ -1,0 +1,45 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An upcoming game about growing leaves">
+
+    <title>Simulateur de batailles</title>
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/Bataille/style.css">
+
+    <!-- import the webpage's client-side javascript file -->
+    <script src="script.js" defer></script>
+    <style>
+    * {
+      box-sizing: border-box;
+    }
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    </style>
+     
+  </head>
+  <body style="background-color:#eee;">
+    <header>
+    Bataille !
+    </header>
+    <table><tr>
+	<td style="display:table-cell;">
+	Joueur 1 : <input id="Deck1" type="string"> Couleur : <input id="Coul1" type="string"> Cartes restantes : <span id="J1C"></span><br>
+	Joueur 2 : <input id="Deck2" type="string"> Couleur : <input id="Coul2" type="string"> Cartes restantes : <span id="J2C"></span><br>
+	<button type="button" onclick="StartNew()">Commencer une nouvelle partie</button><br>
+    <canvas id="myCanvas" width="500" height="500"></canvas><br>
+	<button type="button" onclick="DrawTurn()">Prochain tour</button><br>
+    </td>
+	</tr></table>
+  </body>
+</html>

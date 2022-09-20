@@ -30,10 +30,25 @@ function EcrireBonneCarte(Nombre,X,Y,Couleur){ //Celui là devrait fonctionner
 	}
 }
 
+var Mains=[] ;
+
+function mainRandom(n) {
+var preMain=[] 
+for (var o=0;o<n;o++){premain[o]=o} 
+var goMain=[] 
+for (var o=0;o<n;o++){
+goMain[o] = Premarin.splice(parseInt(Math.random()*preMain.length),1)
+}
+return goMain;
+} 
+
 function StartNew(){
 	ChoixCouleur()
 	L1 = document.getElementById("Deck").value.split(",")
-	DICTCARDS={}
+	DICTCARDS={};
+for (var k=0; k<parseInt(document.getElementById("Player")); k++){
+Mains[k] = mainRandom(13) ;
+} ;
 	//faire de quoi randomiser les mains des gens
 	ctx.strokeStyle="#000"
 	ctx.clearRect(0,0,1000,1000)

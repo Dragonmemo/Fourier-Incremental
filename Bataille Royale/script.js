@@ -16,7 +16,7 @@ activeTurns=0
 var CoulJoueur =["#000"]
 function ChoixCouleur(){ //celui là devrait fonctionner
 	if (document.getElementById("Couls").value != "") {
-		CoulJoueurs=(document.getElementById("Couls").value).split(",")
+		CoulJoueur=(document.getElementById("Couls").value).split(",")
 	}
 }
 
@@ -34,10 +34,10 @@ var Mains=[] ;
 
 function mainRandom(n) {
 var preMain=[] 
-for (var o=0;o<n;o++){premain[o]=o} 
+for (var o=0;o<n;o++){preMain[o]=o} 
 var goMain=[] 
 for (var o=0;o<n;o++){
-goMain[o] = Premarin.splice(parseInt(Math.random()*preMain.length),1)
+goMain[o] = preMain.splice(parseInt(Math.random()*preMain.length),1)[0]
 }
 return goMain;
 } 
@@ -46,10 +46,14 @@ function StartNew(){
 	ChoixCouleur()
 	L1 = document.getElementById("Deck").value.split(",")
 	DICTCARDS={};
-for (var k=0; k<parseInt(document.getElementById("Player")); k++){
-Mains[k] = mainRandom(13) ;
-} ;
-	//faire de quoi randomiser les mains des gens
+	Mains=[]
+	for (var k=0; k<parseInt(document.getElementById("Players").value); k++){
+		Mains[k] = mainRandom(13) ;
+		for (var o=0; o<Mains[k].length; o++){
+			Mains[k][o]=[Mains[k][o],k]
+		}
+	} ;
+	//faire de quoi randomiser les mains des gens (normalement c'est bon)
 	ctx.strokeStyle="#000"
 	ctx.clearRect(0,0,1000,1000)
 	ctx.beginPath();
@@ -59,7 +63,7 @@ Mains[k] = mainRandom(13) ;
 	ctx.closePath()
 }
 
-function DrawTurn(){
+function DrawTurn(){ //à refaire entièrement
 	var P01=[Math.random()*34,Math.random()*160]
 	var P02=[Math.random()*34+250,Math.random()*160]
 	ctx.clearRect(P01[0],P01[1],216,340)
@@ -102,7 +106,7 @@ function DrawTurn(){
 	}
 }
 
-function DrawNext(){
+function DrawNext(){ // à refaire entièrement
 	var P01=[Math.random()*34,Math.random()*160]
 	var P02=[Math.random()*34+250,Math.random()*160]
 	ctx.clearRect(P01[0],P01[1],216,340)
@@ -186,6 +190,21 @@ function AddTurn(){activeTurns++}
 function AddFiveTurn(){activeTurns+=5}
 function AddTenTurn(){activeTurns+=10}
 
+function situationActuelle(){
+	var TEXTUAL="<br>"
+	for (var k=0; k<parseInt(document.getElementById("Players").value); k++){
+		TEXTUAL=TEXTUAL+'<span class="tooltip" style="color:'+CoulJoueur[k]+'">Joueur '+String(k)+' : '+String(Mains[k].length)+'<span class="tooltiptext">'
+		for (var o=0; o<Mains[k].length;o++){
+			TEXTUAL=TEXTUAL+'<span style="color:'+CoulJoueur[Mains[k][o][1]]+'">'+String(Mains[k][o][0])+'</span>,'
+		}		
+		TEXTUAL=TEXTUAL+'</span></span><br>'
+	}
+	//Changer le script pour inclure les joueurs différents (Fait)
+	//leurs couleur et leur quantité de cartes (Fait)
+	//peut-être passer la souris dessus pour avoir les différentes cartes avec leur couleur (Fait, mais peut être amélioré pour afficher le vrai nom de la carte)
+	document.getElementById("JC").innerHTML=TEXTUAL
+}
+
 var mainGameLoop = window.setInterval(function() { // runs the loop
 	loop();
 	}, 1000);
@@ -196,19 +215,20 @@ function loop() { // production
 			if(C1.length == 0) {DrawTurn();}
 			else{DrawNext()}
 		}
-		document.getElementById("JC").innerHTML=L1.length // Changer le script pour inclure les joueurs différents, leurs couleur et leur quantité de cartes, peut-être passer la souris dessus pour avoir les différentes cartes avec leur couleur
 		if (L1.length == 0) { //changer ça et la prochaine : Condition de victoire
-			ctx.strokeStyle=CoulJoueur[1]
+			ctx.fillStyle=CoulJoueur[1]
 			ctx.font = "30px Arial";
 			ctx.fillText("Joueur 2 Gagne !",250,250)
 			ctx.font = "70px Arial";
 		}
 		else{if (L2.length == 0) {
-			ctx.strokeStyle=CoulJoueur[0]
+			ctx.fillStyle=CoulJoueur[0]
 			ctx.font = "30px Arial";
 			ctx.fillText("Joueur 1 Gagne !",250,250)
 			ctx.font = "70px Arial";
 		}}
-		activeTurns--}
+		activeTurns--
+	}
+	situationActuelle()
 }
 

@@ -6,8 +6,7 @@ var ctx = canvas.getContext("2d");
 var x=[1000,1000]
 var L1
 var C1,C2
-C1=[]
-C2=[]
+CardsGameOn=[]
 L1=[]
 ctx.font = "70px Arial";
 ctx.textAlign = "center"
@@ -64,7 +63,7 @@ function StartNew(){
 }
 
 function DrawTurn(){ //à refaire entièrement
-	var P01=[Math.random()*34,Math.random()*160]
+	var P01=[Math.random()*34,Math.random()*160] //affichage à faire plus tard
 	var P02=[Math.random()*34+250,Math.random()*160]
 	ctx.clearRect(P01[0],P01[1],216,340)
 	ctx.strokeStyle="#000"
@@ -86,12 +85,15 @@ function DrawTurn(){ //à refaire entièrement
 	ctx.lineTo(P02[0],P02[1])
 	ctx.stroke();
 	ctx.closePath()
-	C1=[L1.shift()]
-	C2=[L2.shift()]
 	
-	EcrireBonneCarte(C1[C1.length-1][0],P01[0]+108,P01[1]+170,CoulJoueur[C1[C1.length-1][1]-1])
-	EcrireBonneCarte(C2[C2.length-1][0],P02[0]+108,P02[1]+170,CoulJoueur[C2[C2.length-1][1]-1])
+	for (k=0;k<document.getElementById("Players").value;k++){
+		CardsGameOn[k]=[Mains[k].shift()]
+		
+		EcrireBonneCarte(C1[C1.length-1][0],P01[0]+108,P01[1]+170,CoulJoueur[C1[C1.length-1][1]-1])
+		EcrireBonneCarte(C2[C2.length-1][0],P02[0]+108,P02[1]+170,CoulJoueur[C2[C2.length-1][1]-1])
+	}
 	
+	//le calcul pour savoir qui gagne les cartes en jeu
 	if (C1[C1.length-1][0]>C2[C2.length-1][0]){
 		L1.push(C1[C1.length-1])
 		L1.push(C2[C2.length-1])
@@ -211,8 +213,8 @@ var mainGameLoop = window.setInterval(function() { // runs the loop
 
 function loop() { // production
 	if (activeTurns>0) {
-		if (L1.length != 0){ //changer ça aussi : conditions de continuation de partie
-			if(C1.length == 0) {DrawTurn();}
+		if (Mains.reduce((acc,element) => acc + (element.length>0), 0)){
+			if(CardsGameOn.length == 0) {DrawTurn();} //réparer cette condition
 			else{DrawNext()}
 		}
 		if (L1.length == 0) { //changer ça et la prochaine : Condition de victoire

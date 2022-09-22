@@ -7,10 +7,13 @@ var x=[1000,1000]
 var L1
 var C1,C2
 CardsGameOn=[]
+CardsToGive=[]
 L1=[]
-ctx.font = "70px Arial";
+ctx.font = "35px Arial";
 ctx.textAlign = "center"
 activeTurns=0
+var CardIndex=[0]
+var CardType=-1;
 
 var CoulJoueur =["#000"]
 function ChoixCouleur(){ //celui là devrait fonctionner
@@ -19,13 +22,31 @@ function ChoixCouleur(){ //celui là devrait fonctionner
 	}
 }
 
-function EcrireBonneCarte(Nombre,X,Y,Couleur){ //Celui là devrait fonctionner
+function EcrireBonneCarte(Nombre,angle,Couleur, HIDDEN){ //FAIT
 	ctx.fillStyle=Couleur
-	if (Nombre<L1.length){
-		ctx.fillText(L1[Nombre],X,Y)
+	
+	var PosCarte=[475+300*Math.cos(angle)+Math.random()*50,475+300*Math.sin(angle)+Math.random()*50]
+	ctx.clearRect(PosCarte[0]-54,PosCarte[1]-85,108,170)
+	ctx.strokeStyle="#000"
+	ctx.beginPath();
+	ctx.moveTo(PosCarte[0]-54,PosCarte[1]-85)
+	ctx.lineTo(PosCarte[0]+54,PosCarte[1]-85)
+	ctx.lineTo(PosCarte[0]+54,PosCarte[1]+85)
+	ctx.lineTo(PosCarte[0]-54,PosCarte[1]+85)
+	ctx.lineTo(PosCarte[0]-54,PosCarte[1]-85)
+	ctx.stroke();
+	ctx.closePath()
+	
+	if (HIDDEN){
+		ctx.fillRect(PosCarte[0]-54,PosCarte[1]-85,108,170);
 	}
 	else {
-		ctx.fillText(Nombre+1,X,Y)
+		if (Nombre<L1.length){
+			ctx.fillText(L1[Nombre],PosCarte[0],PosCarte[1])
+		}
+		else {
+			ctx.fillText(Nombre+1,PosCarte[0],PosCarte[1])
+		}
 	}
 }
 
@@ -44,147 +65,194 @@ return goMain;
 function StartNew(){
 	ChoixCouleur()
 	L1 = document.getElementById("Deck").value.split(",")
-	DICTCARDS={};
 	Mains=[]
+	activeTurns=0
+	CardIndex=[0]
+	CardType=-1;
+	CardsGameOn=[]
+	CardsToGive=[]
 	for (var k=0; k<parseInt(document.getElementById("Players").value); k++){
 		Mains[k] = mainRandom(13) ;
 		for (var o=0; o<Mains[k].length; o++){
 			Mains[k][o]=[Mains[k][o],k]
 		}
 	} ;
-	//faire de quoi randomiser les mains des gens (normalement c'est bon)
-	ctx.strokeStyle="#000"
+	//faire de quoi randomiser les mains des gens (FAIT)
 	ctx.clearRect(0,0,1000,1000)
-	ctx.beginPath();
-	ctx.moveTo(250,0)
-	ctx.lineTo(250,500)
-	ctx.stroke();
-	ctx.closePath()
 }
 
-function DrawTurn(){ //à refaire entièrement
-	var P01=[Math.random()*34,Math.random()*160] //affichage à faire plus tard
-	var P02=[Math.random()*34+250,Math.random()*160]
-	ctx.clearRect(P01[0],P01[1],216,340)
-	ctx.strokeStyle="#000"
-	ctx.beginPath();
-	ctx.moveTo(P01[0],P01[1])
-	ctx.lineTo(P01[0]+216,P01[1])
-	ctx.lineTo(P01[0]+216,P01[1]+340)
-	ctx.lineTo(P01[0],P01[1]+340)
-	ctx.lineTo(P01[0],P01[1])
-	ctx.stroke();
-	ctx.closePath()
-	ctx.clearRect(P02[0],P02[1],216,340)
-	ctx.strokeStyle="#000"
-	ctx.beginPath();
-	ctx.moveTo(P02[0],P02[1])
-	ctx.lineTo(P02[0]+216,P02[1])
-	ctx.lineTo(P02[0]+216,P02[1]+340)
-	ctx.lineTo(P02[0],P02[1]+340)
-	ctx.lineTo(P02[0],P02[1])
-	ctx.stroke();
-	ctx.closePath()
-	
-	for (k=0;k<document.getElementById("Players").value;k++){
-		CardsGameOn[k]=[Mains[k].shift()]
-		
-		EcrireBonneCarte(C1[C1.length-1][0],P01[0]+108,P01[1]+170,CoulJoueur[C1[C1.length-1][1]-1])
-		EcrireBonneCarte(C2[C2.length-1][0],P02[0]+108,P02[1]+170,CoulJoueur[C2[C2.length-1][1]-1])
+function DrawTurn(){ //FAIT
+	for (var k=0;k<document.getElementById("Players").value;k++){
+		if (Mains[k].length>0){
+			CardsGameOn[k]=[Mains[k].shift()]
+			EcrireBonneCarte(CardsGameOn[k][0][0],2*Math.PI*(k/document.getElementById("Players").value),CoulJoueur[CardsGameOn[k][0][1]],false)
+		}
 	}
 	
-	//le calcul pour savoir qui gagne les cartes en jeu
-	if (C1[C1.length-1][0]>C2[C2.length-1][0]){
-		L1.push(C1[C1.length-1])
-		L1.push(C2[C2.length-1])
-		C1=[]
-		C2=[]
+	//Version sans variante, les cartes en bataille la plus forte sont les seules à rester
+	CardIndex=[-1]
+	var comptine=0
+	while (CardIndex[0]==-1){
+		if (CardsGameOn[comptine]){
+			CardIndex[0]=comptine
+		}
+		comptine++
 	}
-	if (C1[C1.length-1][0]<C2[C2.length-1][0]){
-		L2.push(C2[C2.length-1])
-		L2.push(C1[C1.length-1])
-		C1=[]
-		C2=[]
+	CardType=-1
+	for (var k=0; k<CardsGameOn.length;k++){ //tout ça fonctionne
+		if (CardsGameOn[k]){
+			if (CardType==-1){
+				if (CardsGameOn[CardIndex[0]][0][0]<CardsGameOn[k][0][0]){
+					CardIndex=[k]
+				}
+			}
+			if (CardType==CardsGameOn[k][0][0]){
+				CardIndex.push(k)
+			}
+			if (CardType<CardsGameOn[k][0][0]) {
+				var CardTester= CardsGameOn.slice(k+1,CardsGameOn.length)
+				
+				for (var o=0; o<CardTester.length;o++){
+					if (CardTester[o]){
+						CardTester[o]=CardTester[o][0][0]
+					}
+				}
+				if (CardTester.includes(CardsGameOn[k][0][0])){
+					CardType=CardsGameOn[k][0][0];
+					CardIndex=[k]
+					console.log("Je change !")
+				}
+			}
+		}
+	}
+	if (CardIndex.length>1){ //au moins deux cartes sont en bataille | FAIT
+		var CardsQuantity=CardsGameOn.length
+		for (var k=0; k<CardsQuantity;k++){
+			if (!(CardIndex.includes(CardsQuantity-1-k)) && (CardsGameOn[CardsQuantity-1-k])){
+			CardsToGive.push(CardsGameOn.splice(CardsQuantity-1-k,1)[0][0])
+			}
+		}
+		while (!(CardsGameOn[CardsGameOn.length-1])){
+			CardsGameOn.pop()
+		}
+	}
+	else { //toutes les cartes sont différentes | FAIT
+		var LONGUEUR=CardsGameOn.length
+		for (var k=0;k<LONGUEUR; k++){
+			if (CardsGameOn[CardsGameOn.length-1]){Mains[CardIndex[0]].push(CardsGameOn.pop()[0])
+				}
+			else {CardsGameOn.pop()}
+		}
 	}
 }
 
 function DrawNext(){ // à refaire entièrement
-	var P01=[Math.random()*34,Math.random()*160]
-	var P02=[Math.random()*34+250,Math.random()*160]
-	ctx.clearRect(P01[0],P01[1],216,340)
-	C1.push(L1.shift());
-	C2.push(L2.shift());
-ctx.strokeStyle="#000";
-ctx.fillStyle=CoulJoueur[C1[C1.length-1][1]-1];
-ctx.beginPath();
-	ctx.moveTo(P01[0],P01[1]);
-	ctx.lineTo(P01[0]+216,P01[1])
-	ctx.lineTo(P01[0]+216,P01[1]+340)
-	ctx.lineTo(P01[0],P01[1]+340)
-	ctx.lineTo(P01[0],P01[1]);
-ctx.fillRect(P01[0],P01[1],216,340);
-	ctx.stroke();
-	ctx.closePath()
-	ctx.clearRect(P02[0],P02[1],216,340)
-	ctx.strokeStyle="#000"
-ctx.fillStyle=CoulJoueur[C2[C2.length-1][1]-1];
-	ctx.beginPath();
-	ctx.moveTo(P02[0],P02[1])
-	ctx.lineTo(P02[0]+216,P02[1])
-	ctx.lineTo(P02[0]+216,P02[1]+340)
-	ctx.lineTo(P02[0],P02[1]+340)
-	ctx.lineTo(P02[0],P02[1]);
-ctx.fillRect(P02[0],P02[1],216,340);
-	ctx.stroke();
-	ctx.closePath()
-	
-	P01=[Math.random()*34,Math.random()*160]
-	P02=[Math.random()*34+250,Math.random()*160]
-	ctx.clearRect(P01[0],P01[1],216,340)
-	ctx.strokeStyle="#000"
-	ctx.beginPath();
-	ctx.moveTo(P01[0],P01[1])
-	ctx.lineTo(P01[0]+216,P01[1])
-	ctx.lineTo(P01[0]+216,P01[1]+340)
-	ctx.lineTo(P01[0],P01[1]+340)
-	ctx.lineTo(P01[0],P01[1])
-	ctx.stroke();
-	ctx.closePath()
-	ctx.clearRect(P02[0],P02[1],216,340)
-	ctx.strokeStyle="#000"
-	ctx.beginPath();
-	ctx.moveTo(P02[0],P02[1])
-	ctx.lineTo(P02[0]+216,P02[1])
-	ctx.lineTo(P02[0]+216,P02[1]+340)
-	ctx.lineTo(P02[0],P02[1]+340)
-	ctx.lineTo(P02[0],P02[1])
-	ctx.stroke();
-	ctx.closePath()
-	C1.push(L1.shift())
-	C2.push(L2.shift())
-	
-	EcrireBonneCarte(C1[C1.length-1][0],P01[0]+108,P01[1]+170,CoulJoueur[C1[C1.length-1][1]-1])
-	EcrireBonneCarte(C2[C2.length-1][0],P02[0]+108,P02[1]+170,CoulJoueur[C2[C2.length-1][1]-1])
-	
-	if (C1[C1.length-1][0]>C2[C2.length-1][0]){
-		for(var k=0;k<C1.length;k++){
-			L1.push(C1[k])
+	var compteur = 0
+	for (var k=0;k<CardIndex.length;k++){
+		//NE PAS OUBLIER LA CONDITION SI PLUS DE CARTES DANS LA MAIN = JOUEUR MORT
+		if (Mains[CardIndex[k]].length>0){
+			while(!(CardsGameOn[k+compteur]) && compteur<parseInt(document.getElementById("Players").value)){
+				compteur++
+				console.log(compteur)
+			}
+			CardsGameOn[k+compteur].push(Mains[CardIndex[k]].shift())
+			EcrireBonneCarte(CardsGameOn[k+compteur][CardsGameOn[k+compteur].length-1][0],2*Math.PI*(CardIndex[k]/document.getElementById("Players").value),CoulJoueur[CardsGameOn[k+compteur][CardsGameOn[k+compteur].length-1][1]],true)
 		}
-		for(var k=0;k<C2.length;k++){
-			L1.push(C2[k])
+		else { // Joueur perdant la bataille car plus de cartes
+			for (var o=0;o<CardsGameOn[k].length;o++){
+				CardsToGive.push(CardsGameOn[k].pop())
+				o--
+			}
+			CardsGameOn.splice(k,1)
+			CardIndex.splice(k,1)
+			k--
 		}
-		C1=[]
-		C2=[]
 	}
-	if (C1[C1.length-1][0]<C2[C2.length-1][0]){
-		for(var k=0;k<C2.length;k++){
-			L2.push(C2[k])
+	compteur=0
+	for (var k=0;k<CardIndex.length;k++){
+		//NE PAS OUBLIER LA CONDITION SI PLUS DE CARTES DANS LA MAIN = JOUEUR MORT
+		if (Mains[CardIndex[k]].length>0){
+			while(!(CardsGameOn[k+compteur]) && compteur<parseInt(document.getElementById("Players").value)){
+				compteur++
+				console.log(compteur)
+			}
+			CardsGameOn[k+compteur].push(Mains[CardIndex[k]].shift())
+			EcrireBonneCarte(CardsGameOn[k+compteur][CardsGameOn[k+compteur].length-1][0],2*Math.PI*(CardIndex[k]/document.getElementById("Players").value),CoulJoueur[CardsGameOn[k+compteur][CardsGameOn[k+compteur].length-1][1]],false)
 		}
-		for(var k=0;k<C1.length;k++){
-			L2.push(C1[k])
+		else { // Joueur perdant la bataille car plus de cartes
+			for (var o=0;o<CardsGameOn[k].length;o++){
+				CardsToGive.push(CardsGameOn[k].pop())
+				o--
+			}
+			CardsGameOn.splice(k,1)
+			CardIndex.splice(k,1)
+			k--
 		}
-		C1=[]
-		C2=[]
+	}
+	var CardIndexTemp=[-1]
+	var comptine=0
+	while (CardIndexTemp[0]==-1){
+		if (CardsGameOn[comptine]){
+			CardIndexTemp[0]=comptine
+		}
+		comptine++
+	}
+	var CardTypeTemp=-1
+	compteur=0
+	for (var k=0; k<CardIndex.length;k++){ 
+		while(!(CardsGameOn[k+compteur]) && compteur<parseInt(document.getElementById("Players").value)){
+				compteur++
+				console.log(compteur)
+		}
+		if (CardTypeTemp==-1){
+			if (CardsGameOn[CardIndexTemp[0]][CardsGameOn[CardIndexTemp[0]].length-1][0]<CardsGameOn[k+compteur][CardsGameOn[k+compteur].length-1][0]){
+				CardIndexTemp=[k]
+			}
+		}
+		if (CardTypeTemp==CardsGameOn[k+compteur][CardsGameOn[k+compteur].length-1][0]){
+			CardIndexTemp.push(k)
+		}
+		if (CardTypeTemp<CardsGameOn[k+compteur][CardsGameOn[k+compteur].length-1][0]) {
+			var CardTester= CardsGameOn.slice(k+compteur+1,CardsGameOn.length)
+			
+			for (var o=0; o<CardTester.length;o++){
+				if (CardTester[o]){
+					CardTester[o]=CardTester[o][CardTester[o].length-1][0]
+				}
+			}
+			if (CardTester.includes(CardsGameOn[k+compteur][CardsGameOn[k+compteur].length-1][0])){
+				CardTypeTemp=CardsGameOn[k+compteur][CardsGameOn[k+compteur].length-1][0];
+				CardIndexTemp=[k]
+				console.log("Je change temporairement!")
+			}
+		}
+	}
+	//console.log(CardIndexTemp)
+	//console.log(CardTypeTemp)
+	if (CardIndexTemp.length>1){ //au moins deux cartes sont en bataille | FAIT
+		var CardsQuantity=CardsGameOn.length
+		for (var k=0; k<CardsQuantity;k++){
+			if (!(CardIndexTemp.includes(CardsQuantity-1-k)) && (CardsGameOn[CardsQuantity-1-k])){
+				for (var o=0;o<CardsGameOn[CardsQuantity-1-k].length;o++){
+					CardsToGive.push(CardsGameOn[CardsQuantity-1-k].pop())
+					o--
+				}
+				CardsGameOn.splice(CardsQuantity-1-k,1)
+				CardIndex.splice(CardsQuantity-1-k,1)
+			}
+		}
+		while (!(CardsGameOn[CardsGameOn.length-1])){
+			CardsGameOn.pop()
+		}
+	}
+	else { //toutes les cartes sont différentes | FAIT
+		Mains[CardIndex[CardIndexTemp[0]]]=Mains[CardIndex[CardIndexTemp[0]]].concat(CardsToGive)
+		CardsToGive=[]
+		var LONGUEUR=CardsGameOn.length
+		for (var k=0;k<LONGUEUR; k++){
+			if (CardsGameOn[CardsGameOn.length-1]){Mains[CardIndex[CardIndexTemp[0]]]=Mains[CardIndex[CardIndexTemp[0]]].concat(CardsGameOn.pop())}
+			else{CardsGameOn.pop()}
+		}
 	}
 }
 
@@ -209,26 +277,21 @@ function situationActuelle(){
 
 var mainGameLoop = window.setInterval(function() { // runs the loop
 	loop();
-	}, 1000);
+	}, 200);
 
 function loop() { // production
 	if (activeTurns>0) {
 		if (Mains.reduce((acc,element) => acc + (element.length>0), 0)){
-			if(CardsGameOn.length == 0) {DrawTurn();} //réparer cette condition
+			if(CardsGameOn.length == 0) {DrawTurn();}
 			else{DrawNext()}
 		}
-		if (L1.length == 0) { //changer ça et la prochaine : Condition de victoire
-			ctx.fillStyle=CoulJoueur[1]
+		if (Mains.reduce((acc,element) => acc + (element.length>0), 0)==1) { //changer ça et la prochaine : Condition de victoire
+			var Gagnant = document.getElementById("Players").value - Mains.reduce((acc,element) => acc + (acc>0 || element.length>0), 0)
+			ctx.fillStyle=CoulJoueur[Gagnant]
 			ctx.font = "30px Arial";
-			ctx.fillText("Joueur 2 Gagne !",250,250)
+			ctx.fillText("Joueur "+String(Gagnant)+" Gagne !",500,500)
 			ctx.font = "70px Arial";
 		}
-		else{if (L2.length == 0) {
-			ctx.fillStyle=CoulJoueur[0]
-			ctx.font = "30px Arial";
-			ctx.fillText("Joueur 1 Gagne !",250,250)
-			ctx.font = "70px Arial";
-		}}
 		activeTurns--
 	}
 	situationActuelle()

@@ -151,12 +151,14 @@ function DrawNext(){ // à refaire entièrement
 	for (var k=0;k<CardIndex.length;k++){
 		//NE PAS OUBLIER LA CONDITION SI PLUS DE CARTES DANS LA MAIN = JOUEUR MORT
 		if (Mains[CardIndex[k]].length>0){
-			while(!(CardsGameOn[k+compteur]) && compteur<parseInt(document.getElementById("Players").value)){
+			while (!(CardsGameOn[k+compteur]) && compteur<parseInt(document.getElementById("Players").value)){
 				compteur++
 				console.log(compteur)
 			}
-			CardsGameOn[k+compteur].push(Mains[CardIndex[k]].shift())
-			EcrireBonneCarte(CardsGameOn[k+compteur][CardsGameOn[k+compteur].length-1][0],2*Math.PI*(CardIndex[k]/document.getElementById("Players").value),CoulJoueur[CardsGameOn[k+compteur][CardsGameOn[k+compteur].length-1][1]],true)
+			if (CardsGameOn[k+compteur]){
+				CardsGameOn[k+compteur].push(Mains[CardIndex[k]].shift())
+				EcrireBonneCarte(CardsGameOn[k+compteur][CardsGameOn[k+compteur].length-1][0],2*Math.PI*(CardIndex[k]/document.getElementById("Players").value),CoulJoueur[CardsGameOn[k+compteur][CardsGameOn[k+compteur].length-1][1]],true)
+			}
 		}
 		else { // Joueur perdant la bataille car plus de cartes
 			for (var o=0;o<CardsGameOn[k].length;o++){
@@ -176,15 +178,21 @@ function DrawNext(){ // à refaire entièrement
 				compteur++
 				console.log(compteur)
 			}
-			CardsGameOn[k+compteur].push(Mains[CardIndex[k]].shift())
-			EcrireBonneCarte(CardsGameOn[k+compteur][CardsGameOn[k+compteur].length-1][0],2*Math.PI*(CardIndex[k]/document.getElementById("Players").value),CoulJoueur[CardsGameOn[k+compteur][CardsGameOn[k+compteur].length-1][1]],false)
+			if (CardsGameOn[k+compteur]){
+				CardsGameOn[k+compteur].push(Mains[CardIndex[k]].shift())
+				EcrireBonneCarte(CardsGameOn[k+compteur][CardsGameOn[k+compteur].length-1][0],2*Math.PI*(CardIndex[k]/document.getElementById("Players").value),CoulJoueur[CardsGameOn[k+compteur][CardsGameOn[k+compteur].length-1][1]],false)
+			}
 		}
 		else { // Joueur perdant la bataille car plus de cartes
-			for (var o=0;o<CardsGameOn[k].length;o++){
-				CardsToGive.push(CardsGameOn[k].pop())
+			while(!(CardsGameOn[k+compteur]) && compteur<parseInt(document.getElementById("Players").value)){
+				compteur++
+				console.log(compteur)
+			}
+			for (var o=0;o<CardsGameOn[k+compteur].length;o++){
+				CardsToGive.push(CardsGameOn[k+compteur].pop())
 				o--
 			}
-			CardsGameOn.splice(k,1)
+			CardsGameOn.splice(k+compteur,1)
 			CardIndex.splice(k,1)
 			k--
 		}

@@ -27,7 +27,25 @@ var Movement=[]
 var n
 var LeafPower=0
 var leavesMult=1
-var StarRank=["#fff","#ff0","0f0","f00","0ff"]
+
+var Dusts = 0;
+var CometUp=[0,0,0]
+// leaves par sec | Bolts par sec | Upgrade Vitesse affecte gain
+
+var Ice = 0;
+var IceUp = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+// SLBCI - 50 - réduction du nerf
+// SCI - 6 ; 1-4 achète chaque upgrade par tick ; 5 n'est plus reset ; 6 ne coute plus de StarPow
+// LCI - 2 - ne reset plus les up plante PUIS génère des points auto basé sur les points gagnés sur l'image si complète
+// BCI - 1 - Ne reset plus les up
+// CI - 11 - Gagne 10% par pts, puis ne reset plus les up
+// SLI - 100 - Boost le gain de LP de X% en fonc de la vitesse totale des étoiles
+// BI - 1 - Si BCI 1 alors gagne le dernier niv d'étoiles
+// SI - X - La quantité de glace +1 multiplie le gain en SP
+// LI - X - La quantité de glace +1 multiplie le gain en LP
+
+
+var StarRank=["#fff","#ff0","#0f0","#f00","#0ff"]
 
 function StarReset(){
 	var k;
@@ -36,12 +54,13 @@ function StarReset(){
 	n=StarUp[0]+2;
 	for (k=0;k<n;k++){
 		var RANK=math.random();
-		if (RANK<0.2 && BoltsUp[0]==1){RANK=2}
-		else {RANK=1}
+		if (RANK<0.2 && BoltsUp[0]>=1){RANK=2}
+		else { if (RANK>0.2 && RANK<0.4 && BoltsUp[0]>=2){RANK=3}
+		else {RANK=1}}
 		L[k]=[math.floor(math.random()*513),math.floor(math.random()*513),RANK];
 		Movement[k]=[math.random()*0.5*(1+StarUp[1])-0.25*(1+StarUp[1]),math.random()*0.5*(1+StarUp[1])-0.25*(1+StarUp[1])]
 	}
-	IMDATA=ctxComet.createImageData(500,500)
+	IMDATA=ctxComet.createImageData(512,512)
 }
 
 function NERF(DECI){
@@ -413,8 +432,19 @@ function TSUp(){
 		BoltsUp[0]++
 		document.getElementById("BOLTS").innerHTML=", "+bolts+" bolt(s)"
 		document.getElementById("BoltUp1").disabled=true
+		document.getElementById("BoltUp1.2").removeAttribute("hidden")
 	}
 }
+
+function TSUp2(){
+	if (leaves>=10000){
+		leaves=leaves-10000
+		BoltsUp[0]++
+		document.getElementById("BUDDING").innerHTML=", "+leaves+" leaf(ves)"
+		document.getElementById("BoltUp1.2").disabled=true
+	}
+}
+
 function BoltUp2(){
 	if (bolts>=10){
 		bolts=bolts-10
@@ -743,6 +773,10 @@ function save() {
   localStorage.setItem("Bolts",bolts);
   localStorage.setItem("Stade",stade);
   localStorage.setItem("BoltsUp",BoltsUp);
+  localStorage.setItem("Dusts",Dusts);
+  localStorage.setItem("CometUp",CometUp);
+  localStorage.setItem("Ice",Ice);
+  localStorage.setItem("IceUp",IceUp);
 } 
 
 function HReset(){
@@ -761,6 +795,10 @@ function HReset(){
 		var StarUp=[0,0,0,0]
 		var LeafPower=0
 		var leavesMult=1
+		var Dusts = 0;
+		var CometUp=[0,0,0]
+		var Ice = 0;
+		var IceUp = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 		StarReset()
 }}
 
@@ -842,11 +880,18 @@ function Import(){
 			document.getElementById("LU").disabled=false
 		}
 		BoltsUp=loadgame.BoltsUp.split(",").map(Number);
-		if (BoltsUp[0]==1){
+		if (BoltsUp[0]>=1){
 			document.getElementById("BoltUp1").disabled=true
+			document.getElementById("BoltUp1.2").removeAttribute("hidden")
 		}
 		else {
 			document.getElementById("BoltUp1").disabled=false
+		}
+		if (BoltsUp[0]>=2){
+			document.getElementById("BoltUp1.2").disabled=true
+		}
+		else {
+			document.getElementById("BoltUp1.2").disabled=false
 		}
 		if (BoltsUp[1]==1){
 			document.getElementById("BoltUp2").disabled=true
@@ -887,6 +932,12 @@ function Import(){
 						document.getElementById("BOLTS").innerHTML=", "+bolts+" bolt(s)"
 						document.getElementById("PresBud").innerHTML="Call the thunder and<br>Get "+parseInt(Math.log10(leaves)-1)+" bolts"
 						drawBolts()
+						if (stade>4){
+							Dusts = parseInt(loadgame.Dusts);
+							CometUp=loadgame.CometUp.split(",").map(Number);
+							Ice = parseInt(loadgame.Ice);;
+							IceUp = loadgame.IceUp.split(",").map(Number);
+						}
 					}
 				}
 			}
@@ -949,11 +1000,18 @@ if(localStorage.LeafMult) {
 		document.getElementById("SpeedU2").disabled=true
 	}
 	BoltsUp=localStorage.BoltsUp.split(",").map(Number);
-	if (BoltsUp[0]==1){
+	if (BoltsUp[0]>=1){
 		document.getElementById("BoltUp1").disabled=true
+		document.getElementById("BoltUp1.2").removeAttribute("hidden")
 	}
 	else {
 		document.getElementById("BoltUp1").disabled=false
+	}
+	if (BoltsUp[0]>=2){
+		document.getElementById("BoltUp1.2").disabled=true
+	}
+	else {
+		document.getElementById("BoltUp1.2").disabled=false
 	}
 	if (BoltsUp[1]==1){
 		document.getElementById("BoltUp2").disabled=true

@@ -1,4 +1,5 @@
-// Variante TOUS PARTANTS toujours active
+// client-side js, loaded by index.html
+// run by the browser each time the page is loaded
 
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");

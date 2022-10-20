@@ -35,11 +35,38 @@
     <header>
 		<h1><span id="STARRED">0 Star Points</span><span id="BUDDING" hidden>, 0 bud(s), 0 twig(s), 0 leaf(ves)</span><span id="BOLTS" hidden>, 0 bolt(s)</span></h1>
     </header>
+	<audio id="Audio1">
+	  <source src="The Cosmos.mp3" type="audio/mp3">
+	</audio>
+	<audio id="Audio3">
+	  <source src="Thunder_on_the_Floor.mp3" type="audio/mp3">
+	</audio>
+	<audio id="Audio2">
+	  <source src="Falling Leaves.wav" type="audio/wav">
+	</audio>
+	<audio id="Audio4">
+	  <source src="Lava Lamps.mp3" type="audio/mp3">
+	</audio>
+	<audio id="Audio5">
+	  <source src="Peace Of Mind.mp3" type="audio/mp3">
+	</audio>
+	<script>
+	document.getElementById("Audio1").loop=true;
+	document.getElementById("Audio1").volume=0.1;
+	document.getElementById("Audio2").loop=true;
+	document.getElementById("Audio2").volume=0.1;
+	document.getElementById("Audio3").loop=true;
+	document.getElementById("Audio3").volume=0.1;
+	document.getElementById("Audio4").loop=true;
+	document.getElementById("Audio4").volume=0.1;
+	document.getElementById("Audio5").loop=true;
+	document.getElementById("Audio5").volume=0.1;
+	</script>
 	<div class="tab">
-    <button class="tablinks" onclick="openCity(event, 'Stars')" id="StarsTab">Constellation</button>
-    <button class="tablinks" onclick="openCity(event, 'Bud')" id="BudTab" hidden>Leaves</button>
-    <button class="tablinks" onclick="openCity(event, 'Bolt')"  id="BoltTab" hidden>Bolts</button>
-    <button class="tablinks" onclick="openCity(event, 'Lava')" id="LavaTab" hidden>Lava</button>
+    <button class="tablinks" onclick="openCity(event, 'Stars',1)" id="StarsTab">Constellation</button>
+    <button class="tablinks" onclick="openCity(event, 'Bud',2)" id="BudTab" hidden>Leaves</button>
+    <button class="tablinks" onclick="openCity(event, 'Bolt',3)"  id="BoltTab" hidden>Bolts</button>
+    <button class="tablinks" onclick="openCity(event, 'Lava',4)" id="LavaTab" hidden>Lava</button>
     <button class="tablinks" onclick="openCity(event, 'Settings')">Settings</button>
     <button class="tablinks" onclick="openCity(event, 'About')">About</button>
     <button class="tablinks" onclick="openCity(event, 'Help')" hidden>Q & A</button>
@@ -107,15 +134,32 @@
       <span class="tooltiptext">Resets everything</span></button>
       <br><button type="button" onclick="Export()" class="tooltip">Export</button>
       <button type="button" onclick="Import()" class="tooltip">Import</button>
-	<input type="checkbox" id="Autosave" checked><span> Enable Autosave</span><br>
+	<input type="checkbox" id="Autosave" checked><span style="color:#FFFFFF"> Enable Autosave</span><br>
 	<span style="color:#FFFFFF">BE WARNED THAT THIS GAME WON'T RUN OFFLINE OR IF THE TAB ISN'T FOCUSED ON<br>
 	BE ALSO WARNED THAT WHEN LAUNCHING THE GAME THE IMAGES ARE RESETTED SINCE IT WOULD TAKE WAY TOO LONG TO SAVE THEM (I guess)</span>
+	<span style="color:#FFFFFF">Musics :<br><br>
+	Music by : Sirius Beat - The Cosmos<br>
+	Link : http://youtu.be/Bkg08NvtvBU<br><br>
+	➞ Artist: Ron Gelinas<br>
+	➞ Track Title: Falling Leaves (Original Mix)<br>
+	➞ Link to Track: youtu.be/9PSXZb6VPb4<br><br>
+	Thunder On The Floor<br>
+	Link : https://www.youtube.com/watch?v=dtk2gPb6WHA<br><br>
+	Lava Lamps<br>
+	Link : https://www.youtube.com/watch?v=gUhhuNbX3B0<br><br>
+	Peace Of Mind - By Kevin MacLeod<br>
+	Link : https://www.youtube.com/watch?v=8SXjY9sLGXo<br><br>
+	</span>
 	</div>
 	<div id="About" class="tabcontent" style="color:#FFFFFF" hidden>
 		<p>Here is a link to the discord server of the game : <a href="https://discord.gg/xTzYrey">Click me! i'm innoffensive</a></p>
 		<p>The server is pretty empty and the main purpose of it was not to be about that incremental game, but a RPG that i'm programming. Still, it has a Fourier bot you can mess with!</p>
 		<br>
 		<br>Changelog<br>
+		<br>0.4 The sound of nerf<br>
+		It's almost a small update<br>
+		Here are the background musics Implemented, I just have to check if it works correctly now...<br>
+		Also, I nerfed Star Power production after 1e10<br>
 		<br>0.3.4 Limiting : Limits<br>
 		I heard the game became laggy at some points, it should now be all fixed !<br>
 		There's a vote for background musics, you should go take a look and vote too !<br>
@@ -152,20 +196,20 @@
 		
 	</div>
 	<div id="Help" class="tabcontent" hidden>
-	Why do I sometimes earn buds and sometimes twigs ?<br><br>
-	You always start a picture with a lonely bud that will grow. Each time a bud grows and a pixel is drawn, a twig is earnt (not counting multipliers). But at the same time, each growing bud adds more bud from where to grow next. If the pixel has already been drawn, I "cut off" the bud and continue with another one, granting you one bud (not counting multipliers)<br><br>
-	How does bolts works ?<br><br>
-	Your current bolts multiply the number of pixels drawn per ticks by 1+bolts. Without upgrades, you get, rounding down, log10(twigs)-3 bolts per prestige.<br><br>
 	The game is slow !/The game is laggy !<br><br>
 	The game starts slow because it will make you hit the laggy part later, i'm currently working on improving that but doesn't happen to make significant improvements...
 	</div>
 	<script>
-    function openCity(evt, cityName) {
+    function openCity(evt, cityName, musicNum) {
       var i, tabcontent, tablinks;
       tabcontent = document.getElementsByClassName("tabcontent");
       for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
       }
+	  for (i = 1; i < 5; i++) {
+		document.getElementById("Audio"+i).pause()
+	  }
+	  document.getElementById("Audio"+musicNum).play()
       tablinks = document.getElementsByClassName("tablinks");
       for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");

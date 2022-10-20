@@ -43,6 +43,23 @@ function StarReset(){
 	}
 }
 
+function NERF(DECI){
+	if (DECI.exponent<11){
+		return DECI
+	}
+	else{
+		var DeciOpt=new Decimal(1e11)
+		DECI=DECI.divide(1e11)
+		DECI=DECI.pow((1/2))
+		while (DECI.exponent>0)	{
+			DeciOpt=DeciOpt.mul(10)
+			DECI=DECI.divide(10)
+			DECI=DECI.pow((1/2))
+		}
+		return DeciOpt.mul(DECI)
+	}
+}
+
 function myFunction0() {
 	ctxS.clearRect(0,0, 512, 512);
 	ctxS.strokeStyle="#FFFFFF";
@@ -124,6 +141,7 @@ function myFunction0() {
 	  }
   }
   //on dessine le fameux bordel :D
+  var StarPointGain = new Decimal(0);
   if (LeavesUp[0]==0){
 	  for (var element of Lignage){
 		  var SGrad=ctxS.createLinearGradient(L[element[0]][0], L[element[0]][1], L[element[1]][0], L[element[1]][1]);
@@ -134,7 +152,7 @@ function myFunction0() {
 		  ctxS.moveTo(L[element[0]][0], L[element[0]][1]);
 		  ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
 		  ctxS.stroke(); 
-		  StarPoints=StarPoints.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))
+		  StarPointGain=StarPointGain.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))
 	  }
   }
   if (LeavesUp[0]==1){
@@ -148,9 +166,9 @@ function myFunction0() {
 		  ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
 		  ctxS.stroke();
 			if (parseInt(1+math.log10((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2) < 1){
-				StarPoints=StarPoints.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))
+				StarPointGain=StarPointGain.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))
 			}
-		    else {StarPoints=StarPoints.plus(parseInt((1+math.log10((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))}
+		    else {StarPointGain=StarPointGain.plus(parseInt((1+math.log10((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))}
 	  }
   }
   if (LeavesUp[0]==2){
@@ -164,9 +182,9 @@ function myFunction0() {
 		  ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
 		  ctxS.stroke(); 
 		  if (parseInt(1+math.log2((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2) < 1){
-				StarPoints=StarPoints.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))
+				StarPointGain=StarPointGain.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))
 			}
-		    else {StarPoints=StarPoints.plus(parseInt((1+math.log2((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))}
+		    else {StarPointGain=StarPointGain.plus(parseInt((1+math.log2((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))}
 	  }
   }
 	if (LeavesUp[0]>2){
@@ -180,11 +198,12 @@ function myFunction0() {
 			ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
 			ctxS.stroke(); 
 			if (parseInt(((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)**0.5) < 1){
-				StarPoints=StarPoints.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))
+				StarPointGain=StarPointGain.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))
 			}
-			else {StarPoints=StarPoints.plus(parseInt((((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)**0.5)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))}
+			else {StarPointGain=StarPointGain.plus(parseInt((((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)**0.5)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))}
 		}
 	}
+	StarPoints=StarPoints.plus(NERF(StarPointGain))
 	document.getElementById("STARRED").innerHTML=StarPoints.toPrecision(4)+" Star Points"
   
 	if (stade==0 && StarPoints>=1000){

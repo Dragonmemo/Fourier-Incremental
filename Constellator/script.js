@@ -4,11 +4,11 @@
 var canvasS = document.getElementById("myCanvas0");
 var canvas = document.getElementById("myCanvas");
 var canvasB = document.getElementById("myCanvas1");
-var canvasL = document.getElementById("myCanvas2");
+var canvasComet = document.getElementById("myCanvas2");
 var ctxS = canvasS.getContext("2d");
 var ctx = canvas.getContext("2d");
 var ctxB = canvasB.getContext("2d");
-var ctxL = canvasL.getContext("2d");
+var ctxComet = canvasComet.getContext("2d");
 var nouveau_bourgeons;
 var imageData = ctx.createImageData(256, 256); //=pixels
 var bourgeon=[[[128,128],[128,129,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
@@ -27,7 +27,7 @@ var Movement=[]
 var n
 var LeafPower=0
 var leavesMult=1
-var StarRank=["#fff","#ff0","0ff","0f0","f00"]
+var StarRank=["#fff","#ff0","0f0","f00","0ff"]
 
 function StarReset(){
 	var k;
@@ -41,6 +41,7 @@ function StarReset(){
 		L[k]=[math.floor(math.random()*513),math.floor(math.random()*513),RANK];
 		Movement[k]=[math.random()*0.5*(1+StarUp[1])-0.25*(1+StarUp[1]),math.random()*0.5*(1+StarUp[1])-0.25*(1+StarUp[1])]
 	}
+	IMDATA=ctxComet.createImageData(500,500)
 }
 
 function NERF(DECI){
@@ -332,6 +333,44 @@ function drawBolts(){
         imageDataB.data[4*m+3]=255
 	}    
     ctxB.putImageData(imageDataB,0,0)
+}
+
+function myFunction7() {
+	
+	var CometTail=1;
+	ctxComet.clearRect(0,0, 512, 512);
+	var k;
+	var LISTE =[];
+	
+	for (var element of L){
+		if (element[2]==0){
+			IMDATA.data[4*(parseInt(element[0])+512*parseInt(element[1]))]=255
+			IMDATA.data[4*(parseInt(element[0])+512*parseInt(element[1]))+1]=255
+			IMDATA.data[4*(parseInt(element[0])+512*parseInt(element[1]))+2]=255
+		}
+		if (element[2]==1){
+			IMDATA.data[4*(parseInt(element[0])+512*parseInt(element[1]))]=255
+			IMDATA.data[4*(parseInt(element[0])+512*parseInt(element[1]))+1]=255
+		}
+		if (element[2]==2){
+			IMDATA.data[4*(parseInt(element[0])+512*parseInt(element[1]))+1]=255
+		}
+	}
+	
+	var IMNEW=ctxComet.createImageData(IMDATA);
+	
+	for (k=0;k<512*512;k++){
+		IMNEW.data[k*4+3]=255
+	}
+	
+	for (k=0;k<512*512;k++){
+		IMNEW.data[4*k]=parseInt((IMDATA.data[4*k]*4+IMDATA.data[4*((k+1)%(512*512))]*2+IMDATA.data[4*((k-1+512*512)%(512*512))]*2+IMDATA.data[4*((k+512)%(512*512))]*2+IMDATA.data[4*((k-512+512*512)%(512*512))]*2+IMDATA.data[4*((k-512+1+512*512)%(512*512))]*1+IMDATA.data[4*((k-512-1+512*512)%(512*512))]*1+IMDATA.data[4*((k+512+1+512*512)%(512*512))]*1+IMDATA.data[4*((k+512-1+512*512)%(512*512))]*1)/16*CometTail)
+		IMNEW.data[4*k+1]=parseInt((IMDATA.data[4*k+1]*4+IMDATA.data[4*((k+1)%(512*512))+1]*2+IMDATA.data[4*((k-1+512*512)%(512*512))+1]*2+IMDATA.data[4*((k+512)%(512*512))+1]*2+IMDATA.data[4*((k-512+512*512)%(512*512))+1]*2+IMDATA.data[4*((k-512+1+512*512)%(512*512))+1]*1+IMDATA.data[4*((k-512-1+512*512)%(512*512))+1]*1+IMDATA.data[4*((k+512+1+512*512)%(512*512))+1]*1+IMDATA.data[4*((k+512-1+512*512)%(512*512))+1]*1)/16*CometTail)
+		IMNEW.data[4*k+2]=parseInt((IMDATA.data[4*k+2]*4+IMDATA.data[4*((k+1)%(512*512))+2]*2+IMDATA.data[4*((k-1+512*512)%(512*512))+2]*2+IMDATA.data[4*((k+512)%(512*512))+2]*2+IMDATA.data[4*((k-512+512*512)%(512*512))+2]*2+IMDATA.data[4*((k-512+1+512*512)%(512*512))+2]*1+IMDATA.data[4*((k-512-1+512*512)%(512*512))+2]*1+IMDATA.data[4*((k+512+1+512*512)%(512*512))+2]*1+IMDATA.data[4*((k+512-1+512*512)%(512*512))+2]*1)/16*CometTail)
+	}
+	
+	ctxComet.putImageData(IMNEW,0,0)
+	IMDATA=IMNEW
 }
 
 
@@ -677,6 +716,7 @@ function loop() { // production
 	drawBolts()
 	if (tickspeed<ticks && stade>1){
 		myFunction1();
+		//myFunction7();
 		ticks=ticks-tickspeed
 		document.getElementById("BOLTS").innerHTML=", "+bolts+" bolt(s)"
 	}

@@ -731,6 +731,15 @@ function dessineMoiUneFeuille(){
     ctx.putImageData(imageData,0,0)
 }
 
+function Mutedness(){
+	document.getElementById("Audio1").volume=document.getElementById("MUSICISHERE").value/1000;
+	document.getElementById("Audio2").volume=document.getElementById("MUSICISHERE").value/1000;
+	document.getElementById("Audio3").volume=document.getElementById("MUSICISHERE").value/1000;
+	document.getElementById("Audio4").volume=document.getElementById("MUSICISHERE").value/1000;
+	document.getElementById("Audio5").volume=document.getElementById("MUSICISHERE").value/1000;
+	document.getElementById("VOL").innerHTML="Volume : "+document.getElementById("MUSICISHERE").value+"%"
+}
+
 var ticks=0;
 var ticks2=0
 var saveticks=0;
@@ -744,6 +753,7 @@ function loop() { // production
 	ticks2+=33;
 	saveticks+=33;
 	drawBolts()
+	Mutedness()
 	if (tickspeed<ticks && stade>1){
 		myFunction1();
 		//myFunction7();

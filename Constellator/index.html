@@ -33,7 +33,7 @@
   </head>
   <body style="background-color:#222;">
     <header>
-		<h1><span id="STARRED">0 Star Points</span><span id="BUDDING" hidden>, 0 leaf(ves)</span><span id="BOLTS" hidden>, 0 bolt(s)</span></h1>
+		<h1><span id="STARRED">0 Star Points</span><span id="BUDDING" hidden>, 0 leaf(ves)</span><span id="BOLTS" hidden>, 0 bolt(s)</span><span id="COMET" hidden>, 0 comet dust(s)</span></h1>
     </header>
 	<audio id="Audio1">
 	  <source src="The Cosmos.mp3" type="audio/mp3">
@@ -107,7 +107,7 @@
 	</div>
 	<div id="Bolt" class="tabcontent" hidden>
 	<table><tr>
-	<span style="color:#FFFFFF">Square root of bolts plus one multiply your Star point gain</span>
+	<span style="color:#FFFFFF">Square root of bolts plus one multiply your base Star point gain</span>
 	<td style="display:table-cell;">
 	<button type="button" onclick="TSUp()" id="BoltUp1" class="tooltip"><span class="tooltiptext">Yellow stars square the star power amount given by links using them !</span>Charge up some stars<br>and have 20% chance to<br>get yellow stars for<br>
 	<span id="TSUp">1</span> bolts</button>
@@ -116,15 +116,26 @@
 	<button type="button" onclick="BoltUp3()" id="BoltUp3">Bolts also power<br>up Leaves given<br>
 	Cost 20 bolts</button>
 	<button type="button" onclick="BoltUp4()" id="BoltUp4">Leaves power also power<br>up Bolts given<br>
-	Cost 50 bolts</button><br>
+	Cost 50 bolts</button>
+	<button type="button" onclick="PrestigeComet()" id="PresComet">Cast lightning upon<br>your stars to tears them<br>
+	appart and gather what's<br>left behind<br>(Req : 1000 bolts)</button><br>
 	<canvas id="myCanvas1" width="512" height="512"></canvas>
     </td>
 	</tr></table>
 	</div>
 	<div id="Lava" class="tabcontent" hidden>
+	<span style="color:#FFFFFF">1 + your dust amount multiplies your starpoint gain (before nerf) !</span>
 	<table><tr>
 	<td style="display:table-cell;">
-    <button type="button" onclick="newReset()" disabled class="tooltip"><span class="tooltiptext">Actually, it's the constellation one that works for it !</span>Reset the pattern</button><br>
+	<button type="button" onclick="CometUp1()" id="CometUp1"  class="tooltip"><span class="tooltiptext">This upgrade is TOTALLY PERMANENT !</span>Passively earn 10%<br>of leaves on prestige<br>per seconds for<br>
+	Cost <span id="C1Cost">1</span> dust</button>
+	<button type="button" onclick="CometUp2()" id="CometUp2"  class="tooltip"><span class="tooltiptext">This upgrade is TOTALLY PERMANENT too !</span>Passively earn 10%<br>of bolts on prestige<br>per seconds for<br>
+	Cost <span id="C2Cost">10</span> bolts</button>
+	<button type="button" onclick="CometUp3()" id="CometUp3">Star speed affect<br>your gains by powering<br>it by the log of<br>the sum of speeds<br>
+	Cost 10 bolts</button>
+    <button type="button" onclick="TSUp3()" id="BoltUp1.3" class="tooltip"><span class="tooltiptext" disabled>Red stars hypercubes (^4) the star power amount given by links using them !</span>Charge up some stars<br>and have 20% chance to<br>get red stars for<br>
+	<span id="TSUp">1</span> dust</button>
+	<button type="button" onclick="newReset()" disabled class="tooltip"><span class="tooltiptext">Actually, it's the constellation one that works for it !</span>Reset the pattern</button><br>
 	<canvas id="myCanvas2" width="512" height="512"></canvas>
     </td>
 	</tr></table>
@@ -159,6 +170,11 @@
 		<p>The server is pretty empty and the main purpose of it was not to be about that incremental game, but a RPG that i'm programming. Still, it has a Fourier bot you can mess with!</p>
 		<br>
 		<br>Changelog<br>
+		<br>0.3 Coming in : Comets !<br>
+		Nice, look at the green one !<br>
+		Added fourth layer out of five !<br>
+		Have fun with all those QoL upgrades !<br>
+		I'll work on another day to make the last upgrade of that section work, plus, maybe expect small bugfix updates<br>
 		<br>0.5.1 Muting : The slider<br>
 		Still working on stuff, I've been asked about a mute button tho<br>
 		So you know what ?<br>

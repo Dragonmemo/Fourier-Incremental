@@ -30,7 +30,7 @@ var leavesMult=1
 
 var Dusts = 0;
 var CometUp=[0,0,0]
-// leaves par sec | Bolts par sec | Upgrade Vitesse affecte gain
+// 10% leaves par sec 10x | 10% Bolts par sec 10x | Upgrade Vitesse affecte gain
 
 var Ice = 0;
 var IceUp = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -38,7 +38,7 @@ var IceUp = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 // SCI - 6 ; 1-4 achète chaque upgrade par tick ; 5 n'est plus reset ; 6 ne coute plus de StarPow
 // LCI - 2 - ne reset plus les up plante PUIS génère des points auto basé sur les points gagnés sur l'image si complète
 // BCI - 1 - Ne reset plus les up
-// CI - 11 - Gagne 10% par pts, puis ne reset plus les up
+// CI - 11 - Gagne 10% comet par pts, puis ne reset plus les up
 // SLI - 100 - Boost le gain de LP de X% en fonc de la vitesse totale des étoiles
 // BI - 1 - Si BCI 1 alors gagne le dernier niv d'étoiles
 // SI - X - La quantité de glace +1 multiplie le gain en SP
@@ -172,7 +172,7 @@ function myFunction0() {
 		  ctxS.moveTo(L[element[0]][0], L[element[0]][1]);
 		  ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
 		  ctxS.stroke(); 
-		  StarPointGain=StarPointGain.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))
+		  StarPointGain=StarPointGain.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1)*(Dusts+1))**(L[element[0]][2]*L[element[1]][2]*Math.log10(10+Math.sqrt(Movement[element[0]][0]**2+Movement[element[0]][1]**2)+Math.sqrt(Movement[element[1]][0]**2+Movement[element[1]][1]**2))**CometUp[2]))
 	  }
   }
   if (LeavesUp[0]==1){
@@ -186,9 +186,9 @@ function myFunction0() {
 		  ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
 		  ctxS.stroke();
 			if (parseInt(1+math.log10((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2) < 1){
-				StarPointGain=StarPointGain.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))
+				StarPointGain=StarPointGain.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1)*(Dusts+1))**(L[element[0]][2]*L[element[1]][2]*Math.log10(10+Math.sqrt(Movement[element[0]][0]**2+Movement[element[0]][1]**2)+Math.sqrt(Movement[element[1]][0]**2+Movement[element[1]][1]**2))**CometUp[2]))
 			}
-		    else {StarPointGain=StarPointGain.plus(parseInt((1+math.log10((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))}
+		    else {StarPointGain=StarPointGain.plus(parseInt((1+math.log10((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1)*(Dusts+1))**(L[element[0]][2]*L[element[1]][2]*Math.log10(10+Math.sqrt(Movement[element[0]][0]**2+Movement[element[0]][1]**2)+Math.sqrt(Movement[element[1]][0]**2+Movement[element[1]][1]**2))**CometUp[2]))}
 	  }
   }
   if (LeavesUp[0]==2){
@@ -202,9 +202,9 @@ function myFunction0() {
 		  ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
 		  ctxS.stroke(); 
 		  if (parseInt(1+math.log2((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2) < 1){
-				StarPointGain=StarPointGain.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))
+				StarPointGain=StarPointGain.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1)*(Dusts+1))**(L[element[0]][2]*L[element[1]][2]*Math.log10(10+Math.sqrt(Movement[element[0]][0]**2+Movement[element[0]][1]**2)+Math.sqrt(Movement[element[1]][0]**2+Movement[element[1]][1]**2))**CometUp[2]))
 			}
-		    else {StarPointGain=StarPointGain.plus(parseInt((1+math.log2((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))}
+		    else {StarPointGain=StarPointGain.plus(parseInt((1+math.log2((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1)*(Dusts+1))**(L[element[0]][2]*L[element[1]][2]*Math.log10(10+Math.sqrt(Movement[element[0]][0]**2+Movement[element[0]][1]**2)+Math.sqrt(Movement[element[1]][0]**2+Movement[element[1]][1]**2))**CometUp[2]))}
 	  }
   }
 	if (LeavesUp[0]>2){
@@ -218,9 +218,9 @@ function myFunction0() {
 			ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
 			ctxS.stroke(); 
 			if (parseInt(((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)**0.5) < 1){
-				StarPointGain=StarPointGain.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))
+				StarPointGain=StarPointGain.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1)*(Dusts+1))**(L[element[0]][2]*L[element[1]][2]*Math.log10(10+Math.sqrt(Movement[element[0]][0]**2+Movement[element[0]][1]**2)+Math.sqrt(Movement[element[1]][0]**2+Movement[element[1]][1]**2))**CometUp[2]))
 			}
-			else {StarPointGain=StarPointGain.plus(parseInt((((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)**0.5)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1))**(L[element[0]][2]*L[element[1]][2]))}
+			else {StarPointGain=StarPointGain.plus(parseInt((((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)**0.5)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1)*(Dusts+1))**(L[element[0]][2]*L[element[1]][2]*Math.log10(10+Math.sqrt(Movement[element[0]][0]**2+Movement[element[0]][1]**2)+Math.sqrt(Movement[element[1]][0]**2+Movement[element[1]][1]**2))**CometUp[2]))}
 		}
 	}
 	StarPoints=StarPoints.plus(NERF(StarPointGain))
@@ -231,7 +231,7 @@ function myFunction0() {
 		document.getElementById("PresStar").removeAttribute("hidden")
 	}
 	if (stade>1){
-		document.getElementById("PresStar").innerHTML="gather some more leaves and<br>Get "+parseInt((StarPoints.log10()-2)*((StarUp[0]+2)**LeavesUp[2]))+" leaves"
+		document.getElementById("PresStar").innerHTML="gather some more leaves and<br>Get "+parseInt((StarPoints.log10()-2)*((StarUp[0]+2)**LeavesUp[2])*(math.sqrt(1+bolts)**BoltsUp[2]))+" leaves"
 	}
 }
 
@@ -283,7 +283,6 @@ function StarStruck(){
 
 function myFunction1() {
 	DrawIt(leaves);
-	document.getElementById("BUDDING").innerHTML=", "+leaves+" leaf(ves)"
 	document.getElementById("LM").innerHTML=LeafPower
 	document.getElementById("LM2").innerHTML=(1+math.log10(1+LeafPower))
 }
@@ -356,22 +355,22 @@ function drawBolts(){
 
 function myFunction7() {
 	
-	var CometTail=1;
+	var CometTail=1-math.exp(-Dusts/10);
 	ctxComet.clearRect(0,0, 512, 512);
 	var k;
 	var LISTE =[];
 	
 	for (var element of L){
-		if (element[2]==0){
+		if (element[2]==1){
 			IMDATA.data[4*(parseInt(element[0])+512*parseInt(element[1]))]=255
 			IMDATA.data[4*(parseInt(element[0])+512*parseInt(element[1]))+1]=255
 			IMDATA.data[4*(parseInt(element[0])+512*parseInt(element[1]))+2]=255
 		}
-		if (element[2]==1){
+		if (element[2]==2){
 			IMDATA.data[4*(parseInt(element[0])+512*parseInt(element[1]))]=255
 			IMDATA.data[4*(parseInt(element[0])+512*parseInt(element[1]))+1]=255
 		}
-		if (element[2]==2){
+		if (element[2]==3){
 			IMDATA.data[4*(parseInt(element[0])+512*parseInt(element[1]))+1]=255
 		}
 	}
@@ -398,7 +397,7 @@ function LeafUp1(){
 		leaves=leaves-parseInt(10**LeavesUp[0])
 		LeavesUp[0]++
 		document.getElementById("LU1").innerHTML=parseInt(10**LeavesUp[0])
-	document.getElementById("BUDDING").innerHTML=", "+leaves+" leaf(ves)"
+		document.getElementById("BUDDING").innerHTML=", "+leaves+" leaf(ves)"
 		//document.getElementById("BU").disabled=true
 	}
 }
@@ -437,7 +436,7 @@ function TSUp(){
 }
 
 function TSUp2(){
-	if (leaves>=10000){
+	if (leaves>=10000 && BoltsUp[0]==1){
 		leaves=leaves-10000
 		BoltsUp[0]++
 		document.getElementById("BUDDING").innerHTML=", "+leaves+" leaf(ves)"
@@ -525,7 +524,6 @@ function GetBolts(){
 		document.getElementById("TCost").innerHTML=2
 		document.getElementById("LU").disabled=false
 		ctx.clearRect(0,0, 256, 256);
-		document.getElementById("BOLTS").innerHTML=", "+bolts+" bolt(s)"
 		ticks2=0
 		StarPoints=new Decimal(0)
 		StarUp=[0,0,0,0]
@@ -543,6 +541,88 @@ function GetBolts(){
 		StarReset()
 	}
 }
+
+function PrestigeComet(){
+	if (bolts>1000){
+		if (stade==4){
+			stade++
+			document.getElementById("LavaTab").removeAttribute("hidden")
+			document.getElementById("COMET").removeAttribute("hidden")
+		}
+		Dusts+=parseInt((Math.log10(bolts)-2))
+		imageData = ctx.createImageData(256, 256); //=pixels
+		var bourgeon=[[[128,128],[128,129,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
+		tickspeed=1000
+		tickspeed2=1000;
+		ticks=0
+		leaves=0
+		LeavesUp=[0,0,0]
+		LeafPower=0
+		leavesMult=1
+		bolts=0
+		BoltsUp=[0,0,0,0]
+		document.getElementById("LU1").innerHTML=1
+		document.getElementById("TCost").innerHTML=2
+		document.getElementById("LU").disabled=false
+		ctx.clearRect(0,0, 256, 256);
+		document.getElementById("BOLTS").innerHTML=", "+bolts+" bolt(s)"
+		ticks2=0
+		StarPoints=new Decimal(0)
+		StarUp=[0,0,0,0]
+		L=[]
+		Movement=[]
+		document.getElementById("BoltUp1.2").disabled=true
+		document.getElementById("BoltUp1").disabled=true
+		document.getElementById("BoltUp3").disabled=true
+		document.getElementById("BoltUp4").disabled=true
+		document.getElementById("BoltUp2").disabled=true
+		document.getElementById("S1Cost").innerHTML=parseInt(10**(1+StarUp[0]))
+		document.getElementById("S2Cost").innerHTML=parseInt(10**(1+StarUp[1]))
+		document.getElementById("AS").disabled=false
+		document.getElementById("S3Cost").innerHTML=parseInt(10**(2**StarUp[2]))
+		document.getElementById("S4Cost").innerHTML=parseInt(10**(1+StarUp[3]))
+		document.getElementById("TSS").disabled=false
+		document.getElementById("SpeedU2").disabled=false
+		ctxS.clearRect(0,0, 512, 512);
+		document.getElementById("BUDDING").innerHTML=", "+leaves+" leaf(ves)"
+		StarReset()
+	}
+}
+
+//upgrades Comet tout fait
+function TSUp3(){
+	if (Dusts>=1 && BoltsUp[0]==2){
+		Dusts=Dusts-1
+		BoltsUp[0]++
+		document.getElementById("BoltUp1.3").disabled=true
+	}
+}
+
+function CometUp1(){
+	if (Dusts>=10**CometUp[0]){
+		Dusts=Dusts-10**CometUp[0]
+		CometUp[0]++
+		document.getElementById("C1Cost").innerHTML=parseInt(10**CometUp[0])
+		if (CometUp[0]==10){document.getElementById("CometUp1").disabled=true}
+	}
+}
+function CometUp2(){
+	if (Dusts>=10*10**CometUp[1]){
+		Dusts=Dusts-10*10**CometUp[1]
+		CometUp[1]++
+		document.getElementById("C2Cost").innerHTML=parseInt(10*10**CometUp[1])
+		if (CometUp[1]==10){document.getElementById("CometUp2").disabled=true}
+	}
+}
+function CometUp3(){
+	if (Dusts>=10){
+		Dusts=Dusts-10
+		CometUp[2]++
+		document.getElementById("CometUp3").disabled=true
+	}
+}
+
+
 
 function popXeEl(Liste,Nombre){
 	var LTemp=[];
@@ -754,11 +834,25 @@ function loop() { // production
 	saveticks+=33;
 	drawBolts()
 	Mutedness()
+	if ((StarPoints.log10()-2)*((StarUp[0]+2)**LeavesUp[2])*(math.sqrt(1+bolts)**BoltsUp[2])>0){
+		leaves+=((StarPoints.log10()-2)*((StarUp[0]+2)**LeavesUp[2])*(math.sqrt(1+bolts)**BoltsUp[2]))*33/10000*CometUp[0]
+	}
+	document.getElementById("BUDDING").innerHTML=", "+leaves.toPrecision(4)+" leaf(ves)"
+		
+	if (((Math.log10(leaves)-1)*((Math.log10(StarPoints+1)+1)**BoltsUp[1])*((math.log10(1+LeafPower)+1)**BoltsUp[3]))>0){
+		bolts+=((Math.log10(leaves)-1)*((Math.log10(StarPoints+1)+1)**BoltsUp[1])*((math.log10(1+LeafPower)+1)**BoltsUp[3]))*33/10000*CometUp[1]
+	}
+	document.getElementById("BOLTS").innerHTML=", "+bolts.toPrecision(4)+" bolt(s)"
+		
 	if (tickspeed<ticks && stade>1){
 		myFunction1();
 		//myFunction7();
 		ticks=ticks-tickspeed
-		document.getElementById("BOLTS").innerHTML=", "+bolts+" bolt(s)"
+		document.getElementById("COMET").innerHTML=", "+Dusts+" comet dust(s)"
+		if (stade>4){
+			myFunction7()
+			document.getElementById("PresComet").innerHTML="Tear up stars and<br>Get "+parseInt(Math.log10(bolts)-2)+" dusts"
+		}
 	}
 	if (tickspeed2<ticks2){
 		myFunction0();
@@ -945,8 +1039,11 @@ function Import(){
 						if (stade>4){
 							Dusts = parseInt(loadgame.Dusts);
 							CometUp=loadgame.CometUp.split(",").map(Number);
-							Ice = parseInt(loadgame.Ice);;
-							IceUp = loadgame.IceUp.split(",").map(Number);
+							document.getElementById("PresComet").innerHTML="Tear up stars and<br>Get "+parseInt(Math.log10(bolts)-2)+" dusts"
+							if (stade>5){
+								Ice = parseInt(loadgame.Ice);;
+								IceUp = loadgame.IceUp.split(",").map(Number);
+							}
 						}
 					}
 				}
@@ -974,6 +1071,7 @@ if(localStorage.LeafMult) {
 	tickspeed2=parseInt(localStorage.TS2);
 	tickspeed=parseInt(localStorage.TS);
 	bolts=parseInt(localStorage.Bolts);
+	Dusts=parseInt(localStorage.Dusts);
 	StarUp=localStorage.StarUp.split(",").map(Number);
 	if (StarUp[0]<=125){
 		document.getElementById("S1Cost").innerHTML=(new Decimal("1e"+(1+StarUp[0]))).toPrecision(4)
@@ -1059,9 +1157,38 @@ if(localStorage.LeafMult) {
 				if (stade>3){
 					document.getElementById("BoltTab").removeAttribute("hidden")
 					document.getElementById("BOLTS").removeAttribute("hidden")
-					document.getElementById("BOLTS").innerHTML=", "+bolts+" bolt(s)"
 					document.getElementById("PresBud").innerHTML="Call the thunder and<br>Get "+parseInt(Math.log10(leaves)-1)+" bolts"
-					drawBolts()
+					if (stade>4){
+						document.getElementById("LavaTab").removeAttribute("hidden")
+						document.getElementById("COMET").removeAttribute("hidden")
+						document.getElementById("PresComet").innerHTML="Tear up stars and<br>Get "+parseInt(Math.log10(bolts)-2)+" dusts"
+						CometUp=localStorage.CometUp.split(",").map(Number);
+						if (BoltsUp[0]>=3){
+							document.getElementById("BoltUp1.3").disabled=true
+						}
+						else {
+							document.getElementById("BoltUp1.3").disabled=false
+						}
+						if (CometUp[0]==10){
+							document.getElementById("CometUp1").disabled=true
+						}
+						else{
+							document.getElementById("C1Cost").innerHTML=parseInt(10**CometUp[0])
+						}
+						if (CometUp[1]==10){
+							document.getElementById("CometUp2").disabled=true
+						}
+						else{
+							document.getElementById("C2Cost").innerHTML=parseInt(10*10**CometUp[1])
+						}
+						if (CometUp[2]==1){
+							document.getElementById("CometUp3").disabled=true
+						}
+						if (stade>5){
+							Ice = parseInt(loadgame.Ice);;
+							IceUp = localStorage.IceUp.split(",").map(Number);
+						}
+					}
 				}
 			}
 		}

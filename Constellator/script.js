@@ -55,8 +55,15 @@ function StarReset(){
 	for (k=0;k<n;k++){
 		var RANK=math.random();
 		if (RANK<0.2 && BoltsUp[0]>=1){RANK=2}
-		else { if (RANK>0.2 && RANK<0.4 && BoltsUp[0]>=2){RANK=3}
-		else {RANK=1}}
+		else { 
+			if (RANK>0.2 && RANK<0.4 && BoltsUp[0]>=2){RANK=3}
+			else {
+				if (RANK>0.4 && RANK<0.6 && BoltsUp[0]>=3){RANK=4}
+				else {
+					RANK=1
+			     	}
+			}
+		}
 		L[k]=[math.floor(math.random()*513),math.floor(math.random()*513),RANK];
 		Movement[k]=[math.random()*0.5*(1+StarUp[1])-0.25*(1+StarUp[1]),math.random()*0.5*(1+StarUp[1])-0.25*(1+StarUp[1])]
 	}
@@ -373,6 +380,9 @@ function myFunction7() {
 		if (element[2]==3){
 			IMDATA.data[4*(parseInt(element[0])+512*parseInt(element[1]))+1]=255
 		}
+		if (element[2]==4){
+			IMDATA.data[4*(parseInt(element[0])+512*parseInt(element[1]))]=255
+		}
 	}
 	
 	var IMNEW=ctxComet.createImageData(IMDATA);
@@ -441,6 +451,7 @@ function TSUp2(){
 		BoltsUp[0]++
 		document.getElementById("BUDDING").innerHTML=", "+leaves+" leaf(ves)"
 		document.getElementById("BoltUp1.2").disabled=true
+		document.getElementById("BoltUp1.3").disabled=false
 	}
 }
 
@@ -560,13 +571,18 @@ function PrestigeComet(){
 		LeafPower=0
 		leavesMult=1
 		bolts=0
-		BoltsUp=[0,0,0,0]
+		if (BoltsUp[0]<3){
+			BoltsUp=[0,0,0,0]
+			document.getElementById("BoltUp1").disabled=false
+                	document.getElementById("BoltUp1.2").disabled=true
+		}
+		else {
+			BoltsUp=[3,0,0,0]
+		}
 		document.getElementById("LU1").innerHTML=1
 		document.getElementById("TCost").innerHTML=2
 		document.getElementById("LU").disabled=false
 		ctx.clearRect(0,0, 256, 256);
-                document.getElementById("BoltUp1").disabled=false
-                document.getElementById("BoltUp1.2").disabled=true
                 document.getElementById("BoltUp2").disabled=false
                 document.getElementById("BoltUp3").disabled=false
                 document.getElementById("BoltUp4").disabled=false

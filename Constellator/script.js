@@ -1004,12 +1004,14 @@ function Import(){
 		if (BoltsUp[0]>=1){
 			document.getElementById("BoltUp1").disabled=true
 			document.getElementById("BoltUp1.2").removeAttribute("hidden")
+			document.getElementById("BoltUp1.2").disabled=false
 		}
 		else {
 			document.getElementById("BoltUp1").disabled=false
 		}
 		if (BoltsUp[0]>=2){
 			document.getElementById("BoltUp1.2").disabled=true
+			document.getElementById("BoltUp1.3").disabled=false
 		}
 		else {
 			document.getElementById("BoltUp1.2").disabled=false
@@ -1050,13 +1052,32 @@ function Import(){
 					if (stade>3){
 						document.getElementById("BoltTab").removeAttribute("hidden")
 						document.getElementById("BOLTS").removeAttribute("hidden")
-						document.getElementById("BOLTS").innerHTML=", "+bolts+" bolt(s)"
 						document.getElementById("PresBud").innerHTML="Call the thunder and<br>Get "+parseInt(Math.log10(leaves)-1)+" bolts"
 						drawBolts()
 						if (stade>4){
 							Dusts = parseInt(loadgame.Dusts);
 							CometUp=loadgame.CometUp.split(",").map(Number);
+							document.getElementById("LavaTab").removeAttribute("hidden")
+							document.getElementById("COMET").removeAttribute("hidden")
 							document.getElementById("PresComet").innerHTML="Tear up stars and<br>Get "+parseInt(Math.log10(bolts)-2)+" dusts"
+							if (BoltsUp[0]>=3){
+								document.getElementById("BoltUp1.3").disabled=true
+							}
+							if (CometUp[0]==10){
+								document.getElementById("CometUp1").disabled=true
+							}
+							else{
+								document.getElementById("C1Cost").innerHTML=parseInt(10**CometUp[0])
+							}
+							if (CometUp[1]==10){
+								document.getElementById("CometUp2").disabled=true
+							}
+							else{
+								document.getElementById("C2Cost").innerHTML=parseInt(10*10**CometUp[1])
+							}
+							if (CometUp[2]==1){
+								document.getElementById("CometUp3").disabled=true
+							}
 							if (stade>5){
 								Ice = parseInt(loadgame.Ice);;
 								IceUp = loadgame.IceUp.split(",").map(Number);
@@ -1128,12 +1149,14 @@ if(localStorage.LeafMult) {
 	if (BoltsUp[0]>=1){
 		document.getElementById("BoltUp1").disabled=true
 		document.getElementById("BoltUp1.2").removeAttribute("hidden")
+		document.getElementById("BoltUp1.2").disabled=false
 	}
 	else {
 		document.getElementById("BoltUp1").disabled=false
 	}
 	if (BoltsUp[0]>=2){
 		document.getElementById("BoltUp1.2").disabled=true
+		document.getElementById("BoltUp1.3").disabled=false
 	}
 	else {
 		document.getElementById("BoltUp1.2").disabled=false
@@ -1182,9 +1205,6 @@ if(localStorage.LeafMult) {
 						CometUp=localStorage.CometUp.split(",").map(Number);
 						if (BoltsUp[0]>=3){
 							document.getElementById("BoltUp1.3").disabled=true
-						}
-						else {
-							document.getElementById("BoltUp1.3").disabled=false
 						}
 						if (CometUp[0]==10){
 							document.getElementById("CometUp1").disabled=true

@@ -565,17 +565,17 @@ function PrestigeComet(){
 		document.getElementById("TCost").innerHTML=2
 		document.getElementById("LU").disabled=false
 		ctx.clearRect(0,0, 256, 256);
+                document.getElementById("BoltUp1").disabled=false
+                document.getElementById("BoltUp1.2").disabled=true
+                document.getElementById("BoltUp2").disabled=false
+                document.getElementById("BoltUp3").disabled=false
+                document.getElementById("BoltUp4").disabled=false
 		document.getElementById("BOLTS").innerHTML=", "+bolts+" bolt(s)"
 		ticks2=0
 		StarPoints=new Decimal(0)
 		StarUp=[0,0,0,0]
 		L=[]
 		Movement=[]
-		document.getElementById("BoltUp1.2").disabled=true
-		document.getElementById("BoltUp1").disabled=true
-		document.getElementById("BoltUp3").disabled=true
-		document.getElementById("BoltUp4").disabled=true
-		document.getElementById("BoltUp2").disabled=true
 		document.getElementById("S1Cost").innerHTML=parseInt(10**(1+StarUp[0]))
 		document.getElementById("S2Cost").innerHTML=parseInt(10**(1+StarUp[1]))
 		document.getElementById("AS").disabled=false

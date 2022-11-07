@@ -441,6 +441,7 @@ function TSUp(){
 		BoltsUp[0]++
 		document.getElementById("BOLTS").innerHTML=", "+bolts+" bolt(s)"
 		document.getElementById("BoltUp1").disabled=true
+		document.getElementById("BoltUp1.2").disabled=false
 		document.getElementById("BoltUp1.2").removeAttribute("hidden")
 	}
 }

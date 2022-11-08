@@ -179,7 +179,7 @@ function myFunction0() {
 		  ctxS.moveTo(L[element[0]][0], L[element[0]][1]);
 		  ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
 		  ctxS.stroke(); 
-		  StarPointGain=StarPointGain.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1)*(Dusts+1))**(L[element[0]][2]*L[element[1]][2]*Math.log10(10+Math.sqrt(Movement[element[0]][0]**2+Movement[element[0]][1]**2)+Math.sqrt(Movement[element[1]][0]**2+Movement[element[1]][1]**2))**CometUp[2]))
+		  StarPointGain=StarPointGain.plus((new Decimal((1+math.pow(LeafPower,1/2))*leavesMult*math.sqrt(bolts+1)*(Dusts+1))).pow(L[element[0]][2]*L[element[1]][2]*Math.log10(10+Math.sqrt(Movement[element[0]][0]**2+Movement[element[0]][1]**2)+Math.sqrt(Movement[element[1]][0]**2+Movement[element[1]][1]**2))**CometUp[2]))
 	  }
   }
   if (LeavesUp[0]==1){
@@ -193,9 +193,9 @@ function myFunction0() {
 		  ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
 		  ctxS.stroke();
 			if (parseInt(1+math.log10((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2) < 1){
-				StarPointGain=StarPointGain.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1)*(Dusts+1))**(L[element[0]][2]*L[element[1]][2]*Math.log10(10+Math.sqrt(Movement[element[0]][0]**2+Movement[element[0]][1]**2)+Math.sqrt(Movement[element[1]][0]**2+Movement[element[1]][1]**2))**CometUp[2]))
+				StarPointGain=StarPointGain.plus((new Decimal((1+math.pow(LeafPower,1/2))*leavesMult*math.sqrt(bolts+1)*(Dusts+1))).pow(L[element[0]][2]*L[element[1]][2]*Math.log10(10+Math.sqrt(Movement[element[0]][0]**2+Movement[element[0]][1]**2)+Math.sqrt(Movement[element[1]][0]**2+Movement[element[1]][1]**2))**CometUp[2]))
 			}
-		    else {StarPointGain=StarPointGain.plus(parseInt((1+math.log10((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1)*(Dusts+1))**(L[element[0]][2]*L[element[1]][2]*Math.log10(10+Math.sqrt(Movement[element[0]][0]**2+Movement[element[0]][1]**2)+Math.sqrt(Movement[element[1]][0]**2+Movement[element[1]][1]**2))**CometUp[2]))}
+		    else {StarPointGain=StarPointGain.plus((new Decimal((1+math.log10((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.pow(LeafPower,1/2))*leavesMult*math.sqrt(bolts+1)*(Dusts+1))).pow(L[element[0]][2]*L[element[1]][2]*Math.log10(10+Math.sqrt(Movement[element[0]][0]**2+Movement[element[0]][1]**2)+Math.sqrt(Movement[element[1]][0]**2+Movement[element[1]][1]**2))**CometUp[2]))}
 	  }
   }
   if (LeavesUp[0]==2){
@@ -209,9 +209,9 @@ function myFunction0() {
 		  ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
 		  ctxS.stroke(); 
 		  if (parseInt(1+math.log2((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2) < 1){
-				StarPointGain=StarPointGain.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1)*(Dusts+1))**(L[element[0]][2]*L[element[1]][2]*Math.log10(10+Math.sqrt(Movement[element[0]][0]**2+Movement[element[0]][1]**2)+Math.sqrt(Movement[element[1]][0]**2+Movement[element[1]][1]**2))**CometUp[2]))
+				StarPointGain=StarPointGain.plus((new Decimal((1+math.pow(LeafPower,1/2))*leavesMult*math.sqrt(bolts+1)*(Dusts+1))).pow(L[element[0]][2]*L[element[1]][2]*Math.log10(10+Math.sqrt(Movement[element[0]][0]**2+Movement[element[0]][1]**2)+Math.sqrt(Movement[element[1]][0]**2+Movement[element[1]][1]**2))**CometUp[2]))
 			}
-		    else {StarPointGain=StarPointGain.plus(parseInt((1+math.log2((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1)*(Dusts+1))**(L[element[0]][2]*L[element[1]][2]*Math.log10(10+Math.sqrt(Movement[element[0]][0]**2+Movement[element[0]][1]**2)+Math.sqrt(Movement[element[1]][0]**2+Movement[element[1]][1]**2))**CometUp[2]))}
+		    else {StarPointGain=StarPointGain.plus((new Decimal((1+math.log2((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)/2)*(1+math.pow(LeafPower,1/2))*leavesMult*math.sqrt(bolts+1)*(Dusts+1))).pow(L[element[0]][2]*L[element[1]][2]*Math.log10(10+Math.sqrt(Movement[element[0]][0]**2+Movement[element[0]][1]**2)+Math.sqrt(Movement[element[1]][0]**2+Movement[element[1]][1]**2))**CometUp[2]))}
 	  }
   }
 	if (LeavesUp[0]>2){
@@ -225,20 +225,20 @@ function myFunction0() {
 			ctxS.lineTo(L[element[1]][0], L[element[1]][1]);
 			ctxS.stroke(); 
 			if (parseInt(((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)**0.5) < 1){
-				StarPointGain=StarPointGain.plus(parseInt((1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1)*(Dusts+1))**(L[element[0]][2]*L[element[1]][2]*Math.log10(10+Math.sqrt(Movement[element[0]][0]**2+Movement[element[0]][1]**2)+Math.sqrt(Movement[element[1]][0]**2+Movement[element[1]][1]**2))**CometUp[2]))
+				StarPointGain=StarPointGain.plus((new Decimal((1+math.pow(LeafPower,1/2))*leavesMult*math.sqrt(bolts+1)*(Dusts+1))).pow(L[element[0]][2]*L[element[1]][2]*Math.log10(10+Math.sqrt(Movement[element[0]][0]**2+Movement[element[0]][1]**2)+Math.sqrt(Movement[element[1]][0]**2+Movement[element[1]][1]**2))**CometUp[2]))
 			}
-			else {StarPointGain=StarPointGain.plus(parseInt((((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)**0.5)*(1+math.log10(1+LeafPower))*leavesMult*math.sqrt(bolts+1)*(Dusts+1))**(L[element[0]][2]*L[element[1]][2]*Math.log10(10+Math.sqrt(Movement[element[0]][0]**2+Movement[element[0]][1]**2)+Math.sqrt(Movement[element[1]][0]**2+Movement[element[1]][1]**2))**CometUp[2]))}
+			else {StarPointGain=StarPointGain.plus((new Decimal((((L[element[0]][0]-L[element[1]][0])**2+(L[element[0]][1]-L[element[1]][1])**2)**0.5)*(1+math.pow(LeafPower,1/2))*leavesMult*math.sqrt(bolts+1)*(Dusts+1))).pow(L[element[0]][2]*L[element[1]][2]*Math.log10(10+Math.sqrt(Movement[element[0]][0]**2+Movement[element[0]][1]**2)+Math.sqrt(Movement[element[1]][0]**2+Movement[element[1]][1]**2))**CometUp[2]))}
 		}
 	}
 	StarPoints=StarPoints.plus(NERF(StarPointGain))
 	document.getElementById("STARRED").innerHTML=StarPoints.toPrecision(4)+" Star Points"
-  
+	document.getElementById("SGAIN").innerHTML=NERF(StarPointGain).toPrecision(4)
 	if (stade==0 && StarPoints>=1000){
 		stade++
 		document.getElementById("PresStar").removeAttribute("hidden")
 	}
 	if (stade>1){
-		document.getElementById("PresStar").innerHTML="gather some more leaves and<br>Get "+parseInt((StarPoints.log10()-2)*((StarUp[0]+2)**LeavesUp[2])*(math.sqrt(1+bolts)**BoltsUp[2]))+" leaves"
+		document.getElementById("PresStar").innerHTML="gather some more leaves and<br>Get "+parseInt(NERF(new Decimal(StarPoints.div(1000).pow(1/2)*((StarUp[0]+2)**LeavesUp[2])*(math.sqrt(1+bolts)**BoltsUp[2])))).toPrecision(4)+" leaves"
 	}
 }
 
@@ -290,8 +290,8 @@ function StarStruck(){
 
 function myFunction1() {
 	DrawIt(leaves);
-	document.getElementById("LM").innerHTML=LeafPower
-	document.getElementById("LM2").innerHTML=(1+math.log10(1+LeafPower))
+	document.getElementById("LM").innerHTML=LeafPower.toPrecision(4)
+	document.getElementById("LM2").innerHTML=(1+math.pow(LeafPower,1/2)).toPrecision(4)
 }
 
 function DrawIt(g){
@@ -326,10 +326,9 @@ function DrawIt(g){
 	}
 	if (stade==2 && leaves>=100){
 		stade++
-		document.getElementById("PresBud").removeAttribute("hidden")
 	}
 	if (stade>3){
-		document.getElementById("PresBud").innerHTML="Call the thunder and<br>Get "+parseInt((Math.log10(leaves)-1)*((Math.log10(StarPoints+1)+1)**BoltsUp[1])*((math.log10(1+LeafPower)+1)**BoltsUp[3]))+" bolts"
+		document.getElementById("PresBud").innerHTML="Call the thunder and<br>Get "+NERF(new Decimal(parseInt(Math.pow(leaves/100,1/2)*((Math.log10(StarPoints+1)+1)**BoltsUp[1])*((math.log10(1+LeafPower)+1)**BoltsUp[3])))).toPrecision(4)+" bolts"
 	}
 }
 
@@ -437,7 +436,6 @@ function LeafUp2(){
 
 function TSUp(){
 	if (bolts>=1){
-		bolts=bolts-1
 		BoltsUp[0]++
 		document.getElementById("BOLTS").innerHTML=", "+bolts+" bolt(s)"
 		document.getElementById("BoltUp1").disabled=true
@@ -447,8 +445,7 @@ function TSUp(){
 }
 
 function TSUp2(){
-	if (leaves>=10000 && BoltsUp[0]==1){
-		leaves=leaves-10000
+	if (leaves>=1e6 && BoltsUp[0]==1){
 		BoltsUp[0]++
 		document.getElementById("BUDDING").innerHTML=", "+leaves+" leaf(ves)"
 		document.getElementById("BoltUp1.2").disabled=true
@@ -495,7 +492,7 @@ function PrestigeStars(){
 			document.getElementById("BudTab").removeAttribute("hidden")
 			document.getElementById("BUDDING").removeAttribute("hidden")
 		}
-		leaves+=parseInt((StarPoints.log10()-2)*((StarUp[0]+2)**LeavesUp[2])*(math.sqrt(1+bolts)**BoltsUp[2]))
+		leaves+=NERF(new Decimal(parseInt(StarPoints.div(1000).pow(1/2)*((StarUp[0]+2)**LeavesUp[2])*(math.sqrt(1+bolts)**BoltsUp[2]))))
 		tickspeed2=1000
 		ticks2=0
 		ticks=0
@@ -522,7 +519,7 @@ function GetBolts(){
 			document.getElementById("BoltTab").removeAttribute("hidden")
 			document.getElementById("BOLTS").removeAttribute("hidden")
 		}
-		bolts+=parseInt((Math.log10(leaves)-1)*((Math.log10(StarPoints+1)+1)**BoltsUp[1])*((math.log10(1+LeafPower)+1)**BoltsUp[3]))
+		bolts+=NERF(new Decimal(parseInt(Math.pow(leaves/100,1/2)*((Math.log10(StarPoints.plus(1))+1)**BoltsUp[1])*((math.log10(1+LeafPower)+1)**BoltsUp[3]))))
 		imageData = ctx.createImageData(256, 256); //=pixels
 		var bourgeon=[[[128,128],[128,129,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
 		tickspeed=1000
@@ -555,13 +552,13 @@ function GetBolts(){
 }
 
 function PrestigeComet(){
-	if (bolts>1000){
+	if (bolts>1e6){
 		if (stade==4){
 			stade++
 			document.getElementById("LavaTab").removeAttribute("hidden")
 			document.getElementById("COMET").removeAttribute("hidden")
 		}
-		Dusts+=parseInt((Math.log10(bolts)-2))
+		Dusts+=NERF(new Decimal(parseInt(Math.pow(bolts/1e6,1/2))))
 		imageData = ctx.createImageData(256, 256); //=pixels
 		var bourgeon=[[[128,128],[128,129,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
 		tickspeed=1000
@@ -609,7 +606,6 @@ function PrestigeComet(){
 //upgrades Comet tout fait
 function TSUp3(){
 	if (Dusts>=1 && BoltsUp[0]==2){
-		Dusts=Dusts-1
 		BoltsUp[0]++
 		document.getElementById("BoltUp1.3").disabled=true
 	}
@@ -617,7 +613,6 @@ function TSUp3(){
 
 function CometUp1(){
 	if (Dusts>=10**CometUp[0]){
-		Dusts=Dusts-10**CometUp[0]
 		CometUp[0]++
 		document.getElementById("C1Cost").innerHTML=parseInt(10**CometUp[0])
 		if (CometUp[0]==10){document.getElementById("CometUp1").disabled=true}
@@ -625,7 +620,6 @@ function CometUp1(){
 }
 function CometUp2(){
 	if (Dusts>=10*10**CometUp[1]){
-		Dusts=Dusts-10*10**CometUp[1]
 		CometUp[1]++
 		document.getElementById("C2Cost").innerHTML=parseInt(10*10**CometUp[1])
 		if (CometUp[1]==10){document.getElementById("CometUp2").disabled=true}
@@ -633,13 +627,16 @@ function CometUp2(){
 }
 function CometUp3(){
 	if (Dusts>=10){
-		Dusts=Dusts-10
 		CometUp[2]++
 		document.getElementById("CometUp3").disabled=true
 	}
 }
 
-
+function BUYMAX(){
+	AddStars()
+	StarLinks()
+	StarStruck()
+}
 
 function popXeEl(Liste,Nombre){
 	var LTemp=[];
@@ -851,24 +848,25 @@ function loop() { // production
 	saveticks+=33;
 	drawBolts()
 	Mutedness()
-	if ((StarPoints.log10()-2)*((StarUp[0]+2)**LeavesUp[2])*(math.sqrt(1+bolts)**BoltsUp[2])>0){
-		leaves+=((StarPoints.log10()-2)*((StarUp[0]+2)**LeavesUp[2])*(math.sqrt(1+bolts)**BoltsUp[2]))*33/10000*CometUp[0]
+	
+	if (StarPoints.div(1000).pow(1/2)*((StarUp[0]+2)**LeavesUp[2])*(math.sqrt(1+bolts)**BoltsUp[2])>0){
+		leaves=leaves+NERF(new Decimal(StarPoints.div(1000).pow(1/2)*((StarUp[0]+2)**LeavesUp[2])*(math.sqrt(1+bolts)**BoltsUp[2])))*33/10000*CometUp[0]
 	}
-	document.getElementById("BUDDING").innerHTML=", "+leaves.toPrecision(4)+" leaf(ves)"
-		
-	if (((Math.log10(leaves)-1)*((Math.log10(StarPoints+1)+1)**BoltsUp[1])*((math.log10(1+LeafPower)+1)**BoltsUp[3]))>0){
-		bolts+=((Math.log10(leaves)-1)*((Math.log10(StarPoints+1)+1)**BoltsUp[1])*((math.log10(1+LeafPower)+1)**BoltsUp[3]))*33/10000*CometUp[1]
+	document.getElementById("BUDDING").innerHTML=", "+parseFloat(leaves).toPrecision(4)+" leaf(ves)"
+	
+	if ((Math.pow(leaves/100,1/2)*((Math.log10(StarPoints.plus(1))+1)**BoltsUp[1])*((math.log10(1+LeafPower)+1)**BoltsUp[3]))>0){
+		bolts=bolts+NERF(new Decimal(Math.pow(leaves/100,1/2)*((Math.log10(StarPoints.plus(1))+1)**BoltsUp[1])*((math.log10(1+LeafPower)+1)**BoltsUp[3])))*33/10000*CometUp[1]
 	}
-	document.getElementById("BOLTS").innerHTML=", "+bolts.toPrecision(4)+" bolt(s)"
+	document.getElementById("BOLTS").innerHTML=", "+parseFloat(bolts).toPrecision(4)+" bolt(s)"
 		
 	if (tickspeed<ticks && stade>1){
 		myFunction1();
 		//myFunction7();
 		ticks=ticks-tickspeed
-		document.getElementById("COMET").innerHTML=", "+Dusts+" comet dust(s)"
+		document.getElementById("COMET").innerHTML=", "+Dusts.toPrecision(4)+" comet dust(s)"
 		if (stade>4){
 			myFunction7()
-			document.getElementById("PresComet").innerHTML="Tear up stars and<br>Get "+parseInt(Math.log10(bolts)-2)+" dusts"
+			document.getElementById("PresComet").innerHTML="Tear up stars and<br>Get "+parseInt(Math.pow(bolts/1e6,1/2)).toPrecision(4)+" dusts"
 		}
 	}
 	if (tickspeed2<ticks2){
@@ -878,6 +876,11 @@ function loop() { // production
 	if (saveticks>10000){
 		if (document.getElementById("Autosave").checked == true){save();}
 		saveticks-=10000
+	}
+	
+	if (CometUp[2]>0){
+		BUYMAX()
+		StarSpeed()
 	}
 	//console.log(Date.now()-T0)
 }
@@ -905,21 +908,21 @@ function HReset(){
 	if (BOOLEAN){
 		imageData = ctx.createImageData(256, 256); //=pixels
 		bourgeon=[[[128,128],[128,129,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
-		var tickspeed=1000
-		var tickspeed2=1000
-		var leaves=0
-		var LeavesUp=[0,0,0]
-		var bolts=0
-		var stade=0
-		var BoltsUp=[0,0,0,0]
-		var StarPoints=0
-		var StarUp=[0,0,0,0]
-		var LeafPower=0
-		var leavesMult=1
-		var Dusts = 0;
-		var CometUp=[0,0,0]
-		var Ice = 0;
-		var IceUp = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+		tickspeed=1000
+		tickspeed2=1000
+		leaves=0
+		LeavesUp=[0,0,0]
+		bolts=0
+		stade=0
+		BoltsUp=[0,0,0,0]
+		StarPoints=new Decimal(0)
+		StarUp=[0,0,0,0]
+		LeafPower=0
+		leavesMult=1
+		Dusts = 0;
+		CometUp=[0,0,0]
+		Ice = 0;
+		IceUp = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 		StarReset()
 }}
 
@@ -1093,11 +1096,10 @@ function Import(){
 
 function SaveLeaves(){
 	var LINK=document.getElementById("DFWMB")
-	LINK.download = 'Leaves'+x[0]+'x'+x[1]+'.png';
+	LINK.download = 'Leaves256x256.png';
 	LINK.href = canvas.toDataURL("image/jpg");
 	LINK.click();
 }
-
 
 StarReset()
 

@@ -407,7 +407,9 @@ function LeafUp1(){
 		LeavesUp[0]++
 		document.getElementById("LU1").innerHTML=parseInt(10**LeavesUp[0])
 		document.getElementById("BUDDING").innerHTML=", "+leaves+" leaf(ves)"
-		//document.getElementById("BU").disabled=true
+	}
+	if (LeavesUp[0]>=3){
+		document.getElementById("BU").disabled=true
 	}
 }
 
@@ -492,7 +494,7 @@ function PrestigeStars(){
 			document.getElementById("BudTab").removeAttribute("hidden")
 			document.getElementById("BUDDING").removeAttribute("hidden")
 		}
-		leaves+=NERF(new Decimal(parseInt(StarPoints.div(1000).pow(1/2)*((StarUp[0]+2)**LeavesUp[2])*(math.sqrt(1+bolts)**BoltsUp[2]))))
+		leaves+=parseInt(NERF(new Decimal(StarPoints.div(1000).pow(1/2)*((StarUp[0]+2)**LeavesUp[2])*(math.sqrt(1+bolts)**BoltsUp[2]))))
 		tickspeed2=1000
 		ticks2=0
 		ticks=0
@@ -519,7 +521,7 @@ function GetBolts(){
 			document.getElementById("BoltTab").removeAttribute("hidden")
 			document.getElementById("BOLTS").removeAttribute("hidden")
 		}
-		bolts+=NERF(new Decimal(parseInt(Math.pow(leaves/100,1/2)*((Math.log10(StarPoints.plus(1))+1)**BoltsUp[1])*((math.log10(1+LeafPower)+1)**BoltsUp[3]))))
+		bolts+=parseInt(NERF(new Decimal(Math.pow(leaves/100,1/2)*((Math.log10(StarPoints.plus(1))+1)**BoltsUp[1])*((math.log10(1+LeafPower)+1)**BoltsUp[3]))))
 		imageData = ctx.createImageData(256, 256); //=pixels
 		var bourgeon=[[[128,128],[128,129,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
 		tickspeed=1000
@@ -545,6 +547,7 @@ function GetBolts(){
 		document.getElementById("S4Cost").innerHTML=parseInt(10**(1+StarUp[3]))
 		document.getElementById("TSS").disabled=false
 		document.getElementById("SpeedU2").disabled=false
+		document.getElementById("BU").disabled=false
 		ctxS.clearRect(0,0, 512, 512);
 		document.getElementById("BUDDING").innerHTML=", "+leaves+" leaf(ves)"
 		StarReset()
@@ -558,7 +561,7 @@ function PrestigeComet(){
 			document.getElementById("LavaTab").removeAttribute("hidden")
 			document.getElementById("COMET").removeAttribute("hidden")
 		}
-		Dusts+=NERF(new Decimal(parseInt(Math.pow(bolts/1e6,1/2))))
+		Dusts+=parseInt(NERF(new Decimal(Math.pow(bolts/1e6,1/2))))
 		imageData = ctx.createImageData(256, 256); //=pixels
 		var bourgeon=[[[128,128],[128,129,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
 		tickspeed=1000
@@ -597,6 +600,7 @@ function PrestigeComet(){
 		document.getElementById("S4Cost").innerHTML=parseInt(10**(1+StarUp[3]))
 		document.getElementById("TSS").disabled=false
 		document.getElementById("SpeedU2").disabled=false
+		document.getElementById("BU").disabled=false
 		ctxS.clearRect(0,0, 512, 512);
 		document.getElementById("BUDDING").innerHTML=", "+leaves+" leaf(ves)"
 		StarReset()
@@ -850,12 +854,12 @@ function loop() { // production
 	Mutedness()
 	
 	if (StarPoints.div(1000).pow(1/2)*((StarUp[0]+2)**LeavesUp[2])*(math.sqrt(1+bolts)**BoltsUp[2])>0){
-		leaves=leaves+NERF(new Decimal(StarPoints.div(1000).pow(1/2)*((StarUp[0]+2)**LeavesUp[2])*(math.sqrt(1+bolts)**BoltsUp[2])))*33/10000*CometUp[0]
+		leaves=leaves+NERF((new Decimal(StarPoints.div(1000).pow(1/2))).mul((StarUp[0]+2)**LeavesUp[2]).mul(math.sqrt(1+bolts)**BoltsUp[2]))*33/10000*CometUp[0]
 	}
 	document.getElementById("BUDDING").innerHTML=", "+parseFloat(leaves).toPrecision(4)+" leaf(ves)"
 	
 	if ((Math.pow(leaves/100,1/2)*((Math.log10(StarPoints.plus(1))+1)**BoltsUp[1])*((math.log10(1+LeafPower)+1)**BoltsUp[3]))>0){
-		bolts=bolts+NERF(new Decimal(Math.pow(leaves/100,1/2)*((Math.log10(StarPoints.plus(1))+1)**BoltsUp[1])*((math.log10(1+LeafPower)+1)**BoltsUp[3])))*33/10000*CometUp[1]
+		bolts=bolts+NERF((new Decimal(Math.pow(leaves/100,1/2))).mul((Math.log10(StarPoints.plus(1))+1)**BoltsUp[1]).mul((math.log10(1+LeafPower)+1)**BoltsUp[3]))*33/10000*CometUp[1]
 	}
 	document.getElementById("BOLTS").innerHTML=", "+parseFloat(bolts).toPrecision(4)+" bolt(s)"
 		
@@ -924,6 +928,33 @@ function HReset(){
 		Ice = 0;
 		IceUp = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 		StarReset()
+		document.getElementById("S1Cost").innerHTML=parseInt(10**(1+StarUp[0]))
+		document.getElementById("AS").disabled=false
+		document.getElementById("S2Cost").innerHTML=parseInt(10**(1+StarUp[1]))
+		document.getElementById("S3Cost").innerHTML=parseInt(10**(2**StarUp[2]))
+		document.getElementById("S4Cost").innerHTML=parseInt(10**(1+StarUp[3]))
+		document.getElementById("TSS").disabled=false
+		document.getElementById("LU1").innerHTML=parseInt(10**LeavesUp[0])
+		document.getElementById("TCost").innerHTML=parseInt(2**(LeavesUp[1]+1))
+		document.getElementById("LU").disabled=false
+		document.getElementById("BoltUp1").disabled=false
+		document.getElementById("BoltUp1.2").disabled=false
+		document.getElementById("BoltUp1.3").disabled=false
+		document.getElementById("BoltUp2").disabled=false
+		document.getElementById("BoltUp3").disabled=false
+		document.getElementById("BoltUp4").disabled=false
+		document.getElementById("BudTab").setAttribute("hidden",true)
+		document.getElementById("BUDDING").setAttribute("hidden",true)
+		document.getElementById("BoltTab").setAttribute("hidden",true)
+		document.getElementById("BOLTS").setAttribute("hidden",true)
+		document.getElementById("LavaTab").setAttribute("hidden",true)
+		document.getElementById("COMET").setAttribute("hidden",true)
+		document.getElementById("C1Cost").innerHTML=parseInt(10**CometUp[0])
+		document.getElementById("CometUp1").disabled=false
+		document.getElementById("CometUp2").disabled=false
+		document.getElementById("C2Cost").innerHTML=parseInt(10*10**CometUp[1])
+		document.getElementById("CometUp3").disabled=false
+		
 }}
 
 function copyStringToClipboard(str) {
@@ -1043,26 +1074,19 @@ function Import(){
 		bourgeon=[[[128,128],[128,129,[parseInt(Math.random()*256),parseInt(Math.random()*256),parseInt(Math.random()*256)]]]]
 		if (loadgame.Stade){stade=parseInt(loadgame.Stade)}
 		if (stade>0){
-			document.getElementById("PresStar").removeAttribute("hidden")
 			if (stade>1){
-				document.getElementById("BUDDING").innerHTML=", "+leaves+" leaf(ves)"
+				document.getElementById("BUDDING").innerHTML=", "+leaves.toPrecision(4)+" leaf(ves)"
 				document.getElementById("BudTab").removeAttribute("hidden")
 				document.getElementById("BUDDING").removeAttribute("hidden")
-				document.getElementById("PresStar").innerHTML="gather some more leaves and<br>Get "+parseInt((Math.log10(StarPoints)-2)*((StarUp[0]+2)**LeavesUp[2]))+" leaves"
-				drawBolts()
 				if (stade>2){
-					document.getElementById("PresBud").removeAttribute("hidden")
 					if (stade>3){
 						document.getElementById("BoltTab").removeAttribute("hidden")
 						document.getElementById("BOLTS").removeAttribute("hidden")
-						document.getElementById("PresBud").innerHTML="Call the thunder and<br>Get "+parseInt(Math.log10(leaves)-1)+" bolts"
-						drawBolts()
 						if (stade>4){
 							Dusts = parseInt(loadgame.Dusts);
 							CometUp=loadgame.CometUp.split(",").map(Number);
 							document.getElementById("LavaTab").removeAttribute("hidden")
 							document.getElementById("COMET").removeAttribute("hidden")
-							document.getElementById("PresComet").innerHTML="Tear up stars and<br>Get "+parseInt(Math.log10(bolts)-2)+" dusts"
 							if (BoltsUp[0]>=3){
 								document.getElementById("BoltUp1.3").disabled=true
 							}

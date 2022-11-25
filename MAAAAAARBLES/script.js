@@ -14,6 +14,9 @@ coords=[[50, 50, Complex(0,0), Complex(0,0), "rgb(250,0,0)"]]
 //Un rectangle
 Obstacles=[[[10,400],[490,450],[490,400],[10,450]]]
 
+WinBar=[[0,490],[500,490],[500,500],[0,500]]
+
+DeleteObst=[[[1,499],[1,1]],[[1,1],[499,1]],[[499,499],[499,1]]]
 
 Ball_size = 5;
 //d'abord juste une bille dans un rectangle de collisions...
@@ -28,6 +31,12 @@ function Reset(){
 	Obstacles=[[[10,400],[490,450],[490,400],[10,450]]]
 	
 	Bouncy = parseInt(document.getElementById("Bouncyness").value)/100
+}
+
+function Restart_Pos(Ball){
+	Ball[0]= 10+480*math.random()
+	Ball[1]= 10+40*math.random()
+	return Ball
 }
 
 //l'axe y est inversé
@@ -73,15 +82,44 @@ function COLLISION(OBST_LIST, Ball) {
 		if (Koll!=-1){
 			var PosREALProb = [OBST_LIST[i][Koll+1][0]+(OBST_LIST[i][Koll][0]-OBST_LIST[i][Koll+1][0])*SCALAR([OBST_LIST[i][Koll][0]-OBST_LIST[i][Koll+1][0],OBST_LIST[i][Koll][1]-OBST_LIST[i][Koll+1][1]],[Ball[0]+Ball[2].re*0.05-OBST_LIST[i][Koll+1][0],Ball[1]+Ball[2].im*0.05-OBST_LIST[i][Koll+1][1]])/DIST(OBST_LIST[i][Koll+1],OBST_LIST[i][Koll])**2,OBST_LIST[i][Koll+1][1]+(OBST_LIST[i][Koll][1]-OBST_LIST[i][Koll+1][1])*SCALAR([OBST_LIST[i][Koll][0]-OBST_LIST[i][Koll+1][0],OBST_LIST[i][Koll][1]-OBST_LIST[i][Koll+1][1]],[Ball[0]+Ball[2].re*0.05-OBST_LIST[i][Koll+1][0],Ball[1]+Ball[2].im*0.05-OBST_LIST[i][Koll+1][1]])/DIST(OBST_LIST[i][Koll+1],OBST_LIST[i][Koll])**2]
 			var vectP= [(OBST_LIST[i][Koll][0]-OBST_LIST[i][Koll+1][0])/DIST(OBST_LIST[i][Koll],OBST_LIST[i][Koll+1]), (OBST_LIST[i][Koll][1]-OBST_LIST[i][Koll+1][1])/DIST(OBST_LIST[i][Koll],OBST_LIST[i][Koll+1])]
+			if (!(SCALAR([PosREALProb[0]-OBST_LIST[i][Koll+1][0],PosREALProb[1]-OBST_LIST[i][Koll+1][1]], vectP) > 0 && SCALAR([PosREALProb[0]-OBST_LIST[i][Koll+1][0],PosREALProb[1]-OBST_LIST[i][Koll+1][1]], vectP) < DIST(OBST_LIST[i][Koll],OBST_LIST[i][Koll+1]))){
+				return Ball
+			}
 		}
 		else {
 			var PosREALProb = [OBST_LIST[i][0][0]+(OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][0][0])*SCALAR([OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][0][0],OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][0][1]],[Ball[0]+Ball[2].re*0.05-OBST_LIST[i][0][0],Ball[1]+Ball[2].im*0.05-OBST_LIST[i][0][1]])/DIST(OBST_LIST[i][0],OBST_LIST[i][OBST_LIST[i].length-1])**2,OBST_LIST[i][0][1]+(OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][0][1])*SCALAR([OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][0][0],OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][0][1]],[Ball[0]+Ball[2].re*0.05-OBST_LIST[i][0][0],Ball[1]+Ball[2].im*0.05-OBST_LIST[i][0][1]])/DIST(OBST_LIST[i][0],OBST_LIST[i][OBST_LIST[i].length-1])**2]
 			var vectP= [(OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][0][0])/DIST(OBST_LIST[i][OBST_LIST[i].length-1],OBST_LIST[i][0]), (OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][0][1])/DIST(OBST_LIST[i][OBST_LIST[i].length-1],OBST_LIST[i][0])]
+			if (!(SCALAR([PosREALProb[0]-OBST_LIST[i][0][0],PosREALProb[1]-OBST_LIST[i][0][1]], vectP) > 0 && SCALAR([PosREALProb[0]-OBST_LIST[i][0][0],PosREALProb[1]-OBST_LIST[i][0][1]], vectP) < DIST(OBST_LIST[i][OBST_LIST[i].length-1],OBST_LIST[i][0]))){
+				return Ball
+			}
 		}
 		
 		//enfin, changement de trajectoire SI collision prochain tour
 		if (DIST(PosREALProb, [Ball[0]+Ball[2].re*0.05,Ball[1]+Ball[2].im*0.05])<Ball_size){
 			Ball[2]=Complex(vectP).mul(Ball[2].re*vectP[0]+Ball[2].im*vectP[1]).add(Ball[2].add(Complex(vectP).mul(-(Ball[2].re*vectP[0]+Ball[2].im*vectP[1]))).mul(-Bouncy))
+		}
+		
+	}
+	
+	return Ball
+}
+
+function Death_Penalty(OBST_LIST, Ball) {
+	for (var i=0; i<OBST_LIST.length;i++){
+		var Koll=-1;
+		var PosProb=[OBST_LIST[i][0][0]+(OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][0][0])*SCALAR([OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][0][0],OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][0][1]],[Ball[0]-OBST_LIST[i][0][0],Ball[1]-OBST_LIST[i][0][1]])/DIST(OBST_LIST[i][0],OBST_LIST[i][OBST_LIST[i].length-1])**2,OBST_LIST[i][0][1]+(OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][0][1])*SCALAR([OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][0][0],OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][0][1]],[Ball[0]-OBST_LIST[i][0][0],Ball[1]-OBST_LIST[i][0][1]])/DIST(OBST_LIST[i][0],OBST_LIST[i][OBST_LIST[i].length-1])**2]
+		
+		for (var k=0; k<OBST_LIST[i].length-1; k++){
+			var PosProbk=[OBST_LIST[i][k+1][0]+(OBST_LIST[i][k][0]-OBST_LIST[i][k+1][0])*SCALAR([OBST_LIST[i][k][0]-OBST_LIST[i][k+1][0],OBST_LIST[i][k][1]-OBST_LIST[i][k+1][1]],[Ball[0]-OBST_LIST[i][k+1][0],Ball[1]-OBST_LIST[i][k+1][1]])/DIST(OBST_LIST[i][k+1],OBST_LIST[i][k])**2,OBST_LIST[i][k+1][1]+(OBST_LIST[i][k][1]-OBST_LIST[i][k+1][1])*SCALAR([OBST_LIST[i][k][0]-OBST_LIST[i][k+1][0],OBST_LIST[i][k][1]-OBST_LIST[i][k+1][1]],[Ball[0]-OBST_LIST[i][k+1][0],Ball[1]-OBST_LIST[i][k+1][1]])/DIST(OBST_LIST[i][k+1],OBST_LIST[i][k])**2]
+			
+			if (DIST(PosProb, [Ball[0],Ball[1]])>DIST(PosProbk, [Ball[0],Ball[1]])){
+				Koll=k
+				PosProb=PosProbk
+			}
+		}
+		
+		if (DIST(PosProb, Ball)<Ball_size){
+			Restart_Pos(Ball)
 		}
 		
 	}
@@ -149,6 +187,8 @@ function myFunction() {
 	draw_obst(Obstacles,"#111")
 	for (var i=0; i<coords.length; i++){
 		coords[i]=Movement(coords[i])
+		Death_Penalty(DeleteObst,coords[i])
+		draw_obst(DeleteObst,"#911")
 		draw_marble(Ball_size, coords[i], coords[i][4])
 	}
 };

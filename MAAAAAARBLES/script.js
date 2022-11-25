@@ -200,7 +200,7 @@ function draw_marble(Size, Position, Color){
 }
 
 function myFunction() {
-	ctx.clearRect(0, 0, 500, 500);
+	ctx.clearRect(0, 0, 800, 500);
 	ctx.strokeStyle="#BBBBBB";
 	
 	for (var i=0; i<coords.length; i++){

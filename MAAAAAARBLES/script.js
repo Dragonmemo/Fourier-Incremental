@@ -9,7 +9,7 @@ var ctx = canvas.getContext("2d");
 
 var Bouncy = 0.5
 
-coords=[[50, 50, Complex(0,0), Complex(0,0)]]
+coords=[[50, 50, Complex(0,0), Complex(0,0), "rgb(250,0,0)"]]
 
 //Un rectangle
 Obstacles=[[[10,400],[490,450],[490,400],[10,450]]]
@@ -19,7 +19,9 @@ Ball_size = 5;
 //d'abord juste une bille dans un rectangle de collisions...
 
 function Reset(){
-	coords=[[50, 50, Complex(0,0), Complex(0,0)]]
+	for (var i=0; i<24; i++){
+		coords[i]=[10+480*math.random(),10+40*math.random(), Complex(0,0), Complex(0,0), "rgb("+parseInt(255*math.random())+","+parseInt(255*math.random())+","+parseInt(255*math.random())+")"]
+	}
 	
 	Ball_size = 5;
 	
@@ -52,8 +54,6 @@ function SCALAR(A,B){
 function DIST(A,B){
 	return math.sqrt((A[0]-B[0])**2+(A[1]-B[1])**2)
 }
-
-//(OBST_LIST[i][k][0]-OBST_LIST[i][k+1][0])*SCALAR([OBST_LIST[i][k][0]-OBST_LIST[i][k+1][0],OBST_LIST[i][k][1]-OBST_LIST[i][k+1][1]],[Ball[0]-OBST_LIST[i][k+1][0],Ball[1]-OBST_LIST[i][k+1][1]])/DIST(OBST_LIST[i][k+1],OBST_LIST[i][k])**2
 
 function COLLISION(OBST_LIST, Ball) {
 	for (var i=0; i<OBST_LIST.length;i++){
@@ -89,8 +89,28 @@ function COLLISION(OBST_LIST, Ball) {
 	return Ball
 }
 
+function Ball_Collision(Balls) {
+	for (var i=0; i<Balls.length;i++){
+		for (var k=0; k<Balls.length; k++){
+			if (i!=Balls.length && k!=Balls.length && i!=k && DIST([Balls[i][0]+Balls[i][2].re*0.05,Balls[i][1]+Balls[i][2].im*0.05], [Balls[k][0]+Balls[k][2].re*0.05,Balls[k][1]+Balls[k][2].im*0.05])<2*Ball_size){
+				var DISTANCE = DIST(Balls[i],Balls[k])
+				
+				var vectP = [(Balls[i][0]-Balls[k][0])/DISTANCE, (Balls[i][1]-Balls[k][1])/DISTANCE]
+				
+				var ScalaireI = Balls[i][2].re*vectP[0]+Balls[i][2].im*vectP[1];
+				var ScalaireK = Balls[k][2].re*vectP[0]+Balls[k][2].im*vectP[1];
+				
+				[Balls[i][2],Balls[k][2]]=[Complex(vectP).mul(ScalaireI).mul(-Bouncy).add(Complex(vectP).mul(ScalaireK).mul(Bouncy)).add(Balls[i][2].add(Complex(vectP).mul(-ScalaireI))),Complex(vectP).mul(ScalaireK).mul(-Bouncy).add(Complex(vectP).mul(ScalaireI).mul(Bouncy)).add(Balls[k][2].add(Complex(vectP).mul(-ScalaireK)))]
+		
+			}
+		}		
+	}
+	
+	return Balls
+}
+
 function draw_obst(LISTAGE, Color){
-	ctx.strokeStyle=Color;
+	ctx.fillStyle=Color;
 	for (var i=0;i<LISTAGE.length;i++){
 		ctx.beginPath()
 		ctx.moveTo(LISTAGE[i][LISTAGE[i].length-1][0],LISTAGE[i][LISTAGE[i].length-1][1])
@@ -98,34 +118,39 @@ function draw_obst(LISTAGE, Color){
 			ctx.lineTo(LISTAGE[i][k][0],LISTAGE[i][k][1])
 		}
 		ctx.closePath()
-		ctx.stroke()
+		ctx.fill()
 	}
 }
 
 function draw_marble(Size, Position, Color){
-	ctx.strokeStyle=Color;
+	ctx.fillStyle=Color;
 	ctx.beginPath()
 	ctx.moveTo(Position[0],Position[1]+Size)
 	for (var i=0;i<101;i++){
 		ctx.lineTo(Position[0]+Size*math.sin(2*math.PI*i/100),Position[1]+Size*math.cos(2*math.PI*i/100))
 	}
 	ctx.closePath()
-	ctx.stroke()
+	ctx.fill()
 }
 
 function myFunction() {
 	ctx.clearRect(0, 0, 500, 500);
 	ctx.strokeStyle="#BBBBBB";
 	
-	coords[0]=Acceleration(coords[0])
-	coords[0]=Speed(coords[0])
-	//collision detection
-	coords[0]=COLLISION(Obstacles, coords[0])
-	coords[0]=Movement(coords[0])
+	for (var i=0; i<coords.length; i++){
+		coords[i]=Acceleration(coords[i])
+		coords[i]=Speed(coords[i])
+		//collision detection
+		coords[i]=COLLISION(Obstacles, coords[i])
+	}
 	
+	coords=Ball_Collision(coords)
 	
 	draw_obst(Obstacles,"#111")
-	draw_marble(Ball_size, coords[0], "#900")
+	for (var i=0; i<coords.length; i++){
+		coords[i]=Movement(coords[i])
+		draw_marble(Ball_size, coords[i], coords[i][4])
+	}
 };
 
 

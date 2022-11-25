@@ -11,12 +11,12 @@ var Bouncy = 0.5
 
 coords=[[50, 50, Complex(0,0), Complex(0,0), "rgb(250,0,0)"]]
 
-//Un rectangle
-Obstacles=[[[10,400],[490,450],[490,400],[10,450]]]
+//Un rectangle, premier = vit de montée, deux = centre actuel, coord mort = -450 min
+Obstacles=[[-1,0,[10,400],[490,450],[490,400],[10,450]]]
 
-WinBar=[[0,490],[500,490],[500,500],[0,500]]
+WinBar=[0,0,[0,490],[500,490],[500,500],[0,500]]
 
-DeleteObst=[[[1,499],[1,1]],[[1,1],[499,1]],[[499,499],[499,1]]]
+DeleteObst=[[0,0,[1,499],[1,1]],[0,0,[1,1],[499,1]],[0,0,[499,499],[499,1]]]
 
 Ball_size = 5;
 //d'abord juste une bille dans un rectangle de collisions...
@@ -28,7 +28,7 @@ function Reset(){
 	
 	Ball_size = 5;
 	
-	Obstacles=[[[10,400],[490,450],[490,400],[10,450]]]
+	Obstacles=[[-1,0,[10,400],[490,450],[490,400],[10,450]]]
 	
 	Bouncy = parseInt(document.getElementById("Bouncyness").value)/100
 }
@@ -67,10 +67,10 @@ function DIST(A,B){
 function COLLISION(OBST_LIST, Ball) {
 	for (var i=0; i<OBST_LIST.length;i++){
 		var Koll=-1;
-		var PosProb=[OBST_LIST[i][0][0]+(OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][0][0])*SCALAR([OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][0][0],OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][0][1]],[Ball[0]-OBST_LIST[i][0][0],Ball[1]-OBST_LIST[i][0][1]])/DIST(OBST_LIST[i][0],OBST_LIST[i][OBST_LIST[i].length-1])**2,OBST_LIST[i][0][1]+(OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][0][1])*SCALAR([OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][0][0],OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][0][1]],[Ball[0]-OBST_LIST[i][0][0],Ball[1]-OBST_LIST[i][0][1]])/DIST(OBST_LIST[i][0],OBST_LIST[i][OBST_LIST[i].length-1])**2]
+		var PosProb=[OBST_LIST[i][2][0]+(OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][2][0])*SCALAR([OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][2][0],OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][2][1]],[Ball[0]-OBST_LIST[i][2][0],Ball[1]-OBST_LIST[i][1]-OBST_LIST[i][2][1]])/DIST(OBST_LIST[i][2],OBST_LIST[i][OBST_LIST[i].length-1])**2,OBST_LIST[i][1]+OBST_LIST[i][2][1]+(OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][2][1])*SCALAR([OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][2][0],OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][2][1]],[Ball[0]-OBST_LIST[i][2][0],Ball[1]-OBST_LIST[i][1]-OBST_LIST[i][2][1]])/DIST(OBST_LIST[i][2],OBST_LIST[i][OBST_LIST[i].length-1])**2]
 		
-		for (var k=0; k<OBST_LIST[i].length-1; k++){
-			var PosProbk=[OBST_LIST[i][k+1][0]+(OBST_LIST[i][k][0]-OBST_LIST[i][k+1][0])*SCALAR([OBST_LIST[i][k][0]-OBST_LIST[i][k+1][0],OBST_LIST[i][k][1]-OBST_LIST[i][k+1][1]],[Ball[0]-OBST_LIST[i][k+1][0],Ball[1]-OBST_LIST[i][k+1][1]])/DIST(OBST_LIST[i][k+1],OBST_LIST[i][k])**2,OBST_LIST[i][k+1][1]+(OBST_LIST[i][k][1]-OBST_LIST[i][k+1][1])*SCALAR([OBST_LIST[i][k][0]-OBST_LIST[i][k+1][0],OBST_LIST[i][k][1]-OBST_LIST[i][k+1][1]],[Ball[0]-OBST_LIST[i][k+1][0],Ball[1]-OBST_LIST[i][k+1][1]])/DIST(OBST_LIST[i][k+1],OBST_LIST[i][k])**2]
+		for (var k=2; k<OBST_LIST[i].length-1; k++){
+			var PosProbk=[OBST_LIST[i][k+1][0]+(OBST_LIST[i][k][0]-OBST_LIST[i][k+1][0])*SCALAR([OBST_LIST[i][k][0]-OBST_LIST[i][k+1][0],OBST_LIST[i][k][1]-OBST_LIST[i][k+1][1]],[Ball[0]-OBST_LIST[i][k+1][0],Ball[1]-OBST_LIST[i][1]-OBST_LIST[i][k+1][1]])/DIST(OBST_LIST[i][k+1],OBST_LIST[i][k])**2,OBST_LIST[i][1]+OBST_LIST[i][k+1][1]+(OBST_LIST[i][k][1]-OBST_LIST[i][k+1][1])*SCALAR([OBST_LIST[i][k][0]-OBST_LIST[i][k+1][0],OBST_LIST[i][k][1]-OBST_LIST[i][k+1][1]],[Ball[0]-OBST_LIST[i][k+1][0],Ball[1]-OBST_LIST[i][1]-OBST_LIST[i][k+1][1]])/DIST(OBST_LIST[i][k+1],OBST_LIST[i][k])**2]
 			
 			if (DIST(PosProb, [Ball[0],Ball[1]])>DIST(PosProbk, [Ball[0],Ball[1]])){
 				Koll=k
@@ -80,16 +80,16 @@ function COLLISION(OBST_LIST, Ball) {
 		
 		//Koll désigne le segment à problèmes désormais, si la vitesse est trop élevée, il peut y avoir phasage, mais ça DEVRAIT aller, si -1 c'est entre 0 et le dernier.
 		if (Koll!=-1){
-			var PosREALProb = [OBST_LIST[i][Koll+1][0]+(OBST_LIST[i][Koll][0]-OBST_LIST[i][Koll+1][0])*SCALAR([OBST_LIST[i][Koll][0]-OBST_LIST[i][Koll+1][0],OBST_LIST[i][Koll][1]-OBST_LIST[i][Koll+1][1]],[Ball[0]+Ball[2].re*0.05-OBST_LIST[i][Koll+1][0],Ball[1]+Ball[2].im*0.05-OBST_LIST[i][Koll+1][1]])/DIST(OBST_LIST[i][Koll+1],OBST_LIST[i][Koll])**2,OBST_LIST[i][Koll+1][1]+(OBST_LIST[i][Koll][1]-OBST_LIST[i][Koll+1][1])*SCALAR([OBST_LIST[i][Koll][0]-OBST_LIST[i][Koll+1][0],OBST_LIST[i][Koll][1]-OBST_LIST[i][Koll+1][1]],[Ball[0]+Ball[2].re*0.05-OBST_LIST[i][Koll+1][0],Ball[1]+Ball[2].im*0.05-OBST_LIST[i][Koll+1][1]])/DIST(OBST_LIST[i][Koll+1],OBST_LIST[i][Koll])**2]
+			var PosREALProb = [OBST_LIST[i][Koll+1][0]+(OBST_LIST[i][Koll][0]-OBST_LIST[i][Koll+1][0])*SCALAR([OBST_LIST[i][Koll][0]-OBST_LIST[i][Koll+1][0],OBST_LIST[i][Koll][1]-OBST_LIST[i][Koll+1][1]],[Ball[0]+Ball[2].re*0.05-OBST_LIST[i][Koll+1][0],Ball[1]+Ball[2].im*0.05-OBST_LIST[i][1]-OBST_LIST[i][Koll+1][1]])/DIST(OBST_LIST[i][Koll+1],OBST_LIST[i][Koll])**2,OBST_LIST[i][1]+OBST_LIST[i][Koll+1][1]+(OBST_LIST[i][Koll][1]-OBST_LIST[i][Koll+1][1])*SCALAR([OBST_LIST[i][Koll][0]-OBST_LIST[i][Koll+1][0],OBST_LIST[i][Koll][1]-OBST_LIST[i][Koll+1][1]],[Ball[0]+Ball[2].re*0.05-OBST_LIST[i][Koll+1][0],Ball[1]+Ball[2].im*0.05-OBST_LIST[i][1]-OBST_LIST[i][Koll+1][1]])/DIST(OBST_LIST[i][Koll+1],OBST_LIST[i][Koll])**2]
 			var vectP= [(OBST_LIST[i][Koll][0]-OBST_LIST[i][Koll+1][0])/DIST(OBST_LIST[i][Koll],OBST_LIST[i][Koll+1]), (OBST_LIST[i][Koll][1]-OBST_LIST[i][Koll+1][1])/DIST(OBST_LIST[i][Koll],OBST_LIST[i][Koll+1])]
 			if (!(SCALAR([PosREALProb[0]-OBST_LIST[i][Koll+1][0],PosREALProb[1]-OBST_LIST[i][Koll+1][1]], vectP) > 0 && SCALAR([PosREALProb[0]-OBST_LIST[i][Koll+1][0],PosREALProb[1]-OBST_LIST[i][Koll+1][1]], vectP) < DIST(OBST_LIST[i][Koll],OBST_LIST[i][Koll+1]))){
 				return Ball
 			}
 		}
 		else {
-			var PosREALProb = [OBST_LIST[i][0][0]+(OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][0][0])*SCALAR([OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][0][0],OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][0][1]],[Ball[0]+Ball[2].re*0.05-OBST_LIST[i][0][0],Ball[1]+Ball[2].im*0.05-OBST_LIST[i][0][1]])/DIST(OBST_LIST[i][0],OBST_LIST[i][OBST_LIST[i].length-1])**2,OBST_LIST[i][0][1]+(OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][0][1])*SCALAR([OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][0][0],OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][0][1]],[Ball[0]+Ball[2].re*0.05-OBST_LIST[i][0][0],Ball[1]+Ball[2].im*0.05-OBST_LIST[i][0][1]])/DIST(OBST_LIST[i][0],OBST_LIST[i][OBST_LIST[i].length-1])**2]
-			var vectP= [(OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][0][0])/DIST(OBST_LIST[i][OBST_LIST[i].length-1],OBST_LIST[i][0]), (OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][0][1])/DIST(OBST_LIST[i][OBST_LIST[i].length-1],OBST_LIST[i][0])]
-			if (!(SCALAR([PosREALProb[0]-OBST_LIST[i][0][0],PosREALProb[1]-OBST_LIST[i][0][1]], vectP) > 0 && SCALAR([PosREALProb[0]-OBST_LIST[i][0][0],PosREALProb[1]-OBST_LIST[i][0][1]], vectP) < DIST(OBST_LIST[i][OBST_LIST[i].length-1],OBST_LIST[i][0]))){
+			var PosREALProb = [OBST_LIST[i][2][0]+(OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][2][0])*SCALAR([OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][2][0],OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][2][1]],[Ball[0]+Ball[2].re*0.05-OBST_LIST[i][2][0],Ball[1]+Ball[2].im*0.05-OBST_LIST[i][1]-OBST_LIST[i][2][1]])/DIST(OBST_LIST[i][2],OBST_LIST[i][OBST_LIST[i].length-1])**2,OBST_LIST[i][1]+OBST_LIST[i][2][1]+(OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][2][1])*SCALAR([OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][2][0],OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][2][1]],[Ball[0]+Ball[2].re*0.05-OBST_LIST[i][2][0],Ball[1]+Ball[2].im*0.05-OBST_LIST[i][1]-OBST_LIST[i][2][1]])/DIST(OBST_LIST[i][2],OBST_LIST[i][OBST_LIST[i].length-1])**2]
+			var vectP= [(OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][2][0])/DIST(OBST_LIST[i][OBST_LIST[i].length-1],OBST_LIST[i][2]), (OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][2][1])/DIST(OBST_LIST[i][OBST_LIST[i].length-1],OBST_LIST[i][2])]
+			if (!(SCALAR([PosREALProb[0]-OBST_LIST[i][2][0],PosREALProb[1]-OBST_LIST[i][2][1]], vectP) > 0 && SCALAR([PosREALProb[0]-OBST_LIST[i][2][0],PosREALProb[1]-OBST_LIST[i][2][1]], vectP) < DIST(OBST_LIST[i][OBST_LIST[i].length-1],OBST_LIST[i][2]))){
 				return Ball
 			}
 		}
@@ -107,10 +107,10 @@ function COLLISION(OBST_LIST, Ball) {
 function Death_Penalty(OBST_LIST, Ball) {
 	for (var i=0; i<OBST_LIST.length;i++){
 		var Koll=-1;
-		var PosProb=[OBST_LIST[i][0][0]+(OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][0][0])*SCALAR([OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][0][0],OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][0][1]],[Ball[0]-OBST_LIST[i][0][0],Ball[1]-OBST_LIST[i][0][1]])/DIST(OBST_LIST[i][0],OBST_LIST[i][OBST_LIST[i].length-1])**2,OBST_LIST[i][0][1]+(OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][0][1])*SCALAR([OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][0][0],OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][0][1]],[Ball[0]-OBST_LIST[i][0][0],Ball[1]-OBST_LIST[i][0][1]])/DIST(OBST_LIST[i][0],OBST_LIST[i][OBST_LIST[i].length-1])**2]
+		var PosProb=[OBST_LIST[i][2][0]+(OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][2][0])*SCALAR([OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][2][0],OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][2][1]],[Ball[0]-OBST_LIST[i][2][0],Ball[1]-OBST_LIST[i][1]-OBST_LIST[i][2][1]])/DIST(OBST_LIST[i][2],OBST_LIST[i][OBST_LIST[i].length-1])**2,OBST_LIST[i][1]+OBST_LIST[i][2][1]+(OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][2][1])*SCALAR([OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][2][0],OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][2][1]],[Ball[0]-OBST_LIST[i][2][0],Ball[1]-OBST_LIST[i][1]-OBST_LIST[i][2][1]])/DIST(OBST_LIST[i][2],OBST_LIST[i][OBST_LIST[i].length-1])**2]
 		
-		for (var k=0; k<OBST_LIST[i].length-1; k++){
-			var PosProbk=[OBST_LIST[i][k+1][0]+(OBST_LIST[i][k][0]-OBST_LIST[i][k+1][0])*SCALAR([OBST_LIST[i][k][0]-OBST_LIST[i][k+1][0],OBST_LIST[i][k][1]-OBST_LIST[i][k+1][1]],[Ball[0]-OBST_LIST[i][k+1][0],Ball[1]-OBST_LIST[i][k+1][1]])/DIST(OBST_LIST[i][k+1],OBST_LIST[i][k])**2,OBST_LIST[i][k+1][1]+(OBST_LIST[i][k][1]-OBST_LIST[i][k+1][1])*SCALAR([OBST_LIST[i][k][0]-OBST_LIST[i][k+1][0],OBST_LIST[i][k][1]-OBST_LIST[i][k+1][1]],[Ball[0]-OBST_LIST[i][k+1][0],Ball[1]-OBST_LIST[i][k+1][1]])/DIST(OBST_LIST[i][k+1],OBST_LIST[i][k])**2]
+		for (var k=2; k<OBST_LIST[i].length-1; k++){
+			var PosProbk=[OBST_LIST[i][k+1][0]+(OBST_LIST[i][k][0]-OBST_LIST[i][k+1][0])*SCALAR([OBST_LIST[i][k][0]-OBST_LIST[i][k+1][0],OBST_LIST[i][k][1]-OBST_LIST[i][k+1][1]],[Ball[0]-OBST_LIST[i][k+1][0],Ball[1]-OBST_LIST[i][1]-OBST_LIST[i][k+1][1]])/DIST(OBST_LIST[i][k+1],OBST_LIST[i][k])**2,OBST_LIST[i][1]+OBST_LIST[i][k+1][1]+(OBST_LIST[i][k][1]-OBST_LIST[i][k+1][1])*SCALAR([OBST_LIST[i][k][0]-OBST_LIST[i][k+1][0],OBST_LIST[i][k][1]-OBST_LIST[i][k+1][1]],[Ball[0]-OBST_LIST[i][k+1][0],Ball[1]-OBST_LIST[i][1]-OBST_LIST[i][k+1][1]])/DIST(OBST_LIST[i][k+1],OBST_LIST[i][k])**2]
 			
 			if (DIST(PosProb, [Ball[0],Ball[1]])>DIST(PosProbk, [Ball[0],Ball[1]])){
 				Koll=k
@@ -122,6 +122,28 @@ function Death_Penalty(OBST_LIST, Ball) {
 			Restart_Pos(Ball)
 		}
 		
+	}
+	
+	return Ball
+}
+
+//a upgrade
+function Victory_Lap(Ball) {
+	var Koll=-1;
+	var PosProb=[WinBar[2][0]+(WinBar[WinBar.length-1][0]-WinBar[2][0])*SCALAR([WinBar[WinBar.length-1][0]-WinBar[2][0],WinBar[WinBar.length-1][1]-WinBar[2][1]],[Ball[0]-WinBar[2][0],Ball[1]-WinBar[2][1]])/DIST(WinBar[2],WinBar[WinBar.length-1])**2,WinBar[2][1]+(WinBar[WinBar.length-1][1]-WinBar[2][1])*SCALAR([WinBar[WinBar.length-1][0]-WinBar[2][0],WinBar[WinBar.length-1][1]-WinBar[2][1]],[Ball[0]-WinBar[2][0],Ball[1]-WinBar[2][1]])/DIST(WinBar[2],WinBar[WinBar.length-1])**2]
+	
+	for (var k=2; k<WinBar.length-1; k++){
+		var PosProbk=[WinBar[k+1][0]+(WinBar[k][0]-WinBar[k+1][0])*SCALAR([WinBar[k][0]-WinBar[k+1][0],WinBar[k][1]-WinBar[k+1][1]],[Ball[0]-WinBar[k+1][0],Ball[1]-WinBar[k+1][1]])/DIST(WinBar[k+1],WinBar[k])**2,WinBar[k+1][1]+(WinBar[k][1]-WinBar[k+1][1])*SCALAR([WinBar[k][0]-WinBar[k+1][0],WinBar[k][1]-WinBar[k+1][1]],[Ball[0]-WinBar[k+1][0],Ball[1]-WinBar[k+1][1]])/DIST(WinBar[k+1],WinBar[k])**2]
+		
+		if (DIST(PosProb, [Ball[0],Ball[1]])>DIST(PosProbk, [Ball[0],Ball[1]])){
+			Koll=k
+			PosProb=PosProbk
+		}
+	}
+	
+	//faire gagner des points
+	if (DIST(PosProb, Ball)<Ball_size){
+		Restart_Pos(Ball)
 	}
 	
 	return Ball
@@ -149,19 +171,24 @@ function Ball_Collision(Balls) {
 
 function draw_obst(LISTAGE, Color){
 	ctx.fillStyle=Color;
+	ctx.strokeStyle=Color;
 	for (var i=0;i<LISTAGE.length;i++){
 		ctx.beginPath()
-		ctx.moveTo(LISTAGE[i][LISTAGE[i].length-1][0],LISTAGE[i][LISTAGE[i].length-1][1])
-		for (var k=0;k<LISTAGE[i].length;k++){
-			ctx.lineTo(LISTAGE[i][k][0],LISTAGE[i][k][1])
+		ctx.moveTo(LISTAGE[i][LISTAGE[i].length-1][0],LISTAGE[i][1]+LISTAGE[i][LISTAGE[i].length-1][1])
+		for (var k=2;k<LISTAGE[i].length;k++){
+			ctx.lineTo(LISTAGE[i][k][0],LISTAGE[i][1]+LISTAGE[i][k][1])
 		}
 		ctx.closePath()
 		ctx.fill()
+		ctx.stroke()
+		LISTAGE[i][1]+=LISTAGE[i][0]
 	}
+	return LISTAGE
 }
 
 function draw_marble(Size, Position, Color){
 	ctx.fillStyle=Color;
+	ctx.strokeStyle="#000";
 	ctx.beginPath()
 	ctx.moveTo(Position[0],Position[1]+Size)
 	for (var i=0;i<101;i++){
@@ -169,6 +196,7 @@ function draw_marble(Size, Position, Color){
 	}
 	ctx.closePath()
 	ctx.fill()
+	ctx.stroke()
 }
 
 function myFunction() {
@@ -185,10 +213,12 @@ function myFunction() {
 	coords=Ball_Collision(coords)
 	
 	draw_obst(Obstacles,"#111")
+	draw_obst(DeleteObst,"#911")
+	draw_obst([WinBar],"#191")
 	for (var i=0; i<coords.length; i++){
 		coords[i]=Movement(coords[i])
+		Victory_Lap(coords[i])
 		Death_Penalty(DeleteObst,coords[i])
-		draw_obst(DeleteObst,"#911")
 		draw_marble(Ball_size, coords[i], coords[i][4])
 	}
 };

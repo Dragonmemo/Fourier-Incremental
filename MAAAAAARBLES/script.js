@@ -3,7 +3,7 @@
 
 // define variables that reference elements on our page
 //Decimal.toExpPos= 2;
-var coords, tickpart=0;
+var coords, tickpart=0, ObstTick = 1;
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
@@ -12,7 +12,7 @@ var Bouncy = 0.5
 coords=[[50, 50, Complex(0,0), Complex(0,0), "rgb(250,0,0)"]]
 
 //Un rectangle, premier = vit de montée, deux = centre actuel, coord mort = -450 min
-Obstacles=[[-1,0,[10,400],[490,450],[490,400],[10,450]]]
+Obstacles=[[0,0,[10,400],[490,450],[490,400],[10,450]]]
 
 WinBar=[0,0,[0,490],[500,490],[500,500],[0,500]]
 
@@ -28,7 +28,9 @@ function Reset(){
 	
 	Ball_size = 5;
 	
-	Obstacles=[[-1,0,[10,400],[490,450],[490,400],[10,450]]]
+	DeleteObst=[[0,0,[1,499],[1,1]],[0,0,[1,1],[499,1]],[0,0,[499,499],[499,1]]]
+	Obstacles=[]
+	ObstTick = 1
 	
 	Bouncy = parseInt(document.getElementById("Bouncyness").value)/100
 }
@@ -37,6 +39,28 @@ function Restart_Pos(Ball){
 	Ball[0]= 10+480*math.random()
 	Ball[1]= 10+40*math.random()
 	return Ball
+}
+
+function ObstPlus(){
+	var OBJECT =[-1,10]
+	var BOOLS = true
+	var Center = 10+480*math.random()
+	while (BOOLS){
+		if (math.random()<(3/2)**(3-OBJECT.length)){
+			OBJECT=OBJECT.concat([[math.random()*100-50+Center,500+math.random()*100-50]])
+		}
+		else {
+			BOOLS=false
+		}
+	}
+	//console.log(2**(OBJECT.length-3))
+	if (math.random()<0.1){
+		DeleteObst = DeleteObst.concat([OBJECT])
+	}
+	else{
+		Obstacles = Obstacles.concat([OBJECT])
+	}
+	ObstTick=math.random()*400
 }
 
 //l'axe y est inversé
@@ -82,22 +106,22 @@ function COLLISION(OBST_LIST, Ball) {
 		if (Koll!=-1){
 			var PosREALProb = [OBST_LIST[i][Koll+1][0]+(OBST_LIST[i][Koll][0]-OBST_LIST[i][Koll+1][0])*SCALAR([OBST_LIST[i][Koll][0]-OBST_LIST[i][Koll+1][0],OBST_LIST[i][Koll][1]-OBST_LIST[i][Koll+1][1]],[Ball[0]+Ball[2].re*0.05-OBST_LIST[i][Koll+1][0],Ball[1]+Ball[2].im*0.05-OBST_LIST[i][1]-OBST_LIST[i][Koll+1][1]])/DIST(OBST_LIST[i][Koll+1],OBST_LIST[i][Koll])**2,OBST_LIST[i][1]+OBST_LIST[i][Koll+1][1]+(OBST_LIST[i][Koll][1]-OBST_LIST[i][Koll+1][1])*SCALAR([OBST_LIST[i][Koll][0]-OBST_LIST[i][Koll+1][0],OBST_LIST[i][Koll][1]-OBST_LIST[i][Koll+1][1]],[Ball[0]+Ball[2].re*0.05-OBST_LIST[i][Koll+1][0],Ball[1]+Ball[2].im*0.05-OBST_LIST[i][1]-OBST_LIST[i][Koll+1][1]])/DIST(OBST_LIST[i][Koll+1],OBST_LIST[i][Koll])**2]
 			var vectP= [(OBST_LIST[i][Koll][0]-OBST_LIST[i][Koll+1][0])/DIST(OBST_LIST[i][Koll],OBST_LIST[i][Koll+1]), (OBST_LIST[i][Koll][1]-OBST_LIST[i][Koll+1][1])/DIST(OBST_LIST[i][Koll],OBST_LIST[i][Koll+1])]
-			if (!(SCALAR([PosREALProb[0]-OBST_LIST[i][Koll+1][0],PosREALProb[1]-OBST_LIST[i][Koll+1][1]], vectP) > 0 && SCALAR([PosREALProb[0]-OBST_LIST[i][Koll+1][0],PosREALProb[1]-OBST_LIST[i][Koll+1][1]], vectP) < DIST(OBST_LIST[i][Koll],OBST_LIST[i][Koll+1]))){
-				return Ball
+			if (SCALAR([PosREALProb[0]-OBST_LIST[i][Koll+1][0],PosREALProb[1]-OBST_LIST[i][Koll+1][1]], vectP) > 0 && SCALAR([PosREALProb[0]-OBST_LIST[i][Koll+1][0],PosREALProb[1]-OBST_LIST[i][Koll+1][1]], vectP) < DIST(OBST_LIST[i][Koll],OBST_LIST[i][Koll+1])){
+				if (DIST(PosREALProb, [Ball[0]+Ball[2].re*0.05,Ball[1]+Ball[2].im*0.05])<Ball_size){
+					Ball[2]=Complex(vectP).mul(Ball[2].re*vectP[0]+Ball[2].im*vectP[1]).add(Ball[2].add(Complex(vectP).mul(-(Ball[2].re*vectP[0]+Ball[2].im*vectP[1]))).mul(-Bouncy-0.1))
+				}
 			}
 		}
 		else {
 			var PosREALProb = [OBST_LIST[i][2][0]+(OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][2][0])*SCALAR([OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][2][0],OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][2][1]],[Ball[0]+Ball[2].re*0.05-OBST_LIST[i][2][0],Ball[1]+Ball[2].im*0.05-OBST_LIST[i][1]-OBST_LIST[i][2][1]])/DIST(OBST_LIST[i][2],OBST_LIST[i][OBST_LIST[i].length-1])**2,OBST_LIST[i][1]+OBST_LIST[i][2][1]+(OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][2][1])*SCALAR([OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][2][0],OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][2][1]],[Ball[0]+Ball[2].re*0.05-OBST_LIST[i][2][0],Ball[1]+Ball[2].im*0.05-OBST_LIST[i][1]-OBST_LIST[i][2][1]])/DIST(OBST_LIST[i][2],OBST_LIST[i][OBST_LIST[i].length-1])**2]
 			var vectP= [(OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][2][0])/DIST(OBST_LIST[i][OBST_LIST[i].length-1],OBST_LIST[i][2]), (OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][2][1])/DIST(OBST_LIST[i][OBST_LIST[i].length-1],OBST_LIST[i][2])]
-			if (!(SCALAR([PosREALProb[0]-OBST_LIST[i][2][0],PosREALProb[1]-OBST_LIST[i][2][1]], vectP) > 0 && SCALAR([PosREALProb[0]-OBST_LIST[i][2][0],PosREALProb[1]-OBST_LIST[i][2][1]], vectP) < DIST(OBST_LIST[i][OBST_LIST[i].length-1],OBST_LIST[i][2]))){
-				return Ball
+			if (SCALAR([PosREALProb[0]-OBST_LIST[i][2][0],PosREALProb[1]-OBST_LIST[i][2][1]], vectP) > 0 && SCALAR([PosREALProb[0]-OBST_LIST[i][2][0],PosREALProb[1]-OBST_LIST[i][2][1]], vectP) < DIST(OBST_LIST[i][OBST_LIST[i].length-1],OBST_LIST[i][2])){
+				if (DIST(PosREALProb, [Ball[0]+Ball[2].re*0.05,Ball[1]+Ball[2].im*0.05])<Ball_size){
+					Ball[2]=Complex(vectP).mul(Ball[2].re*vectP[0]+Ball[2].im*vectP[1]).add(Ball[2].add(Complex(vectP).mul(-(Ball[2].re*vectP[0]+Ball[2].im*vectP[1]))).mul(-Bouncy-0.1))
+				}
 			}
 		}
 		
-		//enfin, changement de trajectoire SI collision prochain tour
-		if (DIST(PosREALProb, [Ball[0]+Ball[2].re*0.05,Ball[1]+Ball[2].im*0.05])<Ball_size){
-			Ball[2]=Complex(vectP).mul(Ball[2].re*vectP[0]+Ball[2].im*vectP[1]).add(Ball[2].add(Complex(vectP).mul(-(Ball[2].re*vectP[0]+Ball[2].im*vectP[1]))).mul(-Bouncy))
-		}
 		
 	}
 	
@@ -118,9 +142,25 @@ function Death_Penalty(OBST_LIST, Ball) {
 			}
 		}
 		
-		if (DIST(PosProb, Ball)<Ball_size){
-			Restart_Pos(Ball)
+		if (Koll!=-1){
+			var PosREALProb = [OBST_LIST[i][Koll+1][0]+(OBST_LIST[i][Koll][0]-OBST_LIST[i][Koll+1][0])*SCALAR([OBST_LIST[i][Koll][0]-OBST_LIST[i][Koll+1][0],OBST_LIST[i][Koll][1]-OBST_LIST[i][Koll+1][1]],[Ball[0]+Ball[2].re*0.05-OBST_LIST[i][Koll+1][0],Ball[1]+Ball[2].im*0.05-OBST_LIST[i][1]-OBST_LIST[i][Koll+1][1]])/DIST(OBST_LIST[i][Koll+1],OBST_LIST[i][Koll])**2,OBST_LIST[i][1]+OBST_LIST[i][Koll+1][1]+(OBST_LIST[i][Koll][1]-OBST_LIST[i][Koll+1][1])*SCALAR([OBST_LIST[i][Koll][0]-OBST_LIST[i][Koll+1][0],OBST_LIST[i][Koll][1]-OBST_LIST[i][Koll+1][1]],[Ball[0]+Ball[2].re*0.05-OBST_LIST[i][Koll+1][0],Ball[1]+Ball[2].im*0.05-OBST_LIST[i][1]-OBST_LIST[i][Koll+1][1]])/DIST(OBST_LIST[i][Koll+1],OBST_LIST[i][Koll])**2]
+			var vectP= [(OBST_LIST[i][Koll][0]-OBST_LIST[i][Koll+1][0])/DIST(OBST_LIST[i][Koll],OBST_LIST[i][Koll+1]), (OBST_LIST[i][Koll][1]-OBST_LIST[i][Koll+1][1])/DIST(OBST_LIST[i][Koll],OBST_LIST[i][Koll+1])]
+			if (SCALAR([PosREALProb[0]-OBST_LIST[i][Koll+1][0],PosREALProb[1]-OBST_LIST[i][Koll+1][1]], vectP) > 0 && SCALAR([PosREALProb[0]-OBST_LIST[i][Koll+1][0],PosREALProb[1]-OBST_LIST[i][Koll+1][1]], vectP) < DIST(OBST_LIST[i][Koll],OBST_LIST[i][Koll+1])){
+				if (DIST(PosREALProb, Ball)<Ball_size){
+					Restart_Pos(Ball)
+				}
+			}
 		}
+		else {
+			var PosREALProb = [OBST_LIST[i][2][0]+(OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][2][0])*SCALAR([OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][2][0],OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][2][1]],[Ball[0]+Ball[2].re*0.05-OBST_LIST[i][2][0],Ball[1]+Ball[2].im*0.05-OBST_LIST[i][1]-OBST_LIST[i][2][1]])/DIST(OBST_LIST[i][2],OBST_LIST[i][OBST_LIST[i].length-1])**2,OBST_LIST[i][1]+OBST_LIST[i][2][1]+(OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][2][1])*SCALAR([OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][2][0],OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][2][1]],[Ball[0]+Ball[2].re*0.05-OBST_LIST[i][2][0],Ball[1]+Ball[2].im*0.05-OBST_LIST[i][1]-OBST_LIST[i][2][1]])/DIST(OBST_LIST[i][2],OBST_LIST[i][OBST_LIST[i].length-1])**2]
+			var vectP= [(OBST_LIST[i][OBST_LIST[i].length-1][0]-OBST_LIST[i][2][0])/DIST(OBST_LIST[i][OBST_LIST[i].length-1],OBST_LIST[i][2]), (OBST_LIST[i][OBST_LIST[i].length-1][1]-OBST_LIST[i][2][1])/DIST(OBST_LIST[i][OBST_LIST[i].length-1],OBST_LIST[i][2])]
+			if (SCALAR([PosREALProb[0]-OBST_LIST[i][2][0],PosREALProb[1]-OBST_LIST[i][2][1]], vectP) > 0 && SCALAR([PosREALProb[0]-OBST_LIST[i][2][0],PosREALProb[1]-OBST_LIST[i][2][1]], vectP) < DIST(OBST_LIST[i][OBST_LIST[i].length-1],OBST_LIST[i][2])){
+				if (DIST(PosREALProb, Ball)<Ball_size){
+					Restart_Pos(Ball)
+				}
+			}
+		}
+		
 		
 	}
 	
@@ -226,11 +266,15 @@ function myFunction() {
 
 var mainGameLoop = window.setInterval(function() { // runs the loop
 	tickpart += 1;
+	ObstTick -= 1
 	//var d = new Date();
 	//var n = d.getTime();
 	if (tickpart>=2) {
 		tickpart -= 2;
 		loop();
+	}
+	if (ObstTick <= 0){
+		ObstPlus()
 	}
 }, 1);
 

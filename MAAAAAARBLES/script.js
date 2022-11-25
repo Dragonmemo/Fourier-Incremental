@@ -160,7 +160,7 @@ function Ball_Collision(Balls) {
 				var ScalaireI = Balls[i][2].re*vectP[0]+Balls[i][2].im*vectP[1];
 				var ScalaireK = Balls[k][2].re*vectP[0]+Balls[k][2].im*vectP[1];
 				
-				[Balls[i][2],Balls[k][2]]=[Complex(vectP).mul(ScalaireI).mul(-Bouncy).add(Complex(vectP).mul(ScalaireK).mul(1-Bouncy)).add(Balls[i][2].add(Complex(vectP).mul(-ScalaireI))),Complex(vectP).mul(ScalaireK).mul(-Bouncy).add(Complex(vectP).mul(ScalaireI).mul(1-Bouncy)).add(Balls[k][2].add(Complex(vectP).mul(-ScalaireK)))]
+				[Balls[i][2],Balls[k][2]]=[Complex(vectP).mul(ScalaireI).mul(Bouncy).add(Complex(vectP).mul(ScalaireK).mul(1-Bouncy)).add(Balls[i][2].add(Complex(vectP).mul(-ScalaireI))),Complex(vectP).mul(ScalaireK).mul(Bouncy).add(Complex(vectP).mul(ScalaireI).mul(1-Bouncy)).add(Balls[k][2].add(Complex(vectP).mul(-ScalaireK)))]
 		
 			}
 		}		

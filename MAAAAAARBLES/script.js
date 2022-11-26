@@ -1,4 +1,5 @@
 /* To-Do list :
+- Supprimer les obstacles morts 
 - Mettre un timer ou un bouton pause (optionnel)
 - Mettre des sliders pour les chances de deleter ou le temps max entre deux spawn (optionnel)
 */
@@ -64,6 +65,23 @@ function ObstPlus(){
 		Obstacles = Obstacles.concat([OBJECT])
 	}
 	ObstTick=math.random()*200
+}
+
+function ObstMinus(){
+	for (var i = 0; i<Obstacles.length; i++){
+		//console.log(Boolean(Obstacles[i]))
+		if (Obstacles[i] && Obstacles[i][1]< -450){
+			//console.log("YOLOOOOOP")
+			Obstacles.splice(i,1)
+			i-=1
+		}
+	}
+	for (var i = 0; i<DeleteObst.length; i++){
+		if (DeleteObst[i] && DeleteObst[i][1]< -450){
+			DeleteObst.splice(i,1)
+			i-=1
+		}
+	}
 }
 
 //l'axe y est inversé
@@ -302,6 +320,7 @@ var mainGameLoop = window.setInterval(function() { // runs the loop
 	if (tickpart>=2) {
 		tickpart -= 2;
 		loop();
+		ObstMinus()
 	}
 	if (ObstTick <= 0){
 		ObstPlus()

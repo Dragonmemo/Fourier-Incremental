@@ -24,7 +24,8 @@ Ball_size = 5;
 
 function Reset(){
 	var Players_Colors = (document.getElementById("Players").value).split(',')
-	for (var i=0; i<Players_Colors.length; i++){
+	Score=[] 
+        for (var i=0; i<Players_Colors.length; i++){
 		coords[i]=[10+480*math.random(),10+40*math.random(), Complex(0,0), Complex(0,0), Players_Colors[i]]
 		Score[i]=0
 	}

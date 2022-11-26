@@ -1,8 +1,9 @@
-// client-side js, loaded by index.html
-// run by the browser each time the page is loaded
-
-// define variables that reference elements on our page
-//Decimal.toExpPos= 2;
+/* To-Do list :
+- Gagner des points et les afficher
+- Réparer les collisions...
+- Mettre un timer ou un bouton pause (optionnel)
+- Mettre des sliders pour les chances de deleter ou le temps max entre deux spawn (optionnel)
+*/
 var coords, tickpart=0, ObstTick = 1;
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");

@@ -1,5 +1,4 @@
 /* To-Do list :
-- Supprimer les obstacles morts 
 - Mettre un timer ou un bouton pause (optionnel)
 - Mettre des sliders pour les chances de deleter ou le temps max entre deux spawn (optionnel)
 */

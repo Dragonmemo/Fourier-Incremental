@@ -8,6 +8,8 @@ var ctx = canvas.getContext("2d");
 
 var Score =[0]
 
+var Timer = 999999999
+
 var Bouncy = 0.5
 
 coords=[[50, 50, Complex(0,0), Complex(0,0), "rgb(250,0,0)"]]
@@ -25,6 +27,7 @@ Ball_size = 5;
 function Reset(){
 	Score =[]
 	coords=[]
+	Timer = parseInt(document.getElementById("TimeOut").value)*6000
 	var Players_Colors = (document.getElementById("Players").value).split(',')
         for (var i=0; i<Players_Colors.length; i++){
 		coords[i]=[10+480*math.random(),10+40*math.random(), Complex(0,0), Complex(0,0), Players_Colors[i]]
@@ -287,6 +290,17 @@ function MAJ_SCORE(){
 	}
 }
 
+function Time_Update(){
+	ctx.fillStyle="#000";
+	ctx.font="16px Arial"
+	if (Timer>=6000){
+		ctx.fillText("Time left "+parseInt(Timer/6000)+":"+parseInt((Timer-parseInt(Timer/6000)*6000)/100),615,20)
+	}
+	else {
+		ctx.fillText("Time left "+Timer/100+"s",615,20)
+	}
+}
+
 function myFunction() {
 	ctx.clearRect(0, 0, 800, 500);
 	ctx.strokeStyle="#BBBBBB";
@@ -314,17 +328,21 @@ function myFunction() {
 
 
 var mainGameLoop = window.setInterval(function() { // runs the loop
-	tickpart += 1;
-	ObstTick -= 1
-	//var d = new Date();
-	//var n = d.getTime();
-	if (tickpart>=2) {
-		tickpart -= 2;
-		loop();
-		ObstMinus()
-	}
-	if (ObstTick <= 0){
-		ObstPlus()
+	if (Timer>0){
+		tickpart += 1;
+		ObstTick -= 1
+		//var d = Date.now();
+		if (tickpart>=2) {
+			tickpart -= 2;
+			loop();
+			Time_Update();
+			ObstMinus();
+			Timer -= 2;
+		}
+		if (ObstTick <= 0){
+			ObstPlus()
+		}
+		//console.log(Date.now()-d
 	}
 }, 1);
 

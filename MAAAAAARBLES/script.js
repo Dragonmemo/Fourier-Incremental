@@ -28,7 +28,7 @@ function Reset(){
 	Score =[]
 	coords=[]
 	Timer = parseFloat(document.getElementById("TimeOut").value)*6000
-	var Players_Colors = (document.getElementById("Players").value).split(',')
+	var Players_Colors = (document.getElementById("Players").value).split('|')
         for (var i=0; i<Players_Colors.length; i++){
 		coords[i]=[10+480*math.random(),10+40*math.random(), Complex(0,0), Complex(0,0), Players_Colors[i]]
 		Score[i]=0
@@ -36,8 +36,10 @@ function Reset(){
 	
 	Ball_size = 5;
 	
-	DeleteObst=[[0,0,[1,499],[1,1]],[0,0,[1,1],[499,1]],[0,0,[499,499],[499,1]]]
-	Obstacles=[]
+	//DeleteObst=[[0,0,[1,499],[1,1]],[0,0,[1,1],[499,1]],[0,0,[499,499],[499,1]]]
+	//Obstacles=[]
+	DeleteObst=[[0,0,[0,500],[0,0]],[0,0,[0,0],[500,0]],[0,0,[500,500],[500,0]]]
+	Obstacles=[[0,0,[1,499],[1,1]],[0,0,[1,1],[499,1]],[0,0,[499,499],[499,1]]]
 	ObstTick = 1
 	
 	Bouncy = parseInt(document.getElementById("Bouncyness").value)/100
@@ -204,7 +206,7 @@ function Death_Penalty(OBST_LIST, Ball) {
 
 //a upgrade
 function Victory_Lap(Ball, INDEX) {
-	var Koll=-1;
+	/*var Koll=-1;
 	var PosProb=[WinBar[2][0]+(WinBar[WinBar.length-1][0]-WinBar[2][0])*SCALAR([WinBar[WinBar.length-1][0]-WinBar[2][0],WinBar[WinBar.length-1][1]-WinBar[2][1]],[Ball[0]-WinBar[2][0],Ball[1]-WinBar[2][1]])/DIST(WinBar[2],WinBar[WinBar.length-1])**2,WinBar[2][1]+(WinBar[WinBar.length-1][1]-WinBar[2][1])*SCALAR([WinBar[WinBar.length-1][0]-WinBar[2][0],WinBar[WinBar.length-1][1]-WinBar[2][1]],[Ball[0]-WinBar[2][0],Ball[1]-WinBar[2][1]])/DIST(WinBar[2],WinBar[WinBar.length-1])**2]
 	
 	for (var k=2; k<WinBar.length-1; k++){
@@ -215,9 +217,9 @@ function Victory_Lap(Ball, INDEX) {
 			PosProb=PosProbk
 		}
 	}
-	
 	//faire gagner des points
-	if (DIST(PosProb, Ball)<Ball_size){
+	if (DIST(PosProb, Ball)<Ball_size){*/
+	if (Ball[1]>=485){
 		Restart_Pos(Ball)
 		
 		Score[INDEX]++

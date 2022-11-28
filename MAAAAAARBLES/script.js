@@ -27,7 +27,7 @@ Ball_size = 5;
 function Reset(){
 	Score =[]
 	coords=[]
-	Timer = parseInt(document.getElementById("TimeOut").value)*6000
+	Timer = parseFloat(document.getElementById("TimeOut").value)*6000
 	var Players_Colors = (document.getElementById("Players").value).split(',')
         for (var i=0; i<Players_Colors.length; i++){
 		coords[i]=[10+480*math.random(),10+40*math.random(), Complex(0,0), Complex(0,0), Players_Colors[i]]
@@ -236,9 +236,17 @@ function Ball_Collision(Balls) {
 				
 				var ScalaireI = Balls[i][2].re*vectP[0]+Balls[i][2].im*vectP[1];
 				var ScalaireK = Balls[k][2].re*vectP[0]+Balls[k][2].im*vectP[1];
-				
-				[Balls[i][2],Balls[k][2]]=[Complex(vectP).mul(ScalaireI).mul(Bouncy).add(Complex(vectP).mul(ScalaireK).mul(1-Bouncy)).add(Balls[i][2].add(Complex(vectP).mul(-ScalaireI))),Complex(vectP).mul(ScalaireK).mul(Bouncy).add(Complex(vectP).mul(ScalaireI).mul(1-Bouncy)).add(Balls[k][2].add(Complex(vectP).mul(-ScalaireK)))]
-		
+				if (SCALAR([Balls[i][2].re,Balls[i][2].im],[Balls[k][2].re,Balls[k][2].im])<=0){
+					[Balls[i][2],Balls[k][2]]=[Complex(vectP).mul(ScalaireI).mul(Bouncy).add(Complex(vectP).mul(ScalaireK).mul(1-Bouncy)).add(Balls[i][2].add(Complex(vectP).mul(-ScalaireI))),Complex(vectP).mul(ScalaireK).mul(Bouncy).add(Complex(vectP).mul(ScalaireI).mul(1-Bouncy)).add(Balls[k][2].add(Complex(vectP).mul(-ScalaireK)))]
+				}
+				else {
+					if (Balls[i][2].abs()>Balls[k][2].abs()){
+						[Balls[i][2],Balls[k][2]]=[Complex(vectP).mul(ScalaireI).mul(Bouncy).add(Balls[i][2].add(Complex(vectP).mul(-ScalaireI))),Complex(vectP).mul(ScalaireK).mul(Bouncy).add(Complex(vectP).mul(ScalaireI).mul(1-Bouncy)).add(Balls[k][2].add(Complex(vectP).mul(ScalaireK)))]
+					}
+					else {
+						[Balls[i][2],Balls[k][2]]=[Complex(vectP).mul(ScalaireI).mul(Bouncy).add(Complex(vectP).mul(ScalaireK).mul(1-Bouncy)).add(Balls[i][2].add(Complex(vectP).mul(ScalaireI))),Complex(vectP).mul(ScalaireK).mul(Bouncy).add(Balls[k][2].add(Complex(vectP).mul(-ScalaireK)))]
+					}
+				}
 			}
 		}		
 	}

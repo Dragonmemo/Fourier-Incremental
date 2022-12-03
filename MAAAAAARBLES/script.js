@@ -12,6 +12,9 @@ var Timer = 999999999
 
 var Bouncy = 0.5
 
+var TickLife = [];
+var LostLife = []
+
 coords=[[50, 50, Complex(0,0), Complex(0,0), "rgb(250,0,0)"]]
 
 //Un rectangle, premier = vit de montée, deux = centre actuel, coord mort = -450 min
@@ -27,19 +30,28 @@ Ball_size = 5;
 function Reset(){
 	Score =[]
 	coords=[]
+	TickLife = [];
+	LostLife = []
 	Timer = parseFloat(document.getElementById("TimeOut").value)*6000
 	var Players_Colors = (document.getElementById("Players").value).split('|')
         for (var i=0; i<Players_Colors.length; i++){
 		coords[i]=[10+480*math.random(),10+40*math.random(), Complex(0,0), Complex(0,0), Players_Colors[i]]
 		Score[i]=0
+		if (document.getElementById("Lifetime").checked == true){
+			TickLife[i] = parseInt(document.getElementById("TimeOut").value)
+			Timer = 999999999
+		}
 	}
 	
 	Ball_size = 5;
-	
-	//DeleteObst=[[0,0,[1,499],[1,1]],[0,0,[1,1],[499,1]],[0,0,[499,499],[499,1]]]
-	//Obstacles=[]
-	DeleteObst=[[0,0,[0,500],[0,0]],[0,0,[0,0],[500,0]],[0,0,[500,500],[500,0]]]
-	Obstacles=[[0,0,[1,499],[1,1]],[0,0,[1,1],[499,1]],[0,0,[499,499],[499,1]]]
+	if (document.getElementById("Walled").checked == true){
+		DeleteObst=[[0,0,[0,500],[0,0]],[0,0,[0,0],[500,0]],[0,0,[500,500],[500,0]]]
+		Obstacles=[[0,0,[1,499],[1,1]],[0,0,[1,1],[499,1]],[0,0,[499,499],[499,1]]]
+	}
+	else {
+		DeleteObst=[[0,0,[1,499],[1,1]],[0,0,[1,1],[499,1]],[0,0,[499,499],[499,1]]]
+		Obstacles=[]
+	}
 	ObstTick = 1
 	
 	Bouncy = parseInt(document.getElementById("Bouncyness").value)/100
@@ -286,17 +298,58 @@ function draw_marble(Size, Position, Color){
 	ctx.stroke()
 }
 
-function MAJ_SCORE(){
-	var CoordClone = []
-	for (var i=0; i<coords.length;i++){
-		CoordClone[i]=[coords[i],Score[i]]
+function LifeTickDown(){
+	var IcantStandName=[]
+	for (var i = 0; i<coords.length;i++){
+		IcantStandName[i]=[Score[i]*500+coords[i][1],i]
 	}
-	CoordClone.sort(function(a,b){return a[1]-b[1]})
-	for (var i=0; i<coords.length;i++){
-		draw_marble(Ball_size, [600,485-15*i], CoordClone[i][0][4])
+	IcantStandName.sort(function(a,b){return a[0]-b[0]})
+	TickLife[IcantStandName[0][1]] += -1
+	if (TickLife[IcantStandName[0][1]] == 0){
+		var PAULETTE = coords.splice(IcantStandName[0][1],1)
+		Score.splice(IcantStandName[0][1],1)
+		TickLife.splice(IcantStandName[0][1],1)
+		LostLife = LostLife.concat(PAULETTE[0][4])
+		for (var i=0; i<coords.length;i++){
+			Score[i]=0
+			Restart_Pos(coords[i])
+		}
+	}
+}
+
+function MAJ_SCORE(){
+	for (var i=0; i<LostLife.length;i++){
+		draw_marble(Ball_size, [600,485-15*i], LostLife[i])
 		ctx.fillStyle="#000";
 		ctx.font="16px Arial"
-		ctx.fillText(CoordClone[i][1],615,490-15*i)
+		ctx.fillText("DEAD",615,490-15*i)
+	}
+	var CoordClone = []
+	
+	if (document.getElementById("Lifetime").checked == true){
+		for (var i=0; i<coords.length;i++){
+			CoordClone[i]=[coords[i],TickLife[i],Score[i]]
+		}
+		CoordClone.sort(function(a,b){return a[1]-b[1]})
+		for (var i=0; i<coords.length;i++){
+			draw_marble(Ball_size, [600,485-15*(i+LostLife.length)], CoordClone[i][0][4])
+			ctx.fillStyle="#000";
+			ctx.font="16px Arial"
+			ctx.fillText(CoordClone[i][1],615,490-15*(i+LostLife.length))
+			ctx.fillText(CoordClone[i][2],565,490-15*(i+LostLife.length))
+		}
+	}
+	else {
+		for (var i=0; i<coords.length;i++){
+			CoordClone[i]=[coords[i],Score[i]]
+		}
+		CoordClone.sort(function(a,b){return a[1]-b[1]})
+		for (var i=0; i<coords.length;i++){
+			draw_marble(Ball_size, [600,485-15*i], CoordClone[i][0][4])
+			ctx.fillStyle="#000";
+			ctx.font="16px Arial"
+			ctx.fillText(CoordClone[i][1],615,490-15*i)
+		}
 	}
 }
 
@@ -332,6 +385,10 @@ function myFunction() {
 		Victory_Lap(coords[i],i)
 		Death_Penalty(DeleteObst,coords[i])
 		draw_marble(Ball_size, coords[i], coords[i][4])
+		//LOL
+	}
+	if (document.getElementById("Lifetime").checked == true){
+		LifeTickDown()
 	}
 	MAJ_SCORE()
 };

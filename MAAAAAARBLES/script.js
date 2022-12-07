@@ -333,7 +333,7 @@ function MAJ_SCORE(){
 		ctx2.fillStyle="#000";
 		ctx2.font="16px Arial"
 		ctx2.fillText("DEAD",65,495-15*i)
-		ctx2.fillText(LostLife[i],110,495-15*(i+LostLife.length))
+		ctx2.fillText(LostLife[i],110,495-15*i)
 	}
 	var CoordClone = []
 	
@@ -361,7 +361,7 @@ function MAJ_SCORE(){
 			ctx2.fillStyle="#000";
 			ctx2.font="16px Arial"
 			ctx2.fillText(CoordClone[i][1],65,495-15*i)
-			ctx2.fillText(CoordClone[i][0][4],110,495-15*(i+LostLife.length))
+			ctx2.fillText(CoordClone[i][0][4],110,495-15*i)
 		}
 	}
 }

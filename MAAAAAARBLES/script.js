@@ -5,10 +5,13 @@
 var coords, tickpart=0, ObstTick = 1;
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
+var canvas2 = document.getElementById("myCanvas2");
+var ctx2 = canvas2.getContext("2d");
 
 var Score =[0]
 
 var Timer = 999999999
+var PauseTime=200
 
 var Bouncy = 0.5
 
@@ -25,7 +28,12 @@ WinBar=[0,0,[0,490],[500,490],[500,500],[0,500]]
 DeleteObst=[[0,0,[1,499],[1,1]],[0,0,[1,1],[499,1]],[0,0,[499,499],[499,1]]]
 
 Ball_size = 5;
-//d'abord juste une bille dans un rectangle de collisions...
+
+function Preview(){
+	var LINK=document.getElementById("DFWMB")
+	LINK.download = 'Preview.png';
+	LINK.href = canvas2.toDataURL("image/png");
+}
 
 function Reset(){
 	Score =[]
@@ -33,6 +41,7 @@ function Reset(){
 	TickLife = [];
 	LostLife = []
 	Timer = parseFloat(document.getElementById("TimeOut").value)*6000
+	PauseTime = 600
 	var Players_Colors = (document.getElementById("Players").value).split('|')
         for (var i=0; i<Players_Colors.length; i++){
 		coords[i]=[10+480*math.random(),10+40*math.random(), Complex(0,0), Complex(0,0), Players_Colors[i]]
@@ -285,17 +294,17 @@ function draw_obst(LISTAGE, Color){
 	return LISTAGE
 }
 
-function draw_marble(Size, Position, Color){
-	ctx.fillStyle=Color;
-	ctx.strokeStyle="#000";
-	ctx.beginPath()
-	ctx.moveTo(Position[0],Position[1]+Size)
+function draw_marble(Size, Position, Color, Context){
+	Context.fillStyle=Color;
+	Context.strokeStyle="#000";
+	Context.beginPath()
+	Context.moveTo(Position[0],Position[1]+Size)
 	for (var i=0;i<101;i++){
-		ctx.lineTo(Position[0]+Size*math.sin(2*math.PI*i/100),Position[1]+Size*math.cos(2*math.PI*i/100))
+		Context.lineTo(Position[0]+Size*math.sin(2*math.PI*i/100),Position[1]+Size*math.cos(2*math.PI*i/100))
 	}
-	ctx.closePath()
-	ctx.fill()
-	ctx.stroke()
+	Context.closePath()
+	Context.fill()
+	Context.stroke()
 }
 
 function LifeTickDown(){
@@ -314,15 +323,17 @@ function LifeTickDown(){
 			Score[i]=0
 			Restart_Pos(coords[i])
 		}
+		PauseTime = 100
 	}
 }
 
 function MAJ_SCORE(){
 	for (var i=0; i<LostLife.length;i++){
-		draw_marble(Ball_size, [600,485-15*i], LostLife[i])
-		ctx.fillStyle="#000";
-		ctx.font="16px Arial"
-		ctx.fillText("DEAD",615,490-15*i)
+		draw_marble(Ball_size, [50,490-15*i], LostLife[i], ctx2)
+		ctx2.fillStyle="#000";
+		ctx2.font="16px Arial"
+		ctx2.fillText("DEAD",65,495-15*i)
+		ctx2.fillText(LostLife[i],110,495-15*(i+LostLife.length))
 	}
 	var CoordClone = []
 	
@@ -332,11 +343,12 @@ function MAJ_SCORE(){
 		}
 		CoordClone.sort(function(a,b){return a[1]-b[1]})
 		for (var i=0; i<coords.length;i++){
-			draw_marble(Ball_size, [600,485-15*(i+LostLife.length)], CoordClone[i][0][4])
-			ctx.fillStyle="#000";
-			ctx.font="16px Arial"
-			ctx.fillText(CoordClone[i][1],615,490-15*(i+LostLife.length))
-			ctx.fillText(CoordClone[i][2],565,490-15*(i+LostLife.length))
+			draw_marble(Ball_size, [50,490-15*(i+LostLife.length)], CoordClone[i][0][4], ctx2)
+			ctx2.fillStyle="#000";
+			ctx2.font="16px Arial"
+			ctx2.fillText(CoordClone[i][1],65,495-15*(i+LostLife.length))
+			ctx2.fillText(CoordClone[i][0][4],110,495-15*(i+LostLife.length))
+			ctx2.fillText(CoordClone[i][2],15,495-15*(i+LostLife.length))
 		}
 	}
 	else {
@@ -345,27 +357,29 @@ function MAJ_SCORE(){
 		}
 		CoordClone.sort(function(a,b){return a[1]-b[1]})
 		for (var i=0; i<coords.length;i++){
-			draw_marble(Ball_size, [600,485-15*i], CoordClone[i][0][4])
-			ctx.fillStyle="#000";
-			ctx.font="16px Arial"
-			ctx.fillText(CoordClone[i][1],615,490-15*i)
+			draw_marble(Ball_size, [50,490-15*i], CoordClone[i][0][4], ctx2)
+			ctx2.fillStyle="#000";
+			ctx2.font="16px Arial"
+			ctx2.fillText(CoordClone[i][1],65,495-15*i)
+			ctx2.fillText(CoordClone[i][0][4],110,495-15*(i+LostLife.length))
 		}
 	}
 }
 
 function Time_Update(){
-	ctx.fillStyle="#000";
-	ctx.font="16px Arial"
+	ctx2.fillStyle="#000";
+	ctx2.font="16px Arial"
 	if (Timer>=6000){
-		ctx.fillText("Time left "+parseInt(Timer/6000)+":"+parseInt((Timer-parseInt(Timer/6000)*6000)/100),615,20)
+		ctx2.fillText("Time left "+parseInt(Timer/6000)+":"+parseInt((Timer-parseInt(Timer/6000)*6000)/100),115,15)
 	}
 	else {
-		ctx.fillText("Time left "+Timer/100+"s",615,20)
+		ctx2.fillText("Time left "+Timer/100+"s",115,15)
 	}
 }
 
 function myFunction() {
-	ctx.clearRect(0, 0, 800, 500);
+	ctx.clearRect(0, 0, 500, 500);
+	ctx2.clearRect(0, 0, 300, 500);
 	ctx.strokeStyle="#BBBBBB";
 	
 	for (var i=0; i<coords.length; i++){
@@ -384,7 +398,7 @@ function myFunction() {
 		coords[i]=Movement(coords[i])
 		Victory_Lap(coords[i],i)
 		Death_Penalty(DeleteObst,coords[i])
-		draw_marble(Ball_size, coords[i], coords[i][4])
+		draw_marble(Ball_size, coords[i], coords[i][4], ctx)
 		//LOL
 	}
 	if (document.getElementById("Lifetime").checked == true){
@@ -395,21 +409,49 @@ function myFunction() {
 
 
 var mainGameLoop = window.setInterval(function() { // runs the loop
-	if (Timer>0){
-		tickpart += 1;
-		ObstTick -= 1
-		//var d = Date.now();
-		if (tickpart>=2) {
-			tickpart -= 2;
-			loop();
-			Time_Update();
-			ObstMinus();
-			Timer -= 2;
+	if (PauseTime>0){
+		ctx2.clearRect(0, 0, 300, 500);
+		ctx2.fillStyle="#ddd";
+		ctx2.beginPath()
+		ctx2.moveTo(0,0)
+		ctx2.lineTo(300,0)
+		ctx2.lineTo(300,500)
+		ctx2.lineTo(0,500)
+		ctx2.lineTo(0,0)
+		ctx2.closePath()
+		ctx2.fill()
+		MAJ_SCORE()
+		Preview()
+		ctx2.fillStyle="#000";
+		ctx2.font="32px Arial"
+		ctx2.fillText("PAUSED",50,45)
+		ctx2.beginPath()
+		ctx2.moveTo(50,80)
+		ctx2.lineTo(50,90)
+		ctx2.lineTo(50+100*PauseTime/600,90)
+		ctx2.lineTo(50+100*PauseTime/600,80)
+		ctx2.lineTo(50,80)
+		ctx2.closePath()
+		ctx2.fill()
+		PauseTime-=10
+	}
+	else{
+		if (Timer>0){
+			tickpart += 1;
+			ObstTick -= 1
+			//var d = Date.now();
+			if (tickpart>=2) {
+				tickpart -= 2;
+				loop();
+				Time_Update();
+				ObstMinus();
+				Timer -= 2;
+			}
+			if (ObstTick <= 0){
+				ObstPlus()
+			}
+			//console.log(Date.now()-d
 		}
-		if (ObstTick <= 0){
-			ObstPlus()
-		}
-		//console.log(Date.now()-d
 	}
 }, 1);
 

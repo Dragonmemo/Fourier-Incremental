@@ -12,6 +12,11 @@ var EnemiesObst=[] //[[999, math.PI, [538,135], [520, 100], [520, 150] ]] // Dur
 var Enemy_Projectiles=[]
 var Score=0
 
+var ShootSound = [document.getElementById("Shoot1"),document.getElementById("Shoot2")]
+var KillSound = [document.getElementById("Kill1"),document.getElementById("Kill2"),document.getElementById("Kill3"),document.getElementById("Kill4"),document.getElementById("Kill5")]
+var DeathSound = [document.getElementById("Death1"),document.getElementById("Death2")]
+var WooshSound = [document.getElementById("Woosh1"),document.getElementById("Woosh2"),document.getElementById("Woosh3"),document.getElementById("Woosh4"),document.getElementById("Woosh5"),document.getElementById("Woosh6"),document.getElementById("Woosh7"),document.getElementById("Woosh8")]
+
 canvas.addEventListener("mousemove",function(){POINT(event)})
 canvas.addEventListener("click",function(){Ballsy()})
 
@@ -36,6 +41,7 @@ function Ballsy(){
 	Player_Projectiles.push([[Player[0]-Player_Vector()[0]*15,Player[1]-Player_Vector()[1]*15], Complex([-Player_Vector()[0],-Player_Vector()[1]]),200])
 	Player_Speed[0]+=Player_Vector()[0]*parseInt((Score/25)**2)
 	Player_Speed[1]+=Player_Vector()[1]*parseInt((Score/25)**2)
+	ShootSound[math.randomInt(2)].play()
 }
 
 function EnemyFunction(){
@@ -85,6 +91,7 @@ function Movement(){
 		if (Enemies[i][3]<=0){
 			Enemies[i][3]=Enemies[i][2]
 			Enemy_Projectiles.push([[Enemies[i][0][0]-math.cos(Enemies[i][1]*(2*math.PI/360))*15,Enemies[i][0][1]-math.sin(Enemies[i][1]*(2*math.PI/360))*15], Complex([-math.cos(Enemies[i][1]*(2*math.PI/360)),-math.sin(Enemies[i][1]*(2*math.PI/360))]),200])
+			ShootSound[math.randomInt(2)].play()
 		}
 	}
 	
@@ -118,6 +125,7 @@ function Hitter(){
 				Player_Projectiles.splice(i,1)
 				i-=1
 				Boulier = true
+				KillSound[math.randomInt(5)].play()
 			}
 		}
 		if (Boulier){// inclure le code pour créer un obstacle à la mort
@@ -132,6 +140,7 @@ function Hitter(){
 		if (DIST(Enemy_Projectiles[i][0],Player)<=14){
 			Enemy_Projectiles.splice(i,1)
 			i-=1
+			DeathSound[math.randomInt(2)].play()
 			SETTINGS = false
 		}
 	}
@@ -162,6 +171,7 @@ function COLLISION(OBST_LIST, Ball) {
 				//draw_ball(2,PosREALProb,"#393", ctx)
 				if (DIST(PosREALProb, [Ball[0][0]+Ball[1].re,Ball[0][1]+Ball[1].im])<4){
 					Ball[1]=Complex(vectP).mul(Ball[1].re*vectP[0]+Ball[1].im*vectP[1]).add(Ball[1].add(Complex(vectP).mul(-(Ball[1].re*vectP[0]+Ball[1].im*vectP[1]))).mul(-1))
+					WooshSound[math.randomInt(8)].play()
 				}
 			}
 		}
@@ -173,6 +183,7 @@ function COLLISION(OBST_LIST, Ball) {
 				//draw_ball(2,PosREALProb,"#393", ctx)
 				if (DIST(PosREALProb, [Ball[0][0]+Ball[1].re,Ball[0][1]+Ball[1].im])<4){
 					Ball[1]=Complex(vectP).mul(Ball[1].re*vectP[0]+Ball[1].im*vectP[1]).add(Ball[1].add(Complex(vectP).mul(-(Ball[1].re*vectP[0]+Ball[1].im*vectP[1]))).mul(-1))
+					WooshSound[math.randomInt(8)].play()
 				}
 			}
 		}

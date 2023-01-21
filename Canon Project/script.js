@@ -48,6 +48,7 @@ document.onkeydown = function (e){
 	if (e.keyCode==81 || e.keyCode == 37 || e.keyCode == 65){Player_Speed[0]--}
 	if (e.keyCode==38 || e.keyCode == 90 || e.keyCode == 87){Player_Speed[1]--}
 	if (e.keyCode==40 || e.keyCode == 83){Player_Speed[1]++}
+	if (e.keyCode==82){RESTART()}
 }
 
 
@@ -61,8 +62,8 @@ function Movement(){
 	document.getElementById("scoreUpdt").innerHTML="Score : "+Score+"<br>Slipperiness : "+parseInt(100*(1-math.exp(-Score/50)))+"%"+"<br>Recoil Power : "+parseInt((Score/25)**2)
 	//Projectiles' movements
 	for (i=0; i<Player_Projectiles.length;i++){
-		Player_Projectiles[i][0]=[Player_Projectiles[i][0][0]+Player_Projectiles[i][1].re,Player_Projectiles[i][0][1]+Player_Projectiles[i][1].im]
 		Player_Projectiles[i]=COLLISION(EnemiesObst, Player_Projectiles[i])
+		Player_Projectiles[i][0]=[(Player_Projectiles[i][0][0]+Player_Projectiles[i][1].re*2+1000)%1000,(Player_Projectiles[i][0][1]+Player_Projectiles[i][1].im*2+500)%500]
 		Player_Projectiles[i][2]--
 		if (Player_Projectiles[i][2]<=0){
 			Player_Projectiles.splice(i,1)
@@ -70,8 +71,8 @@ function Movement(){
 		}
 	}
 	for (i=0; i<Enemy_Projectiles.length;i++){
-		Enemy_Projectiles[i][0]=[Enemy_Projectiles[i][0][0]+Enemy_Projectiles[i][1].re,Enemy_Projectiles[i][0][1]+Enemy_Projectiles[i][1].im]
 		Enemy_Projectiles[i]=COLLISION(EnemiesObst, Enemy_Projectiles[i])
+		Enemy_Projectiles[i][0]=[(Enemy_Projectiles[i][0][0]+Enemy_Projectiles[i][1].re*2+1000)%1000,(Enemy_Projectiles[i][0][1]+Enemy_Projectiles[i][1].im*2+500)%500]
 		Enemy_Projectiles[i][2]--
 		if (Enemy_Projectiles[i][2]<=0){
 			Enemy_Projectiles.splice(i,1)
@@ -87,6 +88,16 @@ function Movement(){
 		}
 	}
 	
+	for (i=0; i<EnemiesObst.length;i++){
+		for (j=2; j<EnemiesObst[i].length;j++){
+			EnemiesObst[i][j]=[EnemiesObst[i][j][0]+math.cos(EnemiesObst[i][1]*(2*math.PI/360)+(j-2)*2*math.PI/(EnemiesObst[i].length-2)),EnemiesObst[i][j][1]+math.sin(EnemiesObst[i][1]*(2*math.PI/360)+(j-2)*2*math.PI/(EnemiesObst[i].length-2))]
+		}
+		EnemiesObst[i][0]--
+		if (EnemiesObst[i][0]<=0){
+			EnemiesObst.splice(i,1)
+			i-=1
+		}
+	}
 	spawntime--
 	if (spawntime<=0){EnemyFunction()}
 }
@@ -110,6 +121,7 @@ function Hitter(){
 			}
 		}
 		if (Boulier){// inclure le code pour créer un obstacle à la mort
+			EnemiesObst.push([Enemies[j][2]+100,Enemies[j][1],[Enemies[j][0][0]+10*math.cos(Enemies[j][1]*(2*math.PI/360)),Enemies[j][0][1]+10*math.sin(Enemies[j][1]*(2*math.PI/360))],[Enemies[j][0][0]-10*math.cos(Enemies[j][1]*(2*math.PI/360)),Enemies[j][0][1]-10*math.sin(Enemies[j][1]*(2*math.PI/360))]])
 			Enemies.splice(j,1)
 			j-=1
 			Score++

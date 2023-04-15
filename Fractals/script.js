@@ -37,7 +37,7 @@ function DerivPoly(StrPoly){ //StrPoly = an*X**n+an-1*X**n-1...+a1*X**1+a0*X**0
 }}
 
 function SuiteNewton(x0,p,dp){
-    var k=1000
+    var k=5
     var Num = math.complex(0.)
 	for (i=0;i<p.length;i++){Num=Num.add(p[i](x0))}
 	var Denum = math.complex(0.)
@@ -67,7 +67,7 @@ function FractNewton(){
         for (col=0;col<500;col++){ //j in range(512):
 			try {
                 Rac=SuiteNewton(math.complex("i").mul(10*(lig-250)/250).add(10*(col-250)/250),p,dp)
-                if (Rac[1]==1000){
+                if (Rac[1]==10){
                     imageData.data[4*500*lig+4*col]=0
 					imageData.data[4*500*lig+4*col+1]=0
 					imageData.data[4*500*lig+4*col+2]=0
@@ -82,12 +82,12 @@ function FractNewton(){
 					else {
 						LRAC.push(Rac[0])
 						LP.push([lig,col,LRAC.length-1])
-						console.log(LRAC)
+						//console.log(LRAC)
 					}
 				}
 			}
             catch(error){
-				console.error(error)
+				//console.error(error)
                 imageData.data[4*500*lig+4*col]=0
 				imageData.data[4*500*lig+4*col+1]=0
 				imageData.data[4*500*lig+4*col+2]=0

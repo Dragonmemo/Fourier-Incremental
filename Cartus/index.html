@@ -1,0 +1,48 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An upcoming game about growing leaves">
+
+    <title>Cartus !</title>
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/Cartus/style.css">
+
+    <!-- import the webpage's client-side javascript file -->
+    <script src="math.js" defer></script>
+    <script src="script.js" defer></script>
+    <style>
+    * {
+      box-sizing: border-box;
+    }
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    </style>
+     
+  </head>
+  <body style="background-color:#eee;">
+    <header>
+    Cartus
+    </header>
+    <table><tr>
+	<td style="display:table-cell;">
+	<button type="button" onclick="StartNew()">Commencer une nouvelle partie</button><br>
+    <canvas id="myCanvas" width="1000" height="500"></canvas><br>
+	<button type="button" onclick="DrawTurn()">Piocher cartes</button> <span id="Scorer"></span><br>
+	Les règles sont simple : Sur votre plateau de jeu vous ne pouvez déplacer les cartes les unes sur les autres seulement si elles sont de la même couleur.<br>
+	Quand 10 cartes de la même couleur sont les unes sur les autres, vous gagnez des points et les cartes sont supprimées.<br>
+	Cependant, vous perdez la partie si un tas de carte a plus de 20 cartes !<br>
+	Si vous avez du mal à voir, le nombre en haut indique la couleur de la carte et celui du bas la quantité de carte dans la pile !
+    </td>
+	</tr></table>
+  </body>
+</html>

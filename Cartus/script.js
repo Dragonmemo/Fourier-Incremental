@@ -18,8 +18,8 @@ canvas.addEventListener("click",Celler)
 function CellClick(e){
 	//console.log(e.clientX, e.clientY)
 	if (ActiveSigil){
-		var IDX = parseInt((e.clientX-11)/200)
-		var IDY = parseInt((e.clientY-52)/100)
+		var IDX = parseInt((e.clientX-canvas.getBoundingClientRect().left)/200)
+		var IDY = parseInt((e.clientY-canvas.getBoundingClientRect().top)/100)
 		var IDZ = Partie[IDX][IDY][Partie[IDX][IDY].length - 1]
 		if ((IDX != ActiveSigil[0] || IDY != ActiveSigil[1]) && Partie[IDX][IDY].length !=20 && (Partie[IDX][IDY].length == 0 || IDZ == Partie[ActiveSigil[0]][ActiveSigil[1]][Partie[ActiveSigil[0]][ActiveSigil[1]].length - 1])){
 			Partie[IDX][IDY].push(Partie[ActiveSigil[0]][ActiveSigil[1]].pop())
@@ -29,7 +29,7 @@ function CellClick(e){
 		ActiveSigil=undefined
 	}
 	else {
-		ActiveSigil=[parseInt((e.clientX-11)/200),parseInt((e.clientY-52)/100)]
+		ActiveSigil=[parseInt((e.clientX-canvas.getBoundingClientRect().left)/200),parseInt((e.clientY-canvas.getBoundingClientRect().top)/100)]
 		ctx.fillStyle=CouleursPartie[Partie[ActiveSigil[0]][ActiveSigil[1]][Partie[ActiveSigil[0]][ActiveSigil[1]].length - 1]]
 		ctx.strokeStyle="#000"
 		ctx.beginPath();

@@ -11,7 +11,7 @@ var Score = 0;
 var BScore = 0;
 ctx.font = "12px Arial";
 ctx.textAlign = "center"
-N = 33
+N = 36
 
 function Celler(){CellClick(event)}
 canvas.addEventListener("click",Celler)

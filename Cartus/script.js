@@ -13,34 +13,38 @@ ctx.font = "12px Arial";
 ctx.textAlign = "center"
 N = 36
 
+var BOOLERIEN = false;
+
 function Celler(){CellClick(event)}
 canvas.addEventListener("click",Celler)
 function CellClick(e){
 	//console.log(e.clientX, e.clientY)
-	if (ActiveSigil){
-		var IDX = parseInt((e.clientX-canvas.getBoundingClientRect().left)/200)
-		var IDY = parseInt((e.clientY-canvas.getBoundingClientRect().top)/100)
-		var IDZ = Partie[IDX][IDY][Partie[IDX][IDY].length - 1]
-		if ((IDX != ActiveSigil[0] || IDY != ActiveSigil[1]) && Partie[IDX][IDY].length !=20 && (Partie[IDX][IDY].length == 0 || IDZ == Partie[ActiveSigil[0]][ActiveSigil[1]][Partie[ActiveSigil[0]][ActiveSigil[1]].length - 1])){
-			Partie[IDX][IDY].push(Partie[ActiveSigil[0]][ActiveSigil[1]].pop())
+	if (BOOLERIEN){
+		if (ActiveSigil){
+			var IDX = parseInt((e.clientX-canvas.getBoundingClientRect().left)/200)
+			var IDY = parseInt((e.clientY-canvas.getBoundingClientRect().top)/100)
+			var IDZ = Partie[IDX][IDY][Partie[IDX][IDY].length - 1]
+			if ((IDX != ActiveSigil[0] || IDY != ActiveSigil[1]) && Partie[IDX][IDY].length !=20 && (Partie[IDX][IDY].length == 0 || IDZ == Partie[ActiveSigil[0]][ActiveSigil[1]][Partie[ActiveSigil[0]][ActiveSigil[1]].length - 1])){
+				Partie[IDX][IDY].push(Partie[ActiveSigil[0]][ActiveSigil[1]].pop())
+			}
+			CheckWin()
+			DrawGame()
+			ActiveSigil=undefined
 		}
-		CheckWin()
-		DrawGame()
-		ActiveSigil=undefined
-	}
-	else {
-		ActiveSigil=[parseInt((e.clientX-canvas.getBoundingClientRect().left)/200),parseInt((e.clientY-canvas.getBoundingClientRect().top)/100)]
-		ctx.fillStyle=CouleursPartie[Partie[ActiveSigil[0]][ActiveSigil[1]][Partie[ActiveSigil[0]][ActiveSigil[1]].length - 1]]
-		ctx.strokeStyle="#000"
-		ctx.beginPath();
-		ctx.moveTo(ActiveSigil[0]*200,ActiveSigil[1]*100)
-		ctx.lineTo(ActiveSigil[0]*200+200,ActiveSigil[1]*100)
-		ctx.lineTo(ActiveSigil[0]*200+200,ActiveSigil[1]*100+100)
-		ctx.lineTo(ActiveSigil[0]*200,ActiveSigil[1]*100+100)
-		ctx.lineTo(ActiveSigil[0]*200,ActiveSigil[1]*100)
-		ctx.stroke();
-		ctx.fill();
-		ctx.closePath()
+		else {
+			ActiveSigil=[parseInt((e.clientX-canvas.getBoundingClientRect().left)/200),parseInt((e.clientY-canvas.getBoundingClientRect().top)/100)]
+			ctx.fillStyle=CouleursPartie[Partie[ActiveSigil[0]][ActiveSigil[1]][Partie[ActiveSigil[0]][ActiveSigil[1]].length - 1]]
+			ctx.strokeStyle="#000"
+			ctx.beginPath();
+			ctx.moveTo(ActiveSigil[0]*200,ActiveSigil[1]*100)
+			ctx.lineTo(ActiveSigil[0]*200+200,ActiveSigil[1]*100)
+			ctx.lineTo(ActiveSigil[0]*200+200,ActiveSigil[1]*100+100)
+			ctx.lineTo(ActiveSigil[0]*200,ActiveSigil[1]*100+100)
+			ctx.lineTo(ActiveSigil[0]*200,ActiveSigil[1]*100)
+			ctx.stroke();
+			ctx.fill();
+			ctx.closePath()
+		}
 	}
 }
 
@@ -106,23 +110,27 @@ function StartNew(){
 			}
 		}
 	}
+	BOOLERIEN = true
 	Score = 0;
 	DrawGame()
 }
 
 function DrawTurn(){
-	for (var X = 0; X<5; X++){ 
-		for (var Y = 0; Y<5; Y++){ 
-			Partie [X][Y].push(math.randomInt(N))
+	if (BOOLERIEN){
+		for (var X = 0; X<5; X++){ 
+			for (var Y = 0; Y<5; Y++){ 
+				Partie [X][Y].push(math.randomInt(N))
+			}
 		}
-	}
-	CheckWin()
-	DrawGame()
-	for (var X = 0; X<5; X++){ 
-		for (var Y = 0; Y<5; Y++){ 
-			if (Partie[X][Y].length == 21) {
-				ctx.clearRect(0,0,1000,500)
-				// Fin de partie
+		CheckWin()
+		DrawGame()
+		for (var X = 0; X<5; X++){ 
+			for (var Y = 0; Y<5; Y++){ 
+				if (Partie[X][Y].length == 21) {
+					ctx.clearRect(0,0,1000,500)
+					BOOLERIEN = false
+					// Fin de partie
+				}
 			}
 		}
 	}

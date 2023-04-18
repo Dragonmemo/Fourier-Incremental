@@ -136,8 +136,13 @@ function CheckWin(){
 			if (t>9 && XYZ[t-1]==XYZ[t-2] && XYZ[t-1]==XYZ[t-3] && XYZ[t-1]==XYZ[t-4] && XYZ[t-1]==XYZ[t-5] && XYZ[t-1]==XYZ[t-6] && XYZ[t-1]==XYZ[t-7] && XYZ[t-1]==XYZ[t-8] && XYZ[t-1]==XYZ[t-9] && XYZ[t-1]==XYZ[t-10]){
 				for (var k=0; k<10; k++){Partie[X][Y].pop()}
 				Score ++
-				if (BScore<Score){BScore = Score}
+				if (BScore<Score){
+					BScore = Score;
+					localStorage.setItem('BS',BScore);
+				}
 			}
 		}
 	}
 }
+
+if (localStorage.BS){BScore=parseInt(localStorage.BS)}

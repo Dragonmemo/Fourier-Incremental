@@ -80,7 +80,7 @@ function ChoixCouleur(){
 		CouleursPartie[k] = "rgb("+CouleursPartie[k][0]+","+CouleursPartie[k][1]+","+CouleursPartie[k][2]+")"
 	}
 }
-
+ChoixCouleur()
 function DessineCarte(x,y,Couleur){
 	ctx.fillStyle=CouleursPartie[Couleur]
 	ctx.strokeStyle="#000"
@@ -123,7 +123,6 @@ function DrawGame(){
 }
 
 function StartNew(){
-	ChoixCouleur()
 	for (var X = 0; X<5; X++){ 
 		Partie[X] = []
 		for (var Y = 0; Y<5; Y++){ 

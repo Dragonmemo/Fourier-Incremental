@@ -135,6 +135,7 @@ function StartNew(){
 		}
 	}
 	BOOLERIEN = true
+	AUTO = false
 	Score = 0;
 	DrawGame()
 }
@@ -199,7 +200,7 @@ var mainGameLoop = window.setInterval(function() { // runs the loop
 		var MOVEMENTS = [];
 		for (var i = 0; i<25;i++){
 			for (var j = 0; j<25;j++){
-				if (i!=j && Partie[parseInt(i/5)][i%5].length!=0 && Partie[parseInt(j/5)][j%5].length!=20 && (Partie[parseInt(j/5)][j%5].length=0 || Partie[parseInt(i/5)][i%5][Partie[parseInt(i/5)][i%5].length-1] == Partie[parseInt(j/5)][j%5][Partie[parseInt(j/5)][j%5].length-1])){
+				if (i!=j && Partie[parseInt(i/5)][i%5].length!=0 && Partie[parseInt(j/5)][j%5].length!=20 && (Partie[parseInt(j/5)][j%5].length==0 || Partie[parseInt(i/5)][i%5][Partie[parseInt(i/5)][i%5].length-1] == Partie[parseInt(j/5)][j%5][Partie[parseInt(j/5)][j%5].length-1])){
 					MOVEMENTS.push([i,j])
 				}
 			}	
@@ -212,6 +213,6 @@ var mainGameLoop = window.setInterval(function() { // runs the loop
 		}
 		else {DrawTurn()}
 	}
-}, 200);
+}, 400);
 
 if (localStorage.BS){BScore=parseInt(localStorage.BS)}

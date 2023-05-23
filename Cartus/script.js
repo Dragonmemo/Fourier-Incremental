@@ -12,6 +12,7 @@ var BScore = 0;
 ctx.font = "12px Arial";
 ctx.textAlign = "center"
 N = 36
+var AUTO = false
 
 var BOOLERIEN = false;
 
@@ -19,7 +20,7 @@ function Celler(){CellClick(event)}
 canvas.addEventListener("click",Celler)
 function CellClick(e){
 	//console.log(e.clientX, e.clientY)
-	if (BOOLERIEN){
+	if (BOOLERIEN && !(AUTO)){
 		if (ActiveSigil){
 			var IDX = parseInt((e.clientX-canvas.getBoundingClientRect().left)/200)
 			var IDY = parseInt((e.clientY-canvas.getBoundingClientRect().top)/100)
@@ -138,6 +139,23 @@ function StartNew(){
 	DrawGame()
 }
 
+function StartAuto(){
+	for (var X = 0; X<5; X++){ 
+		Partie[X] = []
+		for (var Y = 0; Y<5; Y++){ 
+			Partie[X][Y] = []
+			for (var Z = 0; Z<9; Z++){ 
+				//console.log(X,Y,Z)
+				Partie[X][Y][Z] = math.randomInt(N)
+			}
+		}
+	}
+	BOOLERIEN = true
+	Auto = true
+	Score = 0;
+	DrawGame()
+}
+
 function DrawTurn(){
 	if (BOOLERIEN){
 		for (var X = 0; X<5; X++){ 
@@ -167,7 +185,7 @@ function CheckWin(){
 			if (t>9 && XYZ[t-1]==XYZ[t-2] && XYZ[t-1]==XYZ[t-3] && XYZ[t-1]==XYZ[t-4] && XYZ[t-1]==XYZ[t-5] && XYZ[t-1]==XYZ[t-6] && XYZ[t-1]==XYZ[t-7] && XYZ[t-1]==XYZ[t-8] && XYZ[t-1]==XYZ[t-9] && XYZ[t-1]==XYZ[t-10]){
 				for (var k=0; k<10; k++){Partie[X][Y].pop()}
 				Score ++
-				if (BScore<Score){
+				if (BScore<Score && !(AUTO)){
 					BScore = Score;
 					localStorage.setItem('BS',BScore);
 				}

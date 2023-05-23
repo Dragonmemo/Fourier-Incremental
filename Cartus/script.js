@@ -194,4 +194,24 @@ function CheckWin(){
 	}
 }
 
+var mainGameLoop = window.setInterval(function() { // runs the loop
+	if (AUTO && BOOLERIEN){
+		var MOVEMENTS = [];
+		for (var i = 0; i<25;i++){
+			for (var j = 0; j<25;j++){
+				if (i!=j && Partie[parseInt(i/5)][i%5].length!=0 && Partie[parseInt(j/5)][j%5].length!=20 && (Partie[parseInt(j/5)][j%5].length=0 || Partie[parseInt(i/5)][i%5][Partie[parseInt(i/5)][i%5].length-1] == Partie[parseInt(j/5)][j%5][Partie[parseInt(j/5)][j%5].length-1])){
+					MOVEMENTS.push([i,j])
+				}
+			}	
+		}
+		if (MOVEMENTS.length !=0){
+			var TULISTE = MOVEMENTS[math.randomInt(MOVEMENTS.length)]
+			Partie[parseInt(TULISTE[1]/5)][TULISTE[1]%5].push(Partie[parseInt(TULISTE[0]/5)][TULISTE[0]%5].pop())
+			CheckWin()
+			DrawGame()
+		}
+		else {DrawTurn()}
+	}
+}, 200);
+
 if (localStorage.BS){BScore=parseInt(localStorage.BS)}

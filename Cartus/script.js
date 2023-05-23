@@ -151,7 +151,7 @@ function StartAuto(){
 		}
 	}
 	BOOLERIEN = true
-	Auto = true
+	AUTO = true
 	Score = 0;
 	DrawGame()
 }

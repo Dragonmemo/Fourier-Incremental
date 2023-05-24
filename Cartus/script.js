@@ -183,8 +183,8 @@ function CheckWin(){
 		for (var Y = 0; Y<5; Y++){ 
 			var XYZ = Partie[X][Y]
 			var t = XYZ.length
-			if (t>9/(1+parseInt(AUTO)) && XYZ[t-1]==XYZ[t-2] && XYZ[t-1]==XYZ[t-3] && XYZ[t-1]==XYZ[t-4] && XYZ[t-1]==XYZ[t-5] && ((XYZ[t-1]==XYZ[t-6] && XYZ[t-1]==XYZ[t-7] && XYZ[t-1]==XYZ[t-8] && XYZ[t-1]==XYZ[t-9] && XYZ[t-1]==XYZ[t-10]) || AUTO)){
-				for (var k=0; k<10/(1+parseInt(AUTO)); k++){Partie[X][Y].pop()}
+			if (t>9/(1+AUTO) && XYZ[t-1]==XYZ[t-2] && XYZ[t-1]==XYZ[t-3] && XYZ[t-1]==XYZ[t-4] && XYZ[t-1]==XYZ[t-5] && ((XYZ[t-1]==XYZ[t-6] && XYZ[t-1]==XYZ[t-7] && XYZ[t-1]==XYZ[t-8] && XYZ[t-1]==XYZ[t-9] && XYZ[t-1]==XYZ[t-10]) || AUTO)){
+				for (var k=0; k<10/(1+AUTO); k++){Partie[X][Y].pop()}
 				Score ++
 				if (BScore<Score && !(AUTO)){
 					BScore = Score;

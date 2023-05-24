@@ -213,6 +213,6 @@ var mainGameLoop = window.setInterval(function() { // runs the loop
 		}
 		else {DrawTurn();DrawGame()}
 	}
-}, 400);
+}, 300);
 
 if (localStorage.BS){BScore=parseInt(localStorage.BS)}

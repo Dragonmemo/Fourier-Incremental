@@ -211,7 +211,7 @@ var mainGameLoop = window.setInterval(function() { // runs the loop
 			CheckWin()
 			DrawGame()
 		}
-		else {DrawTurn()}
+		else {DrawTurn();DrawGame()}
 	}
 }, 400);
 

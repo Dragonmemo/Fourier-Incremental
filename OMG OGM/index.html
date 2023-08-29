@@ -1,0 +1,62 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An upcoming game about growing leaves">
+
+    <title>Projects</title>
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/PONL/style.css">
+
+    <!-- import the webpage's client-side javascript file -->
+    <script src="math.js" defer></script>
+    <script src="complex.js" defer></script>
+    <script src="script.js" defer></script>
+    <style>
+    * {
+      box-sizing: border-box;
+    }
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    </style>
+     
+  </head>
+  <body style="background-color:#eee;">
+    <header>DABUDEE DA BUDA (PEST)    </header>
+    <table>
+      <tr>
+      <input type="number" value="0" id="N">
+        <td style="display:table-cell;">
+          <a>Normal Celerity</a>
+          <button onclick="thatCfunction()">Add that n</button>
+          <span id="MainC"></span>
+        </td>
+        
+        <td style="display:table-cell;">
+          <canvas id="myCanvas" width="500" height="500"></canvas>
+          <script>
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+          </script>
+        </td>
+        <td style="display:table-cell;">
+          Size Scale : <span id="Size"></span>
+          
+          <button onclick="resetC()">Reset Cs</button>
+          <button onclick="Export()">Export</button>
+          <button onclick="Import()">Import</button>
+          <button onclick="resetForme()">Reset Image and load new Cs</button>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

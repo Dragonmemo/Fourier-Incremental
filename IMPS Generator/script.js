@@ -48,20 +48,11 @@ function SelectIt(FOLDER,FILE){
 }
 
 
-/*
-function DrawSettings(){
-	var ctx= canvas.getContext("2d");
-	ctx.clearRect(0,0,384,384);
-	ctx.fillStyle="#000";
-	ctx.font = "30px Lucida Console"
-	//ctx.fillText("MEMORIES",430,400)
-}
-
 function WriteLog(Caption){
 	var ctx= canvas.getContext("2d");
 	//ctx.clearRect(222,12,436,728);
 	ctx.fillStyle="#000";
-	//ctx.font = "14px Lucida Console"
+	ctx.font = "30px Comic Sans MS"
 	var words = Caption.split(" ");
 	var lines = [];
 	var line="";
@@ -75,25 +66,31 @@ function WriteLog(Caption){
 			continue;
 		}
 		testLine = line+" "+words[i];
-		if (ctx.measureText(testLine).width < 256)
+		if (ctx.measureText(testLine.toUpperCase()).width < 500)
 		{
 			line = testLine;
 			i++;
 		}
-		else {lines.push(line); line=""}
+		else {
+			if (ctx.measureText(" "+words[i].toUpperCase()).width >= 500){
+				lines.push(line); lines.push(" "+words[i]); line=""; i++
+			}
+			else {lines.push(line); line=""}
+		}
 	}
 	if (line!=''){lines.push(line)}
 	for (i=0;i<lines.length;i++){
-		ctx.fillText(lines[i],220,20*i+40)
+		ctx.fillText(lines[i].toUpperCase(),246-ctx.measureText(lines[i].toUpperCase()).width/2,30*i+40)
 	}
 }
-*/
 
 var STARTIMG = document.getElementById("BASE")
 function DrawScreen(){
 	var ctx = canvas.getContext("2d");
 	ctx.clearRect(0,0,512,512);
 	
+	var Caption = document.getElementById("Caption").value
+	WriteLog(Caption)
 	//Caption
 	
 	ctx.drawImage(STARTIMG,0,0,512,512);

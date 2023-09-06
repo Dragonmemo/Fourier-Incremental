@@ -125,6 +125,12 @@ function TextItAll(){
 	}
 }
 
+function DownloadImg(){
+	var LINK=document.getElementById("Download")
+	LINK.download = 'IMPS.png';
+	LINK.href = canvas.toDataURL()//"image/png");
+	LINK.click();
+}
 
 STARTIMG.onload = begin
 

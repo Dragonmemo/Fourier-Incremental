@@ -93,7 +93,7 @@ function DrawScreen(){
 	WriteLog(Caption)
 	//Caption
 	
-	ctx.drawImage(STARTIMG,0,0,512,512);
+	//ctx.drawImage(STARTIMG,0,0,512,512);
 	for (let folder in Current_Loadout){
 		if (Current_Loadout[folder]!="None"){
 			ctx.drawImage(document.getElementById(folder+"_"+Current_Loadout[folder]),0,0,512,512);

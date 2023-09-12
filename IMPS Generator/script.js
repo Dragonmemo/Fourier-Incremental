@@ -7,7 +7,7 @@ var Current_Loadout = {}
 				OpenYourMind()
 			}
 		})*/
-var TXTimg ="<img id='BASE' src='Empty Base.png'>"
+var TXTimg =""
 var TXTselect="<td><canvas id='myCanvas' width='512' height='512' style='background-color:#fff;border-width: 2px; border-style: solid; border-color: #000;'></canvas></td>"
 for (let keys in LOAD){
 	TXTselect+="<td><table style='background-color:#c44'><b style='background-color:#f55; font-family: Comic Sans MS, Comic Sans, cursive'>"+keys+"<tr id='"+ keys + "-None'><td style ='font-family: Comic Sans MS, Comic Sans, cursive; border-width: 2px; border-style: solid; border-color: #000;'>None</td></tr>"
@@ -84,7 +84,7 @@ function WriteLog(Caption){
 	}
 }
 
-var STARTIMG = document.getElementById("BASE")
+var STARTIMG = document.getElementById("Base_Empty Base")
 function DrawScreen(){
 	var ctx = canvas.getContext("2d");
 	ctx.clearRect(0,0,512,512);

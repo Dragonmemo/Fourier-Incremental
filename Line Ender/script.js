@@ -16,6 +16,7 @@ var BOOLERIEN = -1
 function Celler(){CellClick(event)}
 canvas.addEventListener("mousedown",Celler) // faire un pour le drag (queen)
 canvas.addEventListener("touchmove",function(){CellDrag(event)})
+canvas.addEventListener("mousemove",function(){CellDrag(event)})
 canvas.addEventListener("mouseup", function(){CellUp(event)});
 
 function CellClick(e){ // à améliorer pour selection de map, de boutons

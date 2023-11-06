@@ -15,7 +15,7 @@ var BOOLERIEN = -1
 
 function Celler(){CellClick(event)}
 canvas.addEventListener("mousedown",Celler) // faire un pour le drag (queen)
-canvas.addEventListener("mousemove",function(){CellDrag(event)})
+canvas.addEventListener("touchmove",function(){CellDrag(event)})
 canvas.addEventListener("mouseup", function(){CellUp(event)});
 
 function CellClick(e){ // à améliorer pour selection de map, de boutons
@@ -105,7 +105,7 @@ function CellDrag(e){ // Fini !
 	}
 }
 
-function CellUp(e){ // Fini !
+function CellUp(e){ // Fini ! (améliorer pour condition de victoire)
 	//console.log("pog pog")
 	ActiveSigil=undefined
 	BOOLERIEN = -1

@@ -24,7 +24,7 @@ canvas.addEventListener("pointermove",function(){CellDrag(event)})
 //canvas.addEventListener("mousemove",function(){CellDrag(event)})
 canvas.addEventListener("pointerup", function(){CellUp(event)});
 //canvas.addEventListener("touchend", function(){CellUp(event)});
-canvas.addEventListener("touchcancel", function(){CellUp(event)});
+//canvas.addEventListener("touchcancel", function(){CellUp(event)});
 
 function CellClick(e){ // à améliorer pour selection de map, de boutons
 	e.preventDefault();

@@ -272,11 +272,28 @@ function myFunction() {
 	if (SETTINGS){
 		Movement()
 		Hitter()
-		ctx.clearRect(0, 0, 1000, 750);
+		ctx.clearRect(0, 0, 1000, 500);
 		DrawScreen()
 	}
 	else{
-		//écran de défaite + Press R to restart
+		ctx.clearRect(0, 0, 1000, 500);
+		ctx.strokeStyle="#eee";
+		ctx.fillStyle="#eee";
+		ctx.font= "60px Arial"
+		ctx.beginPath()
+		ctx.moveTo(100,100)
+		ctx.lineTo(100,400)
+		ctx.lineTo(900,400)
+		ctx.lineTo(900,100)
+		ctx.lineTo(100,100)
+		ctx.closePath()
+		ctx.stroke()
+		ctx.fillText("Game Over",345,70)
+		ctx.font= "40px Arial"
+		ctx.fillText("Press R to restart",343,160)
+		ctx.fillText("Controls :",415,230)
+		ctx.fillText("Aim with the mouse, Shoot by clicking",165,300)
+		ctx.fillText("Move with Arrows, WASD or ZQSD",187,370)
 	}
 };
 

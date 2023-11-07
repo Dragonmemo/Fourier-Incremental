@@ -116,8 +116,9 @@ function CellUp(e){ // Fini ! (améliorer pour condition de victoire)
 }
 
 function drawTuyaux(){ // à améliorer pour inclure les translations
-	ctx.clearRect(0, 0, 1000, 1000);
+	ctx.clearRect(0, 0, 500, 500);
 	//dessiner le quadrillage
+	ctx.font = "20px Arial"
 	ctx.strokeStyle= "#000"
 	for (var X = 0; X<TaillePartie[0]+2; X++){
 		ctx.beginPath();
@@ -151,7 +152,21 @@ function drawTuyaux(){ // à améliorer pour inclure les translations
 	for (var X = 0; X<Blockers.length; X++){
 		DessineCase(-25+50*Blockers[X][0],-25+50*Blockers[X][1])
 	}
-	
+	if (CellulesVide.length == 0){ //condition de victoire
+		ctx.clearRect(70, 190, 360, 80);
+		ctx.font = "60px Arial"
+		ctx.strokeStyle = "#000"
+		ctx.beginPath();
+		ctx.moveTo(70,190)
+		ctx.lineTo(430,190)
+		ctx.lineTo(430,270)
+		ctx.lineTo(70,270)
+		ctx.lineTo(70,190)
+		ctx.stroke();
+		ctx.closePath()
+		ctx.fillStyle = "#000"
+		ctx.fillText("Game won !", 250, 250)
+	}
 }
 
 function DessineRond(x,y,Couleur, id){ // à améliorer pour avoir plus de modes
@@ -163,7 +178,8 @@ function DessineRond(x,y,Couleur, id){ // à améliorer pour avoir plus de modes
 	ctx.lineTo(x,y+20)
 	ctx.lineTo(x-20,y)
 	ctx.fill();
-	ctx.strokeText(id, x, y)
+	ctx.fillStyle = "#fff"
+	ctx.fillText(id, x, y+8)
 	ctx.closePath()
 }
 

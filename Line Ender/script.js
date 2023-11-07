@@ -14,8 +14,8 @@ var SolutionJoueur=[] // Liste des chemins proposés par le joueur
 var BOOLERIEN = -1
 
 function fixTouchMove(event){return;}
-document.body.removeEventListener("touchstart", fixTouchMove);
-document.body.addEventListener("touchstart", fixTouchMove);
+canvas.removeEventListener("touchstart", fixTouchMove);
+canvas.addEventListener("touchstart", fixTouchMove);
 
 function Celler(){CellClick(event)}
 canvas.addEventListener("mousedown",Celler) // faire un pour le drag (queen)

@@ -18,12 +18,12 @@ canvas.removeEventListener("touchstart", fixTouchMove);
 canvas.addEventListener("touchstart", fixTouchMove);
 
 function Celler(){CellClick(event)}
-canvas.addEventListener("mousedown",Celler) // faire un pour le drag (queen)
-canvas.addEventListener("touchstart",Celler) // faire un pour le drag (queen)
-canvas.addEventListener("touchmove",function(){CellDrag(event)})
-canvas.addEventListener("mousemove",function(){CellDrag(event)})
-canvas.addEventListener("mouseup", function(){CellUp(event)});
-canvas.addEventListener("touchend", function(){CellUp(event)});
+canvas.addEventListener("pointerdown",Celler) // faire un pour le drag (queen)
+//canvas.addEventListener("touchstart",Celler) // faire un pour le drag (queen)
+canvas.addEventListener("pointermove",function(){CellDrag(event)})
+//canvas.addEventListener("mousemove",function(){CellDrag(event)})
+canvas.addEventListener("pointerup", function(){CellUp(event)});
+//canvas.addEventListener("touchend", function(){CellUp(event)});
 canvas.addEventListener("touchcancel", function(){CellUp(event)});
 
 function CellClick(e){ // à améliorer pour selection de map, de boutons

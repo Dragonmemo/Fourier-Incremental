@@ -8,6 +8,7 @@ body {
   font-family: sans-serif;
   margin: 2em 1em;
   line-height: 1.5em;
+  touch-action: none;
 }
 
 h1 {
@@ -128,10 +129,6 @@ footer {
 .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
-}
-
-canvas{
-	touch-action : none;
 }
 
 .solid{

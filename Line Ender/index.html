@@ -31,7 +31,7 @@
   </head>
   <body style="background-color:#eee;">
     <header>
-    Line Ender FIX
+    Line Ender FIXE
     </header>
 	<audio id="Audio">
 	  <source src="Frost Waltz.mp3" type="audio/mp3">
@@ -44,7 +44,7 @@
     <table><tr>
 	<td style="display:table-cell;">
 	<button type="button" onclick="StartNew()">Commencer une nouvelle partie</button><br>
-    <canvas id="myCanvas" width="500" height="500"></canvas><br>
+    <canvas ontouchmove="CellDrag(event)" id="myCanvas" width="500" height="500"></canvas><br>
 	<button type="button" onclick="" disabled>Taille</button> <span id="Scorer"></span><br><!-- faudra modifier ça pour implémenter la taille -->
 	Le but du jeu est de relier les points allant par paire (le chiffre au centre vous aide à savoir qui va avec qui) tout en remplissant entièrement la grille !<br>
 	Les chemins sont horizontaux et verticaux et ne se croisent pas.<br>

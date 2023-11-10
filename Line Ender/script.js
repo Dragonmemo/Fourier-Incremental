@@ -27,7 +27,7 @@ canvas.addEventListener("pointerup", function(){CellUp(event)});
 //canvas.addEventListener("touchcancel", function(){CellUp(event)});
 
 function CellClick(e){ // à améliorer pour selection de map, de boutons
-	e.preventDefault();
+	//e.preventDefault();
 	BOOLERIEN = -1;
 	//console.log(e.clientX, e.clientY)
 	for (var X = 0; X<ListesCheminsSoluce.length; X++){ 
@@ -72,7 +72,7 @@ function CellClick(e){ // à améliorer pour selection de map, de boutons
 }
 
 function CellDrag(e){ // Fini !
-	e.preventDefault();
+	//e.preventDefault();
 	if (BOOLERIEN >=0 && ActiveSigil && (ActiveSigil[0]!= parseInt((e.clientX-canvas.getBoundingClientRect().left)/50)+1 || ActiveSigil[1]!=parseInt((e.clientY-canvas.getBoundingClientRect().top)/50)+1)){
 		//console.log(ActiveSigil[0]-parseInt((e.clientX-canvas.getBoundingClientRect().left)/50)-1,ActiveSigil[1]-parseInt((e.clientY-canvas.getBoundingClientRect().top)/50)-1)
 		if (math.abs(ActiveSigil[0]-parseInt((e.clientX-canvas.getBoundingClientRect().left)/50)-1)+math.abs(ActiveSigil[1]-parseInt((e.clientY-canvas.getBoundingClientRect().top)/50)-1)>=2){
@@ -116,7 +116,7 @@ function CellDrag(e){ // Fini !
 }
 
 function CellUp(e){ // Fini ! (améliorer pour condition de victoire)
-	e.preventDefault();
+	//e.preventDefault();
 	//console.log("pog pog")
 	ActiveSigil=undefined
 	BOOLERIEN = -1

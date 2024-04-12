@@ -1,0 +1,56 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Want to make you own IMP ?">
+
+    <title>IMPS Caption Generator</title>
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/IMPS Generator/style.css">
+
+    <!-- import the webpage's client-side javascript file -->
+    <script src="math.js" defer></script>
+    <script src="Loader.js" defer></script>
+    <script src="WalkScript.js" defer></script>
+	<style>
+    * {
+      box-sizing: border-box;
+    }
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    </style>
+     
+  </head>
+  <body style="background-color:#922;">
+  <span hidden id="IMAGO">
+	<img id='WalkMan_Body' src='WalkMan/Body.png'>
+	<img id='WalkMan_Shadow' src='WalkMan/Shadow.png'>
+	<img id='WalkMan_Leg Left' src='WalkMan/Leg Left.png'>
+	<img id='WalkMan_Foot Left' src='WalkMan/Foot Left.png'>
+	<img id='WalkMan_Leg Right' src='WalkMan/Leg Right.png'>
+	<img id='WalkMan_Foot Right' src='WalkMan/Foot Right.png'>
+	<img id='WalkMan_Arm Left' src='WalkMan/Arm Left.png'>
+	<img id='WalkMan_Hand Left' src='WalkMan/Hand Left.png'>
+	<img id='WalkMan_Arm Right' src='WalkMan/Arm Right.png'>
+	<img id='WalkMan_Hand Right' src='WalkMan/Hand Right.png'>
+  </span>
+	<table>
+		<tr id="listing">
+		</tr>
+		<tr>
+		<input type="range" min=-400 max=0 value=0 id="Xer"><br>
+		<input type="range" min=-400 max=0 value=0 id="Yer">
+		</tr>
+	</table>
+	
+  </body>
+</html>

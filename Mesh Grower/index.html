@@ -1,0 +1,88 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Make that mesh of dot grow BIG">
+
+    <title>Projects</title>
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/Mesh Grower/style.css">
+
+    <!-- import the webpage's client-side javascript file -->
+    <script src="math.js" defer></script>
+    <script src="complex.js" defer></script>
+    <script src="script.js" defer></script>
+     
+  </head>
+  <body style="background-color:#eee;">
+    <header>Mesh Grower</header>
+    <table>
+      <tr>
+        <td style="display:table-cell;">
+          First Tick : <input id="start"><br>
+          Duration : <input id="duration"><br>
+          Strength : <input id="strength"><br>
+          Position X : <input id="posX"><br>
+          Position Y : <input id="posY"><br>
+          Position Z : <input id="posZ"><br>
+          <button onclick="pushIt()">Add that pusher</button>
+          <button onclick="pushRandom()">Add random pusher</button>
+          <span id="MainC"></span>
+        </td>
+        
+        <td style="display:table-cell;">
+          <canvas id="myCanvas" width="500" height="500"></canvas>
+          <script>
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+          </script>
+        </td>
+        <td style="display:table-cell;">
+          Size Scale : <span id="Size"></span><br>
+          Current Tick : <span id="Tick"></span>
+          
+		  <p style="display:flex;">
+              0<input
+                type="range"
+                min="0"
+                max="100"
+                value="0"
+                class="slider"
+                id="Angle1"
+              />2pi
+            </p>
+            <p style="display:flex;">
+              0<input
+                type="range"
+                min="0"
+                max="100"
+                value="0"
+                class="slider"
+                id="Angle2"
+              />2pi
+            </p>
+            <p style="display:flex;">
+              0<input
+                type="range"
+                min="0"
+                max="100"
+                value="0"
+                class="slider"
+                id="Angle3"
+              />2pi
+            </p>
+		  
+          <button onclick="resetPushers()">Reset Pusher List</button>
+          <button onclick="">Export</button>
+          <button onclick="">Import</button>
+          <button onclick="resetForme()">Reset simulation and load new pushers</button>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

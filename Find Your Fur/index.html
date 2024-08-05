@@ -1,0 +1,65 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Want to make you own IMP ?">
+
+    <title>Find Your Fur !</title>
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/Find Your Fur/style.css">
+
+    <!-- import the webpage's client-side javascript file -->
+    <script src="math.js" defer></script>
+    <script src="Furs.js" defer></script>
+    <script src="Translation.js" defer></script>
+    <script src="script.js" defer></script>
+	<style>
+    * {
+      box-sizing: border-box;
+    }
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+	p {
+		border-style: solid;
+	}
+    </style>
+     
+  </head>
+  <body style="background-color:#ddd;">
+  <table>
+  <td>
+  Language : EN<br>
+          <canvas id="myCanvas" width="100" height="20"></canvas> Color : <span id="color"></span>
+        <br>
+		Red :<br>
+		-<input type="range" min="-1" max="1" value="0" class="slider" id="red">+<br>
+		Green :<br>
+		-<input type="range" min="-1" max="1" value="0" class="slider" id="green">+<br>
+		Blue :<br>
+		-<input type="range" min="-1" max="1" value="0" class="slider" id="blue">+<br>
+		Grammage minimum :<br>
+      <input type="number" value="0" id="grammage"> g/ml<br>
+	  Prix Minimum :<br>
+      <input type="number" value="0" id="price"> $/m
+    </td>
+	<td>
+	<span id="List" style="overflow-y:scroll;height:500px;display:inline-block;"></span>
+    </td>
+	</table>
+	<span style ='font-family: Comic Sans MS, Comic Sans, cursive'>Ask Iris (Discord : Spectrum7093 | Telegram : https://t.me/dragonmemo | Twitter : @dragonmemo3) to add/modify furs or options to the webpage !
+	</span><br>
+    <span style ='font-family: Comic Sans MS, Comic Sans, cursive'>Changelog :<br>
+	V0.1 <br>
+	- Base version
+	</span>
+  </body>
+</html>

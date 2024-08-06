@@ -1,5 +1,4 @@
 var FurList =[
-	[29,19,17,1200,59.95,'https://www.fourrureshop.fr/produit/tissu-fausse-fourrure-facon-vison-brun-naturel-3125/'],
 	[151,209,201,1200,16.99,'https://bigzfabric.com/collections/candy-shag-faux-fur-fabric/products/candy-shag-faux-fur-fabric-aqua-sold-by-the-yard-second-quality-goods'], // en $/m pour lui et les suivants
 	[133,116,168,1200,23.50,'https://bigzfabric.com/collections/candy-shag-faux-fur-fabric/products/candy-shag-faux-fur-fabric-purple-sold-by-the-yard-ecoshagtm'],
 	[207,185,211,1200,23.50,'https://bigzfabric.com/collections/candy-shag-faux-fur-fabric/products/candy-shag-faux-fur-fabric-lavender-sold-by-the-yard-ecoshagtm'],

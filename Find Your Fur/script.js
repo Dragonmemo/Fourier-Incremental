@@ -49,9 +49,9 @@ function DistanceCol(Col1,Col2){ //couleurs données en RGB, Col1 est la couleur
 
 function DrawScreen(){
 	var NewParams=[Parameters[0],Parameters[1],Parameters[2]];
-	NewParams[0]+=parseInt(document.getElementById("red").value)
-	NewParams[1]+=parseInt(document.getElementById("green").value)
-	NewParams[2]+=parseInt(document.getElementById("blue").value)
+	NewParams[0]=parseInt(document.getElementById("red").value)
+	NewParams[1]=parseInt(document.getElementById("green").value)
+	NewParams[2]=parseInt(document.getElementById("blue").value)
 	if (NewParams[0]<0){NewParams[0] = 0}
 	if (NewParams[1]<0){NewParams[1] = 0}
 	if (NewParams[2]<0){NewParams[2] = 0}

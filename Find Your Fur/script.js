@@ -4,46 +4,37 @@ var canvas = document.getElementById("myCanvas");
 
 //le fichier Furs.js contient les valeurs de chaque fourrures comme indiquées dans parameters et en 6e le lien.
 
-function DistanceCol(Col1,Col2){ //couleurs données en RGB, Col1 est la couleur qui est approchée
-	var ColPrime1 = [Col1[0]/255,Col1[1]/255,Col1[2]/255]
-	var ColMin1 = math.min(ColPrime1)
-	var ColMax1 = math.max(ColPrime1)
-	var Delta1 = ColMax1-ColMin1
-	var Saturation1 = ColMax1;
-	if (ColMax1!=0){Saturation1 = Delta1/ColMax1}
-	var Hue1 = 0;
-	if (Delta1!=0){
-		if (ColMax1==ColPrime1[0]){
-			Hue1 = (ColPrime1[1]-ColPrime1[2])/Delta1+6
-		}
-		else if (ColMax1==ColPrime1[1]){
-			Hue1 = (ColPrime1[2]-ColPrime1[0])/Delta1+2
-		}
-		else{
-			Hue1 = (ColPrime1[0]-ColPrime1[1])/Delta1+4
-		}
-	}
-	var ColPrime2 = [Col2[0]/255,Col2[1]/255,Col2[2]/255]
-	var ColMin2 = math.min(ColPrime2)
-	var ColMax2 = math.max(ColPrime2)
-	var Delta2 = ColMax2-ColMin2
-	var Saturation2 = ColMax2;
-	if (ColMax2!=0){Saturation2 = Delta2/ColMax2}
-	var Hue2 = 0;
-	if (Delta2!=0){
-		if (ColMax2==ColPrime2[0]){
-			Hue2 = (ColPrime2[1]-ColPrime2[2])/Delta2+6
-		}
-		else if (ColMax2==ColPrime2[1]){
-			Hue2 = (ColPrime2[2]-ColPrime2[0])/Delta2+2
-		}
-		else{
-			Hue2 = (ColPrime2[0]-ColPrime2[1])/Delta2+4
-		}
-	}
+FurList = FurList.split('\n')
+for (var row in FurList) FurList[row]=FurList[row].split(',');
 
-	return (math.min(math.abs(Hue1-Hue2), math.abs(Hue1-Hue2+6),math.abs(Hue1-Hue2-6)))**2*ColMax1 + (ColMax1-ColMax2)**2 + (Saturation1-Saturation2)**2 
+function RGB_To_LAB(COLOR){
+	var var_R = ( COLOR[0] / 255 )
+	var var_G = ( COLOR[1] / 255 )
+	var var_B = ( COLOR[2] / 255 )
+
+	if ( var_R > 0.04045 ) var_R = ( ( var_R + 0.055 ) / 1.055 ) ** 2.4
+	else                   var_R = var_R / 12.92
+	if ( var_G > 0.04045 ) var_G = ( ( var_G + 0.055 ) / 1.055 ) ** 2.4
+	else                   var_G = var_G / 12.92
+	if ( var_B > 0.04045 ) var_B = ( ( var_B + 0.055 ) / 1.055 )** 2.4
+	else                   var_B = var_B / 12.92
+
+	var var_X = var_R * 0.4124 + var_G * 0.3576 + var_B * 0.1805
+	var var_Y = var_R * 0.2126 + var_G * 0.7152 + var_B * 0.0722
+	var var_Z = var_R * 0.0193 + var_G * 0.1192 + var_B * 0.9505
 	
+	if ( var_X > 0.008856 ) var_X = var_X ** ( 1/3 )
+	else                    var_X = ( 7.787 * var_X ) + ( 16 / 116 )
+	if ( var_Y > 0.008856 ) var_Y = var_Y ** ( 1/3 )
+	else                    var_Y = ( 7.787 * var_Y ) + ( 16 / 116 )
+	if ( var_Z > 0.008856 ) var_Z = var_Z ** ( 1/3 )
+	else                    var_Z = ( 7.787 * var_Z ) + ( 16 / 116 )
+
+	return [( 116 * var_Y ) - 16, 500 * ( var_X - var_Y ), 200 * ( var_Y - var_Z )]	
+}
+function distance_euc(a,b){
+	var SUM = (a[0]-b[0])**2+(a[1]-b[1])**2+(a[2]-b[2])**2
+	return math.sqrt(SUM)
 }
 
 
@@ -100,7 +91,7 @@ function DrawScreen(){
 			}
 		}
 		//Calcul des fourures les plus proches
-		CurrentFurs.sort(function(a,b){return DistanceCol(Parameters,a)-DistanceCol(Parameters,b)})
+		CurrentFurs.sort(function(a,b){return distance_euc(RGB_To_LAB(Parameters), RGB_To_LAB(a))-distance_euc(RGB_To_LAB(Parameters), RGB_To_LAB(b))})
 		
 		
 		console.log(CurrentFurs.length)
@@ -110,7 +101,7 @@ function DrawScreen(){
 			LOL+="Color : ["+CurrentFurs[i][0]+','+CurrentFurs[i][1]+','+CurrentFurs[i][2]+'] <span style="color:rgb('+NewParams[0]+','+NewParams[1]+','+NewParams[2]+');background-color:rgb('+CurrentFurs[i][0]+','+CurrentFurs[i][1]+','+CurrentFurs[i][2]+');">||||||||||</span><br>'
 			LOL+='Grammage : '+CurrentFurs[i][3]+'g/ml<br>'
 			LOL+='Price : '+CurrentFurs[i][4]+'$/m<br>'
-			LOL+='<a href="'+CurrentFurs[i][5]+'">Look this Fur</a>'
+			LOL+='<a href="'+CurrentFurs[i][6]+'">Look this Fur</a>'
 			LOL+="</p>"
 		}
 		document.getElementById("List").innerHTML = LOL

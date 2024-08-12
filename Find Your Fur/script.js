@@ -1,12 +1,19 @@
 var i,j;
-var Parameters = [-1,0,0,0,0]
+var Parameters = [-1,0,0,0,0,0]
 var canvas = document.getElementById("myCanvas");
 
 //le fichier Furs.js contient les valeurs de chaque fourrures comme indiquées dans parameters et en 6e le lien.
 
 FurList = FurList.split('\n')
-for (var row in FurList) FurList[row]=FurList[row].split(',');
-
+for (var row in FurList) {
+	FurList[row]=FurList[row].split(',');
+	if (FurList[row][3] =='') FurList[row][3] = 9999
+	else FurList[row][3] = parseFloat(FurList[row][3])
+	if (FurList[row][5] =='') FurList[row][5] = 9999
+	else FurList[row][5] = parseInt(FurList[row][5])
+	if (FurList[row][6] =='') FurList[row][6] = "Aucune"
+	FurList[row][7] = parseFloat(FurList[row][7])
+}
 function RGB_To_LAB(COLOR){
 	var var_R = ( COLOR[0] / 255 )
 	var var_G = ( COLOR[1] / 255 )
@@ -49,10 +56,11 @@ function DrawScreen(){
 	if (NewParams[0]>255){NewParams[0] = 255}
 	if (NewParams[1]>255){NewParams[1] = 255}
 	if (NewParams[2]>255){NewParams[2] = 255}
-	NewParams[3] = document.getElementById("grammage").value
-	NewParams[4] = document.getElementById("price").value
+	NewParams[4] = document.getElementById("grammage").value
+	NewParams[3] = document.getElementById("length").value
+	NewParams[5] = document.getElementById("price").value
 	var bool = false;
-	for (var i = 0; i<5; i++){
+	for (var i = 0; i<6; i++){
 		if (NewParams[i] != Parameters[i]){bool = true}
 	}
 	if (bool){
@@ -86,7 +94,7 @@ function DrawScreen(){
 		//calcul des fourures valides
 		var CurrentFurs = []
 		for (var i=0; i< FurList.length; i++){
-			if (FurList[i][3]>=Parameters[3] && FurList[i][4]>=Parameters[4]){
+			if (FurList[i][3]>=Parameters[3] && FurList[i][5]>=Parameters[4] && FurList[i][7]>=Parameters[5]){
 				CurrentFurs.push(FurList[i])
 			}
 		}
@@ -99,9 +107,11 @@ function DrawScreen(){
 		for (var i=0; i<CurrentFurs.length;i++){
 			LOL+="<p>"
 			LOL+="Color : ["+CurrentFurs[i][0]+','+CurrentFurs[i][1]+','+CurrentFurs[i][2]+'] <span style="color:rgb('+NewParams[0]+','+NewParams[1]+','+NewParams[2]+');background-color:rgb('+CurrentFurs[i][0]+','+CurrentFurs[i][1]+','+CurrentFurs[i][2]+');">||||||||||</span><br>'
-			LOL+='Grammage : '+CurrentFurs[i][3]+'g/ml<br>'
-			LOL+='Price : '+CurrentFurs[i][4]+'$/m<br>'
-			LOL+='<a href="'+CurrentFurs[i][6]+'">Look this Fur</a>'
+			LOL+='Longueur : '+CurrentFurs[i][3]+'cm<br>'
+			LOL+='Grammage : '+CurrentFurs[i][5]+'g/ml<br>'
+			LOL+='Spécialité : '+CurrentFurs[i][6]+'<br>'
+			LOL+='Price : '+CurrentFurs[i][7]+'$/m<br>'
+			LOL+='<a href="'+CurrentFurs[i][9]+'">Look this Fur</a>'
 			LOL+="</p>"
 		}
 		document.getElementById("List").innerHTML = LOL

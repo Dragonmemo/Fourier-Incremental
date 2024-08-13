@@ -45,6 +45,22 @@ function distance_euc(a,b){
 }
 
 
+function LeastFurnishedColor(){
+	var Indexator = [[0,0,0],9999]
+	for (var r=0; r<256; r++){
+		for (var g=0; g<256; g++){
+			for (var b=0; b<256; b++){
+				var tempDist = 9999
+				for (var row in FurList){
+					if (distance_euc(RGB_To_LAB([r,g,b]), RGB_To_LAB([row[0],row[1],row[2]]))< tempDist) tempDist = distance_euc(RGB_To_LAB([r,g,b]), RGB_To_LAB([row[0],row[1],row[2]]));
+				}
+				if (Indexator[1]>tempDist) Indexator = [[r,g,b], tempDist];
+			}
+		}
+	}
+	return Indexator
+}
+
 function DrawScreen(){
 	var NewParams=[Parameters[0],Parameters[1],Parameters[2]];
 	NewParams[0]=parseInt(document.getElementById("red").value)

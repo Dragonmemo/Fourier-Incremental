@@ -7,6 +7,9 @@ var canvas = document.getElementById("myCanvas");
 FurList = FurList.split('\n')
 for (var row in FurList) {
 	FurList[row]=FurList[row].split(',');
+	FurList[row][0] = parseInt(FurList[row][0])
+	FurList[row][1] = parseInt(FurList[row][1])
+	FurList[row][2] = parseInt(FurList[row][2])
 	if (FurList[row][3] =='') FurList[row][3] = 9999
 	else FurList[row][3] = parseFloat(FurList[row][3])
 	if (FurList[row][5] =='') FurList[row][5] = 9999
@@ -45,16 +48,18 @@ function distance_euc(a,b){
 }
 
 
-function LeastFurnishedColor(){
-	var Indexator = [[0,0,0],9999]
-	for (var r=0; r<256; r++){
-		for (var g=0; g<256; g++){
-			for (var b=0; b<256; b++){
+function LeastFurnishedColor(Ratio){
+	var Indexator = [[0,0,0],0]
+	for (var r=0; r<256; r+=Ratio){
+		if (r%10 == 0) console.log(r);
+		for (var g=0; g<256; g+=Ratio){
+			for (var b=0; b<256; b+=Ratio){
 				var tempDist = 9999
 				for (var row in FurList){
-					if (distance_euc(RGB_To_LAB([r,g,b]), RGB_To_LAB([row[0],row[1],row[2]]))< tempDist) tempDist = distance_euc(RGB_To_LAB([r,g,b]), RGB_To_LAB([row[0],row[1],row[2]]));
+					if (distance_euc(RGB_To_LAB([r,g,b]), RGB_To_LAB([FurList[row][0],FurList[row][1],FurList[row][2]]))< tempDist) tempDist = distance_euc(RGB_To_LAB([r,g,b]), RGB_To_LAB([FurList[row][0],FurList[row][1],FurList[row][2]]));
+					if (tempDist<Indexator[1]) break
 				}
-				if (Indexator[1]>tempDist) Indexator = [[r,g,b], tempDist];
+				if (Indexator[1]<tempDist) Indexator = [[r,g,b], tempDist];
 			}
 		}
 	}

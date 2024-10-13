@@ -31,6 +31,10 @@
 	p {
 		border-style: solid;
 	}
+	button {
+		width: 50px;
+		height: 50px;
+	}
     </style>
      
   </head>
@@ -38,6 +42,16 @@
   <table>
   <td>
   Language : EN<br>
+  <button onclick="setColors(0,0,0)" style="background-color:#000;"></button>
+  <button onclick="setColors(255,255,255)" style="background-color:#fff;"></button>
+  <button onclick="setColors(255,0,0)" style="background-color:#f00;"></button>
+  <button onclick="setColors(0,255,0)" style="background-color:#0f0;"></button>
+  <button onclick="setColors(0,0,255)" style="background-color:#00f;"></button><br>  
+  <button onclick="setColors(255,255,0)" style="background-color:#ff0;"></button>
+  <button onclick="setColors(255,127,0)" style="background-color:#f80;"></button>
+  <button onclick="setColors(255,127,127)" style="background-color:#f88;"></button>
+  <button onclick="setColors(160,0,160)" style="background-color:#a0a;"></button>
+  <button onclick="setColors(0,160,160)" style="background-color:#0aa;"></button><br>
           <canvas id="myCanvas" width="100" height="20"></canvas> Color : <span id="color"></span>
         <br>
 		Red :<br>
@@ -60,6 +74,8 @@
 	<span style ='font-family: Comic Sans MS, Comic Sans, cursive'>Ask Iris (Discord : Spectrum7093 | Telegram : https://t.me/dragonmemo | Twitter : @dragonmemo3) to add/modify furs or options to the webpage !
 	</span><br>
     <span style ='font-family: Comic Sans MS, Comic Sans, cursive'>Changelog :<br>
+	V0.4<br>
+	- Fast color buttons<br><br>
 	V0.3.2 <br>
 	- 555 Furs <br><br>
 	V0.3.1 <br>

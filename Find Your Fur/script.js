@@ -47,6 +47,11 @@ function distance_euc(a,b){
 	return math.sqrt(SUM)
 }
 
+function setColors(x,y,z){
+	document.getElementById("red").value = x
+	document.getElementById("green").value = y
+	document.getElementById("blue").value = z
+}
 
 function LeastFurnishedColor(Ratio){
 	var Indexator = [[0,0,0],0]

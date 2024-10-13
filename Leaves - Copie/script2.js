@@ -4,7 +4,7 @@
 function myFunction1() {
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
-  ctx.clearRect(0,0, 500, 500);
+  ctx.clearRect(0,0, 2000, 2000);
 }
 
 function arrayEquals(a, b) {
@@ -13,10 +13,7 @@ function arrayEquals(a, b) {
 
 function suite(d,v){
 	var liste;
-	if (v<-x[0]*2){
-		console.log(v);
-		console.log(d)
-	}
+	//console.log(v)
     switch (v) {
 		case 1 :
 			liste=[x[1]+1,1,1,-x[1]+1];
@@ -46,7 +43,7 @@ function suite(d,v){
     var N=[];
     for (k=0;k<3;k++){
         if (Math.random()>1-1/(1.01**k)){
-            var elt = liste.splice(Math.floor(Math.random()*(liste.length)),1)[0]
+            var elt = liste.splice(parseInt(Math.random()*(liste.length)),1)[0]
 			N.unshift(elt)
             var j=-1
             for (i=0;i<liste.length;i++){
@@ -57,12 +54,29 @@ function suite(d,v){
 				}
 			}
             if (k!=2){
-				//N[0]=[N[0]+d[0],[d[1][0],d[1][1],d[1][2]]]
-				N[0]=N[0]+d
+				N[0]=[N[0]+d[0],d[1]]
 			}
             else {
-                //N[0]=[N[0]+d[0],[d[1][0]+math.floor(Math.random()*3)-1,d[1][1]+math.floor(Math.random()*3)-1,d[1][2]+math.floor(Math.random()*3)-1]]
-				N[0]=N[0]+d+256**2*10*x[0]*x[1]*(math.floor(Math.random()*3)-1)+256*10*x[0]*x[1]*(math.floor(Math.random()*3)-1)+10*x[0]*x[1]*(math.floor(Math.random()*3)-1)
+                N[0]=[N[0]+d[0],d[1]+parseInt(Math.random()*3)-1+256*(parseInt(Math.random()*3)-1)+256*256*(parseInt(Math.random()*3)-1)]
+				
+				if(parseInt(d[1]%256)-parseInt(N[0][1]%256)>20){
+					N[0][1]+=-1
+				}
+				if(parseInt(d[1]%256)-parseInt(N[0][1]%256)<-20){
+					N[0][1]+=1
+				}
+				if(parseInt(d[1]/256%256)-parseInt(N[0][1]/256%256)>20){
+					N[0][1]+=-256
+				}
+				if(parseInt(d[1]/256%256)-parseInt(N[0][1]/256%256)<-20){
+					N[0][1]+=256
+				}
+				if(parseInt(d[1]/256/256%256)-parseInt(N[0][1]/256/256%256)>20){
+					N[0][1]+=-256*256
+				}
+				if(parseInt(d[1]/256/256%256)-parseInt(N[0][1]/256/256%256)<-20){
+					N[0][1]+=256*256
+				}
 			}
 	}}
 	return N
@@ -174,53 +188,40 @@ function blur(imageData, radius, quality) {
     return imageData;
 }
 
-var x=[500,500]//x=MAGIE.size ici on connait x
+var x=[2000,2000]//x=MAGIE.size ici on connait x
     
 function dessineMoiUneFeuille(){
 	var T0 = Date.now()
 	var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
 	var nouveau_bourgeons;
-	ctx.clearRect(0,0, 500, 500);
-	var imageData = ctx.createImageData(500, 500); //=pixels
+	ctx.clearRect(0,0, 2000, 2000);
+	var imageData = ctx.createImageData(2000, 2000); //=pixels
     var bourgeon=[[[parseInt(x[1]*x[0]/2+x[1]/2)],
-		[parseInt(x[1]*x[0]/2+x[1]/2+1)+
-		256**2*10*x[0]*x[1]*parseInt(Math.random()*256)+256*10*x[0]*x[1]*parseInt(Math.random()*256)+10*x[0]*x[1]*parseInt(Math.random()*256)]]]
+		[parseInt(x[1]*x[0]/2+x[1]/2+1),
+		 parseInt(Math.random()*256*256*256)]]]
     while (bourgeon.length!=0){
         //console.log(bourgeon)
 		var Actif=bourgeon.pop()
         //console.log(Actif)
-		if (imageData.data[4*Actif[1]+3]!=255 && Actif[1]%(x[0]*x[1])-Actif[0]>-x[0]*2){ //Comprendre ce bug qui me fait créer une 2e condition
-            var depart=Actif[1]%(x[0]*x[1]);
-			var vecteur= Actif[1]%(x[0]*x[1])-Actif[0]
-			
+		if (imageData.data[4*Actif[1]+3]!=255){
+            var depart=Actif[1];
+			var vecteur= Actif[1][0]-Actif[0]
             nouveau_bourgeons=suite(depart,vecteur)
 			//console.log(nouveau_bourgeons)
 			//console.log([nouveau_bourgeons[i][0]-(depart[0]-depart[0]%x[1]),nouveau_bourgeons[i][0]-(depart[0]-depart[0]%x[1])+x[1],nouveau_bourgeons[i][0]-(depart[0]-depart[0]%x[1])-x[1]])
-            if(Math.floor(Actif[1]/(10*x[0]*x[1]*256))>255){
-				console.log(Math.floor(Actif[1]/(10*x[0]*x[1]*256)))
-			}
-			//imageData.data[4*(Actif[1]%(x[0]*x[1]))]=Math.floor(Actif[1]/(10*x[0]*x[1]))%256
-            //imageData.data[4*(Actif[1]%(x[0]*x[1]))+1]=Math.floor(Actif[1]/(10*x[0]*x[1]*256))%(256)
-            imageData.data[4*(Actif[1]%(x[0]*x[1]))+2]=Math.floor(Actif[1]/(10*x[0]*x[1]*256))
-            imageData.data[4*(Actif[1]%(x[0]*x[1]))+3]=255
+            imageData.data[4*Actif[1][0]]=Actif[1][1]%256
+            imageData.data[4*Actif[1][0]+1]=parseInt(Actif[1][1]/256%256)
+            imageData.data[4*Actif[1][0]+2]=parseInt(Actif[1][1]/256/256)
+            imageData.data[4*Actif[1][0]+3]=255
             for (i=0;i<nouveau_bourgeons.length;i++){
-				if (nouveau_bourgeons[i]%(5*x[0]*x[1])>=0 && 
-				nouveau_bourgeons[i]%(5*x[0]*x[1])<=x[0]*x[1] && 
-				![(nouveau_bourgeons[i]%(5*x[0]*x[1]))-(depart[0]-depart[0]%x[1]),
-				  (nouveau_bourgeons[i]+x[1])%(5*x[0]*x[1])-(depart[0]-depart[0]%x[1]),
-				  (nouveau_bourgeons[i]-x[1])%(5*x[0]*x[1])-(depart[0]-depart[0]%x[1])].includes(x[1]) && 
-				![(nouveau_bourgeons[i]%(5*x[0]*x[1]))-(depart[0]-depart[0]%x[1]),
-				  (nouveau_bourgeons[i]+x[1])%(5*x[0]*x[1])-(depart[0]-depart[0]%x[1]),
-				  (nouveau_bourgeons[i]-x[1])%(5*x[0]*x[1])-(depart[0]-depart[0]%x[1])].includes(-1) && 
-				
-				imageData.data[4*(nouveau_bourgeons[i]%(256**2*10*x[0]*x[1]))+3]!=255){
-					bourgeon.push([Actif[1]%(x[0]*x[1]),nouveau_bourgeons[i]])
+				if (nouveau_bourgeons[i][0]>=0 && nouveau_bourgeons[i][0]<=x[0]*x[1] && ![nouveau_bourgeons[i][0]-(depart[0]-depart[0]%x[1]),nouveau_bourgeons[i][0]-(depart[0]-depart[0]%x[1])+x[1],nouveau_bourgeons[i][0]-(depart[0]-depart[0]%x[1])-x[1]].includes(x[1]) && ![nouveau_bourgeons[i][0]-(depart[0]-depart[0]%x[1]),nouveau_bourgeons[i][0]-(depart[0]-depart[0]%x[1])+x[1],nouveau_bourgeons[i][0]-(depart[0]-depart[0]%x[1])-x[1]].includes(-1) && imageData.data[4*nouveau_bourgeons[i][0]+3]!=255){
+					bourgeon.push([Actif[1][0],nouveau_bourgeons[i]])
 				}
 			}
 		}
 	}
-	//imageData=blur(imageData,2,1)
+	imageData=blur(imageData,2,1)
     ctx.putImageData(imageData,0,0)
 	console.log (Date.now()-T0)
 }

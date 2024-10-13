@@ -1,0 +1,39 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Empilez des cartes !">
+
+    <title>Line Ender!</title>
+
+
+    <!-- import the webpage's client-side javascript file -->
+    <script src="math.js" defer></script>
+    <script src="script.js" defer></script>
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="style.css">
+     
+  </head>
+  <body style="background-color:#eee;">
+    <header>
+    SNAAAAAAKE
+    </header>
+    <table><tr>
+	<td style="display:table-cell;">
+	<canvas id="myCanvas" width="500" height="500"></canvas><br>
+	<canvas id="myCanvas2" width="500" height="100"></canvas><br>
+	<button type="button" onclick="StartNew()">Reccommencer le serpent</button>
+    <button type="button" onclick="AddElement('corps')" >+corps</button>
+	<button type="button" onclick="AddElement('tGauche')" >+Tgauche</button>
+	<button type="button" onclick="AddElement('tDroit')" >+Tdroit</button>
+	<button type="button" onclick="AddElement('saut')" >+saut</button>
+	<button type="button" onclick="AddElement('activateur')" >+activateur</button>
+	<button type="button" onclick="RemoveElement()" id="Remover" disabled>-element</button>
+	</td>
+	</tr></table>
+  </body>
+</html>

@@ -34,6 +34,21 @@
 	<button type="button" onclick="AddElement('activateur')" >+activateur</button>
 	<button type="button" onclick="RemoveElement()" id="Remover" disabled>-element</button>
 	</td>
+	<td>
+	When does a new effect is added ?<br>
+	<select id="EffectActivation">
+	  <option value="meme">Same effects only</option>
+	  <option value="activateur">Activator effects only</option>
+	  <option value="tous">Any effect</option>
+	</select><br>
+	How does adding an effect to a cell happens ?<br>
+	<select id="CaseAccumulation">
+	  <option value="remplace">Replace all cell's effects by currently activated ones</option>
+	  <option value="remplaceTout">Replace all cell's effects by latest activated snake's effect</option>
+	  <option value="ajoutMemeOuRemplace">Add all similar activated effects on the snake if it's the same as the latest activated one else replace by the amount of the latest activated one</option>
+	  <option value="ajout">Add all currently activated effects</option>
+	</select><br>
+	</td>
 	</tr></table>
   </body>
 </html>

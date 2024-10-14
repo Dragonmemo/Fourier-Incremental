@@ -100,6 +100,8 @@ function StartNew(){ // Pour démarrer une nouvelle run
 	CellulesEffet = []
 	TailleGrille = 20 // capable de modifier
 	CurrentTick = 0;
+	typeEffet = document.getElementById('EffectActivation').value;
+	typeAccumulation = document.getElementById('CaseAccumulation').value;
 	
 	for (var X = 1; X<ListeSerpentTemp.length; X++){
 		ListeSerpent.push([[TailleGrille/2,TailleGrille/2],ListeSerpentTemp[X]])
@@ -177,7 +179,7 @@ function TickIter(){
 			case "ajoutMemeOuRemplace" :
 				if (num == -1) {
 					CellulesEffet.push([[ListeSerpent[0][0][0],ListeSerpent[0][0][1]], CaseTemp[0],1]);
-					CellulesEffet[-1][2] = CaseTemp.filter(x => x==CaseTemp[0]).length
+					CellulesEffet[CellulesEffet.length-1][2] = CaseTemp.filter(x => x==CaseTemp[0]).length
 				}
 				else {
 					if (CaseTemp[0] == CellulesEffet[num][1]){
@@ -191,12 +193,11 @@ function TickIter(){
 				break;
 			case "ajout" :
 				if (num == -1) {
-					CellulesEffet.push([[ListeSerpent[0][0][0],ListeSerpent[0][0][1]], CaseTemp[0],1]);
-					CellulesEffet[-1][2] = CaseTemp.filter(x => x==CaseTemp[0]).length
+					CellulesEffet.push([[ListeSerpent[0][0][0],ListeSerpent[0][0][1]], CaseTemp]);
 				}
 				else {
 					if (CaseTemp[0] == CellulesEffet[num][1]){
-						CellulesEffet[num][2] += CaseTemp.filter(x => x==CaseTemp[0]).length
+						CellulesEffet[num][1]=CellulesEffet[num][1].concat(CaseTemp)
 					}
 				}
 				break;
@@ -210,7 +211,6 @@ function TickIter(){
 	
 	if (num!= -1){
 		switch (typeAccumulation){
-			case "ajout":
 			case "ajoutMemeOuRemplace" :
 				switch (CellulesEffet[num][1]){
 					case "tGauche":
@@ -240,6 +240,7 @@ function TickIter(){
 						break;
 				}
 				break;
+			case "ajout":
 			case "remplace" :
 				for (var X=0; X<CellulesEffet[num][1].length; X++){
 					switch (CellulesEffet[num][1][X]){
